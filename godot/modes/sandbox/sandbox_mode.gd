@@ -17,8 +17,8 @@ const HELP_TEXT := (
 	+ "Drag or scroll orbit   Pinch or Ctrl+scroll zoom   Shift+scroll speed   Right mouse look   Click select\n"
 	+ "Place body: click the orbital plane, drag to set velocity, release to launch   Esc cancel   {delete_body} remove\n"
 	+ "{time_pause} pause   {time_reverse} reverse   {time_slower} {time_faster} time speed   {toggle_labels} labels   "
-	+ "{toggle_trails} orbit lines   {toggle_grid} distance rings   {toggle_level} level   1-0 focus body   "
-	+ "{mode_explore} explore   {toggle_help} help   {toggle_hud} hide"
+	+ "{toggle_trails} orbit lines   {toggle_grid} distance rings   {toggle_level} level   1-0 focus body   {toggle_auto_orbit} auto-orbit\n"
+	+ "{mode_explore} explore   {toggle_help} help   {toggle_diagnostics} perf   {toggle_hud} hide   {toggle_fullscreen} fullscreen   {take_screenshot} screenshot   Esc menu"
 )
 const MODE_SWITCH_TEXT := "Open Explore ({mode_explore})"
 
@@ -90,6 +90,7 @@ func _allows_time_jump() -> bool:
 
 
 func _process(delta: float) -> void:
+	super(delta)
 	_frame += 1
 	var requested := 0.0 if clock.paused else clock.effective_speed() * delta
 	var advanced := world.advance(requested, TIME_BUDGET_USEC)
@@ -137,6 +138,11 @@ func _unhandled_input(event: InputEvent) -> void:
 func _on_quality_changed() -> void:
 	renderer.apply_quality()
 	_refresh_count()
+
+
+func _diagnostics_summary() -> String:
+	var integrator := "RK4" if _integrator == NBodySimulation.Integrator.RK4 else "Verlet"
+	return "%d/%d bodies, %s" % [world.bodies.size(), Quality.profile()["max_bodies"], integrator]
 
 
 func _on_preferences_changed() -> void:

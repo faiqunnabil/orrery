@@ -11,6 +11,7 @@ const SANDBOX_SCENE := "res://modes/sandbox/sandbox_mode.tscn"
 const MAIN_MENU_SCENE := "res://modes/menu/main_menu.tscn"
 const PICK_TOLERANCE_PIXELS := 16.0
 const RING_LABEL_MIN_SPACING := 56.0
+const DIAGNOSTICS_REFRESH_SECONDS := 0.25
 
 var clock := SimulationClock.new()
 var camera := CameraRig.new()
@@ -20,6 +21,7 @@ var space_environment := make_space_environment()
 
 var _help_template := ""
 var _mode_switch_template := ""
+var _diagnostics_timer := 0.0
 
 
 func _ready() -> void:
@@ -50,6 +52,20 @@ func _ready() -> void:
 	_on_preferences_changed()
 
 
+func _process(delta: float) -> void:
+	hud.set_auto_orbit_active(camera.is_auto_orbiting())
+	if hud.is_diagnostics_visible():
+		_diagnostics_timer += delta
+		if _diagnostics_timer >= DIAGNOSTICS_REFRESH_SECONDS:
+			_diagnostics_timer = 0.0
+			hud.refresh_diagnostics(_diagnostics_summary())
+
+
+func _input(event: InputEvent) -> void:
+	if _is_camera_idle_reset(event):
+		camera.reset_idle()
+
+
 func _unhandled_input(event: InputEvent) -> void:
 	if event.is_action_pressed("time_pause"):
 		clock.toggle_pause()
@@ -65,6 +81,15 @@ func _unhandled_input(event: InputEvent) -> void:
 		hud.toggle_visibility()
 	elif event.is_action_pressed("toggle_help"):
 		hud.toggle_help()
+	elif event.is_action_pressed("toggle_diagnostics"):
+		if hud.toggle_diagnostics():
+			_diagnostics_timer = 0.0
+			hud.refresh_diagnostics(_diagnostics_summary())
+	elif event.is_action_pressed("toggle_auto_orbit"):
+		var active := camera.toggle_auto_orbit()
+		hud.show_toast("Auto-orbit: On" if active else "Auto-orbit: Off")
+	elif event.is_action_pressed("take_screenshot"):
+		_take_screenshot()
 	elif event.is_action_pressed("toggle_labels"):
 		Preferences.set_labels_visible(not Preferences.labels_visible)
 	elif event.is_action_pressed("toggle_trails"):
@@ -141,6 +166,42 @@ func _allows_time_jump() -> bool:
 
 func _is_explore() -> bool:
 	return true
+
+
+func _diagnostics_summary() -> String:
+	return ""
+
+
+func _is_camera_idle_reset(event: InputEvent) -> bool:
+	if event is InputEventMouseMotion or event is InputEventMouseButton:
+		return true
+	if event is InputEventPanGesture or event is InputEventMagnifyGesture:
+		return true
+	if event is InputEventKey and event.pressed and not event.echo:
+		return not (
+			event.is_action("toggle_auto_orbit")
+			or event.is_action("toggle_diagnostics")
+			or event.is_action("take_screenshot")
+			or event.is_action("toggle_fullscreen")
+			or event.is_action("toggle_hud")
+		)
+	return false
+
+
+func _take_screenshot() -> void:
+	if ScreenCapture.is_capturing():
+		return
+	var hud_was_visible := hud.is_root_visible()
+	if hud_was_visible:
+		hud.set_root_visible(false)
+	var saved_path := await ScreenCapture.save_frame(get_viewport())
+	if hud_was_visible:
+		hud.set_root_visible(true)
+	if saved_path != "":
+		Audio.play_effect(&"click")
+		hud.show_toast("Screenshot saved: " + saved_path)
+	else:
+		hud.show_toast("Screenshot failed")
 
 
 func _on_quality_changed() -> void:

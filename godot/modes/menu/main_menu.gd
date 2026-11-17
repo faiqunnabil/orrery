@@ -40,3 +40,13 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	_elapsed += delta
 	_camera.rotation = Vector3(sin(_elapsed * TILT_FREQUENCY) * TILT_AMPLITUDE, _elapsed * DRIFT_SPEED, 0.0)
+
+
+func _unhandled_input(event: InputEvent) -> void:
+	if event.is_action_pressed("take_screenshot"):
+		_capture_screenshot()
+
+
+func _capture_screenshot() -> void:
+	if await ScreenCapture.save_frame(get_viewport()) != "":
+		Audio.play_effect(&"click")

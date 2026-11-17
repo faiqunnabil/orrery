@@ -13,8 +13,8 @@ const HELP_TEXT := (
 	+ "{time_pause} pause   {time_reverse} reverse   {time_slower} {time_faster} time speed   {time_now} now   "
 	+ "{scale_toggle} scale   {toggle_labels} labels   {toggle_trails} orbit lines   {toggle_grid} distance rings   "
 	+ "{toggle_level} level\n"
-	+ "1-0 focus body   {focus_next} next   {focus_release} free flight   {mode_sandbox} sandbox   "
-	+ "{toggle_help} help   {toggle_hud} hide   Esc menu"
+	+ "1-0 focus body   {focus_next} next   {focus_release} free flight   {toggle_auto_orbit} auto-orbit   {mode_sandbox} sandbox\n"
+	+ "{toggle_help} help   {toggle_diagnostics} perf   {toggle_hud} hide   {toggle_fullscreen} fullscreen   {take_screenshot} screenshot   Esc menu"
 )
 const MODE_SWITCH_TEXT := "Open Sandbox ({mode_sandbox})"
 
@@ -86,6 +86,8 @@ func _build_world() -> void:
 
 
 func _process(delta: float) -> void:
+	camera.auto_orbit_allowed = not _quiz_panel.is_open()
+	super(delta)
 	clock.advance(delta)
 	model.update(clock.seconds)
 	renderer.compute_positions()
@@ -133,6 +135,10 @@ func _unhandled_input(event: InputEvent) -> void:
 
 func _on_quality_changed() -> void:
 	renderer.apply_quality()
+
+
+func _diagnostics_summary() -> String:
+	return "%d bodies, %s rocks" % [model.bodies.size(), Hud.format_count(Quality.profile()["asteroid_count"])]
 
 
 func _on_preferences_changed() -> void:

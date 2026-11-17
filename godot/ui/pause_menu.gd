@@ -43,3 +43,14 @@ func close() -> void:
 	get_viewport().gui_release_focus()
 	visible = false
 	get_tree().paused = false
+
+
+func _unhandled_input(event: InputEvent) -> void:
+	if visible and event.is_action_pressed("take_screenshot"):
+		get_viewport().set_input_as_handled()
+		_capture_screenshot()
+
+
+func _capture_screenshot() -> void:
+	if await ScreenCapture.save_frame(get_viewport()) != "":
+		Audio.play_effect(&"click")

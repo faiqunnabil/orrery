@@ -62,8 +62,14 @@ var ui_scale := 1.0
 
 
 func _ready() -> void:
+	process_mode = Node.PROCESS_MODE_ALWAYS
 	_load()
 	_apply_window()
+
+
+func _unhandled_input(event: InputEvent) -> void:
+	if event.is_action_pressed("toggle_fullscreen"):
+		set_fullscreen(not fullscreen)
 
 
 func profile() -> Dictionary:

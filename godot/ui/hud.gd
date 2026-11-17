@@ -13,12 +13,16 @@ signal menu_pressed
 const OUTER_MARGIN := 14
 const SIDE_PANEL_WIDTH := 340
 const HELP_HINT := "   |   %s controls"
+const AUTO_ORBIT_HINT := "   |   Auto-orbit"
 const SPEED_LABEL_WIDTH := 92
 const BOTTOM_RESERVE := 60.0
 const SCROLLBAR_GUTTER := 12
+const DIAGNOSTICS_WIDTH := 240
+const TOAST_SECONDS := 2.5
 
 var left_column := VBoxContainer.new()
 var right_column := VBoxContainer.new()
+var top_center := VBoxContainer.new()
 var bottom_center := VBoxContainer.new()
 
 var _root := Control.new()
@@ -32,6 +36,14 @@ var _fps_label := Label.new()
 var _status_label := Label.new()
 var _help_panel := PanelContainer.new()
 var _help_label := Label.new()
+var _diagnostics_panel := PanelContainer.new()
+var _diag_values: Dictionary[String, Label] = {}
+var _toast_panel := PanelContainer.new()
+var _toast_label := Label.new()
+var _toast_timer := 0.0
+var _frame_ms := 16.7
+var _cpu_ms := 1.0
+var _auto_orbit_active := false
 var _quality_option := OptionButton.new()
 var _depth_control := SegmentedControl.new(Preferences.DEPTH_NAMES, "Information depth (M)")
 var _labels_toggle: Button
@@ -120,13 +132,32 @@ func _ready() -> void:
 	add_child(_root)
 	_place_column(left_column, Control.PRESET_TOP_LEFT, Control.GROW_DIRECTION_END, Control.GROW_DIRECTION_END)
 	_place_column(right_column, Control.PRESET_TOP_RIGHT, Control.GROW_DIRECTION_BEGIN, Control.GROW_DIRECTION_END)
+	_place_column(top_center, Control.PRESET_CENTER_TOP, Control.GROW_DIRECTION_BOTH, Control.GROW_DIRECTION_END)
 	_place_column(bottom_center, Control.PRESET_CENTER_BOTTOM, Control.GROW_DIRECTION_BOTH, Control.GROW_DIRECTION_BEGIN)
 	_build_time_panel()
 	_build_settings_panel()
+	_build_top_center()
 	_build_footer()
 	_depth_control.selected.connect(func(index: int) -> void: Preferences.set_depth_level(index as Preferences.DepthLevel))
 	Preferences.changed.connect(_sync_preferences)
 	_sync_preferences()
+
+
+func _process(delta: float) -> void:
+	_frame_ms = lerpf(_frame_ms, delta * 1000.0, 0.15)
+	_cpu_ms = lerpf(_cpu_ms, Performance.get_monitor(Performance.TIME_PROCESS) * 1000.0, 0.15)
+	if _toast_timer > 0.0:
+		_toast_timer -= delta
+		if _toast_timer <= 0.0:
+			_toast_panel.visible = false
+
+
+func is_root_visible() -> bool:
+	return _root.visible
+
+
+func set_root_visible(value: bool) -> void:
+	_root.visible = value
 
 
 func toggle_visibility() -> void:
@@ -156,8 +187,13 @@ func set_now_visible(value: bool) -> void:
 	_now_separator.visible = value
 
 
+func set_auto_orbit_active(value: bool) -> void:
+	_auto_orbit_active = value
+
+
 func set_status(text: String) -> void:
-	_status_label.text = text if _help_panel.visible else text + HELP_HINT % InputBindings.keys_text("toggle_help")
+	var full := text + (AUTO_ORBIT_HINT if _auto_orbit_active else "")
+	_status_label.text = full if _help_panel.visible else full + HELP_HINT % InputBindings.keys_text("toggle_help")
 
 
 func set_help(text: String) -> void:
@@ -170,6 +206,34 @@ func toggle_help() -> void:
 
 func set_help_visible(value: bool) -> void:
 	_help_panel.visible = value
+
+
+func toggle_diagnostics() -> bool:
+	_diagnostics_panel.visible = not _diagnostics_panel.visible
+	return _diagnostics_panel.visible
+
+
+func is_diagnostics_visible() -> bool:
+	return _diagnostics_panel.visible
+
+
+func refresh_diagnostics(scene_summary: String) -> void:
+	var fps := Engine.get_frames_per_second()
+	var draws := int(Performance.get_monitor(Performance.RENDER_TOTAL_DRAW_CALLS_IN_FRAME))
+	var primitives := int(Performance.get_monitor(Performance.RENDER_TOTAL_PRIMITIVES_IN_FRAME))
+	var vram_mb := Performance.get_monitor(Performance.RENDER_VIDEO_MEM_USED) / 1048576.0
+	_diag_values["fps"].text = "%d" % fps
+	_diag_values["frame"].text = "%.1f / %.1f ms" % [_frame_ms, _cpu_ms]
+	_diag_values["draws"].text = format_count(draws)
+	_diag_values["primitives"].text = format_count(primitives)
+	_diag_values["vram"].text = "%.1f MB" % vram_mb
+	_diag_values["scene"].text = scene_summary
+
+
+func show_toast(text: String) -> void:
+	_toast_label.text = text
+	_toast_panel.visible = true
+	_toast_timer = TOAST_SECONDS
 
 
 func refresh(clock: SimulationClock) -> void:
@@ -272,6 +336,62 @@ func _build_settings_panel() -> void:
 	_mode_button.pressed.connect(func() -> void: mode_switch_pressed.emit())
 	actions.add_child(_mode_button)
 	actions.add_child(make_button("Menu", func() -> void: menu_pressed.emit(), "Pause menu, settings and credits (Esc)"))
+
+
+func _build_top_center() -> void:
+	_diagnostics_panel.custom_minimum_size = Vector2(DIAGNOSTICS_WIDTH, 0)
+	_diagnostics_panel.size_flags_horizontal = Control.SIZE_SHRINK_CENTER
+	_diagnostics_panel.visible = false
+	_diagnostics_panel.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	top_center.add_child(_diagnostics_panel)
+	var diag_box := VBoxContainer.new()
+	diag_box.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	_diagnostics_panel.add_child(diag_box)
+	diag_box.add_child(section_label("Performance"))
+	var grid := GridContainer.new()
+	grid.columns = 2
+	grid.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	diag_box.add_child(grid)
+	for entry in [
+		["fps", "FPS"],
+		["frame", "Frame / CPU"],
+		["draws", "Draw calls"],
+		["primitives", "Primitives"],
+		["vram", "VRAM"],
+		["scene", "Scene"],
+	]:
+		var key_label := make_label(entry[1], "DimLabel")
+		key_label.mouse_filter = Control.MOUSE_FILTER_IGNORE
+		grid.add_child(key_label)
+		var value_label := Label.new()
+		value_label.horizontal_alignment = HORIZONTAL_ALIGNMENT_RIGHT
+		value_label.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+		value_label.mouse_filter = Control.MOUSE_FILTER_IGNORE
+		grid.add_child(value_label)
+		_diag_values[entry[0]] = value_label
+	_toast_panel.theme_type_variation = "ChipPanel"
+	_toast_panel.size_flags_horizontal = Control.SIZE_SHRINK_CENTER
+	_toast_panel.visible = false
+	_toast_panel.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	bottom_center.add_child(_toast_panel)
+	_toast_label.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	_toast_panel.add_child(_toast_label)
+
+
+static func format_count(value: int) -> String:
+	if value >= 1000000:
+		return "%.2fM" % (float(value) / 1000000.0)
+	if value >= 10000:
+		return "%.1fk" % (float(value) / 1000.0)
+	var text := str(value)
+	var out := ""
+	var count := 0
+	for index in range(text.length() - 1, -1, -1):
+		if count > 0 and count % 3 == 0:
+			out = "," + out
+		out = text[index] + out
+		count += 1
+	return out
 
 
 func _build_footer() -> void:

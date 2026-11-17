@@ -25,11 +25,14 @@ const MIN_SURFACE_GAP := 0.05
 const MAX_ORBIT_DISTANCE := 5.0e7
 const FREE_ZOOM_FRACTION := 0.2
 const TOUCHPAD_HOLD_MSEC := 400
+const IDLE_ORBIT_DELAY := 20.0
+const AUTO_ORBIT_SPEED := 0.045
 
 var anchor_id := ""
 var offset := PackedFloat64Array([0.0, 0.0, 30.0])
 var speed_scale := 1.0
 var drag_orbit_enabled := true
+var auto_orbit_allowed := true
 
 var _yaw := 0.0
 var _pitch := 0.0
@@ -38,6 +41,8 @@ var _dragging := false
 var _drag_travel := 0.0
 var _surface_distance := 1.0
 var _touchpad_until_msec := 0
+var _manual_auto_orbit := false
+var _idle_seconds := 0.0
 var _flying := false
 var _flight_elapsed := 0.0
 var _flight_duration := FLIGHT_DURATION
@@ -55,6 +60,25 @@ func is_flying() -> bool:
 	return _flying
 
 
+func is_auto_orbiting() -> bool:
+	if _flying or _dragging or _looking or not drag_orbit_enabled or not auto_orbit_allowed:
+		return false
+	if _manual_auto_orbit:
+		return true
+	return anchor_id != "" and _idle_seconds >= IDLE_ORBIT_DELAY
+
+
+func toggle_auto_orbit() -> bool:
+	_manual_auto_orbit = not _manual_auto_orbit
+	if not _manual_auto_orbit:
+		_idle_seconds = 0.0
+	return _manual_auto_orbit
+
+
+func reset_idle() -> void:
+	_idle_seconds = 0.0
+
+
 func world_position(anchor_position: PackedFloat64Array) -> PackedFloat64Array:
 	return PackedFloat64Array(
 		[anchor_position[0] + offset[0], anchor_position[1] + offset[1], anchor_position[2] + offset[2]]
@@ -70,6 +94,8 @@ func update(delta: float, nearest_surface_distance: float) -> void:
 	)
 	if input != Vector3.ZERO:
 		_cancel_flight()
+		_manual_auto_orbit = false
+		_idle_seconds = 0.0
 		var speed := maxf(nearest_surface_distance * SPEED_PER_DISTANCE, MIN_SPEED) * speed_scale
 		if Input.is_action_pressed("boost"):
 			speed *= BOOST_FACTOR
@@ -77,8 +103,12 @@ func update(delta: float, nearest_surface_distance: float) -> void:
 		offset[0] += direction.x * speed * delta
 		offset[1] += direction.y * speed * delta
 		offset[2] += direction.z * speed * delta
+	elif not _flying and not _dragging and not _looking and drag_orbit_enabled and auto_orbit_allowed:
+		_idle_seconds += delta
 	if _flying:
 		_advance_flight(delta)
+	elif is_auto_orbiting():
+		orbit(AUTO_ORBIT_SPEED * delta, 0.0)
 
 
 func set_clip_range(near_plane: float, far_plane: float) -> void:
@@ -128,6 +158,8 @@ func aim(direction: Vector3) -> void:
 
 func release_anchor(current_world_position: PackedFloat64Array) -> void:
 	_cancel_flight()
+	_manual_auto_orbit = false
+	_idle_seconds = 0.0
 	anchor_id = ""
 	offset = current_world_position.duplicate()
 
@@ -151,8 +183,12 @@ func _unhandled_input(event: InputEvent) -> void:
 		_handle_mouse_motion(event)
 	elif event is InputEventPanGesture:
 		_touchpad_until_msec = Time.get_ticks_msec() + TOUCHPAD_HOLD_MSEC
+		_manual_auto_orbit = false
+		_idle_seconds = 0.0
 		orbit(event.delta.x * PAN_ORBIT_SENSITIVITY, -event.delta.y * PAN_ORBIT_SENSITIVITY)
 	elif event is InputEventMagnifyGesture:
+		_manual_auto_orbit = false
+		_idle_seconds = 0.0
 		zoom(1.0 / maxf(event.factor, 0.01))
 
 
@@ -201,24 +237,35 @@ func _handle_mouse_button(event: InputEventMouseButton) -> void:
 	match event.button_index:
 		MOUSE_BUTTON_RIGHT:
 			_looking = event.pressed
+			if _looking:
+				_manual_auto_orbit = false
+				_idle_seconds = 0.0
 			Input.mouse_mode = Input.MOUSE_MODE_CAPTURED if _looking else Input.MOUSE_MODE_VISIBLE
 		MOUSE_BUTTON_LEFT:
 			_dragging = event.pressed and drag_orbit_enabled
 			_drag_travel = 0.0
+			if event.pressed:
+				_idle_seconds = 0.0
 		MOUSE_BUTTON_WHEEL_UP, MOUSE_BUTTON_WHEEL_DOWN, MOUSE_BUTTON_WHEEL_LEFT, MOUSE_BUTTON_WHEEL_RIGHT:
 			if event.pressed:
+				_manual_auto_orbit = false
+				_idle_seconds = 0.0
 				_handle_wheel(event)
 
 
 func _handle_mouse_motion(event: InputEventMouseMotion) -> void:
 	if _looking:
 		_cancel_flight()
+		_manual_auto_orbit = false
+		_idle_seconds = 0.0
 		_yaw -= event.relative.x * LOOK_SENSITIVITY
 		_pitch = clampf(_pitch - event.relative.y * LOOK_SENSITIVITY, -MAX_PITCH, MAX_PITCH)
 		_apply_orientation()
 	elif _dragging and event.button_mask & MOUSE_BUTTON_MASK_LEFT:
 		_drag_travel += event.relative.length()
 		if _drag_travel > DRAG_THRESHOLD:
+			_manual_auto_orbit = false
+			_idle_seconds = 0.0
 			orbit(-event.relative.x * DRAG_ORBIT_SENSITIVITY, event.relative.y * DRAG_ORBIT_SENSITIVITY)
 
 
