@@ -17,8 +17,8 @@ const CONFLICT_TEXT := "%s is already used for %s. Press another key, or Esc to 
 const DISPLAY_NOTE := "Resolution applies in windowed mode. Fullscreen uses the screen resolution."
 const UI_SCALE_NOTE := "Larger sizes suit high-resolution screens and reading from a distance. 130% works best at 1600 x 900 or above."
 const POINTER_NOTE := (
-	"Drag with the left button to orbit the focused body. Scroll left or right to orbit around it. "
-	+ "Auto treats smooth touchpad scrolling as orbit and mouse wheel steps as zoom. "
+	"Drag with the left button to orbit the focused body. "
+	+ "Auto treats two-finger touchpad swiping as camera move and mouse wheel steps as zoom. "
 	+ "Pinch or Ctrl + scroll always zooms, and Shift + scroll changes flight speed."
 )
 const GRAPHICS_NOTE := (

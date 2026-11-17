@@ -118,8 +118,8 @@ These are the default bindings. Every keyboard action can be rebound in **Settin
 
 | Action | Keys |
 |---|---|
-| Move, down / up | W A S D, Q / E |
-| Orbit the focused body | Left drag, or two-finger scroll on a touchpad |
+| Move, down / up | W A S D, Q / E, or two-finger swipe on a touchpad |
+| Orbit the focused body | Left drag |
 | Zoom | Mouse wheel, pinch, or Ctrl + scroll |
 | Look around | Right mouse button + move |
 | Flight speed / boost | Shift + scroll / Shift |

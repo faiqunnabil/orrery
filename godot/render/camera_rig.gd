@@ -19,12 +19,19 @@ const DRAG_THRESHOLD := 6.0
 const DRAG_ORBIT_SENSITIVITY := 0.006
 const WHEEL_ORBIT_STEP := 0.06
 const PAN_ORBIT_SENSITIVITY := 0.012
+const PAN_MOVE_SENSITIVITY := 0.0055
+const WHEEL_PAN_UNITS := 6.0
 const ZOOM_STEP := 1.15
 const MAX_ELEVATION := 1.48
 const MIN_SURFACE_GAP := 0.05
 const MAX_ORBIT_DISTANCE := 5.0e7
 const FREE_ZOOM_FRACTION := 0.2
 const TOUCHPAD_HOLD_MSEC := 400
+const PINCH_HOLD_MSEC := 150
+const PINCH_SENSITIVITY := 0.6
+const PINCH_FACTOR_MIN := 0.8
+const PINCH_FACTOR_MAX := 1.25
+const WAYLAND_PAN_SCALE := 0.35
 const IDLE_ORBIT_DELAY := 20.0
 const AUTO_ORBIT_SPEED := 0.045
 
@@ -41,6 +48,8 @@ var _dragging := false
 var _drag_travel := 0.0
 var _surface_distance := 1.0
 var _touchpad_until_msec := 0
+var _pinch_until_msec := 0
+var _pan_scale := 1.0
 var _manual_auto_orbit := false
 var _idle_seconds := 0.0
 var _flying := false
@@ -54,6 +63,8 @@ var _flight_target_rotation := Quaternion.IDENTITY
 
 func _ready() -> void:
 	fov = DEFAULT_FOV
+	if DisplayServer.get_name() == "Wayland":
+		_pan_scale = WAYLAND_PAN_SCALE
 
 
 func is_flying() -> bool:
@@ -182,14 +193,13 @@ func _unhandled_input(event: InputEvent) -> void:
 	elif event is InputEventMouseMotion:
 		_handle_mouse_motion(event)
 	elif event is InputEventPanGesture:
-		_touchpad_until_msec = Time.get_ticks_msec() + TOUCHPAD_HOLD_MSEC
-		_manual_auto_orbit = false
-		_idle_seconds = 0.0
-		orbit(event.delta.x * PAN_ORBIT_SENSITIVITY, -event.delta.y * PAN_ORBIT_SENSITIVITY)
+		_handle_pan_gesture(event)
 	elif event is InputEventMagnifyGesture:
+		_pinch_until_msec = Time.get_ticks_msec() + PINCH_HOLD_MSEC
 		_manual_auto_orbit = false
 		_idle_seconds = 0.0
-		zoom(1.0 / maxf(event.factor, 0.01))
+		var factor := clampf(event.factor, PINCH_FACTOR_MIN, PINCH_FACTOR_MAX)
+		zoom(pow(1.0 / factor, PINCH_SENSITIVITY))
 
 
 func orbit(azimuth_delta: float, elevation_delta: float) -> void:
@@ -233,6 +243,15 @@ func zoom(factor: float) -> void:
 		offset[axis] *= target / distance
 
 
+func pan(right_delta: float, up_delta: float) -> void:
+	_cancel_flight()
+	var step := maxf(_surface_distance, MIN_SPEED) * speed_scale * PAN_MOVE_SENSITIVITY
+	var move := (basis.x * right_delta + basis.y * up_delta) * step
+	offset[0] += move.x
+	offset[1] += move.y
+	offset[2] += move.z
+
+
 func _handle_mouse_button(event: InputEventMouseButton) -> void:
 	match event.button_index:
 		MOUSE_BUTTON_RIGHT:
@@ -271,29 +290,52 @@ func _handle_mouse_motion(event: InputEventMouseMotion) -> void:
 
 func _handle_wheel(event: InputEventMouseButton) -> void:
 	var amount := event.factor if event.factor > 0.0 else 1.0
-	var vertical := 1.0 if event.button_index == MOUSE_BUTTON_WHEEL_UP else -1.0
+	var action := _wheel_action(event)
 	if event.button_index == MOUSE_BUTTON_WHEEL_LEFT or event.button_index == MOUSE_BUTTON_WHEEL_RIGHT:
 		var horizontal := 1.0 if event.button_index == MOUSE_BUTTON_WHEEL_RIGHT else -1.0
-		orbit(horizontal * amount * WHEEL_ORBIT_STEP, 0.0)
+		if action == Preferences.ScrollMode.ORBIT:
+			orbit(horizontal * amount * WHEEL_ORBIT_STEP, 0.0)
+		else:
+			pan(horizontal * amount * WHEEL_PAN_UNITS, 0.0)
 		return
+	var vertical := 1.0 if event.button_index == MOUSE_BUTTON_WHEEL_UP else -1.0
 	if event.shift_pressed:
 		speed_scale = clampf(speed_scale * pow(SPEED_SCALE_STEP, vertical * amount), MIN_SPEED_SCALE, MAX_SPEED_SCALE)
-	elif event.ctrl_pressed or not _scroll_orbits(event):
+	elif event.ctrl_pressed or action == Preferences.ScrollMode.ZOOM:
 		zoom(pow(ZOOM_STEP, -vertical * amount))
-	else:
+	elif action == Preferences.ScrollMode.ORBIT:
 		orbit(0.0, vertical * amount * WHEEL_ORBIT_STEP)
+	else:
+		pan(0.0, vertical * amount * WHEEL_PAN_UNITS)
 
 
-func _scroll_orbits(event: InputEventMouseButton) -> bool:
-	match Preferences.scroll_mode:
-		Preferences.ScrollMode.ORBIT:
-			return true
-		Preferences.ScrollMode.ZOOM:
-			return false
+func _handle_pan_gesture(event: InputEventPanGesture) -> void:
+	if Time.get_ticks_msec() < _pinch_until_msec:
+		return
+	_touchpad_until_msec = Time.get_ticks_msec() + TOUCHPAD_HOLD_MSEC
+	_manual_auto_orbit = false
+	_idle_seconds = 0.0
+	var scaled_delta := event.delta * _pan_scale
+	var pan_steps := -scaled_delta.y * (PAN_ORBIT_SENSITIVITY / WHEEL_ORBIT_STEP)
+	if event.shift_pressed:
+		speed_scale = clampf(speed_scale * pow(SPEED_SCALE_STEP, pan_steps), MIN_SPEED_SCALE, MAX_SPEED_SCALE)
+	elif event.ctrl_pressed or Preferences.scroll_mode == Preferences.ScrollMode.ZOOM:
+		zoom(pow(ZOOM_STEP, -pan_steps))
+		if absf(scaled_delta.x) > 0.0:
+			pan(scaled_delta.x, 0.0)
+	elif Preferences.scroll_mode == Preferences.ScrollMode.ORBIT:
+		orbit(scaled_delta.x * PAN_ORBIT_SENSITIVITY, -scaled_delta.y * PAN_ORBIT_SENSITIVITY)
+	else:
+		pan(scaled_delta.x, -scaled_delta.y)
+
+
+func _wheel_action(event: InputEventMouseButton) -> Preferences.ScrollMode:
+	if Preferences.scroll_mode != Preferences.ScrollMode.AUTO:
+		return Preferences.scroll_mode
 	var now := Time.get_ticks_msec()
 	if event.factor > 0.0 and not is_equal_approx(event.factor, roundf(event.factor)):
 		_touchpad_until_msec = now + TOUCHPAD_HOLD_MSEC
-	return now < _touchpad_until_msec
+	return Preferences.ScrollMode.MOVE if now < _touchpad_until_msec else Preferences.ScrollMode.ZOOM
 
 
 func _focus_pose(radius: float, toward_sun: Vector3, radii: float) -> Dictionary:

@@ -6,7 +6,7 @@ signal trail_length_changed
 enum DepthLevel { EXPLORER, SCIENTIST }
 enum TrailLength { SHORT, MEDIUM, LONG }
 enum OrbitPalette { NATURAL, COLORBLIND_SAFE }
-enum ScrollMode { AUTO, ORBIT, ZOOM }
+enum ScrollMode { AUTO, ORBIT, ZOOM, MOVE }
 
 const CONFIG_PATH := "user://settings.cfg"
 const CONFIG_SECTION := "interface"
@@ -14,7 +14,7 @@ const DEPTH_NAMES: Array[String] = ["Explorer", "Scientist"]
 const TRAIL_LENGTH_NAMES: Array[String] = ["Short", "Medium", "Long"]
 const TRAIL_LENGTH_FRACTIONS: Array[float] = [0.35, 0.6, 0.9]
 const ORBIT_PALETTE_NAMES: Array[String] = ["Natural", "Colorblind-safe"]
-const SCROLL_MODE_NAMES: Array[String] = ["Auto", "Orbit", "Zoom"]
+const SCROLL_MODE_NAMES: Array[String] = ["Auto", "Orbit", "Zoom", "Move"]
 const OKABE_ITO_COLORS: Array[Color] = [
 	Color(0.902, 0.624, 0.0),
 	Color(0.337, 0.706, 0.914),
@@ -122,7 +122,7 @@ func _load() -> void:
 	var stored_palette: int = config.get_value(CONFIG_SECTION, "orbit_palette", OrbitPalette.NATURAL)
 	orbit_palette = clampi(stored_palette, OrbitPalette.NATURAL, OrbitPalette.COLORBLIND_SAFE) as OrbitPalette
 	var stored_scroll: int = config.get_value(CONFIG_SECTION, "scroll_mode", ScrollMode.AUTO)
-	scroll_mode = clampi(stored_scroll, ScrollMode.AUTO, ScrollMode.ZOOM) as ScrollMode
+	scroll_mode = clampi(stored_scroll, ScrollMode.AUTO, ScrollMode.MOVE) as ScrollMode
 
 
 func _save() -> void:
