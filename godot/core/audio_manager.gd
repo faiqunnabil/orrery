@@ -56,6 +56,8 @@ func _ready() -> void:
 	_narration_player.process_mode = Node.PROCESS_MODE_PAUSABLE
 	_narration_player.finished.connect(_duck.bind(false))
 	add_child(_narration_player)
+	_music_player.bus = MUSIC_BUS
+	add_child(_music_player)
 	_start_music()
 	get_tree().node_added.connect(_on_node_added)
 	get_tree().scene_changed.connect(_on_scene_changed)
@@ -66,15 +68,34 @@ func _ready() -> void:
 func _notification(what: int) -> void:
 	if what == NOTIFICATION_WM_CLOSE_REQUEST:
 		quit_application()
+	elif what == NOTIFICATION_EXIT_TREE or what == NOTIFICATION_PREDELETE:
+		_stop_all()
+		_clear_streams()
 
 
 func quit_application() -> void:
+	_stop_all()
+	await get_tree().create_timer(QUIT_SETTLE_SECONDS, true, false, true).timeout
+	_clear_streams()
+	get_tree().quit()
+
+
+func _stop_all() -> void:
+	if _duck_tween != null:
+		_duck_tween.kill()
+		_duck_tween = null
 	_music_player.stop()
 	_narration_player.stop()
 	for player in _effect_players:
 		player.stop()
-	await get_tree().create_timer(QUIT_SETTLE_SECONDS, true, false, true).timeout
-	get_tree().quit()
+
+
+func _clear_streams() -> void:
+	_music_player.stream = null
+	_narration_player.stream = null
+	for player in _effect_players:
+		player.stream = null
+	_effects.clear()
 
 
 func play_narration(id: String) -> void:
@@ -180,14 +201,14 @@ func _on_scene_changed() -> void:
 
 
 func _start_music() -> void:
+	if AudioServer.get_driver_name() == "Dummy":
+		return
 	var music := load(MUSIC_PATH) as AudioStreamOggVorbis
 	if music == null:
 		return
 	music.loop = true
 	_music_player.stream = music
-	_music_player.bus = MUSIC_BUS
 	_music_player.volume_db = _fade_db + _duck_db
-	add_child(_music_player)
 	_music_player.play()
 	var fade := create_tween().tween_method(_set_fade_db, SILENT_DB, 0.0, MUSIC_FADE_SECONDS)
 	fade.set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_SINE)
