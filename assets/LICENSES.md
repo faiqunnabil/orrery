@@ -4,7 +4,7 @@ Every third-party asset bundled with Orrery is recorded here and surfaced in the
 
 | Asset | Type | Author | Source URL | License | Date Retrieved | Notes |
 |---|---|---|---|---|---|---|
-| Sun, Mercury, Venus surface, Earth day / night / clouds, Moon, Mars, Jupiter, Saturn, Uranus, Neptune textures (2K) | Texture | Solar System Scope | https://www.solarsystemscope.com/textures/ | CC BY 4.0 | 2026-11-08 | Derived from NASA elevation and imagery data. Attribution required |
+| Sun, Mercury, Venus surface, Earth day / night / clouds / specular, Moon, Mars, Jupiter, Saturn, Uranus, Neptune textures (2K) | Texture | Solar System Scope | https://www.solarsystemscope.com/textures/ | CC BY 4.0 | 2026-11-08 | Derived from NASA elevation and imagery data. Attribution required |
 | Saturn ring alpha texture (2K) | Texture | Solar System Scope | https://www.solarsystemscope.com/textures/ | CC BY 4.0 | 2026-11-08 | Attribution required |
 | Stars and Milky Way panorama (2K) | Texture | Solar System Scope | https://www.solarsystemscope.com/textures/ | CC BY 4.0 | 2026-11-08 | Attribution required |
 | Io, Europa, Ganymede, Callisto global mosaics (Voyager and Galileo SSI) | Texture source | USGS Astrogeology Science Center, NASA/JPL | https://planetarymaps.usgs.gov/mosaic/ | Public domain | 2026-11-12 | Downsampled to 2K and recentered on longitude 0 by `tools/textures/prepare_textures.py`. Europa and Callisto are tinted from grayscale; gaps are filled with blurred surroundings |

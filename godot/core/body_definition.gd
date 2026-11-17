@@ -19,6 +19,8 @@ var prime_meridian_deg: float
 var rotation_rate_deg_per_day: float
 var texture_path: String
 var night_texture_path: String
+var specular_texture_path: String
+var relief_strength := 0.0
 var ring_inner_km := 0.0
 var ring_outer_km := 0.0
 var ring_texture_path := ""
@@ -50,6 +52,8 @@ static func from_dictionary(data: Dictionary) -> BodyDefinition:
 	body.rotation_rate_deg_per_day = rotation["rate_deg_per_day"]
 	body.texture_path = data["texture"]
 	body.night_texture_path = data.get("night_texture", "")
+	body.specular_texture_path = data.get("specular_texture", "")
+	body.relief_strength = data.get("relief", 0.0)
 	if data.has("rings"):
 		var rings: Dictionary = data["rings"]
 		body.ring_inner_km = rings["inner_km"]

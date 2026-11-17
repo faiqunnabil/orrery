@@ -34,6 +34,7 @@ func setup(model: SolarSystemModel) -> void:
 		if body.ring_texture_path != "":
 			visual.add_rings(body.ring_inner_km / body.radius_km, body.ring_outer_km / body.radius_km, body.ring_texture_path)
 		visual.add_atmosphere_layers(body)
+		visual.add_surface_detail(body)
 		add_child(visual)
 		_visuals[body.id] = visual
 		if body.orbit != null:

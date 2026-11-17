@@ -305,6 +305,7 @@ func _sync_bodies() -> void:
 			visual.add_rings(definition.ring_inner_km / definition.radius_km, definition.ring_outer_km / definition.radius_km, definition.ring_texture_path)
 		if definition != null:
 			visual.add_atmosphere_layers(definition)
+			visual.add_surface_detail(definition)
 		add_child(visual)
 		_visuals[body.id] = visual
 		var trail := SandboxTrail.new(body.color)

@@ -29,6 +29,7 @@ func _init(texture_path: String, night_texture_path: String, emissive: bool, tin
 		_material.set_shader_parameter("night_texture", load(night_texture_path))
 	if not emissive:
 		_lit_materials.append(_material)
+		_detail_materials.append(_material)
 	_mesh_instance.material_override = _material
 	_mesh_instance.cast_shadow = GeometryInstance3D.SHADOW_CASTING_SETTING_OFF
 	add_child(_mesh_instance)
@@ -71,9 +72,10 @@ func place(
 
 
 func add_rings(inner_ratio: float, outer_ratio: float, texture_path: String) -> void:
+	var ring_texture := load(texture_path)
 	var material := ShaderMaterial.new()
 	material.shader = RING_SHADER
-	material.set_shader_parameter("ring_texture", load(texture_path))
+	material.set_shader_parameter("ring_texture", ring_texture)
 	material.set_shader_parameter("full_detail", _full_effects)
 	_lit_materials.append(material)
 	_detail_materials.append(material)
@@ -82,6 +84,17 @@ func add_rings(inner_ratio: float, outer_ratio: float, texture_path: String) -> 
 	ring.material_override = material
 	ring.cast_shadow = GeometryInstance3D.SHADOW_CASTING_SETTING_OFF
 	add_child(ring)
+	_material.set_shader_parameter("has_ring_shadow", true)
+	_material.set_shader_parameter("ring_texture", ring_texture)
+	_material.set_shader_parameter("ring_inner", inner_ratio)
+	_material.set_shader_parameter("ring_outer", outer_ratio)
+
+
+func add_surface_detail(definition: BodyDefinition) -> void:
+	_material.set_shader_parameter("relief_strength", definition.relief_strength)
+	if definition.specular_texture_path != "":
+		_material.set_shader_parameter("has_specular_texture", true)
+		_material.set_shader_parameter("specular_texture", load(definition.specular_texture_path))
 
 
 func add_atmosphere_layers(definition: BodyDefinition) -> void:
