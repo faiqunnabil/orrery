@@ -250,7 +250,7 @@ orrery/
 - [x] Platform: PC (Windows, Linux)
 - [x] Credits screen with names and student IDs, accessible to the user
 - [x] Standalone, no internet connection required
-- [ ] Technologies documented in the report
+- [x] Technologies documented in the report (`docs/REPORT.md`)
 
 ## 10. Assets and Licensing
 

@@ -103,7 +103,7 @@ Supported platforms are Windows 10 and 11, and 64-bit Linux. No installation or 
 
 ### Export builds
 
-Install the Godot 4.7.2 export templates, then run from the repository root:
+Install the Godot 4.7.2 export templates, then run `./build.sh` (or `./build.sh --install-templates` to fetch them automatically), or run directly from the repository root:
 
 ```
 godot --headless --path godot --export-release "Windows" ../builds/windows/Orrery.exe
@@ -133,6 +133,8 @@ These are the default bindings. Every keyboard action can be rebound in **Settin
 | Remove selected body | Delete or Backspace (Sandbox) |
 | Open Explore / Sandbox | F1 / F2 |
 | Controls help, hide interface | F3, H |
+| Performance overlay, cinematic auto-orbit | F4, F9 |
+| Toggle fullscreen, clean screenshot | F11, F12 |
 | Cancel, then pause menu | Esc |
 
 ## Project structure
@@ -140,7 +142,9 @@ These are the default bindings. Every keyboard action can be rebound in **Settin
 ```
 orrery/
 ├── assets/LICENSES.md      Register of every third-party asset and data source
-├── docs/PRD.md             Product requirements document
+├── docs/
+│   ├── PRD.md              Product requirements document
+│   └── REPORT.md           Technical & computer graphics report
 ├── godot/                  Godot project
 │   ├── core/               Simulation, data catalogs, settings, input, audio (double precision)
 │   ├── data/               Bodies, info texts, tours, quizzes, presets, credits (JSON)
@@ -148,7 +152,9 @@ orrery/
 │   ├── render/             Renderers, camera, trails, asteroid belt, shaders
 │   ├── ui/                 Theme, HUD, panels, menus
 │   └── assets/             Textures, music, effects, narration
-└── tools/                  Offline generators for narration, audio, and textures
+├── tools/                  Offline generators for narration, audio, and textures
+├── build.sh                Release export helper (Linux / Windows)
+└── run.sh                  Linux launcher script
 ```
 
 ## Technical overview
@@ -159,7 +165,7 @@ orrery/
 | Orbits | Analytic Kepler propagation in Explore. Satellite elements are rotated from their Laplace or equator plane into the ecliptic |
 | Orientation | IAU pole and prime-meridian models for every body |
 | N-body | Velocity Verlet and RK4 with Plummer softening, an adaptive dynamical time step, swept collision detection, and Hill-sphere parent tracking |
-| Shaders | Day and night surfaces, Sun surface and halo, atmosphere scattering, clouds, Saturn's rings with an analytic planet shadow, and asteroids whose Keplerian motion runs on the GPU |
+| Shaders | Day and night surfaces with ocean specular, relief bump mapping, and Saturn ring shadow; Sun surface and halo; atmosphere scattering; clouds; rings with planet shadow; and GPU-solved Keplerian asteroids |
 | Graphics techniques | GPU instancing, dynamic trail meshes, HDR glow, a panoramic sky, and quality tiers |
 | Audio | Separate Music, Effects, and Narration buses. Music ducks while narration plays |
 
