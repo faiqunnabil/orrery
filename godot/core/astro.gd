@@ -22,8 +22,23 @@ static func equatorial_to_ecliptic(x: float, y: float, z: float) -> Array[float]
 	return [x, y * cos_e + z * sin_e, -y * sin_e + z * cos_e]
 
 
-static func format_date(simulation_seconds: float) -> String:
-	var julian_date := J2000_JULIAN_DATE + simulation_seconds / SECONDS_PER_DAY
+static func local_offset_minutes() -> int:
+	return int(Time.get_time_zone_from_system().get("bias", 0))
+
+
+static func utc_offset_label(offset_minutes: int) -> String:
+	if offset_minutes == 0:
+		return "UTC"
+	var sign := "+" if offset_minutes > 0 else "-"
+	var hours := absi(offset_minutes) / 60
+	var minutes := absi(offset_minutes) % 60
+	if minutes == 0:
+		return "UTC%s%d" % [sign, hours]
+	return "UTC%s%d:%02d" % [sign, hours, minutes]
+
+
+static func format_date(simulation_seconds: float, offset_minutes: int = 0) -> String:
+	var julian_date := J2000_JULIAN_DATE + (simulation_seconds + offset_minutes * 60.0) / SECONDS_PER_DAY
 	var z := floorf(julian_date + 0.5)
 	var fraction := julian_date + 0.5 - z
 	var a := z
