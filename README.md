@@ -81,6 +81,8 @@ It is aimed at learners from elementary school to university. Every panel switch
 | Guided tours with quizzes | Quiz feedback with explanations |
 | ![Inner solar system](.github/media/inner_system.jpg) | ![Sandbox](.github/media/sandbox.jpg) |
 | Inner solar system with the instanced asteroid belt | Sandbox physics panel with conservation readouts |
+| ![Io's shadow on Jupiter](.github/media/io_shadow.jpg) | ![Lunar eclipse](.github/media/lunar_eclipse.jpg) |
+| Io's shadow crossing Jupiter | The lunar eclipse of 3 March 2026 at true scale |
 
 ## Getting started
 
