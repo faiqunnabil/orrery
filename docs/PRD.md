@@ -2,7 +2,7 @@
 
 | | |
 |---|---|
-| **Status** | Draft v0.3 |
+| **Status** | v1.0, reflects the implemented release |
 | **Course** | Computer Graphics (Final Project) |
 | **Team** | Sepak Takraw |
 | **Engine** | Godot 4.7.2 (standard, GDScript), Compatibility renderer |
@@ -16,7 +16,7 @@
 
 Orrery is an interactive, real-time 3D solar system application. It combines two experiences in one product:
 
-- **Explore** — a guided, accurate tour of the Sun, planets, and major moons, with adjustable scale and time.
+- **Explore** — a guided, accurate tour of the Sun, planets, major moons, and dwarf planets, with adjustable scale and time.
 - **Sandbox** — a gravity simulator where users place, launch, and remove bodies and observe how orbits respond.
 
 The name refers to the orrery, a mechanical model of the solar system. Orrery brings that idea into an interactive digital form.
@@ -60,83 +60,97 @@ To serve all three without overwhelming any of them, the UI exposes **two depth 
 
 ## 5. Functional Requirements
 
-Priority: **P0** = must have, **P1** = should have, **P2** = stretch.
+Priority: **P0** = must have, **P1** = should have, **P2** = stretch. Every requirement below is implemented. The notes record how.
 
 ### 5.1 Solar System Simulation
 
-| ID | Requirement | Priority |
-|---|---|---|
-| F-01 | Render the Sun, eight planets, and Earth's Moon with textured spheres and correct relative axial tilt and rotation | P0 |
-| F-02 | Simulate orbital motion from real initial conditions, embedded offline | P0 |
-| F-03 | Display orbit trails for every body, with adjustable length | P0 |
-| F-04 | Time control: pause, play, reverse, and adjustable speed multiplier | P0 |
-| F-05 | Distance and body-size scale toggle (compressed view vs. true scale) | P0 |
-| F-06 | Major moons (Galilean moons, Titan) and dwarf planets (Pluto, Ceres) | P1 |
-| F-07 | Asteroid belt rendered with instancing | P1 |
+| ID | Requirement | Priority | Status | Notes |
+|---|---|---|---|---|
+| F-01 | Render the Sun, eight planets, and Earth's Moon with textured spheres and correct relative axial tilt and rotation | P0 | Done | IAU pole and prime-meridian models, checked against NAIF pck00011 and subsolar points |
+| F-02 | Simulate orbital motion from real initial conditions, embedded offline | P0 | Done | JPL Keplerian elements in `data/bodies.json` |
+| F-03 | Display orbit trails for every body, with adjustable length | P0 | Done | Short, Medium, or Long |
+| F-04 | Time control: pause, play, reverse, and adjustable speed multiplier | P0 | Done | Plus jump to the current date in Explore |
+| F-05 | Distance and body-size scale toggle (compressed view vs. true scale) | P0 | Done | |
+| F-06 | Major moons (Galilean moons, Titan) and dwarf planets (Pluto, Ceres) | P1 | Done | Io, Europa, Ganymede, Callisto, Titan, Ceres, Pluto. Positions agree with JPL Horizons to within 0.4° |
+| F-07 | Asteroid belt rendered with instancing | P1 | Done | 1,500 to 10,000 instances by preset, Kepler motion solved on the GPU |
 
 ### 5.2 Explore Mode
 
-| ID | Requirement | Priority |
-|---|---|---|
-| F-10 | Free-flight camera with smooth acceleration and speed scaled to distance from nearest body | P0 |
-| F-11 | Select any body to focus the camera on it and open an information panel | P0 |
-| F-12 | Information panel adapts to the active depth level (Explorer / Scientist) | P0 |
-| F-13 | Guided tours with step-by-step camera paths and on-screen narration text | P1 |
-| F-14 | Optional labels, orbit lines, and distance/scale reference markers | P1 |
-| F-15 | Short quiz mode tied to tour content | P2 |
+| ID | Requirement | Priority | Status | Notes |
+|---|---|---|---|---|
+| F-10 | Free-flight camera with smooth acceleration and speed scaled to distance from nearest body | P0 | Done | Keyboard, mouse, and touchpad. See §5.6 |
+| F-11 | Select any body to focus the camera on it and open an information panel | P0 | Done | Click, double click, number keys, or Tab cycling |
+| F-12 | Information panel adapts to the active depth level (Explorer / Scientist) | P0 | Done | |
+| F-13 | Guided tours with step-by-step camera paths and on-screen narration text | P1 | Done | Four tours: Grand Tour, Earth and Moon, Sense of Scale, Moons and Dwarf Planets |
+| F-14 | Optional labels, orbit lines, and distance/scale reference markers | P1 | Done | Distance rings up to 40 AU |
+| F-15 | Short quiz mode tied to tour content | P2 | Done | One quiz per tour and depth level in `data/quizzes.json`, offered when a tour ends |
 
 ### 5.3 Sandbox Mode
 
-| ID | Requirement | Priority |
-|---|---|---|
-| F-20 | Mutual N-body gravity simulation among all active bodies | P0 |
-| F-21 | Add a body (choose mass and radius), set position, and launch it with an initial velocity vector | P0 |
-| F-22 | Remove, edit, or freeze existing bodies | P0 |
-| F-23 | Reset to the default solar system or to a saved preset | P0 |
-| F-24 | Collision handling: merge bodies with conservation of momentum | P1 |
-| F-25 | Presets (e.g. binary star, extra planet, rogue star flyby) | P1 |
-| F-26 | Selectable integrator (Velocity Verlet / RK4) and time step for Scientist level | P1 |
-| F-27 | Live readouts of total energy and angular momentum to illustrate numerical drift | P2 |
-| F-28 | Maximum body count enforced per quality preset | P0 |
+| ID | Requirement | Priority | Status | Notes |
+|---|---|---|---|---|
+| F-20 | Mutual N-body gravity simulation among all active bodies | P0 | Done | |
+| F-21 | Add a body (choose mass and radius), set position, and launch it with an initial velocity vector | P0 | Done | Place, then drag to launch |
+| F-22 | Remove, edit, or freeze existing bodies | P0 | Done | Mass, radius, and color are editable |
+| F-23 | Reset to the default solar system or to a saved preset | P0 | Done | Plus a saved snapshot of the current state |
+| F-24 | Collision handling: merge bodies with conservation of momentum | P1 | Done | Swept contact test so fast bodies cannot pass through each other |
+| F-25 | Presets (e.g. binary star, extra planet, rogue star flyby) | P1 | Done | Solar system, binary star, extra planet, rogue star flyby |
+| F-26 | Selectable integrator (Velocity Verlet / RK4) and time step for Scientist level | P1 | Done | Adaptive or fixed time step |
+| F-27 | Live readouts of total energy and angular momentum to illustrate numerical drift | P2 | Done | Physics tab at the Scientist level, with a resettable baseline |
+| F-28 | Maximum body count enforced per quality preset | P0 | Done | 32, 64, and 128 bodies |
 
 ### 5.4 Application Shell
 
-| ID | Requirement | Priority |
-|---|---|---|
-| F-30 | Main menu: Explore, Sandbox, Settings, Credits, Quit | P0 |
-| F-31 | **Credits screen** listing every team member's name and student ID (NIM), reachable from the main menu | P0 |
-| F-32 | Credits also list third-party assets with author and license, and disclose that narration audio is synthesized | P0 |
-| F-33 | Settings: resolution/fullscreen, audio volumes, key bindings | P1 |
-| F-34 | Pause menu available in both modes | P0 |
-| F-35 | Persist user settings locally in the platform's user data directory | P1 |
-| F-36 | Graphics quality presets (Low / Medium / High) and a render resolution scale slider | P0 |
+| ID | Requirement | Priority | Status | Notes |
+|---|---|---|---|---|
+| F-30 | Main menu: Explore, Sandbox, Settings, Credits, Quit | P0 | Done | |
+| F-31 | **Credits screen** listing every team member's name and student ID (NIM), reachable from the main menu | P0 | Done | |
+| F-32 | Credits also list third-party assets with author and license, and disclose that narration audio is synthesized | P0 | Done | Driven by `data/credits.json` |
+| F-33 | Settings: resolution/fullscreen, audio volumes, key bindings | P1 | Done | Key rebinding refuses conflicting keys |
+| F-34 | Pause menu available in both modes | P0 | Done | |
+| F-35 | Persist user settings locally in the platform's user data directory | P1 | Done | `user://settings.cfg` |
+| F-36 | Graphics quality presets (Low / Medium / High) and a render resolution scale slider | P0 | Done | See §6.2 |
 
 ### 5.5 Audio and Narration
 
-| ID | Requirement | Priority |
-|---|---|---|
-| F-40 | Background music with separate volume control and mute | P1 |
-| F-41 | Sound effects for UI interaction and sandbox actions (place, launch, merge, remove) | P1 |
-| F-42 | Voice-over narration for guided tours, played alongside on-screen text | P1 |
-| F-43 | Narration text is always displayed, and voice-over can be disabled independently | P0 |
-| F-44 | Separate volume sliders for music, effects, and narration | P1 |
+| ID | Requirement | Priority | Status | Notes |
+|---|---|---|---|---|
+| F-40 | Background music with separate volume control and mute | P1 | Done | |
+| F-41 | Sound effects for UI interaction and sandbox actions (place, launch, merge, remove) | P1 | Done | |
+| F-42 | Voice-over narration for guided tours, played alongside on-screen text | P1 | Done | Every tour step at both depth levels |
+| F-43 | Narration text is always displayed, and voice-over can be disabled independently | P0 | Done | |
+| F-44 | Separate volume sliders for music, effects, and narration | P1 | Done | Music ducks while narration plays |
 
 Narration is a narrator voice only. No animated character is planned.
 
+### 5.6 Additions Beyond the Original Scope
+
+These features were not in the original requirements and were added during development.
+
+| Feature | Description |
+|---|---|
+| Mouse and touchpad camera | Left drag orbits the focused body. Two-finger swipe moves the camera, pinch or Ctrl + scroll zooms, and Shift + scroll changes flight speed. Touchpad scrolling is detected automatically, and Settings offers Auto, Orbit, Zoom, or Move for scrolling |
+| Binding-driven help | The F3 help overlay and the status line are built from the active key bindings |
+| Interface scale | 100%, 115%, or 130% (N-06) |
+| Colorblind-safe orbit palette | Okabe–Ito colors for orbit trails (N-06) |
+| Tabbed sandbox panel | Bodies, World, and Physics tabs. Physics is shown only at the Scientist level |
+| Presentation tools | Fullscreen toggle (F11), screenshots without the interface (F12), a performance overlay with frame time, draw calls, primitives, and video memory (F4), and a cinematic auto-orbit (F9) that also starts after 20 seconds without input while a body is focused |
+| Build and launch scripts | `build.sh` exports both release builds and can install the export templates. `run.sh` launches the project from source on Linux |
+
 ## 6. Non-Functional Requirements
 
-| ID | Requirement |
-|---|---|
-| N-01 | **Standalone**: a single exported build per platform that runs without installation, with all assets bundled |
-| N-02 | **Fully offline**: no network access of any kind at runtime, including speech synthesis |
-| N-03 | **Language**: all in-app text, narration, and documentation are in English |
-| N-04 | **Cross-platform**: Windows 10/11 (x86_64) and Linux (x86_64, mainstream distributions) with feature parity |
-| N-05 | Simulation remains numerically stable at the maximum supported time speed and body count |
-| N-06 | Accessibility: scalable UI text, colorblind-safe palette for orbit trails, no flashing effects, captions for all narration |
-| N-07 | All third-party assets must have a license permitting inclusion and redistribution |
-| N-08 | **Low-spec support** per the targets below |
+| ID | Requirement | Status |
+|---|---|---|
+| N-01 | **Standalone**: a single exported build per platform that runs without installation, with all assets bundled | Done. Data is embedded in the executable |
+| N-02 | **Fully offline**: no network access of any kind at runtime, including speech synthesis | Done |
+| N-03 | **Language**: all in-app text, narration, and documentation are in English | Done |
+| N-04 | **Cross-platform**: Windows 10/11 (x86_64) and Linux (x86_64, mainstream distributions) with feature parity | Done. Linux build verified in WSL. A test on native Linux hardware is pending |
+| N-05 | Simulation remains numerically stable at the maximum supported time speed and body count | Done. Adaptive time step and a per-frame CPU budget |
+| N-06 | Accessibility: scalable UI text, colorblind-safe palette for orbit trails, no flashing effects, captions for all narration | Done |
+| N-07 | All third-party assets must have a license permitting inclusion and redistribution | Done. See `assets/LICENSES.md` |
+| N-08 | **Low-spec support** per the targets below | Partly verified. See §6.1 |
 
-### 6.1 Hardware Targets _(to be validated on real devices)_
+### 6.1 Hardware Targets
 
 | Tier | Specification | Expectation |
 |---|---|---|
@@ -144,29 +158,39 @@ Narration is a narrator voice only. No animated character is planned.
 | **Recommended** | Any laptop from roughly the last 5 years with integrated graphics, 8 GB RAM, 1920×1080 | 60 FPS on **Medium** preset |
 | **High** | Dedicated GPU | 60 FPS on **High** preset |
 
-Initial sandbox body caps per preset: Low 32, Medium 64, High 128. These are starting values to be tuned by profiling.
+Sandbox body caps per preset are Low 32, Medium 64, and High 128.
 
-The team's development machines are high-spec, so the minimum tier cannot be validated directly. It is approximated by forcing the application onto integrated graphics where available, lowering the render scale, and limiting CPU cores or memory in a virtual machine. Treat the minimum tier as validated only on a genuinely low-spec device, if one becomes available.
+The team's development machines are high-spec, so the minimum tier cannot be validated directly. It is approximated by forcing the application onto integrated graphics where available, lowering the render scale, and running the Linux build on the Mesa llvmpipe software renderer in WSL, which reached about 39 FPS at Medium. Treat the minimum tier as validated only on a genuinely low-spec device, if one becomes available.
 
 ### 6.2 Quality Presets
 
 | Setting | Low | Medium | High |
 |---|---|---|---|
-| Texture resolution | 1K | 2K | 2K–4K for major bodies |
-| Orbit trail length | Short | Medium | Long |
+| Sphere tessellation (segments × rings) | 40 × 20 | 64 × 32 | 128 × 64 |
+| Orbit trail resolution (points) | 48 | 96 | 192 |
 | Bloom / glow | Off | On | On |
-| Atmosphere and ring shaders | Simplified | Full | Full |
-| Asteroid belt instances | Reduced | Medium | Full |
-| Shadows | Off | Planets only | Planets and rings |
-| Render scale | Adjustable | Adjustable | Adjustable |
+| Anti-aliasing (MSAA) | Off | 2× | 4× |
+| Default render scale | 75% | 100% | 100% |
+| Shader detail | Simplified: no clouds, relief, ocean specular, or ring shadows | Full | Full |
+| Asteroid belt instances | 1,500 | 4,000 | 10,000 |
+| Sandbox body cap | 32 | 64 | 128 |
+| Texture resolution | 2K | 2K | 2K |
+
+The render scale can be adjusted from 50% to 100% on every preset. Orbit trail length is a separate preference.
+
+Two items from the original plan were changed:
+
+- **Texture resolution** is the same 2K set on every preset. A 1K set for Low and a 4K set for High were not produced.
+- **Shadows** use analytic tests in the shaders instead of shadow maps: Saturn casts a shadow on its rings, and the rings cast a shadow on Saturn. Both are disabled on Low. Eclipse shadows between moons and planets are not implemented.
 
 ## 7. Technical Approach
 
 ### 7.1 Engine, Renderer, and Language
 
-- Godot 4.7.2 with GDScript. Performance-critical paths may move to GDExtension if profiling justifies it.
-- **Compatibility renderer** (OpenGL-based) is the single supported renderer. It runs on older integrated GPUs and avoids the Vulkan driver variability seen on Linux. Using one renderer also keeps the test matrix small.
-- Custom spatial shaders, instancing, and bloom are expected to work in this renderer. This must be confirmed in M0.
+- Godot 4.7.2 with GDScript. No GDExtension was needed.
+- **Compatibility renderer** (OpenGL 3.3) is the single supported renderer. It runs on older integrated GPUs and avoids the Vulkan driver variability seen on Linux. Using one renderer also keeps the test matrix small.
+- Custom spatial shaders, instancing, and bloom were confirmed to work on this renderer in week 1.
+- On Linux the project prefers the Wayland display server. Godot falls back to X11 when Wayland is not available.
 
 ### 7.2 Numerical Precision
 
@@ -174,30 +198,37 @@ Godot's `Vector3` is single-precision by default, which causes jitter at solar-s
 
 - Simulation state is held in double-precision values and kept independent from scene nodes.
 - Render positions are derived by scaling and re-centering relative to the camera (floating origin).
+- Distant objects are drawn on a depth shell, which keeps the near and far clip planes usable at solar-system scale.
 - Simulation and rendering are separate modules; the renderer only reads simulation state.
 
 ### 7.3 Simulation
 
 Two models share the same body data:
 
-- **Explore mode** propagates every body analytically along its Keplerian orbit, using published orbital elements and their rates (NASA JPL, valid 1800 AD – 2050 AD), with the Moon modeled around Earth. This is exact at any time speed, supports reversing and jumping in time at no cost, and keeps cost linear in the number of bodies.
+- **Explore mode** propagates every body analytically along its Keplerian orbit. This is exact at any time speed, supports reversing and jumping in time at no cost, and keeps cost linear in the number of bodies.
+  - Planets use the NASA JPL Keplerian elements and rates, valid 1800 AD – 2050 AD.
+  - The Moon uses Meeus mean elements around Earth.
+  - The Galilean moons use JPL satellite mean elements, rotated from their Laplace plane into the ecliptic. Titan uses JPL Horizons elements in Saturn's equator frame, because the published node convention for Saturn's moons did not match Horizons.
+  - Ceres and Pluto use JPL Small-Body Database orbits.
 - **Sandbox mode** integrates mutual gravity numerically. Bodies start from state vectors derived from the same orbital elements.
   - Fixed-step simulation decoupled from frame rate, with sub-stepping at high time multipliers.
-  - Default integrator: Velocity Verlet. RK4 available as an option.
+  - Default integrator: Velocity Verlet. RK4 available as an option. Both use Plummer softening.
   - Pairwise gravity is O(n²), which is why body count is capped per quality preset.
   - The time step adapts to the shortest dynamical time among body pairs, so close encounters and tight orbits stay stable.
   - Each frame has a fixed CPU budget for simulation. When the requested time speed cannot be met within the budget, the effective speed drops gracefully and the HUD reports that the simulation speed is limited. This keeps the application responsive on low-spec devices (N-05, N-08).
-  - Earth and the Moon start as two separate bodies, split about their barycenter, because the published Earth elements describe the barycenter.
+  - Planets with moons start split about their barycenter, because the published planet elements describe the barycenter of each system.
+  - Colliding bodies merge with conserved mass and momentum, using a swept contact test.
   - Orbit trails and launch references use the Hill sphere to choose the body each object orbits.
-  - Rendering uses a single linear scale of 1 render unit per 1,000 km, with a minimum angular size so small bodies remain visible, and a distance shell that keeps the depth range bounded.
+  - Total energy and angular momentum are computed in SI units for the conservation readouts (F-27).
+- Rendering uses a single linear scale of 1 render unit per 1,000 km in true scale, with a minimum angular size so small bodies remain visible. The compressed view scales distances and sizes so every body stays visible, and places moons by their parent's radius.
 
 All orbital and physical data is embedded in `data/bodies.json`, so no network access is needed.
 
 ### 7.4 Cross-Platform Notes
 
-- Windows and Linux builds are exported from the same project using Godot export presets.
+- Windows and Linux builds are exported from the same project using Godot export presets, either from the editor or with `build.sh`.
 - Linux filesystems are case-sensitive. All resource paths must match file names exactly and use lowercase `snake_case`.
-- User settings are stored under `user://` only. No hard-coded absolute paths.
+- User settings, snapshots, and screenshots are stored under `user://` only. No hard-coded absolute paths.
 - Each release is smoke-tested on both platforms before delivery.
 
 ### 7.5 Audio Pipeline
@@ -205,42 +236,47 @@ All orbital and physical data is embedded in `data/bodies.json`, so no network a
 - Narration is **pre-generated at development time** with a free, open-source, locally run text-to-speech engine, then bundled as compressed audio files. Nothing is synthesized at runtime, so the application stays fully offline and sounds identical on every platform.
 - Engine: **Kokoro-82M** through `kokoro-onnx`. The model weights are Apache-2.0, the wrapper is MIT, and the model was trained on permissively licensed or non-copyrighted audio. It runs on CPU without internet once the model files are downloaded.
 - Voice: `af_bella`, the highest-graded American English voice in the published voice list at the time of selection. The voice can be changed with a command-line argument.
-- Narration scripts come from `godot/data/narration.json` (standalone clips) and from every guided-tour step in `godot/data/tours.json`, at both depth levels. Audio files are written to `godot/assets/audio/narration/` as OGG Vorbis, named after script IDs (`<tour>_<step>_<explorer|scientist>` for tours). A manifest of content fingerprints makes regeneration incremental and reproducible. Units such as "AU" and "km" are spelled out for speech only; captions keep the original text.
+- Narration scripts come from `godot/data/narration.json` (standalone clips) and from every guided-tour step in `godot/data/tours.json`, at both depth levels. Audio files are written to `godot/assets/audio/narration/` as OGG Vorbis, named after script IDs (`<tour>_<step>_<explorer|scientist>` for tours). A manifest of content fingerprints makes regeneration incremental and reproducible. Units and ratios such as "AU", "km", "W/m2", "K", and "3:2" are spelled out for speech only; captions keep the original text.
 - Generation is run with `uv run generate_narration.py` from `tools/tts/`. Model files and the virtual environment are not committed.
 - Music and effects are generated by the team with procedural synthesis in `tools/audio/` (`uv run generate_audio.py`). The generator uses fixed seeds, so its output is reproducible. It uses no third-party samples, so there is nothing to license.
 
-### 7.6 Proposed Module Layout
+### 7.6 Module Layout
 
 ```
 orrery/
+├── assets/          License register for every bundled third-party asset
 ├── docs/            Product requirements
 ├── godot/           Godot project
-│   ├── core/        Simulation, orbit models, clock, settings
-│   ├── render/      Bodies, trails, shaders, camera
-│   ├── ui/          Menus, panels, HUD, credits
-│   ├── audio/       Audio manager, buses, playback
-│   ├── modes/       Explore and Sandbox mode logic
-│   ├── data/        Orbital data, body info, tour and narration scripts
-│   └── assets/      Runtime textures, audio, and fonts bundled into the build
-├── tools/           Offline scripts, such as narration generation
-└── assets/          License register for every bundled third-party asset
+│   ├── core/        Simulation, orbit models, clock, catalogs, settings, input, audio manager
+│   ├── data/        Orbital data, body info, tours, quizzes, presets, narration scripts, credits
+│   ├── modes/       Main menu, Explore, Sandbox, and the shared scene base
+│   ├── render/      Renderers, camera, trails, asteroid belt, reference rings, shaders
+│   ├── ui/          Theme, HUD, panels, menus, credits
+│   └── assets/      Runtime textures, music, effects, and narration bundled into the build
+├── tools/           Offline generators for narration, audio, and textures
+├── build.sh         Release export helper
+└── run.sh           Linux launcher
 ```
 
 ## 8. Computer Graphics Techniques (Report Material)
 
-| Technique | Where it is used |
-|---|---|
-| Texture mapping and normal/specular maps | Planet and moon surfaces |
-| Lighting model (point light from the Sun, emissive Sun) | Day/night terminator, shading |
-| Custom shaders (spatial shader) | Atmosphere scattering, Saturn's rings, Sun surface |
-| Alpha blending and transparency sorting | Rings, atmospheres, trails |
-| Post-processing (bloom/glow, tone mapping) | Sun glow, overall look |
-| Skybox / environment mapping | Starfield and Milky Way |
-| GPU instancing | Asteroid belt |
-| Dynamic mesh generation | Orbit trails |
-| Camera systems and coordinate transforms | Floating origin, focus-and-follow camera |
-| Level of detail | Sphere tessellation by distance |
-| Quality scaling | Preset-driven shader and asset complexity |
+| Technique | Where it is used | Status |
+|---|---|---|
+| Texture mapping | Every body surface, rings, sky | Done |
+| Specular map with Blinn-Phong highlight and Fresnel term | Earth's oceans | Done |
+| Bump mapping from albedo luminance | Rocky and icy bodies, with a footprint-aware step to avoid shimmer | Done |
+| Normal maps from dedicated height data | Planet and moon surfaces | Not implemented. Bump mapping is used instead |
+| Lighting model (point light from the Sun, emissive Sun) | Day/night terminator with city lights, shading | Done |
+| Custom shaders (spatial shader) | Atmosphere scattering, clouds, Saturn's rings, Sun surface and halo | Done |
+| Analytic shadows | Planet shadow on the rings, ring shadow on the planet | Done |
+| Alpha blending and transparency sorting | Rings, atmospheres, clouds, trails | Done |
+| Post-processing (bloom/glow, tone mapping) | Sun glow, overall look | Done |
+| Skybox / environment mapping | Starfield and Milky Way panorama | Done |
+| GPU instancing with vertex-shader animation | Asteroid belt, with Kepler's equation solved per instance on the GPU | Done |
+| Dynamic mesh generation | Orbit trails, sandbox trails, distance rings | Done |
+| Camera systems and coordinate transforms | Floating origin, depth shell, focus-and-follow camera, smooth fly-to | Done |
+| Level of detail | Sphere tessellation per quality preset | Partly done. Distance-based level of detail is not implemented |
+| Quality scaling | Preset-driven shader, geometry, and instance counts | Done |
 
 ## 9. Course Deliverable Checklist
 
@@ -254,9 +290,10 @@ orrery/
 
 ## 10. Assets and Licensing
 
-- Surface textures: Solar System Scope (CC BY 4.0) for the Sun, planets, Moon, rings, and sky. USGS Astrogeology global mosaics from NASA missions (public domain) for the Galilean moons, Titan, Ceres, and Pluto, prepared by `tools/textures`.
-- Music and sound effects: use only assets whose license permits redistribution inside an application. Record attribution requirements.
-- Narration: record the TTS engine, voice model, and the voice model's license.
+- Project source code: MIT license (`LICENSE`). Third-party assets keep their own licenses.
+- Surface textures: Solar System Scope (CC BY 4.0) for the Sun, planets, Moon, Earth's specular map, rings, and sky. USGS Astrogeology global mosaics from NASA missions (public domain) for the Galilean moons, Titan, Ceres, and Pluto, prepared by `tools/textures`.
+- Music and sound effects: generated by the team (§7.5), so no third-party license applies.
+- Narration: Kokoro-82M (Apache-2.0) with the `af_bella` voice. The synthesized voice is disclosed in the credits.
 - Every asset is recorded in `assets/LICENSES.md` with source URL, author, license, and date retrieved.
 - All records are surfaced in the in-app credits (F-32).
 
@@ -264,12 +301,12 @@ orrery/
 
 The project runs for a fixed **4 weeks**. The plan is expressed in weeks, not calendar dates.
 
-| Week | Focus | Scope | Exit criteria |
-|---|---|---|---|
-| **1** | Foundation and core simulation | Project setup, Compatibility renderer validation, precision strategy, full planet set, orbit trails, time controls, scale toggle, quality preset framework, TTS engine and voice selection, first Linux export | F-01 to F-05 and F-36 complete. Stable orbits with no jitter. Bloom and a custom shader confirmed on Compatibility. Linux build launches |
-| **2** | Explore mode and sandbox foundation | Body selection, info panels, depth levels, labels, tour framework with text narration, N-body engine, add / launch / remove bodies | F-10 to F-14 and F-20 to F-23 complete |
-| **3** | Sandbox completion, visuals, audio base | Collisions, presets, body caps, integrator choice, atmosphere and ring shaders, skybox, asteroid belt, audio manager, music, sound effects | F-24 to F-26, F-28, F-40, F-41, F-44 complete. Visual targets met on all presets |
-| **4** | Voice-over, shell, and release | Voice-over generation and integration, main menu, settings, credits, final exports for Windows and Linux, offline test, low-spec approximation test, final report | All P0 items done. P1 items done where schedule allows. Builds verified on Windows and Linux |
+| Week | Focus | Scope | Exit criteria | Status |
+|---|---|---|---|---|
+| **1** | Foundation and core simulation | Project setup, Compatibility renderer validation, precision strategy, full planet set, orbit trails, time controls, scale toggle, quality preset framework, TTS engine and voice selection, first Linux export | F-01 to F-05 and F-36 complete. Stable orbits with no jitter. Bloom and a custom shader confirmed on Compatibility. Linux build launches | Done |
+| **2** | Explore mode and sandbox foundation | Body selection, info panels, depth levels, labels, tour framework with text narration, N-body engine, add / launch / remove bodies | F-10 to F-14 and F-20 to F-23 complete | Done |
+| **3** | Sandbox completion, visuals, audio base | Collisions, presets, body caps, integrator choice, atmosphere and ring shaders, skybox, asteroid belt, audio manager, music, sound effects | F-24 to F-26, F-28, F-40, F-41, F-44 complete. Visual targets met on all presets | Done |
+| **4** | Voice-over, shell, and release | Voice-over generation and integration, main menu, settings, credits, final exports for Windows and Linux, offline test, low-spec approximation test, final report | All P0 items done. P1 items done where schedule allows. Builds verified on Windows and Linux | Done, except the final report and the native Linux test (§15) |
 
 The final report is written alongside development but kept outside this repository. Technique notes, screenshots, and asset records are captured as each feature lands, not left to week 4.
 
@@ -286,20 +323,23 @@ If the schedule slips, features are cut in this order, first to last. P0 items a
 7. F-42 Voice-over (text narration remains)
 8. F-24 Collision merging
 
+No cut was needed. Every P0, P1, and P2 requirement shipped.
+
 ## 12. Risks
 
-| Risk | Impact | Mitigation |
-|---|---|---|
-| Floating-point jitter at large distances | Visual artifacts | Double-precision simulation and floating origin from M0 |
-| N-body instability at high time speed | Wrong or exploding orbits | Sub-stepping, Verlet, energy monitoring |
-| Scope too large for 4 weeks | Incomplete product | Strict P0/P1/P2 prioritization, the cut order in §11.1, and Sandbox built on the week 1 core |
-| Mixed Godot versions in the team | Project corruption | Everyone pins Godot 4.7.2 |
-| Linux regressions go unnoticed | Broken Linux release | Export a Linux build in week 1 and re-test on the team's Linux laptop at the end of every week |
-| Compatibility renderer lacks a needed feature | Visual targets not met | Validate shaders and post-processing in week 1 before committing to designs |
-| Low-spec target cannot be verified on real hardware | Unknown performance on weak devices | Preset system from week 1, and approximate low-spec conditions as described in §6.1 |
-| TTS voice license forbids redistribution | Cannot ship narration | Verify license before generating; record in `LICENSES.md` |
-| Build size grows from textures and audio | Hard to distribute | Compressed textures and OGG audio, track size each milestone |
-| Asset license issues | Disqualification risk | Track every asset in `LICENSES.md` from the first import |
+| Risk | Impact | Mitigation | Outcome |
+|---|---|---|---|
+| Floating-point jitter at large distances | Visual artifacts | Double-precision simulation and floating origin from M0 | Resolved |
+| N-body instability at high time speed | Wrong or exploding orbits | Sub-stepping, Verlet, energy monitoring | Resolved with an adaptive time step and a CPU budget. Close moons such as Io limit the sandbox to about 10 days per second on the test laptop |
+| Scope too large for 4 weeks | Incomplete product | Strict P0/P1/P2 prioritization, the cut order in §11.1, and Sandbox built on the week 1 core | Resolved |
+| Mixed Godot versions in the team | Project corruption | Everyone pins Godot 4.7.2 | Resolved |
+| Linux regressions go unnoticed | Broken Linux release | Export a Linux build in week 1 and re-test on the team's Linux laptop at the end of every week | Open. Tested in WSL only |
+| Linux display server differences | Touchpad gestures or window behavior differ between X11 and Wayland | Prefer Wayland with X11 fallback, and scale touchpad deltas per display server | Open. Needs a test on both |
+| Compatibility renderer lacks a needed feature | Visual targets not met | Validate shaders and post-processing in week 1 before committing to designs | Resolved |
+| Low-spec target cannot be verified on real hardware | Unknown performance on weak devices | Preset system from week 1, and approximate low-spec conditions as described in §6.1 | Open |
+| TTS voice license forbids redistribution | Cannot ship narration | Verify license before generating; record in `LICENSES.md` | Resolved |
+| Build size grows from textures and audio | Hard to distribute | Compressed textures and OGG audio, track size each milestone | Resolved |
+| Asset license issues | Disqualification risk | Track every asset in `LICENSES.md` from the first import | Resolved |
 
 ## 13. Engineering Conventions
 
@@ -308,11 +348,23 @@ If the schedule slips, features are cut in this order, first to last. P0 items a
 - Comments never narrate what the code does line by line.
 - All identifiers, UI strings, commit messages, and documentation are in English.
 - File and folder names inside the Godot project use lowercase `snake_case`.
+- Work happens on the `dev` branch and reaches `main` through a pull request.
 
 ## 14. Open Questions
 
 1. ~~Music and sound effect sources.~~ Resolved: team-generated procedural audio (§7.5).
 2. Demo format and report structure required by the course.
+
+## 15. Known Limitations and Remaining Work
+
+| Item | Type |
+|---|---|
+| Final report, written outside this repository | Deliverable |
+| Test the Linux build on the team's Linux laptop, under both Wayland and X11, including touchpad gestures | Verification |
+| Test on a genuinely low-spec device, if one becomes available | Verification |
+| Sandbox speed is limited to about 10 days per second when close moons such as Io are present | Limitation |
+| At 130% interface scale in a 1280×720 window, the information panel is cropped | Limitation |
+| Eclipse shadows, distance-based level of detail, and per-preset texture resolution are not implemented | Optional graphics |
 
 ## Appendix A — Credits
 
