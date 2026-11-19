@@ -18,6 +18,8 @@ var _lit_materials: Array[ShaderMaterial] = []
 var _detail_materials: Array[ShaderMaterial] = []
 var _clouds: MeshInstance3D
 var _full_effects := true
+var _eclipse_materials: Array[ShaderMaterial] = []
+var _eclipse_count := 0
 
 
 func _init(texture_path: String, night_texture_path: String, emissive: bool, tint: Color = Color.WHITE) -> void:
@@ -30,6 +32,7 @@ func _init(texture_path: String, night_texture_path: String, emissive: bool, tin
 	if not emissive:
 		_lit_materials.append(_material)
 		_detail_materials.append(_material)
+		_eclipse_materials.append(_material)
 	_mesh_instance.material_override = _material
 	_mesh_instance.cast_shadow = GeometryInstance3D.SHADOW_CASTING_SETTING_OFF
 	add_child(_mesh_instance)
@@ -52,6 +55,33 @@ func set_effects_detail(full: bool) -> void:
 		material.set_shader_parameter("full_detail", full)
 	if _clouds != null:
 		_clouds.visible = full
+	if not full:
+		clear_eclipse()
+
+
+func uses_eclipses() -> bool:
+	return _full_effects and not _eclipse_materials.is_empty()
+
+
+func set_eclipse(occluders: PackedVector4Array, glows: PackedFloat32Array, sun_angular_radius: float) -> void:
+	var count := occluders.size()
+	if count == 0 and _eclipse_count == 0:
+		return
+	_eclipse_count = count
+	var padded := occluders.duplicate()
+	var padded_glows := glows.duplicate()
+	padded.resize(EclipseFinder.MAX_OCCLUDERS)
+	padded_glows.resize(EclipseFinder.MAX_OCCLUDERS)
+	for material in _eclipse_materials:
+		material.set_shader_parameter("eclipse_count", count)
+		if count > 0:
+			material.set_shader_parameter("eclipse_occluders", padded)
+			material.set_shader_parameter("eclipse_glow", padded_glows)
+			material.set_shader_parameter("sun_angular_radius", sun_angular_radius)
+
+
+func clear_eclipse() -> void:
+	set_eclipse(PackedVector4Array(), PackedFloat32Array(), 0.0)
 
 
 func set_tint(tint: Color) -> void:
@@ -124,6 +154,7 @@ func add_clouds(texture_path: String, altitude: float, opacity: float) -> void:
 	material.set_shader_parameter("opacity", opacity)
 	_clouds = _add_shell(material, 1.0 + altitude)
 	_clouds.visible = _full_effects
+	_eclipse_materials.append(material)
 
 
 func _add_shell(material: ShaderMaterial, scale_factor: float) -> MeshInstance3D:

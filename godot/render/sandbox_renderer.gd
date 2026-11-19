@@ -27,6 +27,7 @@ var _camera_radius: Dictionary = {}
 var _camera_true_radius: Dictionary = {}
 var _trails_visible := true
 var _rings := ReferenceRings.new()
+var _eclipses := EclipseFinder.new()
 var _ring_radii: Array[float] = []
 var _preview_active := false
 var _preview_origin := DVec3.new()
@@ -185,6 +186,7 @@ func update(camera_position: PackedFloat64Array) -> void:
 			var halo: MeshInstance3D = _halos[body.id]
 			halo.transform = Transform3D(Basis.from_scale(Vector3.ONE * placed_radius * HALO_RADIUS_FACTOR), placed_position)
 		_update_trail(index, camera_position, shell)
+	_update_eclipses(stars)
 	_rings.update(camera_position, shell, PackedFloat64Array([0.0, 0.0, 0.0]), _ring_radii)
 	_update_preview(camera_position, shell)
 
@@ -240,6 +242,47 @@ func _distance(id: String, camera_position: PackedFloat64Array) -> float:
 	var dy := position[1] - camera_position[1]
 	var dz := position[2] - camera_position[2]
 	return sqrt(dx * dx + dy * dy + dz * dz)
+
+
+func _update_eclipses(stars: Array[int]) -> void:
+	var simulation := world.simulation
+	var count := world.bodies.size()
+	_eclipses.resize(count)
+	for index in count:
+		var body := world.bodies[index]
+		var glow := 0.0
+		if body.definition != null and body.definition.atmosphere_thickness > 0.0:
+			glow = EclipseFinder.ATMOSPHERE_GLOW
+		_eclipses.set_body(index, _render_positions[body.id], simulation.radii[index] / UNIT_KM, not body.emissive, glow)
+	for index in count:
+		var body := world.bodies[index]
+		var visual: BodyVisual = _visuals[body.id]
+		if not visual.uses_eclipses() or not EclipseFinder.is_visible_enough(_camera_relative[body.id], _camera_true_radius[body.id]):
+			visual.clear_eclipse()
+			continue
+		var star := _nearest_star(index, stars)
+		if star < 0:
+			visual.clear_eclipse()
+			continue
+		var offset := simulation.position_of(star).minus(simulation.position_of(index))
+		var distance := maxf(offset.length(), simulation.radii[star])
+		var sun_angle := asin(clampf(simulation.radii[star] / distance, 0.0, 1.0))
+		_eclipses.find(index, Vector3(offset.x, offset.z, -offset.y).normalized(), sun_angle)
+		visual.set_eclipse(_eclipses.occluders, _eclipses.occluder_glows, sun_angle)
+
+
+func _nearest_star(index: int, stars: Array[int]) -> int:
+	var best := -1
+	var best_distance := INF
+	var position := world.simulation.position_of(index)
+	for star in stars:
+		if star == index:
+			continue
+		var distance := world.simulation.position_of(star).minus(position).length()
+		if distance < best_distance:
+			best_distance = distance
+			best = star
+	return best
 
 
 func _star_indices() -> Array[int]:
