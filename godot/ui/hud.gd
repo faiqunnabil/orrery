@@ -44,6 +44,7 @@ var _toast_timer := 0.0
 var _frame_ms := 16.7
 var _cpu_ms := 1.0
 var _auto_orbit_active := false
+var _utc_offset_minutes := Astro.local_offset_minutes()
 var _quality_option := OptionButton.new()
 var _depth_control := SegmentedControl.new(Preferences.DEPTH_NAMES, "Information depth (M)")
 var _labels_toggle: Button
@@ -217,7 +218,7 @@ func is_diagnostics_visible() -> bool:
 	return _diagnostics_panel.visible
 
 
-func refresh_diagnostics(scene_summary: String) -> void:
+func refresh_diagnostics(scene_summary: String, focus_mesh: String) -> void:
 	var fps := Engine.get_frames_per_second()
 	var draws := int(Performance.get_monitor(Performance.RENDER_TOTAL_DRAW_CALLS_IN_FRAME))
 	var primitives := int(Performance.get_monitor(Performance.RENDER_TOTAL_PRIMITIVES_IN_FRAME))
@@ -228,6 +229,7 @@ func refresh_diagnostics(scene_summary: String) -> void:
 	_diag_values["primitives"].text = format_count(primitives)
 	_diag_values["vram"].text = "%.1f MB" % vram_mb
 	_diag_values["scene"].text = scene_summary
+	_diag_values["mesh"].text = focus_mesh
 
 
 func show_toast(text: String) -> void:
@@ -237,7 +239,7 @@ func show_toast(text: String) -> void:
 
 
 func refresh(clock: SimulationClock) -> void:
-	_date_label.text = Astro.format_date(clock.seconds)
+	_date_label.text = Astro.format_date(clock.seconds, _utc_offset_minutes)
 	_speed_label.text = clock.speed_label()
 	_reverse_button.set_pressed_no_signal(clock.reversed)
 	_pause_button.text = "Play" if clock.paused else "Pause"
@@ -266,7 +268,10 @@ func _build_time_panel() -> void:
 	_date_label.theme_type_variation = "HeaderLabel"
 	_date_label.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 	header.add_child(_date_label)
-	header.add_child(make_label("UTC", "DimLabel"))
+	var zone := make_label(Astro.utc_offset_label(_utc_offset_minutes), "DimLabel")
+	zone.tooltip_text = "Times are shown in this computer's time zone"
+	zone.mouse_filter = Control.MOUSE_FILTER_STOP
+	header.add_child(zone)
 	var row := HBoxContainer.new()
 	box.add_child(row)
 	_reverse_button.text = "Reverse"
@@ -359,6 +364,7 @@ func _build_top_center() -> void:
 		["primitives", "Primitives"],
 		["vram", "VRAM"],
 		["scene", "Scene"],
+		["mesh", "Focus mesh"],
 	]:
 		var key_label := make_label(entry[1], "DimLabel")
 		key_label.mouse_filter = Control.MOUSE_FILTER_IGNORE

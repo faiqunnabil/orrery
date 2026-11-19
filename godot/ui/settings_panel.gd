@@ -18,7 +18,8 @@ const DISPLAY_NOTE := "Resolution applies in windowed mode. Fullscreen uses the 
 const UI_SCALE_NOTE := "Larger sizes suit high-resolution screens and reading from a distance. 130% works best at 1600 x 900 or above."
 const POINTER_NOTE := (
 	"Drag with the left button to orbit the focused body. "
-	+ "Auto treats two-finger touchpad swiping as camera move and mouse wheel steps as zoom. "
+	+ "Auto makes mouse wheel steps zoom. A two-finger touchpad swipe orbits the focused body, "
+	+ "or moves the camera in free flight. "
 	+ "Pinch or Ctrl + scroll always zooms, and Shift + scroll changes flight speed."
 )
 const GRAPHICS_NOTE := (

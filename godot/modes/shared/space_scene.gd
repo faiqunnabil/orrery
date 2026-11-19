@@ -1,7 +1,7 @@
 class_name SpaceScene
 extends Node3D
 
-const SKY_TEXTURE := preload("res://assets/textures/sky/stars_milky_way.jpg")
+const SKY_TEXTURE_PATH := "res://assets/textures/sky/stars_milky_way.jpg"
 const SKY_ENERGY := 0.7
 const GLOW_INTENSITY := 0.8
 const GLOW_BLOOM := 0.4
@@ -58,7 +58,7 @@ func _process(delta: float) -> void:
 		_diagnostics_timer += delta
 		if _diagnostics_timer >= DIAGNOSTICS_REFRESH_SECONDS:
 			_diagnostics_timer = 0.0
-			hud.refresh_diagnostics(_diagnostics_summary())
+			hud.refresh_diagnostics(_diagnostics_summary(), _focus_mesh_summary())
 
 
 func _input(event: InputEvent) -> void:
@@ -84,7 +84,7 @@ func _unhandled_input(event: InputEvent) -> void:
 	elif event.is_action_pressed("toggle_diagnostics"):
 		if hud.toggle_diagnostics():
 			_diagnostics_timer = 0.0
-			hud.refresh_diagnostics(_diagnostics_summary())
+			hud.refresh_diagnostics(_diagnostics_summary(), _focus_mesh_summary())
 	elif event.is_action_pressed("toggle_auto_orbit"):
 		var active := camera.toggle_auto_orbit()
 		hud.show_toast("Auto-orbit: On" if active else "Auto-orbit: Off")
@@ -107,7 +107,7 @@ func _unhandled_input(event: InputEvent) -> void:
 
 static func make_space_environment() -> Environment:
 	var sky_material := PanoramaSkyMaterial.new()
-	sky_material.panorama = SKY_TEXTURE
+	sky_material.panorama = TextureTiers.sky_texture(SKY_TEXTURE_PATH)
 	var sky := Sky.new()
 	sky.sky_material = sky_material
 	var environment := Environment.new()
@@ -172,6 +172,16 @@ func _diagnostics_summary() -> String:
 	return ""
 
 
+func _focus_mesh_summary() -> String:
+	return ""
+
+
+static func mesh_summary(segments: int) -> String:
+	if segments <= 0:
+		return "None"
+	return "%d x %d segments" % [segments, segments / 2]
+
+
 func _is_camera_idle_reset(event: InputEvent) -> bool:
 	if event is InputEventMouseMotion or event is InputEventMouseButton:
 		return true
@@ -234,5 +244,6 @@ func _apply_quality() -> void:
 	_apply_render_scale()
 	get_viewport().msaa_3d = profile["msaa"]
 	space_environment.glow_enabled = profile["glow"]
+	(space_environment.sky.sky_material as PanoramaSkyMaterial).panorama = TextureTiers.sky_texture(SKY_TEXTURE_PATH)
 	hud.sync_quality(Quality.preset)
 	_on_quality_changed()

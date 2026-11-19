@@ -9,7 +9,7 @@ const SCREEN_MARGIN := 40.0
 const SCALE_NAMES: Array[String] = ["Compressed", "True scale"]
 const HELP_TEXT := (
 	"{move_forward}/{move_left}/{move_back}/{move_right} move   {move_down}/{move_up} down/up   {boost} boost   "
-	+ "Drag orbit   Two-finger move   Pinch or Ctrl+scroll zoom   Shift+scroll speed   Right mouse look   Click select   Double-click focus\n"
+	+ "Drag or two-finger swipe orbit   Pinch or Ctrl+scroll zoom   Shift+scroll speed   Right mouse look   Click select   Double-click focus\n"
 	+ "{time_pause} pause   {time_reverse} reverse   {time_slower} {time_faster} time speed   {time_now} now   "
 	+ "{scale_toggle} scale   {toggle_labels} labels   {toggle_trails} orbit lines   {toggle_grid} distance rings   "
 	+ "{toggle_level} level\n"
@@ -135,6 +135,10 @@ func _unhandled_input(event: InputEvent) -> void:
 
 func _on_quality_changed() -> void:
 	renderer.apply_quality()
+
+
+func _focus_mesh_summary() -> String:
+	return mesh_summary(renderer.mesh_segments(camera.anchor_id))
 
 
 func _diagnostics_summary() -> String:

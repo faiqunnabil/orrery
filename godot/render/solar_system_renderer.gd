@@ -25,6 +25,7 @@ var _rings := ReferenceRings.new()
 var _ring_radii: Array[float] = []
 var _scratch := PackedFloat64Array([0.0, 0.0, 0.0])
 var _belt: AsteroidBelt
+var _eclipses := EclipseFinder.new()
 
 
 func setup(model: SolarSystemModel) -> void:
@@ -52,8 +53,9 @@ func setup(model: SolarSystemModel) -> void:
 func apply_quality() -> void:
 	var profile := Quality.profile()
 	for visual: BodyVisual in _visuals.values():
-		visual.set_mesh_detail(profile["sphere_radial_segments"], profile["sphere_rings"])
+		visual.set_mesh_detail(profile["sphere_radial_segments"])
 		visual.set_effects_detail(profile["full_effects"])
+		visual.refresh_textures()
 	for trail: OrbitTrail in _trails.values():
 		trail.configure(profile["trail_points"], Preferences.trail_length_fraction())
 	_belt.set_count(profile["asteroid_count"])
@@ -79,6 +81,13 @@ func render_position(id: String) -> PackedFloat64Array:
 
 func camera_relative_position(id: String) -> Vector3:
 	return _camera_relative.get(id, Vector3.ZERO)
+
+
+func mesh_segments(id: String) -> int:
+	if not _visuals.has(id):
+		return 0
+	var visual: BodyVisual = _visuals[id]
+	return visual.segments()
 
 
 func camera_relative_radius(id: String) -> float:
@@ -159,6 +168,7 @@ func update(camera_position: PackedFloat64Array, simulation_seconds: float) -> v
 	near_plane = clampf(nearest * NEAR_FRACTION, MIN_NEAR, MAX_NEAR)
 	var shell := near_plane * MAX_DEPTH_RATIO
 	far_plane = shell * FAR_MARGIN
+	var pixels_per_radian := BodyVisual.pixels_per_radian(get_viewport())
 	for body in _model.bodies:
 		var position: PackedFloat64Array = _render_positions[body.id]
 		var rx := position[0] - camera_position[0]
@@ -174,14 +184,41 @@ func update(camera_position: PackedFloat64Array, simulation_seconds: float) -> v
 		_camera_relative[body.id] = placed_position
 		_camera_radius[body.id] = placed_radius
 		visual.place(placed_position, placed_radius, body.orientation(simulation_seconds), sun_direction.normalized())
+		visual.update_level_of_detail(BodyVisual.pixel_radius(placed_position, placed_radius, pixels_per_radian))
 		if _trails.has(body.id):
 			_update_trail(body, camera_position, simulation_seconds, shell)
+	_update_eclipses()
 	_place_halo(camera_position, sun_position, shell)
 	_update_rings(camera_position, sun_position, shell)
 	var sun_offset := Vector3(
 		sun_position[0] - camera_position[0], sun_position[1] - camera_position[1], sun_position[2] - camera_position[2]
 	)
 	_belt.update(sun_offset, shell, simulation_seconds, mapper.mode)
+
+
+func _update_eclipses() -> void:
+	var sun := _model.bodies[0]
+	var sun_position: PackedFloat64Array = _render_positions[sun.id]
+	var sun_absolute: DVec3 = _model.absolute_km[sun.id]
+	_eclipses.resize(_model.bodies.size())
+	for index in _model.bodies.size():
+		var body := _model.bodies[index]
+		var glow := EclipseFinder.ATMOSPHERE_GLOW if body.atmosphere_thickness > 0.0 else 0.0
+		_eclipses.set_body(index, _render_positions[body.id], mapper.radius(body), not body.emissive, glow)
+	for index in _model.bodies.size():
+		var body := _model.bodies[index]
+		var visual: BodyVisual = _visuals[body.id]
+		if not visual.uses_eclipses() or not EclipseFinder.is_visible_enough(_camera_relative[body.id], _camera_radius[body.id]):
+			visual.clear_eclipse()
+			continue
+		var position: PackedFloat64Array = _render_positions[body.id]
+		var light := Vector3(
+			sun_position[0] - position[0], sun_position[1] - position[1], sun_position[2] - position[2]
+		).normalized()
+		var sun_distance_km: float = (_model.absolute_km[body.id] as DVec3).minus(sun_absolute).length()
+		var sun_angle := asin(clampf(sun.radius_km / maxf(sun_distance_km, sun.radius_km), 0.0, 1.0))
+		_eclipses.find(index, light, sun_angle)
+		visual.set_eclipse(_eclipses.occluders, _eclipses.occluder_glows, sun_angle)
 
 
 func _shell_shrink(distance: float, shell: float) -> float:

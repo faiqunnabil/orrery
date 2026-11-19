@@ -27,6 +27,7 @@ var _camera_radius: Dictionary = {}
 var _camera_true_radius: Dictionary = {}
 var _trails_visible := true
 var _rings := ReferenceRings.new()
+var _eclipses := EclipseFinder.new()
 var _ring_radii: Array[float] = []
 var _preview_active := false
 var _preview_origin := DVec3.new()
@@ -80,8 +81,9 @@ func set_world(value: SandboxWorld) -> void:
 func apply_quality() -> void:
 	var profile := Quality.profile()
 	for visual: BodyVisual in _visuals.values():
-		visual.set_mesh_detail(profile["sphere_radial_segments"], profile["sphere_rings"])
+		visual.set_mesh_detail(profile["sphere_radial_segments"])
 		visual.set_effects_detail(profile["full_effects"])
+		visual.refresh_textures()
 	for trail: SandboxTrail in _trails.values():
 		trail.configure(profile["trail_points"], Preferences.trail_length_fraction())
 
@@ -129,6 +131,13 @@ func camera_relative_position(id: String) -> Vector3:
 	return _camera_relative.get(id, Vector3.ZERO)
 
 
+func mesh_segments(id: String) -> int:
+	if not _visuals.has(id):
+		return 0
+	var visual: BodyVisual = _visuals[id]
+	return visual.segments()
+
+
 func camera_relative_radius(id: String) -> float:
 	return _camera_radius.get(id, 0.0)
 
@@ -161,6 +170,7 @@ func update(camera_position: PackedFloat64Array) -> void:
 	var shell := near_plane * MAX_DEPTH_RATIO
 	far_plane = shell * FAR_MARGIN
 	var stars := _star_indices()
+	var pixels_per_radian := BodyVisual.pixels_per_radian(get_viewport())
 	for index in world.bodies.size():
 		var body := world.bodies[index]
 		var position: PackedFloat64Array = _render_positions[body.id]
@@ -181,10 +191,12 @@ func update(camera_position: PackedFloat64Array) -> void:
 		var light := _light_direction(index, stars)
 		var visual: BodyVisual = _visuals[body.id]
 		visual.place(placed_position, placed_radius, orientation, light, light != Vector3.ZERO)
+		visual.update_level_of_detail(BodyVisual.pixel_radius(placed_position, placed_radius, pixels_per_radian))
 		if _halos.has(body.id):
 			var halo: MeshInstance3D = _halos[body.id]
 			halo.transform = Transform3D(Basis.from_scale(Vector3.ONE * placed_radius * HALO_RADIUS_FACTOR), placed_position)
 		_update_trail(index, camera_position, shell)
+	_update_eclipses(stars)
 	_rings.update(camera_position, shell, PackedFloat64Array([0.0, 0.0, 0.0]), _ring_radii)
 	_update_preview(camera_position, shell)
 
@@ -240,6 +252,47 @@ func _distance(id: String, camera_position: PackedFloat64Array) -> float:
 	var dy := position[1] - camera_position[1]
 	var dz := position[2] - camera_position[2]
 	return sqrt(dx * dx + dy * dy + dz * dz)
+
+
+func _update_eclipses(stars: Array[int]) -> void:
+	var simulation := world.simulation
+	var count := world.bodies.size()
+	_eclipses.resize(count)
+	for index in count:
+		var body := world.bodies[index]
+		var glow := 0.0
+		if body.definition != null and body.definition.atmosphere_thickness > 0.0:
+			glow = EclipseFinder.ATMOSPHERE_GLOW
+		_eclipses.set_body(index, _render_positions[body.id], simulation.radii[index] / UNIT_KM, not body.emissive, glow)
+	for index in count:
+		var body := world.bodies[index]
+		var visual: BodyVisual = _visuals[body.id]
+		if not visual.uses_eclipses() or not EclipseFinder.is_visible_enough(_camera_relative[body.id], _camera_true_radius[body.id]):
+			visual.clear_eclipse()
+			continue
+		var star := _nearest_star(index, stars)
+		if star < 0:
+			visual.clear_eclipse()
+			continue
+		var offset := simulation.position_of(star).minus(simulation.position_of(index))
+		var distance := maxf(offset.length(), simulation.radii[star])
+		var sun_angle := asin(clampf(simulation.radii[star] / distance, 0.0, 1.0))
+		_eclipses.find(index, Vector3(offset.x, offset.z, -offset.y).normalized(), sun_angle)
+		visual.set_eclipse(_eclipses.occluders, _eclipses.occluder_glows, sun_angle)
+
+
+func _nearest_star(index: int, stars: Array[int]) -> int:
+	var best := -1
+	var best_distance := INF
+	var position := world.simulation.position_of(index)
+	for star in stars:
+		if star == index:
+			continue
+		var distance := world.simulation.position_of(star).minus(position).length()
+		if distance < best_distance:
+			best_distance = distance
+			best = star
+	return best
 
 
 func _star_indices() -> Array[int]:
@@ -298,7 +351,7 @@ func _sync_bodies() -> void:
 		if _visuals.has(body.id):
 			continue
 		var visual := BodyVisual.new(body.texture_path, body.night_texture_path, body.emissive, _tint_for(body))
-		visual.set_mesh_detail(profile["sphere_radial_segments"], profile["sphere_rings"])
+		visual.set_mesh_detail(profile["sphere_radial_segments"])
 		visual.set_effects_detail(profile["full_effects"])
 		var definition := body.definition
 		if definition != null and definition.ring_texture_path != "":

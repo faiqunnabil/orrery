@@ -36,8 +36,9 @@ It is aimed at learners from elementary school to university. Every panel switch
   - The Galilean moons use JPL satellite mean elements.
   - Ceres and Pluto use JPL Small-Body Database orbits.
   - Positions of the moons and dwarf planets agree with JPL Horizons to within 0.4°.
-- **Time control.** Play, pause, reverse, change the speed, or jump to the current date.
+- **Time control.** Play, pause, reverse, change the speed, or jump to the current date. Dates are shown in the computer's time zone, such as UTC+7.
 - **Two scales.** A compressed view keeps every world visible. True scale shows real sizes and distances.
+- **Eclipses.** Moons cast shadows on their planets and planets on their moons, such as Io's shadow crossing Jupiter or the red Moon of a lunar eclipse, with a soft penumbra from the size of the Sun's disk.
 - **Body information.** Click any body for a summary, facts, and live orbital data at either depth level.
 - **Guided tours.** Four tours: Grand Tour, Earth and Moon, Sense of Scale, and Moons and Dwarf Planets. Each has captions and synthesized voice-over for both levels.
 - **Quizzes.** Every tour has a short quiz for each level, with an explanation after each answer. The quiz is offered when a tour ends and can be opened from the tour menu.
@@ -57,10 +58,11 @@ It is aimed at learners from elementary school to university. Every panel switch
 - **Menus.** A main menu, a pause menu, a credits screen, and settings that persist between sessions.
 - **Display and graphics settings.**
   - Window mode and resolution.
-  - Low, Medium, or High quality preset, plus a render scale slider.
+  - Low, Medium, or High quality preset, plus a render scale slider. High uses 4K textures for the Sun, the major planets, the Moon, and the sky.
   - Orbit trail length.
 - **Audio settings.** Separate volumes for music, effects, and narration, a music mute, and a voice-over toggle.
-- **Mouse and touchpad.** Drag or scroll with two fingers to orbit the focused body, and pinch or use the mouse wheel to zoom. Smooth touchpad scrolling is detected automatically, and the scroll behavior can be set to Auto, Orbit, or Zoom.
+- **Mouse and touchpad.** Drag or swipe with two fingers to orbit the focused body, and pinch or use the mouse wheel to zoom. In free flight, a two-finger swipe moves the camera. Touchpad scrolling is detected automatically, and the scroll behavior can be set to Auto, Orbit, Zoom, or Move.
+- **Presentation tools.** Fullscreen toggle, clean screenshots without the interface (saved to `screenshots/` in the user data folder), a performance overlay with frame time and draw calls, and a cinematic auto-orbit that also starts after 20 seconds without input while a body is focused.
 - **Controls.** Every action can be rebound. Conflicting bindings are refused, and the on-screen help follows the active keys.
 - **Accessibility.**
   - Interface size of 100%, 115%, or 130%.
@@ -79,6 +81,8 @@ It is aimed at learners from elementary school to university. Every panel switch
 | Guided tours with quizzes | Quiz feedback with explanations |
 | ![Inner solar system](.github/media/inner_system.jpg) | ![Sandbox](.github/media/sandbox.jpg) |
 | Inner solar system with the instanced asteroid belt | Sandbox physics panel with conservation readouts |
+| ![Io's shadow on Jupiter](.github/media/io_shadow.jpg) | ![Lunar eclipse](.github/media/lunar_eclipse.jpg) |
+| Io's shadow crossing Jupiter | The lunar eclipse of 3 March 2026 at true scale |
 
 ## Getting started
 
@@ -118,8 +122,8 @@ These are the default bindings. Every keyboard action can be rebound in **Settin
 
 | Action | Keys |
 |---|---|
-| Move, down / up | W A S D, Q / E, or two-finger swipe on a touchpad |
-| Orbit the focused body | Left drag |
+| Move, down / up | W A S D, Q / E, or two-finger swipe in free flight |
+| Orbit the focused body | Left drag, or two-finger swipe on a touchpad |
 | Zoom | Mouse wheel, pinch, or Ctrl + scroll |
 | Look around | Right mouse button + move |
 | Flight speed / boost | Shift + scroll / Shift |
@@ -142,9 +146,7 @@ These are the default bindings. Every keyboard action can be rebound in **Settin
 ```
 orrery/
 ├── assets/LICENSES.md      Register of every third-party asset and data source
-├── docs/
-│   ├── PRD.md              Product requirements document
-│   └── REPORT.md           Technical & computer graphics report
+├── docs/PRD.md             Product requirements document
 ├── godot/                  Godot project
 │   ├── core/               Simulation, data catalogs, settings, input, audio (double precision)
 │   ├── data/               Bodies, info texts, tours, quizzes, presets, credits (JSON)
@@ -154,7 +156,8 @@ orrery/
 │   └── assets/             Textures, music, effects, narration
 ├── tools/                  Offline generators for narration, audio, and textures
 ├── build.sh                Release export helper (Linux / Windows)
-└── run.sh                  Linux launcher script
+├── run.sh                  Linux launcher script
+└── LICENSE                 MIT license for the project source
 ```
 
 ## Technical overview
@@ -165,8 +168,8 @@ orrery/
 | Orbits | Analytic Kepler propagation in Explore. Satellite elements are rotated from their Laplace or equator plane into the ecliptic |
 | Orientation | IAU pole and prime-meridian models for every body |
 | N-body | Velocity Verlet and RK4 with Plummer softening, an adaptive dynamical time step, swept collision detection, and Hill-sphere parent tracking |
-| Shaders | Day and night surfaces with ocean specular, relief bump mapping, and Saturn ring shadow; Sun surface and halo; atmosphere scattering; clouds; rings with planet shadow; and GPU-solved Keplerian asteroids |
-| Graphics techniques | GPU instancing, dynamic trail meshes, HDR glow, a panoramic sky, and quality tiers |
+| Shaders | Day and night surfaces with ocean specular, relief bump mapping, Saturn ring shadow, and eclipse shadows with umbra and penumbra; Sun surface and halo; atmosphere scattering; clouds; rings with planet shadow; and GPU-solved Keplerian asteroids |
+| Graphics techniques | GPU instancing, dynamic trail meshes, HDR glow, a panoramic sky, screen-space-error level of detail for spheres, mipmapped textures at 1K, 2K, or 4K by preset, and quality tiers |
 | Audio | Separate Music, Effects, and Narration buses. Music ducks while narration plays |
 
 ## Offline tooling

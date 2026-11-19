@@ -25,6 +25,9 @@ uniform bool has_ring_shadow = false;
 uniform float ring_inner = 1.2;
 uniform float ring_outer = 2.3;
 uniform float ring_shadow_strength = 0.9;
+uniform vec3 eclipse_glow_color : source_color = vec3(0.55, 0.16, 0.06);
+
+#include "res://render/shaders/eclipse.gdshaderinc"
 
 varying vec3 world_normal;
 varying vec3 world_tangent;
@@ -95,6 +98,12 @@ void fragment() {
 	if (full_detail && has_ring_shadow && has_sun) {
 		day *= ring_transmittance(light, MODEL_MATRIX);
 	}
+	vec2 eclipse = vec2(1.0, 0.0);
+	if (full_detail && has_sun && eclipse_count > 0) {
+		vec3 center = MODEL_MATRIX[3].xyz;
+		eclipse = eclipse_light((world_position - center) / length(MODEL_MATRIX[0].xyz), light);
+		day *= eclipse.x;
+	}
 	float lambert = clamp(dot(shading_normal, light), 0.0, 1.0);
 	vec3 day_color = albedo * (0.25 + 0.75 * lambert);
 	if (full_detail && has_specular_texture && has_sun) {
@@ -111,5 +120,5 @@ void fragment() {
 	if (has_night_texture) {
 		night_color += texture(night_texture, UV).rgb * night_strength;
 	}
-	ALBEDO = mix(night_color, day_color, day);
+	ALBEDO = mix(night_color, day_color, day) + albedo * eclipse_glow_color * eclipse.y * clamp(n_dot_l, 0.0, 1.0);
 }
