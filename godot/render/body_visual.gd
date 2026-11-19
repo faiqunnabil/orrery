@@ -26,15 +26,16 @@ var _clouds: MeshInstance3D
 var _full_effects := true
 var _eclipse_materials: Array[ShaderMaterial] = []
 var _eclipse_count := 0
+var _texture_bindings: Array[Array] = []
 
 
 func _init(texture_path: String, night_texture_path: String, emissive: bool, tint: Color = Color.WHITE) -> void:
 	_material.shader = SUN_SHADER if emissive else SURFACE_SHADER
-	_material.set_shader_parameter("albedo_texture", load(texture_path))
+	_bind_texture(_material, "albedo_texture", texture_path)
 	_material.set_shader_parameter("tint", tint)
 	if night_texture_path != "":
 		_material.set_shader_parameter("has_night_texture", true)
-		_material.set_shader_parameter("night_texture", load(night_texture_path))
+		_bind_texture(_material, "night_texture", night_texture_path)
 	if not emissive:
 		_lit_materials.append(_material)
 		_detail_materials.append(_material)
@@ -134,6 +135,17 @@ func clear_eclipse() -> void:
 	set_eclipse(PackedVector4Array(), PackedFloat32Array(), 0.0)
 
 
+func refresh_textures() -> void:
+	for binding in _texture_bindings:
+		var material: ShaderMaterial = binding[0]
+		material.set_shader_parameter(binding[1], TextureTiers.body_texture(binding[2]))
+
+
+func _bind_texture(material: ShaderMaterial, parameter: String, path: String) -> void:
+	_texture_bindings.append([material, parameter, path])
+	material.set_shader_parameter(parameter, TextureTiers.body_texture(path))
+
+
 func set_tint(tint: Color) -> void:
 	_material.set_shader_parameter("tint", tint)
 
@@ -174,7 +186,7 @@ func add_surface_detail(definition: BodyDefinition) -> void:
 	_material.set_shader_parameter("relief_strength", definition.relief_strength)
 	if definition.specular_texture_path != "":
 		_material.set_shader_parameter("has_specular_texture", true)
-		_material.set_shader_parameter("specular_texture", load(definition.specular_texture_path))
+		_bind_texture(_material, "specular_texture", definition.specular_texture_path)
 
 
 func add_atmosphere_layers(definition: BodyDefinition) -> void:
@@ -200,7 +212,7 @@ func add_clouds(texture_path: String, altitude: float, opacity: float) -> void:
 	var material := ShaderMaterial.new()
 	material.shader = CLOUD_SHADER
 	material.render_priority = CLOUD_RENDER_PRIORITY
-	material.set_shader_parameter("cloud_texture", load(texture_path))
+	_bind_texture(material, "cloud_texture", texture_path)
 	material.set_shader_parameter("opacity", opacity)
 	_clouds = _add_shell(material, 1.0 + altitude)
 	_clouds.visible = _full_effects

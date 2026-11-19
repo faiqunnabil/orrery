@@ -83,6 +83,7 @@ func apply_quality() -> void:
 	for visual: BodyVisual in _visuals.values():
 		visual.set_mesh_detail(profile["sphere_radial_segments"])
 		visual.set_effects_detail(profile["full_effects"])
+		visual.refresh_textures()
 	for trail: SandboxTrail in _trails.values():
 		trail.configure(profile["trail_points"], Preferences.trail_length_fraction())
 

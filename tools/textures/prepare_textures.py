@@ -11,7 +11,10 @@ from PIL import Image
 
 REPOSITORY_ROOT = Path(__file__).resolve().parents[2]
 SOURCE_URL = "https://asc-pds-services.s3.us-west-2.amazonaws.com/mosaic/"
+HIGH_SOURCE_URL = "https://www.solarsystemscope.com/textures/download/"
 OUTPUT_SIZE = (2048, 1024)
+HIGH_OUTPUT_SIZE = (4096, 2048)
+HIGH_SUFFIX = "_4k"
 JPEG_QUALITY = 90
 STRETCH_PERCENTILES = (0.5, 99.5)
 DOWNLOAD_CHUNK = 1 << 20
@@ -38,11 +41,32 @@ MAPS = [
 ]
 
 
+HIGH_RESOLUTION = {
+    "bodies/sun": "8k_sun.jpg",
+    "bodies/mercury": "8k_mercury.jpg",
+    "bodies/venus_surface": "8k_venus_surface.jpg",
+    "bodies/earth_daymap": "8k_earth_daymap.jpg",
+    "bodies/earth_nightmap": "8k_earth_nightmap.jpg",
+    "bodies/earth_clouds": "8k_earth_clouds.jpg",
+    "bodies/moon": "8k_moon.jpg",
+    "bodies/mars": "8k_mars.jpg",
+    "bodies/jupiter": "8k_jupiter.jpg",
+    "bodies/saturn": "8k_saturn.jpg",
+    "sky/stars_milky_way": "8k_stars_milky_way.jpg",
+}
+
+
 def parse_arguments() -> argparse.Namespace:
     parser = argparse.ArgumentParser(description="Download USGS global mosaics and convert them into body textures.")
     parser.add_argument("--cache", type=Path, default=Path(__file__).resolve().parent / "cache")
     parser.add_argument("--output", type=Path, default=REPOSITORY_ROOT / "godot/assets/textures/bodies")
     parser.add_argument("--only", nargs="*", default=None, help="Body ids to process")
+    parser.add_argument(
+        "--high",
+        action="store_true",
+        help="Build the 4K textures of the High preset from Solar System Scope 8K maps instead",
+    )
+    parser.add_argument("--textures", type=Path, default=REPOSITORY_ROOT / "godot/assets/textures")
     return parser.parse_args()
 
 
@@ -149,8 +173,35 @@ def convert(entry: Map, source: Path, output: Path) -> None:
     print(f"Wrote {entry.body}.jpg, {100.0 * valid.mean():.1f}% covered by imagery")
 
 
+def fetch_high(source: str, cache: Path) -> Path:
+    cache.mkdir(parents=True, exist_ok=True)
+    target = cache / source
+    if not target.exists():
+        print(f"Downloading {source}")
+        partial = target.with_suffix(".part")
+        with urllib.request.urlopen(HIGH_SOURCE_URL + source) as response, partial.open("wb") as handle:
+            for chunk in iter(lambda: response.read(DOWNLOAD_CHUNK), b""):
+                handle.write(chunk)
+        partial.rename(target)
+    return target
+
+
+def convert_high(name: str, source: Path, textures: Path) -> None:
+    Image.MAX_IMAGE_PIXELS = None
+    with Image.open(source) as image:
+        resized = image.convert("RGB").resize(HIGH_OUTPUT_SIZE, Image.Resampling.LANCZOS)
+    target = textures / f"{name}{HIGH_SUFFIX}.jpg"
+    resized.save(target, quality=JPEG_QUALITY, optimize=True)
+    print(f"Wrote {target.relative_to(textures)}")
+
+
 def main() -> int:
     arguments = parse_arguments()
+    if arguments.high:
+        for name, source in HIGH_RESOLUTION.items():
+            if arguments.only is None or name.split("/")[-1] in arguments.only:
+                convert_high(name, fetch_high(source, arguments.cache), arguments.textures)
+        return 0
     selected = [entry for entry in MAPS if arguments.only is None or entry.body in arguments.only]
     for entry in selected:
         convert(entry, fetch(entry.source, arguments.cache), arguments.output)
