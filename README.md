@@ -38,6 +38,7 @@ It is aimed at learners from elementary school to university. Every panel switch
   - Positions of the moons and dwarf planets agree with JPL Horizons to within 0.4°.
 - **Time control.** Play, pause, reverse, change the speed, or jump to the current date.
 - **Two scales.** A compressed view keeps every world visible. True scale shows real sizes and distances.
+- **Eclipses.** Moons cast shadows on their planets and planets on their moons, such as Io's shadow crossing Jupiter or the red Moon of a lunar eclipse, with a soft penumbra from the size of the Sun's disk.
 - **Body information.** Click any body for a summary, facts, and live orbital data at either depth level.
 - **Guided tours.** Four tours: Grand Tour, Earth and Moon, Sense of Scale, and Moons and Dwarf Planets. Each has captions and synthesized voice-over for both levels.
 - **Quizzes.** Every tour has a short quiz for each level, with an explanation after each answer. The quiz is offered when a tour ends and can be opened from the tour menu.
@@ -57,7 +58,7 @@ It is aimed at learners from elementary school to university. Every panel switch
 - **Menus.** A main menu, a pause menu, a credits screen, and settings that persist between sessions.
 - **Display and graphics settings.**
   - Window mode and resolution.
-  - Low, Medium, or High quality preset, plus a render scale slider.
+  - Low, Medium, or High quality preset, plus a render scale slider. High uses 4K textures for the Sun, the major planets, the Moon, and the sky.
   - Orbit trail length.
 - **Audio settings.** Separate volumes for music, effects, and narration, a music mute, and a voice-over toggle.
 - **Mouse and touchpad.** Drag or swipe with two fingers to orbit the focused body, and pinch or use the mouse wheel to zoom. In free flight, a two-finger swipe moves the camera. Touchpad scrolling is detected automatically, and the scroll behavior can be set to Auto, Orbit, Zoom, or Move.
@@ -165,8 +166,8 @@ orrery/
 | Orbits | Analytic Kepler propagation in Explore. Satellite elements are rotated from their Laplace or equator plane into the ecliptic |
 | Orientation | IAU pole and prime-meridian models for every body |
 | N-body | Velocity Verlet and RK4 with Plummer softening, an adaptive dynamical time step, swept collision detection, and Hill-sphere parent tracking |
-| Shaders | Day and night surfaces with ocean specular, relief bump mapping, and Saturn ring shadow; Sun surface and halo; atmosphere scattering; clouds; rings with planet shadow; and GPU-solved Keplerian asteroids |
-| Graphics techniques | GPU instancing, dynamic trail meshes, HDR glow, a panoramic sky, and quality tiers |
+| Shaders | Day and night surfaces with ocean specular, relief bump mapping, Saturn ring shadow, and eclipse shadows with umbra and penumbra; Sun surface and halo; atmosphere scattering; clouds; rings with planet shadow; and GPU-solved Keplerian asteroids |
+| Graphics techniques | GPU instancing, dynamic trail meshes, HDR glow, a panoramic sky, screen-space-error level of detail for spheres, mipmapped textures at 1K, 2K, or 4K by preset, and quality tiers |
 | Audio | Separate Music, Effects, and Narration buses. Music ducks while narration plays |
 
 ## Offline tooling

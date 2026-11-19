@@ -144,7 +144,7 @@ These features were not in the original requirements and were added during devel
 | N-01 | **Standalone**: a single exported build per platform that runs without installation, with all assets bundled | Done. Data is embedded in the executable |
 | N-02 | **Fully offline**: no network access of any kind at runtime, including speech synthesis | Done |
 | N-03 | **Language**: all in-app text, narration, and documentation are in English | Done |
-| N-04 | **Cross-platform**: Windows 10/11 (x86_64) and Linux (x86_64, mainstream distributions) with feature parity | Done. Linux build verified in WSL. A test on native Linux hardware is pending |
+| N-04 | **Cross-platform**: Windows 10/11 (x86_64) and Linux (x86_64, mainstream distributions) with feature parity | Done. Verified on Windows and on the team's Linux laptop |
 | N-05 | Simulation remains numerically stable at the maximum supported time speed and body count | Done. Adaptive time step and a per-frame CPU budget |
 | N-06 | Accessibility: scalable UI text, colorblind-safe palette for orbit trails, no flashing effects, captions for all narration | Done |
 | N-07 | All third-party assets must have a license permitting inclusion and redistribution | Done. See `assets/LICENSES.md` |
@@ -166,22 +166,23 @@ The team's development machines are high-spec, so the minimum tier cannot be val
 
 | Setting | Low | Medium | High |
 |---|---|---|---|
-| Sphere tessellation (segments × rings) | 40 × 20 | 64 × 32 | 128 × 64 |
+| Maximum sphere tessellation (segments × rings) | 40 × 20 | 64 × 32 | 128 × 64 |
 | Orbit trail resolution (points) | 48 | 96 | 192 |
 | Bloom / glow | Off | On | On |
 | Anti-aliasing (MSAA) | Off | 2× | 4× |
 | Default render scale | 75% | 100% | 100% |
-| Shader detail | Simplified: no clouds, relief, ocean specular, or ring shadows | Full | Full |
+| Shader detail | Simplified: no clouds, relief, ocean specular, ring shadows, or eclipse shadows | Full | Full |
 | Asteroid belt instances | 1,500 | 4,000 | 10,000 |
 | Sandbox body cap | 32 | 64 | 128 |
-| Texture resolution | 2K | 2K | 2K |
+| Texture resolution | 1K, reduced at load time | 2K | 4K for the Sun, Mercury, Venus, Earth, the Moon, Mars, Jupiter, Saturn, and the sky. 2K for the rest |
 
 The render scale can be adjusted from 50% to 100% on every preset. Orbit trail length is a separate preference.
 
-Two items from the original plan were changed:
+Notes on the presets:
 
-- **Texture resolution** is the same 2K set on every preset. A 1K set for Low and a 4K set for High were not produced.
-- **Shadows** use analytic tests in the shaders instead of shadow maps: Saturn casts a shadow on its rings, and the rings cast a shadow on Saturn. Both are disabled on Low. Eclipse shadows between moons and planets are not implemented.
+- **Level of detail.** The tessellation in the table is a cap. Each body uses the coarsest sphere whose silhouette error stays under half a pixel on screen (§8), so distant bodies use as few as 16 segments.
+- **Textures.** Body textures carry mipmaps. The Low preset halves every body texture when it is loaded, which cuts its video memory by three quarters. The 4K textures of the High preset are stored with VRAM compression (S3TC), so each needs about 6 MB of video memory instead of 43 MB. The sky keeps its 2K texture on Low because it fills the screen.
+- **Shadows** use analytic tests in the shaders instead of shadow maps: Saturn casts a shadow on its rings, the rings cast a shadow on Saturn, and planets and moons cast eclipse shadows on each other. All are disabled on Low.
 
 ## 7. Technical Approach
 
@@ -266,16 +267,18 @@ orrery/
 | Specular map with Blinn-Phong highlight and Fresnel term | Earth's oceans | Done |
 | Bump mapping from albedo luminance | Rocky and icy bodies, with a footprint-aware step to avoid shimmer | Done |
 | Normal maps from dedicated height data | Planet and moon surfaces | Not implemented. Bump mapping is used instead |
+| Mipmapping and texture resolution tiers | Body and sky textures: 1K on Low, 2K on Medium, 4K on High | Done |
 | Lighting model (point light from the Sun, emissive Sun) | Day/night terminator with city lights, shading | Done |
 | Custom shaders (spatial shader) | Atmosphere scattering, clouds, Saturn's rings, Sun surface and halo | Done |
 | Analytic shadows | Planet shadow on the rings, ring shadow on the planet | Done |
+| Eclipse shadows from an extended light source | Moons on planets and planets on moons, such as Io's shadow on Jupiter and the red Moon of a lunar eclipse. The Sun is treated as a disk, so the covered fraction of the disk gives a physically sized umbra and penumbra. Up to four occluders per body are chosen on the CPU each frame | Done |
 | Alpha blending and transparency sorting | Rings, atmospheres, clouds, trails | Done |
 | Post-processing (bloom/glow, tone mapping) | Sun glow, overall look | Done |
 | Skybox / environment mapping | Starfield and Milky Way panorama | Done |
 | GPU instancing with vertex-shader animation | Asteroid belt, with Kepler's equation solved per instance on the GPU | Done |
 | Dynamic mesh generation | Orbit trails, sandbox trails, distance rings | Done |
 | Camera systems and coordinate transforms | Floating origin, depth shell, focus-and-follow camera, smooth fly-to | Done |
-| Level of detail | Sphere tessellation per quality preset | Partly done. Distance-based level of detail is not implemented |
+| Level of detail | Screen-space error: each body uses the coarsest sphere whose silhouette error, about r·π²/(2n²) pixels for n segments, stays under half a pixel. Meshes are shared between bodies | Done |
 | Quality scaling | Preset-driven shader, geometry, and instance counts | Done |
 
 ## 9. Course Deliverable Checklist
@@ -286,7 +289,7 @@ orrery/
 - [x] Platform: PC (Windows, Linux)
 - [x] Credits screen with names and student IDs, accessible to the user
 - [x] Standalone, no internet connection required
-- [ ] Technologies documented in the report (maintained outside this repository)
+- [x] Technologies documented (§8). The course does not require a written report
 
 ## 10. Assets and Licensing
 
@@ -306,9 +309,9 @@ The project runs for a fixed **4 weeks**. The plan is expressed in weeks, not ca
 | **1** | Foundation and core simulation | Project setup, Compatibility renderer validation, precision strategy, full planet set, orbit trails, time controls, scale toggle, quality preset framework, TTS engine and voice selection, first Linux export | F-01 to F-05 and F-36 complete. Stable orbits with no jitter. Bloom and a custom shader confirmed on Compatibility. Linux build launches | Done |
 | **2** | Explore mode and sandbox foundation | Body selection, info panels, depth levels, labels, tour framework with text narration, N-body engine, add / launch / remove bodies | F-10 to F-14 and F-20 to F-23 complete | Done |
 | **3** | Sandbox completion, visuals, audio base | Collisions, presets, body caps, integrator choice, atmosphere and ring shaders, skybox, asteroid belt, audio manager, music, sound effects | F-24 to F-26, F-28, F-40, F-41, F-44 complete. Visual targets met on all presets | Done |
-| **4** | Voice-over, shell, and release | Voice-over generation and integration, main menu, settings, credits, final exports for Windows and Linux, offline test, low-spec approximation test, final report | All P0 items done. P1 items done where schedule allows. Builds verified on Windows and Linux | Done, except the final report and the native Linux test (§15) |
+| **4** | Voice-over, shell, and release | Voice-over generation and integration, main menu, settings, credits, final exports for Windows and Linux, offline test, low-spec approximation test, final report | All P0 items done. P1 items done where schedule allows. Builds verified on Windows and Linux | Done. No written report is required |
 
-The final report is written alongside development but kept outside this repository. Technique notes, screenshots, and asset records are captured as each feature lands, not left to week 4.
+Technique notes, screenshots, and asset records were captured as each feature landed, not left to week 4.
 
 ### 11.1 Scope Cut Order
 
@@ -333,8 +336,8 @@ No cut was needed. Every P0, P1, and P2 requirement shipped.
 | N-body instability at high time speed | Wrong or exploding orbits | Sub-stepping, Verlet, energy monitoring | Resolved with an adaptive time step and a CPU budget. Close moons such as Io limit the sandbox to about 10 days per second on the test laptop |
 | Scope too large for 4 weeks | Incomplete product | Strict P0/P1/P2 prioritization, the cut order in §11.1, and Sandbox built on the week 1 core | Resolved |
 | Mixed Godot versions in the team | Project corruption | Everyone pins Godot 4.7.2 | Resolved |
-| Linux regressions go unnoticed | Broken Linux release | Export a Linux build in week 1 and re-test on the team's Linux laptop at the end of every week | Open. Tested in WSL only |
-| Linux display server differences | Touchpad gestures or window behavior differ between X11 and Wayland | Prefer Wayland with X11 fallback, and scale touchpad deltas per display server | Open. Needs a test on both |
+| Linux regressions go unnoticed | Broken Linux release | Export a Linux build in week 1 and re-test on the team's Linux laptop at the end of every week | Resolved. Tested in WSL and on the team's Linux laptop |
+| Linux display server differences | Touchpad gestures or window behavior differ between X11 and Wayland | Prefer Wayland with X11 fallback, and scale touchpad deltas per display server | Resolved. Tested on the team's Linux laptop |
 | Compatibility renderer lacks a needed feature | Visual targets not met | Validate shaders and post-processing in week 1 before committing to designs | Resolved |
 | Low-spec target cannot be verified on real hardware | Unknown performance on weak devices | Preset system from week 1, and approximate low-spec conditions as described in §6.1 | Open |
 | TTS voice license forbids redistribution | Cannot ship narration | Verify license before generating; record in `LICENSES.md` | Resolved |
@@ -353,18 +356,17 @@ No cut was needed. Every P0, P1, and P2 requirement shipped.
 ## 14. Open Questions
 
 1. ~~Music and sound effect sources.~~ Resolved: team-generated procedural audio (§7.5).
-2. Demo format and report structure required by the course.
+2. Demo format required by the course. The course does not require a written report.
 
 ## 15. Known Limitations and Remaining Work
 
 | Item | Type |
 |---|---|
-| Final report, written outside this repository | Deliverable |
-| Test the Linux build on the team's Linux laptop, under both Wayland and X11, including touchpad gestures | Verification |
 | Test on a genuinely low-spec device, if one becomes available | Verification |
 | Sandbox speed is limited to about 10 days per second when close moons such as Io are present | Limitation |
 | At 130% interface scale in a 1280×720 window, the information panel is cropped | Limitation |
-| Eclipse shadows, distance-based level of detail, and per-preset texture resolution are not implemented | Optional graphics |
+| Eclipse timing in Explore follows the mean lunar orbit, so eclipses can be a few hours off their real times | Limitation |
+| Normal maps from dedicated height data are not used. Bump mapping from the albedo is used instead | Optional graphics |
 
 ## Appendix A — Credits
 
