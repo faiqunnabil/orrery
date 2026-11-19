@@ -19,7 +19,6 @@ const PROFILES := {
 	Preset.LOW:
 	{
 		"sphere_radial_segments": 40,
-		"sphere_rings": 20,
 		"trail_points": 48,
 		"glow": false,
 		"render_scale": 0.75,
@@ -31,7 +30,6 @@ const PROFILES := {
 	Preset.MEDIUM:
 	{
 		"sphere_radial_segments": 64,
-		"sphere_rings": 32,
 		"trail_points": 96,
 		"glow": true,
 		"render_scale": 1.0,
@@ -43,7 +41,6 @@ const PROFILES := {
 	Preset.HIGH:
 	{
 		"sphere_radial_segments": 128,
-		"sphere_rings": 64,
 		"trail_points": 192,
 		"glow": true,
 		"render_scale": 1.0,

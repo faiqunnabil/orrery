@@ -217,7 +217,7 @@ func is_diagnostics_visible() -> bool:
 	return _diagnostics_panel.visible
 
 
-func refresh_diagnostics(scene_summary: String) -> void:
+func refresh_diagnostics(scene_summary: String, focus_mesh: String) -> void:
 	var fps := Engine.get_frames_per_second()
 	var draws := int(Performance.get_monitor(Performance.RENDER_TOTAL_DRAW_CALLS_IN_FRAME))
 	var primitives := int(Performance.get_monitor(Performance.RENDER_TOTAL_PRIMITIVES_IN_FRAME))
@@ -228,6 +228,7 @@ func refresh_diagnostics(scene_summary: String) -> void:
 	_diag_values["primitives"].text = format_count(primitives)
 	_diag_values["vram"].text = "%.1f MB" % vram_mb
 	_diag_values["scene"].text = scene_summary
+	_diag_values["mesh"].text = focus_mesh
 
 
 func show_toast(text: String) -> void:
@@ -359,6 +360,7 @@ func _build_top_center() -> void:
 		["primitives", "Primitives"],
 		["vram", "VRAM"],
 		["scene", "Scene"],
+		["mesh", "Focus mesh"],
 	]:
 		var key_label := make_label(entry[1], "DimLabel")
 		key_label.mouse_filter = Control.MOUSE_FILTER_IGNORE

@@ -137,6 +137,10 @@ func _on_quality_changed() -> void:
 	renderer.apply_quality()
 
 
+func _focus_mesh_summary() -> String:
+	return mesh_summary(renderer.mesh_segments(camera.anchor_id))
+
+
 func _diagnostics_summary() -> String:
 	return "%d bodies, %s rocks" % [model.bodies.size(), Hud.format_count(Quality.profile()["asteroid_count"])]
 

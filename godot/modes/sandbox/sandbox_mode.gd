@@ -140,6 +140,10 @@ func _on_quality_changed() -> void:
 	_refresh_count()
 
 
+func _focus_mesh_summary() -> String:
+	return mesh_summary(renderer.mesh_segments(camera.anchor_id))
+
+
 func _diagnostics_summary() -> String:
 	var integrator := "RK4" if _integrator == NBodySimulation.Integrator.RK4 else "Verlet"
 	return "%d/%d bodies, %s" % [world.bodies.size(), Quality.profile()["max_bodies"], integrator]

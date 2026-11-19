@@ -53,7 +53,7 @@ func setup(model: SolarSystemModel) -> void:
 func apply_quality() -> void:
 	var profile := Quality.profile()
 	for visual: BodyVisual in _visuals.values():
-		visual.set_mesh_detail(profile["sphere_radial_segments"], profile["sphere_rings"])
+		visual.set_mesh_detail(profile["sphere_radial_segments"])
 		visual.set_effects_detail(profile["full_effects"])
 	for trail: OrbitTrail in _trails.values():
 		trail.configure(profile["trail_points"], Preferences.trail_length_fraction())
@@ -80,6 +80,13 @@ func render_position(id: String) -> PackedFloat64Array:
 
 func camera_relative_position(id: String) -> Vector3:
 	return _camera_relative.get(id, Vector3.ZERO)
+
+
+func mesh_segments(id: String) -> int:
+	if not _visuals.has(id):
+		return 0
+	var visual: BodyVisual = _visuals[id]
+	return visual.segments()
 
 
 func camera_relative_radius(id: String) -> float:
@@ -160,6 +167,7 @@ func update(camera_position: PackedFloat64Array, simulation_seconds: float) -> v
 	near_plane = clampf(nearest * NEAR_FRACTION, MIN_NEAR, MAX_NEAR)
 	var shell := near_plane * MAX_DEPTH_RATIO
 	far_plane = shell * FAR_MARGIN
+	var pixels_per_radian := BodyVisual.pixels_per_radian(get_viewport())
 	for body in _model.bodies:
 		var position: PackedFloat64Array = _render_positions[body.id]
 		var rx := position[0] - camera_position[0]
@@ -175,6 +183,7 @@ func update(camera_position: PackedFloat64Array, simulation_seconds: float) -> v
 		_camera_relative[body.id] = placed_position
 		_camera_radius[body.id] = placed_radius
 		visual.place(placed_position, placed_radius, body.orientation(simulation_seconds), sun_direction.normalized())
+		visual.update_level_of_detail(BodyVisual.pixel_radius(placed_position, placed_radius, pixels_per_radian))
 		if _trails.has(body.id):
 			_update_trail(body, camera_position, simulation_seconds, shell)
 	_update_eclipses()

@@ -81,7 +81,7 @@ func set_world(value: SandboxWorld) -> void:
 func apply_quality() -> void:
 	var profile := Quality.profile()
 	for visual: BodyVisual in _visuals.values():
-		visual.set_mesh_detail(profile["sphere_radial_segments"], profile["sphere_rings"])
+		visual.set_mesh_detail(profile["sphere_radial_segments"])
 		visual.set_effects_detail(profile["full_effects"])
 	for trail: SandboxTrail in _trails.values():
 		trail.configure(profile["trail_points"], Preferences.trail_length_fraction())
@@ -130,6 +130,13 @@ func camera_relative_position(id: String) -> Vector3:
 	return _camera_relative.get(id, Vector3.ZERO)
 
 
+func mesh_segments(id: String) -> int:
+	if not _visuals.has(id):
+		return 0
+	var visual: BodyVisual = _visuals[id]
+	return visual.segments()
+
+
 func camera_relative_radius(id: String) -> float:
 	return _camera_radius.get(id, 0.0)
 
@@ -162,6 +169,7 @@ func update(camera_position: PackedFloat64Array) -> void:
 	var shell := near_plane * MAX_DEPTH_RATIO
 	far_plane = shell * FAR_MARGIN
 	var stars := _star_indices()
+	var pixels_per_radian := BodyVisual.pixels_per_radian(get_viewport())
 	for index in world.bodies.size():
 		var body := world.bodies[index]
 		var position: PackedFloat64Array = _render_positions[body.id]
@@ -182,6 +190,7 @@ func update(camera_position: PackedFloat64Array) -> void:
 		var light := _light_direction(index, stars)
 		var visual: BodyVisual = _visuals[body.id]
 		visual.place(placed_position, placed_radius, orientation, light, light != Vector3.ZERO)
+		visual.update_level_of_detail(BodyVisual.pixel_radius(placed_position, placed_radius, pixels_per_radian))
 		if _halos.has(body.id):
 			var halo: MeshInstance3D = _halos[body.id]
 			halo.transform = Transform3D(Basis.from_scale(Vector3.ONE * placed_radius * HALO_RADIUS_FACTOR), placed_position)
@@ -341,7 +350,7 @@ func _sync_bodies() -> void:
 		if _visuals.has(body.id):
 			continue
 		var visual := BodyVisual.new(body.texture_path, body.night_texture_path, body.emissive, _tint_for(body))
-		visual.set_mesh_detail(profile["sphere_radial_segments"], profile["sphere_rings"])
+		visual.set_mesh_detail(profile["sphere_radial_segments"])
 		visual.set_effects_detail(profile["full_effects"])
 		var definition := body.definition
 		if definition != null and definition.ring_texture_path != "":

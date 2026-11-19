@@ -58,7 +58,7 @@ func _process(delta: float) -> void:
 		_diagnostics_timer += delta
 		if _diagnostics_timer >= DIAGNOSTICS_REFRESH_SECONDS:
 			_diagnostics_timer = 0.0
-			hud.refresh_diagnostics(_diagnostics_summary())
+			hud.refresh_diagnostics(_diagnostics_summary(), _focus_mesh_summary())
 
 
 func _input(event: InputEvent) -> void:
@@ -84,7 +84,7 @@ func _unhandled_input(event: InputEvent) -> void:
 	elif event.is_action_pressed("toggle_diagnostics"):
 		if hud.toggle_diagnostics():
 			_diagnostics_timer = 0.0
-			hud.refresh_diagnostics(_diagnostics_summary())
+			hud.refresh_diagnostics(_diagnostics_summary(), _focus_mesh_summary())
 	elif event.is_action_pressed("toggle_auto_orbit"):
 		var active := camera.toggle_auto_orbit()
 		hud.show_toast("Auto-orbit: On" if active else "Auto-orbit: Off")
@@ -170,6 +170,16 @@ func _is_explore() -> bool:
 
 func _diagnostics_summary() -> String:
 	return ""
+
+
+func _focus_mesh_summary() -> String:
+	return ""
+
+
+static func mesh_summary(segments: int) -> String:
+	if segments <= 0:
+		return "None"
+	return "%d x %d segments" % [segments, segments / 2]
 
 
 func _is_camera_idle_reset(event: InputEvent) -> bool:

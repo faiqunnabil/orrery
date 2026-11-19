@@ -9,10 +9,16 @@ const CLOUD_SHADER := preload("res://render/shaders/cloud_layer.gdshader")
 const RING_SEGMENTS := 128
 const CLOUD_RENDER_PRIORITY := 0
 const ATMOSPHERE_RENDER_PRIORITY := 1
+const LOD_PIXEL_TOLERANCE := 0.5
+const MIN_SEGMENTS := 16
+
+static var _sphere_cache: Dictionary = {}
 
 var _mesh_instance := MeshInstance3D.new()
 var _material := ShaderMaterial.new()
 var _sphere: SphereMesh
+var _max_segments := 0
+var _segments := 0
 var _shells: Array[MeshInstance3D] = []
 var _lit_materials: Array[ShaderMaterial] = []
 var _detail_materials: Array[ShaderMaterial] = []
@@ -38,15 +44,59 @@ func _init(texture_path: String, night_texture_path: String, emissive: bool, tin
 	add_child(_mesh_instance)
 
 
-func set_mesh_detail(radial_segments: int, rings: int) -> void:
-	_sphere = SphereMesh.new()
-	_sphere.radius = 1.0
-	_sphere.height = 2.0
-	_sphere.radial_segments = radial_segments
-	_sphere.rings = rings
+func set_mesh_detail(radial_segments: int) -> void:
+	_max_segments = radial_segments
+	_use_segments(radial_segments)
+
+
+func segments() -> int:
+	return _segments
+
+
+func update_level_of_detail(pixel_radius: float) -> void:
+	var required := PI * sqrt(maxf(pixel_radius, 0.0) / (2.0 * LOD_PIXEL_TOLERANCE))
+	var chosen := _max_segments
+	while chosen / 2 >= MIN_SEGMENTS and float(chosen / 2) >= required:
+		chosen /= 2
+	_use_segments(chosen)
+
+
+static func pixels_per_radian(viewport: Viewport) -> float:
+	var camera := viewport.get_camera_3d()
+	if camera == null:
+		return 0.0
+	var height := float(viewport.get_visible_rect().size.y)
+	if viewport is Window:
+		height = float((viewport as Window).size.y)
+	return height * viewport.scaling_3d_scale / (2.0 * tan(deg_to_rad(camera.fov) * 0.5))
+
+
+static func pixel_radius(camera_relative_position: Vector3, radius: float, pixels_per_radian: float) -> float:
+	var distance := camera_relative_position.length()
+	if distance <= radius:
+		return INF
+	return asin(radius / distance) * pixels_per_radian
+
+
+func _use_segments(radial_segments: int) -> void:
+	if radial_segments == _segments:
+		return
+	_segments = radial_segments
+	_sphere = _cached_sphere(radial_segments)
 	_mesh_instance.mesh = _sphere
 	for shell in _shells:
 		shell.mesh = _sphere
+
+
+static func _cached_sphere(radial_segments: int) -> SphereMesh:
+	if not _sphere_cache.has(radial_segments):
+		var sphere := SphereMesh.new()
+		sphere.radius = 1.0
+		sphere.height = 2.0
+		sphere.radial_segments = radial_segments
+		sphere.rings = radial_segments / 2
+		_sphere_cache[radial_segments] = sphere
+	return _sphere_cache[radial_segments]
 
 
 func set_effects_detail(full: bool) -> void:
