@@ -14,7 +14,7 @@ const DEFAULT_ANCHOR_ID := "sun"
 const KM_PER_AU := 149597870.7
 const HELP_TEXT := (
 	"{move_forward}/{move_left}/{move_back}/{move_right} move   {move_down}/{move_up} down/up   {boost} boost   "
-	+ "Drag orbit   Two-finger move   Pinch or Ctrl+scroll zoom   Shift+scroll speed   Right mouse look   Click select\n"
+	+ "Drag or two-finger swipe orbit   Pinch or Ctrl+scroll zoom   Shift+scroll speed   Right mouse look   Click select\n"
 	+ "Place body: click the orbital plane, drag to set velocity, release to launch   Esc cancel   {delete_body} remove\n"
 	+ "{time_pause} pause   {time_reverse} reverse   {time_slower} {time_faster} time speed   {toggle_labels} labels   "
 	+ "{toggle_trails} orbit lines   {toggle_grid} distance rings   {toggle_level} level   1-0 focus body   {toggle_auto_orbit} auto-orbit\n"

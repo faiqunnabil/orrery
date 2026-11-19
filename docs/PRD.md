@@ -129,7 +129,7 @@ These features were not in the original requirements and were added during devel
 
 | Feature | Description |
 |---|---|
-| Mouse and touchpad camera | Left drag orbits the focused body. Two-finger swipe moves the camera, pinch or Ctrl + scroll zooms, and Shift + scroll changes flight speed. Touchpad scrolling is detected automatically, and Settings offers Auto, Orbit, Zoom, or Move for scrolling |
+| Mouse and touchpad camera | Left drag or a two-finger swipe orbits the focused body, and a two-finger swipe moves the camera in free flight. Pinch or Ctrl + scroll zooms, and Shift + scroll changes flight speed. Touchpad scrolling is detected automatically, and Settings offers Auto, Orbit, Zoom, or Move for scrolling. Pinch gestures suppress accidental swipes |
 | Binding-driven help | The F3 help overlay and the status line are built from the active key bindings |
 | Interface scale | 100%, 115%, or 130% (N-06) |
 | Colorblind-safe orbit palette | Okabe–Ito colors for orbit trails (N-06) |

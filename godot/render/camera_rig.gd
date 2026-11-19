@@ -18,9 +18,9 @@ const FLIGHT_DURATION := 2.4
 const DRAG_THRESHOLD := 6.0
 const DRAG_ORBIT_SENSITIVITY := 0.006
 const WHEEL_ORBIT_STEP := 0.06
-const PAN_ORBIT_SENSITIVITY := 0.012
+const PAN_GESTURE_STEPS := 0.2
 const PAN_MOVE_SENSITIVITY := 0.0055
-const WHEEL_PAN_UNITS := 6.0
+const WHEEL_PAN_UNITS := 5.0
 const ZOOM_STEP := 1.15
 const MAX_ELEVATION := 1.48
 const MIN_SURFACE_GAP := 0.05
@@ -290,23 +290,20 @@ func _handle_mouse_motion(event: InputEventMouseMotion) -> void:
 
 func _handle_wheel(event: InputEventMouseButton) -> void:
 	var amount := event.factor if event.factor > 0.0 else 1.0
-	var action := _wheel_action(event)
-	if event.button_index == MOUSE_BUTTON_WHEEL_LEFT or event.button_index == MOUSE_BUTTON_WHEEL_RIGHT:
-		var horizontal := 1.0 if event.button_index == MOUSE_BUTTON_WHEEL_RIGHT else -1.0
-		if action == Preferences.ScrollMode.ORBIT:
-			orbit(horizontal * amount * WHEEL_ORBIT_STEP, 0.0)
-		else:
-			pan(horizontal * amount * WHEEL_PAN_UNITS, 0.0)
-		return
-	var vertical := 1.0 if event.button_index == MOUSE_BUTTON_WHEEL_UP else -1.0
-	if event.shift_pressed:
-		speed_scale = clampf(speed_scale * pow(SPEED_SCALE_STEP, vertical * amount), MIN_SPEED_SCALE, MAX_SPEED_SCALE)
-	elif event.ctrl_pressed or action == Preferences.ScrollMode.ZOOM:
-		zoom(pow(ZOOM_STEP, -vertical * amount))
-	elif action == Preferences.ScrollMode.ORBIT:
-		orbit(0.0, vertical * amount * WHEEL_ORBIT_STEP)
-	else:
-		pan(0.0, vertical * amount * WHEEL_PAN_UNITS)
+	var now := Time.get_ticks_msec()
+	if event.factor > 0.0 and not is_equal_approx(event.factor, roundf(event.factor)):
+		_touchpad_until_msec = now + TOUCHPAD_HOLD_MSEC
+	var steps := Vector2.ZERO
+	match event.button_index:
+		MOUSE_BUTTON_WHEEL_UP:
+			steps.y = amount
+		MOUSE_BUTTON_WHEEL_DOWN:
+			steps.y = -amount
+		MOUSE_BUTTON_WHEEL_RIGHT:
+			steps.x = amount
+		MOUSE_BUTTON_WHEEL_LEFT:
+			steps.x = -amount
+	_apply_scroll(steps, now < _touchpad_until_msec, event.shift_pressed, event.ctrl_pressed)
 
 
 func _handle_pan_gesture(event: InputEventPanGesture) -> void:
@@ -315,27 +312,35 @@ func _handle_pan_gesture(event: InputEventPanGesture) -> void:
 	_touchpad_until_msec = Time.get_ticks_msec() + TOUCHPAD_HOLD_MSEC
 	_manual_auto_orbit = false
 	_idle_seconds = 0.0
-	var scaled_delta := event.delta * _pan_scale
-	var pan_steps := -scaled_delta.y * (PAN_ORBIT_SENSITIVITY / WHEEL_ORBIT_STEP)
-	if event.shift_pressed:
-		speed_scale = clampf(speed_scale * pow(SPEED_SCALE_STEP, pan_steps), MIN_SPEED_SCALE, MAX_SPEED_SCALE)
-	elif event.ctrl_pressed or Preferences.scroll_mode == Preferences.ScrollMode.ZOOM:
-		zoom(pow(ZOOM_STEP, -pan_steps))
-		if absf(scaled_delta.x) > 0.0:
-			pan(scaled_delta.x, 0.0)
-	elif Preferences.scroll_mode == Preferences.ScrollMode.ORBIT:
-		orbit(scaled_delta.x * PAN_ORBIT_SENSITIVITY, -scaled_delta.y * PAN_ORBIT_SENSITIVITY)
-	else:
-		pan(scaled_delta.x, -scaled_delta.y)
+	var steps := Vector2(event.delta.x, -event.delta.y) * _pan_scale * PAN_GESTURE_STEPS
+	_apply_scroll(steps, true, event.shift_pressed, event.ctrl_pressed)
 
 
-func _wheel_action(event: InputEventMouseButton) -> Preferences.ScrollMode:
+func scroll_action(from_touchpad: bool) -> Preferences.ScrollMode:
 	if Preferences.scroll_mode != Preferences.ScrollMode.AUTO:
 		return Preferences.scroll_mode
-	var now := Time.get_ticks_msec()
-	if event.factor > 0.0 and not is_equal_approx(event.factor, roundf(event.factor)):
-		_touchpad_until_msec = now + TOUCHPAD_HOLD_MSEC
-	return Preferences.ScrollMode.MOVE if now < _touchpad_until_msec else Preferences.ScrollMode.ZOOM
+	if not from_touchpad:
+		return Preferences.ScrollMode.ZOOM
+	return Preferences.ScrollMode.ORBIT if anchor_id != "" else Preferences.ScrollMode.MOVE
+
+
+func _apply_scroll(steps: Vector2, from_touchpad: bool, shift: bool, ctrl: bool) -> void:
+	if shift:
+		speed_scale = clampf(speed_scale * pow(SPEED_SCALE_STEP, steps.y), MIN_SPEED_SCALE, MAX_SPEED_SCALE)
+		return
+	if ctrl:
+		zoom(pow(ZOOM_STEP, -steps.y))
+		return
+	match scroll_action(from_touchpad):
+		Preferences.ScrollMode.ZOOM:
+			if steps.y != 0.0:
+				zoom(pow(ZOOM_STEP, -steps.y))
+			if steps.x != 0.0:
+				orbit(steps.x * WHEEL_ORBIT_STEP, 0.0)
+		Preferences.ScrollMode.ORBIT:
+			orbit(steps.x * WHEEL_ORBIT_STEP, steps.y * WHEEL_ORBIT_STEP)
+		Preferences.ScrollMode.MOVE:
+			pan(steps.x * WHEEL_PAN_UNITS, steps.y * WHEEL_PAN_UNITS)
 
 
 func _focus_pose(radius: float, toward_sun: Vector3, radii: float) -> Dictionary:

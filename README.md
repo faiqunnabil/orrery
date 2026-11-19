@@ -60,7 +60,7 @@ It is aimed at learners from elementary school to university. Every panel switch
   - Low, Medium, or High quality preset, plus a render scale slider.
   - Orbit trail length.
 - **Audio settings.** Separate volumes for music, effects, and narration, a music mute, and a voice-over toggle.
-- **Mouse and touchpad.** Drag to orbit the focused body, swipe with two fingers to move the camera, and pinch or use the mouse wheel to zoom. Touchpad scrolling is detected automatically, and the scroll behavior can be set to Auto, Orbit, Zoom, or Move.
+- **Mouse and touchpad.** Drag or swipe with two fingers to orbit the focused body, and pinch or use the mouse wheel to zoom. In free flight, a two-finger swipe moves the camera. Touchpad scrolling is detected automatically, and the scroll behavior can be set to Auto, Orbit, Zoom, or Move.
 - **Presentation tools.** Fullscreen toggle, clean screenshots without the interface (saved to `screenshots/` in the user data folder), a performance overlay with frame time and draw calls, and a cinematic auto-orbit that also starts after 20 seconds without input while a body is focused.
 - **Controls.** Every action can be rebound. Conflicting bindings are refused, and the on-screen help follows the active keys.
 - **Accessibility.**
@@ -119,8 +119,8 @@ These are the default bindings. Every keyboard action can be rebound in **Settin
 
 | Action | Keys |
 |---|---|
-| Move, down / up | W A S D, Q / E, or two-finger swipe on a touchpad |
-| Orbit the focused body | Left drag |
+| Move, down / up | W A S D, Q / E, or two-finger swipe in free flight |
+| Orbit the focused body | Left drag, or two-finger swipe on a touchpad |
 | Zoom | Mouse wheel, pinch, or Ctrl + scroll |
 | Look around | Right mouse button + move |
 | Flight speed / boost | Shift + scroll / Shift |
