@@ -60,7 +60,8 @@ It is aimed at learners from elementary school to university. Every panel switch
   - Low, Medium, or High quality preset, plus a render scale slider.
   - Orbit trail length.
 - **Audio settings.** Separate volumes for music, effects, and narration, a music mute, and a voice-over toggle.
-- **Mouse and touchpad.** Drag or scroll with two fingers to orbit the focused body, and pinch or use the mouse wheel to zoom. Smooth touchpad scrolling is detected automatically, and the scroll behavior can be set to Auto, Orbit, or Zoom.
+- **Mouse and touchpad.** Drag to orbit the focused body, swipe with two fingers to move the camera, and pinch or use the mouse wheel to zoom. Touchpad scrolling is detected automatically, and the scroll behavior can be set to Auto, Orbit, Zoom, or Move.
+- **Presentation tools.** Fullscreen toggle, clean screenshots without the interface (saved to `screenshots/` in the user data folder), a performance overlay with frame time and draw calls, and a cinematic auto-orbit that also starts after 20 seconds without input while a body is focused.
 - **Controls.** Every action can be rebound. Conflicting bindings are refused, and the on-screen help follows the active keys.
 - **Accessibility.**
   - Interface size of 100%, 115%, or 130%.
@@ -152,7 +153,8 @@ orrery/
 │   └── assets/             Textures, music, effects, narration
 ├── tools/                  Offline generators for narration, audio, and textures
 ├── build.sh                Release export helper (Linux / Windows)
-└── run.sh                  Linux launcher script
+├── run.sh                  Linux launcher script
+└── LICENSE                 MIT license for the project source
 ```
 
 ## Technical overview
