@@ -241,6 +241,7 @@ func zoom(factor: float) -> void:
 	var target := clampf(distance * factor, closest, maxf(distance, MAX_ORBIT_DISTANCE))
 	for axis in 3:
 		offset[axis] *= target / distance
+	_surface_distance += target - distance
 
 
 func pan(right_delta: float, up_delta: float) -> void:
