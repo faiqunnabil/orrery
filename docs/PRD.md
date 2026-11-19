@@ -69,7 +69,7 @@ Priority: **P0** = must have, **P1** = should have, **P2** = stretch. Every requ
 | F-01 | Render the Sun, eight planets, and Earth's Moon with textured spheres and correct relative axial tilt and rotation | P0 | Done | IAU pole and prime-meridian models, checked against NAIF pck00011 and subsolar points |
 | F-02 | Simulate orbital motion from real initial conditions, embedded offline | P0 | Done | JPL Keplerian elements in `data/bodies.json` |
 | F-03 | Display orbit trails for every body, with adjustable length | P0 | Done | Short, Medium, or Long |
-| F-04 | Time control: pause, play, reverse, and adjustable speed multiplier | P0 | Done | Plus jump to the current date in Explore |
+| F-04 | Time control: pause, play, reverse, and adjustable speed multiplier | P0 | Done | Plus jump to the current date in Explore. Dates are shown at the system's current UTC offset, which is applied to every date, so daylight saving changes in the past or future are not reflected |
 | F-05 | Distance and body-size scale toggle (compressed view vs. true scale) | P0 | Done | |
 | F-06 | Major moons (Galilean moons, Titan) and dwarf planets (Pluto, Ceres) | P1 | Done | Io, Europa, Ganymede, Callisto, Titan, Ceres, Pluto. Positions agree with JPL Horizons to within 0.4° |
 | F-07 | Asteroid belt rendered with instancing | P1 | Done | 1,500 to 10,000 instances by preset, Kepler motion solved on the GPU |

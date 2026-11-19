@@ -36,7 +36,7 @@ It is aimed at learners from elementary school to university. Every panel switch
   - The Galilean moons use JPL satellite mean elements.
   - Ceres and Pluto use JPL Small-Body Database orbits.
   - Positions of the moons and dwarf planets agree with JPL Horizons to within 0.4°.
-- **Time control.** Play, pause, reverse, change the speed, or jump to the current date.
+- **Time control.** Play, pause, reverse, change the speed, or jump to the current date. Dates are shown in the computer's time zone, such as UTC+7.
 - **Two scales.** A compressed view keeps every world visible. True scale shows real sizes and distances.
 - **Eclipses.** Moons cast shadows on their planets and planets on their moons, such as Io's shadow crossing Jupiter or the red Moon of a lunar eclipse, with a soft penumbra from the size of the Sun's disk.
 - **Body information.** Click any body for a summary, facts, and live orbital data at either depth level.
