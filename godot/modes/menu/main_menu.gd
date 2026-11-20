@@ -3,7 +3,6 @@ extends Node3D
 
 const TITLE := "Orrery"
 const TAGLINE := "An interactive 3D solar system for exploration and gravity experiments."
-const CREDIT_LINE := "Team Sepak Takraw  ·  Computer Graphics"
 const TITLE_FONT_SIZE := 72
 const CAMERA_FOV := 55.0
 const PLANET_ID := "earth"
@@ -14,7 +13,6 @@ const SUN_DIRECTION := Vector3(-0.78, 0.22, -0.58)
 const SKY_DRIFT := 0.004
 const SWAY_AMPLITUDE := 0.02
 const SWAY_FREQUENCY := 0.11
-const FOOTER_MARGIN := 24
 
 var _camera := Camera3D.new()
 var _menu := ShellMenu.new(TITLE, TAGLINE, TITLE_FONT_SIZE, true)
@@ -48,11 +46,6 @@ func _ready() -> void:
 	_menu.add_entry("Credits", _menu.open_credits, false, "info")
 	_menu.add_entry("Quit", Audio.quit_application, false, "power")
 	_menu.show_root()
-	var footer := Hud.make_label(CREDIT_LINE, "DimLabel")
-	root.add_child(footer)
-	footer.set_anchors_and_offsets_preset(Control.PRESET_BOTTOM_LEFT, Control.PRESET_MODE_MINSIZE, FOOTER_MARGIN)
-	footer.offset_left = ShellMenu.SIDE_MARGIN
-	footer.grow_vertical = Control.GROW_DIRECTION_BEGIN
 
 
 func _build_planet() -> void:
