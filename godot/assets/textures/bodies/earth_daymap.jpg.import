@@ -3,19 +3,20 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://cf0mfyooqrxjp"
-path="res://.godot/imported/earth_daymap.jpg-434f2fcfd8df12aaa92cf1cbd8314379.ctex"
+path.s3tc="res://.godot/imported/earth_daymap.jpg-434f2fcfd8df12aaa92cf1cbd8314379.s3tc.ctex"
 metadata={
-"vram_texture": false
+"imported_formats": ["s3tc_bptc"],
+"vram_texture": true
 }
 
 [deps]
 
 source_file="res://assets/textures/bodies/earth_daymap.jpg"
-dest_files=["res://.godot/imported/earth_daymap.jpg-434f2fcfd8df12aaa92cf1cbd8314379.ctex"]
+dest_files=["res://.godot/imported/earth_daymap.jpg-434f2fcfd8df12aaa92cf1cbd8314379.s3tc.ctex"]
 
 [params]
 
-compress/mode=0
+compress/mode=2
 compress/high_quality=false
 compress/lossy_quality=0.7
 compress/uastc_level=0
