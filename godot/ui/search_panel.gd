@@ -16,6 +16,7 @@ var _results := ItemList.new()
 var _empty := Label.new()
 var _items: Array[Dictionary] = []
 var _matches: Array[String] = []
+var _query := ""
 
 
 func _init() -> void:
@@ -29,6 +30,7 @@ func _init() -> void:
 	_field.placeholder_text = "Find a body, such as Saturn or Europa"
 	_field.right_icon = OrreryTheme.icon("search")
 	_field.clear_button_enabled = true
+	_field.keep_editing_on_text_submit = true
 	_field.text_changed.connect(func(_text: String) -> void: _refresh())
 	_field.text_submitted.connect(func(_text: String) -> void: _choose_selected())
 	_field.gui_input.connect(_on_field_input)
@@ -63,8 +65,14 @@ func is_open() -> bool:
 	return visible
 
 
+func _process(_delta: float) -> void:
+	if visible and _field.text != _query:
+		_refresh()
+
+
 func _refresh() -> void:
-	var query := _field.text.strip_edges().to_lower()
+	_query = _field.text
+	var query := _query.strip_edges().to_lower()
 	var scored: Array = []
 	for item in _items:
 		var score := _score(item, query)

@@ -34,6 +34,7 @@ func _init() -> void:
 	var row := HBoxContainer.new()
 	box.add_child(row)
 	_field.placeholder_text = "YYYY-MM-DD HH:MM"
+	_field.keep_editing_on_text_submit = true
 	_field.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 	_field.text_submitted.connect(func(_text: String) -> void: _submit())
 	_field.gui_input.connect(_on_field_input)
