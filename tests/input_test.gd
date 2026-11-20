@@ -9,6 +9,7 @@ var sandbox_seconds := 0.0
 
 
 func _initialize() -> void:
+	root.get_node("Preferences").set_onboarding_done(true)
 	change_scene_to_file("res://modes/explore/explore_mode.tscn")
 
 

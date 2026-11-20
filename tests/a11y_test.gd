@@ -9,6 +9,7 @@ var out_dir := ""
 
 
 func _initialize() -> void:
+	root.get_node("Preferences").set_onboarding_done(true)
 	out_dir = OS.get_environment("SHOT_DIR")
 	change_scene_to_file("res://modes/explore/explore_mode.tscn")
 
