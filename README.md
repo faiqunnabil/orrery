@@ -42,11 +42,14 @@ It is aimed at learners from elementary school to university. Every panel switch
   - Ceres and Pluto use JPL Small-Body Database orbits.
   - Positions of the moons and dwarf planets agree with JPL Horizons to within 0.4°.
 - **Time control.** Play, pause, reverse, change the speed, or jump to the current date. Dates are shown in the computer's time zone, such as UTC+7.
+- **Date jump.** Go to any date and time from 1800 to 2050, or to a historic moment such as the Apollo 11 landing or the 2027 total solar eclipse.
+- **Body search.** Type part of a name to find any body and fly to it.
 - **Two scales.** A compressed view keeps every world visible. True scale shows real sizes and distances.
 - **Eclipses.** Moons cast shadows on their planets and planets on their moons, such as Io's shadow crossing Jupiter or the red Moon of a lunar eclipse, with a soft penumbra from the size of the Sun's disk.
 - **Body information.** Click any body for a summary, facts, and live orbital data at either depth level.
 - **Guided tours.** Four tours: Grand Tour, Earth and Moon, Sense of Scale, and Moons and Dwarf Planets. Each has captions and synthesized voice-over for both levels.
 - **Quizzes.** Every tour has a short quiz for each level, with an explanation after each answer. The quiz is offered when a tour ends and can be opened from the tour menu.
+- **Introduction.** The first visit shows seven short tips that point out each part of the interface. They can be shown again from Settings.
 
 ### Sandbox
 
@@ -61,6 +64,7 @@ It is aimed at learners from elementary school to university. Every panel switch
 ### Application
 
 - **Menus.** A main menu, a pause menu, a credits screen, and settings that persist between sessions.
+- **Languages.** English and Bahasa Indonesia for the interface, body information, tours, quizzes, and presets, with matching number formats. The first launch follows the system language. The voice-over is English only, so it is turned off in Bahasa Indonesia while captions stay on.
 - **Display and graphics settings.**
   - Window mode and resolution.
   - Low, Medium, or High quality preset, plus a render scale slider. High uses 4K textures for the Sun, the major planets, the Moon, and the sky.
@@ -72,6 +76,7 @@ It is aimed at learners from elementary school to university. Every panel switch
 - **Accessibility.**
   - Interface size of 100%, 115%, or 130%, and a view panel that collapses to make room for body information.
   - Text and controls meet WCAG AA contrast, and keyboard focus is always visible.
+  - The whole interface can be used from the keyboard: F6 moves focus into it, Tab moves between controls, and Esc returns to the scene.
   - A colorblind-safe orbit palette (Okabe–Ito).
   - Captions are always shown for narration, and nothing flashes.
 
@@ -139,6 +144,8 @@ These are the default bindings. Every keyboard action can be rebound in **Settin
 | Labels, orbit lines, distance rings | L, O, G |
 | Explorer / Scientist level | M |
 | Compressed / true scale, jump to now | T, N (Explore) |
+| Find a body, go to a date | `/`, J (Explore) |
+| Move focus into the interface, then between controls | F6, then Tab / Shift + Tab, Enter or Space, Esc |
 | Tour and quiz: previous / next | Left / Right or Enter |
 | Remove selected body | Delete or Backspace (Sandbox) |
 | Open Explore / Sandbox | F1 / F2 |
@@ -159,10 +166,11 @@ orrery/
 │   ├── data/               Bodies, info texts, tours, quizzes, presets, credits (JSON)
 │   ├── modes/              Main menu, Explore, Sandbox, shared scene base
 │   ├── render/             Renderers, camera, trails, asteroid belt, shaders
-│   ├── ui/                 Theme, HUD, panels, menus
+│   ├── ui/                 Theme, HUD, panels, menus, search, date jump, introduction
+│   ├── i18n/               Message template and the Bahasa Indonesia catalog
 │   └── assets/             Textures, music, effects, narration
 ├── tests/                  Automated UI, input, and rendering tests with a runner script
-├── tools/                  Offline generators for narration, audio, textures, and branding
+├── tools/                  Offline generators for narration, audio, textures, and branding, and the translation extractor
 ├── build.sh                Release export helper (Linux / Windows)
 ├── run.sh                  Linux launcher script
 └── LICENSE                 MIT license for the project source
@@ -182,7 +190,7 @@ orrery/
 
 ## Tests
 
-The `tests/` folder holds 163 automated checks for input, camera controls, menus, the sandbox panel, quizzes, key bindings, accessibility, sandbox accuracy and speed, eclipses, level of detail, texture tiers, and the time zone display. They drive the real application, so they need a display and open a window. From the repository root:
+The `tests/` folder holds 200 automated checks for input, camera controls, menus, the sandbox panel, quizzes, key bindings, accessibility, sandbox accuracy and speed, eclipses, level of detail, texture tiers, the time zone display, search, date jumps, the introduction, keyboard navigation, and the Indonesian interface. They drive the real application, so they need a display and open a window. From the repository root:
 
 ```
 GODOT=/path/to/godot tests/run_tests.sh              # every test
@@ -197,7 +205,7 @@ Two GitHub Actions workflows keep `main` working and publish builds:
 
 | Workflow | Trigger | What it does |
 |---|---|---|
-| [CI](.github/workflows/ci.yml) | Every push to `dev` and every pull request into `main` | Imports the project and runs the whole test suite on Ubuntu with a virtual display and software OpenGL |
+| [CI](.github/workflows/ci.yml) | Every push to `dev` and every pull request into `main` | Checks that every message is translated and the catalogs are current, then imports the project and runs the whole test suite on Ubuntu with a virtual display and software OpenGL |
 | [Release](.github/workflows/release.yml) | Pushing a tag such as `v1.1.0`, or a manual run from the Actions tab | Checks the tag against the project version, exports the Windows and Linux builds, packages them, and publishes a GitHub release. A manual run only keeps the packages as a downloadable artifact for 7 days |
 
 `main` only accepts pull requests whose CI run has passed. To release a new version:
@@ -213,10 +221,11 @@ tools/release.sh tag 1.1.0    # tags v1.1.0 and, after you confirm, pushes the t
 
 ## Offline tooling
 
-All generated assets are committed, so these tools are only needed to regenerate them. Each tool runs with [uv](https://docs.astral.sh/uv/) and has its own README.
+All generated assets are committed, so these tools are only needed to regenerate them. Each tool has its own README. The asset generators run with [uv](https://docs.astral.sh/uv/), and the translation extractor needs only Python.
 
 | Tool | Output |
 |---|---|
+| [`tools/i18n`](tools/i18n) | The message template and translation catalogs in `godot/i18n`, with a check for missing translations |
 | [`tools/tts`](tools/tts) | Tour and welcome narration with Kokoro-82M, voice `af_bella` |
 | [`tools/audio`](tools/audio) | Procedural background music and sound effects with fixed seeds |
 | [`tools/textures`](tools/textures) | Moon and dwarf planet textures from USGS global mosaics, and the 4K High preset textures |

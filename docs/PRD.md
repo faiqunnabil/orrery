@@ -2,7 +2,7 @@
 
 | | |
 |---|---|
-| **Status** | v1.0, reflects release 1.0.0 |
+| **Status** | v1.1, reflects the `dev` branch after release 1.0.0 |
 | **Course** | Computer Graphics (Final Project) |
 | **Team** | Sepak Takraw |
 | **Engine** | Godot 4.7.2 (standard, GDScript), Compatibility renderer |
@@ -138,8 +138,13 @@ These features were not in the original requirements and were added during devel
 | Presentation tools | Fullscreen toggle (F11), screenshots without the interface (F12), a performance overlay with frame time, draw calls, primitives, and video memory (F4), and a cinematic auto-orbit (F9) that also starts after 20 seconds without input while a body is focused |
 | Build and launch scripts | `build.sh` exports both release builds and can install the export templates. `run.sh` launches the project from source on Linux |
 | Application identity | An application icon and a boot splash built from the Orrery emblem by `tools/branding`, and version 1.0.0 in the executable metadata and on the credits screen |
-| Automated tests | 163 checks in `tests/` drive the real application: input, camera controls, menus, the sandbox panel, quizzes, key bindings, accessibility, sandbox accuracy and speed, eclipses, level of detail, texture tiers, and the time zone display. `tests/run_tests.sh` runs them and restores the user's settings |
-| Continuous integration and releases | The CI workflow runs the import and every test on each push to `dev` and each pull request into `main`, which only accepts pull requests that pass it. Pushing a version tag runs the Release workflow, which exports both builds and publishes a GitHub release. `tools/release.sh` sets the version and creates the tag |
+| Body search | `/` or the search button opens a type-ahead search in Explore and Sandbox. Results match names first, then word starts and body types. The arrow keys choose a result, and Enter flies to it |
+| Date jump | `J` or the calendar button opens a field for any date and time from 1800 to 2050 in the computer's time zone, plus three historic moments: the Apollo 11 landing, the 2020 Jupiter–Saturn conjunction, and the 2027 total solar eclipse |
+| First-run introduction | Seven short tips highlight the camera, the bodies and search, time and dates, tours, and the view options the first time Explore opens. They can be skipped, stepped through with the arrow keys, and shown again from Settings → Controls |
+| Keyboard navigation | `F6` moves keyboard focus into the interface. Tab and Shift + Tab move between controls, Enter or Space presses them, and Esc returns focus to the scene. Clicking with the mouse never leaves a focus ring behind |
+| Bahasa Indonesia | Settings → Display switches the interface, body information, tours, quizzes, presets, and credits between English and Bahasa Indonesia, and numbers use the matching decimal and thousands separators. The first launch follows the system language. Captions follow the chosen language and the English-only voice-over is turned off for other languages. `tools/i18n` keeps the translation catalogs in step with the code |
+| Automated tests | 200 checks in `tests/` drive the real application: input, camera controls, menus, the sandbox panel, quizzes, key bindings, accessibility, sandbox accuracy and speed, eclipses, level of detail, texture tiers, the time zone display, search, date jumps, the introduction, keyboard navigation, and the Indonesian interface. `tests/run_tests.sh` runs them and restores the user's settings |
+| Continuous integration and releases | The CI workflow checks the translation catalogs, then runs the import and every test on each push to `dev` and each pull request into `main`, which only accepts pull requests that pass it. Pushing a version tag runs the Release workflow, which exports both builds and publishes a GitHub release. `tools/release.sh` sets the version and creates the tag |
 
 ## 6. Non-Functional Requirements
 
@@ -147,7 +152,7 @@ These features were not in the original requirements and were added during devel
 |---|---|---|
 | N-01 | **Standalone**: a single exported build per platform that runs without installation, with all assets bundled | Done. Data is embedded in the executable |
 | N-02 | **Fully offline**: no network access of any kind at runtime, including speech synthesis | Done |
-| N-03 | **Language**: all in-app text, narration, and documentation are in English | Done |
+| N-03 | **Language**: all in-app text, narration, and documentation are in English | Done. The interface and all content can also be shown in Bahasa Indonesia. Narration stays English-only (§5.6) |
 | N-04 | **Cross-platform**: Windows 10/11 (x86_64) and Linux (x86_64, mainstream distributions) with feature parity | Done. Verified on Windows and on the team's Linux laptop |
 | N-05 | Simulation remains numerically stable at the maximum supported time speed and body count | Done. Adaptive time step and a per-frame CPU budget |
 | N-06 | Accessibility: scalable UI text, colorblind-safe palette for orbit trails, no flashing effects, captions for all narration | Done |
@@ -257,9 +262,10 @@ orrery/
 │   ├── data/        Orbital data, body info, tours, quizzes, presets, narration scripts, credits
 │   ├── modes/       Main menu, Explore, Sandbox, and the shared scene base
 │   ├── render/      Renderers, camera, trails, asteroid belt, reference rings, shaders
-│   ├── ui/          Theme, HUD, panels, menus, credits
+│   ├── ui/          Theme, HUD, panels, menus, search, date jump, introduction, credits
+│   ├── i18n/        Message template and the Bahasa Indonesia catalog
 │   └── assets/      Runtime textures, music, effects, and narration bundled into the build
-├── tools/           Offline generators for narration, audio, and textures
+├── tools/           Offline generators for narration, audio, textures, and branding, and the translation extractor
 ├── build.sh         Release export helper
 └── run.sh           Linux launcher
 ```
