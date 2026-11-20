@@ -139,6 +139,7 @@ These features were not in the original requirements and were added during devel
 | Build and launch scripts | `build.sh` exports both release builds and can install the export templates. `run.sh` launches the project from source on Linux |
 | Application identity | An application icon and a boot splash built from the Orrery emblem by `tools/branding`, and version 1.0.0 in the executable metadata and on the credits screen |
 | Automated tests | 163 checks in `tests/` drive the real application: input, camera controls, menus, the sandbox panel, quizzes, key bindings, accessibility, sandbox accuracy and speed, eclipses, level of detail, texture tiers, and the time zone display. `tests/run_tests.sh` runs them and restores the user's settings |
+| Continuous integration and releases | The CI workflow runs the import and every test on each push to `dev` and each pull request into `main`, which only accepts pull requests that pass it. Pushing a version tag runs the Release workflow, which exports both builds and publishes a GitHub release. `tools/release.sh` sets the version and creates the tag |
 
 ## 6. Non-Functional Requirements
 
