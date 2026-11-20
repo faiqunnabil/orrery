@@ -23,6 +23,7 @@ It is aimed at learners from elementary school to university. Every panel switch
 - [Controls](#controls)
 - [Project structure](#project-structure)
 - [Technical overview](#technical-overview)
+- [Tests](#tests)
 - [Offline tooling](#offline-tooling)
 - [Credits](#credits)
 - [License](#license)
@@ -157,6 +158,7 @@ orrery/
 │   ├── render/             Renderers, camera, trails, asteroid belt, shaders
 │   ├── ui/                 Theme, HUD, panels, menus
 │   └── assets/             Textures, music, effects, narration
+├── tests/                  Automated UI, input, and rendering tests with a runner script
 ├── tools/                  Offline generators for narration, audio, textures, and branding
 ├── build.sh                Release export helper (Linux / Windows)
 ├── run.sh                  Linux launcher script
@@ -174,6 +176,17 @@ orrery/
 | Shaders | Day and night surfaces with ocean specular, relief bump mapping, Saturn ring shadow, and eclipse shadows with umbra and penumbra; Sun surface and halo; atmosphere scattering; clouds; rings with planet shadow; and GPU-solved Keplerian asteroids |
 | Graphics techniques | GPU instancing, dynamic trail meshes, HDR glow, a panoramic sky, screen-space-error level of detail for spheres, mipmapped textures at 1K, 2K, or 4K by preset, and quality tiers |
 | Audio | Separate Music, Effects, and Narration buses. Music ducks while narration plays |
+
+## Tests
+
+The `tests/` folder holds 155 automated checks for input, camera controls, menus, the sandbox panel, quizzes, key bindings, accessibility, eclipses, level of detail, texture tiers, and the time zone display. They drive the real application, so they need a display and open a window. From the repository root:
+
+```
+GODOT=/path/to/godot tests/run_tests.sh              # every test
+GODOT=/path/to/godot tests/run_tests.sh pointer_test # one test
+```
+
+On Windows, run the script from Git Bash and point `GODOT` at the console executable. Your saved settings and sandbox snapshot are backed up before the run and restored afterwards.
 
 ## Offline tooling
 
