@@ -4,6 +4,9 @@ render_mode unshaded, cull_back;
 uniform sampler2D albedo_texture : source_color, filter_linear_mipmap, repeat_enable;
 uniform sampler2D night_texture : source_color, filter_linear_mipmap, repeat_enable;
 uniform sampler2D specular_texture : hint_default_black, filter_linear_mipmap, repeat_enable;
+uniform sampler2D normal_texture : filter_linear_mipmap, repeat_enable;
+uniform bool has_normal_texture = false;
+uniform float normal_strength = 1.0;
 uniform sampler2D ring_texture : source_color, filter_linear, repeat_disable;
 uniform bool has_night_texture = false;
 uniform vec4 tint : source_color = vec4(1.0);
@@ -64,6 +67,18 @@ vec3 relief_normal(vec3 normal, vec2 uv) {
 	return normalize(normal - scale * (du * tangent - dv * binormal));
 }
 
+// Tangent-space normal map baked from elevation data: x points east, y points north, z points up.
+vec3 mapped_normal(vec3 normal, vec2 uv) {
+	vec3 raw_tangent = world_tangent - normal * dot(normal, world_tangent);
+	vec3 raw_binormal = world_binormal - normal * dot(normal, world_binormal);
+	if (dot(raw_tangent, raw_tangent) < 1e-6 || dot(raw_binormal, raw_binormal) < 1e-6) {
+		return normal;
+	}
+	vec3 local = texture(normal_texture, uv).rgb * 2.0 - 1.0;
+	local.xy *= normal_strength;
+	return normalize(normalize(raw_tangent) * local.x + normalize(raw_binormal) * local.y + normal * local.z);
+}
+
 // Ray from the surface point toward the Sun, intersected with the equatorial ring plane.
 float ring_transmittance(vec3 light, mat4 model_matrix) {
 	vec3 center = model_matrix[3].xyz;
@@ -90,7 +105,9 @@ void fragment() {
 	vec3 normal = normalize(world_normal);
 	vec3 light = normalize(sun_direction);
 	vec3 shading_normal = normal;
-	if (full_detail && relief_strength > 0.0) {
+	if (full_detail && has_normal_texture) {
+		shading_normal = mapped_normal(normal, UV);
+	} else if (full_detail && relief_strength > 0.0) {
 		shading_normal = relief_normal(normal, UV);
 	}
 	float n_dot_l = dot(normal, light);

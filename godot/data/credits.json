@@ -26,6 +26,13 @@
 					"license": "Public domain",
 					"url": "https://planetarymaps.usgs.gov/mosaic/",
 					"text": "Global mosaics from Voyager, Galileo, Cassini, Dawn, and New Horizons images, downsampled and tinted by the Orrery team."
+				},
+				{
+					"name": "Moon, Mars, and Earth elevation for normal maps",
+					"author": "NASA/GSFC LRO LOLA team, NASA/JPL/GSFC MGS MOLA team, and NOAA National Geophysical Data Center",
+					"license": "Public domain",
+					"url": "https://pds-geosciences.wustl.edu/",
+					"text": "LOLA LDEM_16, MOLA MEGDR, and ETOPO5 elevation models, converted to surface normal maps by the Orrery team."
 				}
 			]
 		},

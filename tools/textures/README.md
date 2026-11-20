@@ -4,6 +4,8 @@ Builds the surface textures of Io, Europa, Ganymede, Callisto, Titan, Ceres, and
 
 With `--high`, it instead builds the 4K textures used by the High quality preset (`<name>_4k.jpg`) by downsampling the 8K maps of Solar System Scope (CC BY 4.0).
 
+With `--normals`, it builds tangent-space normal maps (`<name>_normal.png`) for the Moon, Mars, and Earth from public-domain elevation models: LRO LOLA LDEM_16, MGS MOLA MEGDR at 16 pixels per degree, and NOAA ETOPO5 (land only). Slopes are measured on the sphere, faded near the poles where the grids converge, and exaggerated so the 99th percentile slope maps to 0.35. Red points east, green points north, and blue points up.
+
 ## Requirements
 
 - [uv](https://docs.astral.sh/uv/)
@@ -25,6 +27,7 @@ On Windows without a local Python, run it inside WSL or Linux with `UV_LINK_MODE
 | `--output` | `godot/assets/textures/bodies` | Destination for `<id>.jpg` |
 | `--only` | all | Body ids to process, for example `--only io pluto` |
 | `--high` | off | Build the 4K High preset textures from Solar System Scope 8K maps |
+| `--normals` | off | Build normal maps from LOLA, MOLA, and ETOPO5 elevation data |
 | `--textures` | `godot/assets/textures` | Destination root for the 4K textures |
 
 ## Processing

@@ -55,6 +55,7 @@
 		},
 		"rotation": {"obliquity_deg": 23.44, "pole_ra_deg": 0.0, "pole_dec_deg": 90.0, "prime_meridian_deg": 190.147, "rate_deg_per_day": 360.9856235},
 		"texture": "res://assets/textures/bodies/earth_daymap.jpg",
+		"normal_texture": "res://assets/textures/bodies/earth_normal.png",
 		"night_texture": "res://assets/textures/bodies/earth_nightmap.jpg",
 		"specular_texture": "res://assets/textures/bodies/earth_specular.jpg",
 		"atmosphere": {"color": "#5C9EFF", "thickness": 0.025, "intensity": 1.1},
@@ -75,6 +76,7 @@
 		},
 		"rotation": {"obliquity_deg": 1.54, "pole_ra_deg": 269.9949, "pole_dec_deg": 66.5392, "prime_meridian_deg": 38.3213, "rate_deg_per_day": 13.17635815},
 		"texture": "res://assets/textures/bodies/moon.jpg",
+		"normal_texture": "res://assets/textures/bodies/moon_normal.png",
 		"relief": 3.0,
 		"color": "#CFCFCF"
 	},
@@ -91,6 +93,7 @@
 		},
 		"rotation": {"obliquity_deg": 25.19, "pole_ra_deg": 317.269202, "pole_dec_deg": 54.432516, "prime_meridian_deg": 176.049863, "rate_deg_per_day": 350.891982443297},
 		"texture": "res://assets/textures/bodies/mars.jpg",
+		"normal_texture": "res://assets/textures/bodies/mars_normal.png",
 		"relief": 2.0,
 		"atmosphere": {"color": "#D9905F", "thickness": 0.012, "intensity": 0.45},
 		"color": "#E2653D"
