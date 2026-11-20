@@ -52,7 +52,7 @@ func populate(tours: Array[Dictionary], quiz_tour_ids: Array[String]) -> void:
 		title.add_theme_font_size_override("font_size", OrreryTheme.FONT_SIZE + 1)
 		title.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 		title_row.add_child(title)
-		title_row.add_child(Hud.make_label("%d stops" % tour["steps"].size(), "DimLabel"))
+		title_row.add_child(Hud.make_label(tr("%d stops") % tour["steps"].size(), "DimLabel"))
 		card.add_child(Hud.make_wrapped_label(tour.get("summary", ""), CONTENT_WIDTH - 2 * OrreryTheme.SPACE_M, "DimLabel"))
 		var actions := HBoxContainer.new()
 		actions.alignment = BoxContainer.ALIGNMENT_END

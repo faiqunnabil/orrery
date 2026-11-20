@@ -77,7 +77,7 @@ func present(
 	_title.text = body.display_name
 	_type.text = info.type_label(body.id)
 	_summary.text = info.summary(body.id, scientist)
-	_facts_heading.text = ("Technical notes" if scientist else "Did you know?").to_upper()
+	_facts_heading.text = tr("Technical notes" if scientist else "Did you know?").to_upper()
 	_set_facts(info.facts(body.id, scientist))
 	refresh_values(body, parent, distance_km, speed_km_s)
 
@@ -96,7 +96,7 @@ func _set_facts(facts: Array[String]) -> void:
 		_facts.remove_child(child)
 		child.queue_free()
 	for fact in facts:
-		_facts.add_child(Hud.make_wrapped_label("•  " + fact, CONTENT_WIDTH))
+		_facts.add_child(Hud.make_wrapped_label("•  " + tr(fact), CONTENT_WIDTH))
 
 
 func _set_rows(rows: Array) -> void:

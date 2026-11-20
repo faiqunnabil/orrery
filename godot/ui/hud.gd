@@ -123,7 +123,7 @@ static func make_wrapped_label(text: String, width: float, variation: String = "
 
 
 static func section_label(text: String) -> Label:
-	return make_label(text.to_upper(), "SectionLabel")
+	return make_label(Locale.t(text).to_upper(), "SectionLabel")
 
 
 static func make_toggle(label: String, tooltip: String, toggled_callback: Callable, icon_name: String = "") -> Button:
@@ -265,8 +265,8 @@ func set_auto_orbit_active(value: bool) -> void:
 
 
 func set_status(text: String) -> void:
-	var full := text + (AUTO_ORBIT_HINT if _auto_orbit_active else "")
-	_status_label.text = full if _help_panel.visible else full + HELP_HINT % InputBindings.keys_text("toggle_help")
+	var full := text + (tr(AUTO_ORBIT_HINT) if _auto_orbit_active else "")
+	_status_label.text = full if _help_panel.visible else full + tr(HELP_HINT) % InputBindings.keys_text("toggle_help")
 
 
 func set_help(groups: Array) -> void:
@@ -359,7 +359,7 @@ func refresh(clock: SimulationClock) -> void:
 	_speed_label.text = clock.speed_label()
 	_reverse_button.set_pressed_no_signal(clock.reversed)
 	_pause_button.icon = OrreryTheme.icon("play" if clock.paused else "pause")
-	_pause_button.tooltip_text = ("Resume" if clock.paused else "Pause") + " time (Space)"
+	_pause_button.tooltip_text = "Resume time (Space)" if clock.paused else "Pause time (Space)"
 	_fps_label.text = "%d FPS" % Engine.get_frames_per_second()
 
 
@@ -588,7 +588,7 @@ func _build_footer() -> void:
 	var title := make_label("Controls", "HeaderLabel")
 	title.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 	header.add_child(title)
-	header.add_child(make_close_button(toggle_help, "Close (%s)" % InputBindings.keys_text("toggle_help")))
+	header.add_child(make_close_button(toggle_help, tr("Close (%s)") % InputBindings.keys_text("toggle_help")))
 	_help_flow.add_theme_constant_override("h_separation", OrreryTheme.SPACE_L)
 	_help_flow.add_theme_constant_override("v_separation", OrreryTheme.SPACE_M)
 	help_box.add_child(_help_flow)

@@ -104,7 +104,7 @@ func _input(event: InputEvent) -> void:
 		return
 	var conflict := InputBindings.conflict_for(_capturing, key)
 	if conflict != "":
-		_set_binding_message(CONFLICT_TEXT % [InputBindings.key_name(key), conflict])
+		_set_binding_message(tr(CONFLICT_TEXT) % [InputBindings.key_name(key), tr(conflict)])
 		return
 	InputBindings.rebind(_capturing, key)
 	_capturing = ""

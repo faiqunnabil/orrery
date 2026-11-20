@@ -73,7 +73,7 @@ func offer(tour_title: String, questions: Array[Dictionary]) -> void:
 	_counter.text = ""
 	_progress.value = 0
 	_heading.text = "Ready for a quick quiz?"
-	_body.text = "Answer %d questions about the %s tour." % [_questions.size(), tour_title]
+	_body.text = tr("Answer %d questions about the %s tour.") % [_questions.size(), tr(tour_title)]
 	_body.visible = true
 	_set_options([])
 	_feedback_panel.visible = false
@@ -115,7 +115,7 @@ func _prepare(tour_title: String, questions: Array[Dictionary]) -> void:
 	_questions = questions
 	_index = 0
 	_score = 0
-	_title.text = ("Quiz: " + tour_title).to_upper()
+	_title.text = (tr("Quiz: %s") % tr(tour_title)).to_upper()
 	_progress.max_value = maxi(_questions.size(), 1)
 	visible = true
 
@@ -123,7 +123,7 @@ func _prepare(tour_title: String, questions: Array[Dictionary]) -> void:
 func _show_question() -> void:
 	_stage = Stage.QUESTION
 	var question := _questions[_index]
-	_counter.text = "Question %d of %d" % [_index + 1, _questions.size()]
+	_counter.text = tr("Question %d of %d") % [_index + 1, _questions.size()]
 	_progress.value = _index
 	_heading.text = question["question"]
 	_body.visible = false
@@ -161,8 +161,8 @@ func _answer(choice: int) -> void:
 		else:
 			button.theme_type_variation = "FlatButton"
 			button.modulate = Color(1, 1, 1, 0.6)
-	var verdict := "Correct." if right else "Not quite. The correct answer is %s." % OPTION_LETTERS[correct]
-	_feedback.text = verdict + " " + str(question.get("explanation", ""))
+	var verdict := tr("Correct.") if right else tr("Not quite. The correct answer is %s.") % OPTION_LETTERS[correct]
+	_feedback.text = verdict + " " + tr(str(question.get("explanation", "")))
 	_feedback_panel.theme_type_variation = "SuccessCallout" if right else "DangerCallout"
 	_feedback_panel.visible = true
 	_progress.value = _index + 1
@@ -172,7 +172,7 @@ func _answer(choice: int) -> void:
 func _show_results() -> void:
 	_stage = Stage.RESULTS
 	_counter.text = ""
-	_heading.text = "You answered %d of %d correctly." % [_score, _questions.size()]
+	_heading.text = tr("You answered %d of %d correctly.") % [_score, _questions.size()]
 	var ratio := float(_score) / float(maxi(_questions.size(), 1))
 	if _score == _questions.size():
 		_body.text = "A perfect score. You know this tour inside out."
@@ -201,7 +201,7 @@ func _set_options(labels: Array[String]) -> void:
 		_options.remove_child(child)
 		child.queue_free()
 	for index in labels.size():
-		var button := Hud.make_button("%s.   %s" % [OPTION_LETTERS[index], labels[index]], _answer.bind(index))
+		var button := Hud.make_button("%s.   %s" % [OPTION_LETTERS[index], tr(labels[index])], _answer.bind(index))
 		button.alignment = HORIZONTAL_ALIGNMENT_LEFT
 		button.icon_alignment = HORIZONTAL_ALIGNMENT_RIGHT
 		button.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART

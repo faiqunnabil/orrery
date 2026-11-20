@@ -229,7 +229,7 @@ func _focus_mesh_summary() -> String:
 
 func _diagnostics_summary() -> String:
 	var integrator := "RK4" if _integrator == NBodySimulation.Integrator.RK4 else "Verlet"
-	return "%d/%d bodies, %s" % [world.bodies.size(), Quality.profile()["max_bodies"], integrator]
+	return tr("%d/%d bodies, %s") % [world.bodies.size(), Quality.profile()["max_bodies"], integrator]
 
 
 func _on_preferences_changed() -> void:
@@ -273,16 +273,16 @@ func _anchor_position() -> PackedFloat64Array:
 
 
 func _status_text() -> String:
-	var focus := "Free flight"
+	var focus := tr("Free flight")
 	if camera.anchor_id != "" and world.index_of(camera.anchor_id) >= 0:
-		focus = world.bodies[world.index_of(camera.anchor_id)].display_name
-	var text := "Focus: " + focus
+		focus = tr(world.bodies[world.index_of(camera.anchor_id)].display_name)
+	var text := tr("Focus: %s") % focus
 	if _dragging and _launch_status != "":
 		text += "   |   " + _launch_status
 	elif _placing:
-		text += "   |   Placing a body"
+		text += "   |   " + tr("Placing a body")
 	if _speed_limited:
-		text += "   |   Simulation speed limited by performance"
+		text += "   |   " + tr("Simulation speed limited by performance")
 	return text
 
 
@@ -330,7 +330,7 @@ func _replace_world(candidate: SandboxWorld) -> void:
 
 
 func _body_limit_notice() -> String:
-	return "Body limit reached for the %s preset." % Quality.PRESET_NAMES[Quality.preset]
+	return tr("Body limit reached for the %s preset.") % tr(Quality.PRESET_NAMES[Quality.preset])
 
 
 func _load_preset(index: int) -> void:
@@ -437,13 +437,13 @@ func _refresh_readout() -> void:
 	var simulation := world.simulation
 	var parent_index := world.index_of(body.parent_id)
 	if parent_index < 0:
-		panel.set_readout("Speed: %.2f km/s" % simulation.velocity_of(index).length())
+		panel.set_readout(tr("Speed: %.2f km/s") % simulation.velocity_of(index).length())
 		return
 	var relative_speed := simulation.velocity_of(index).minus(simulation.velocity_of(parent_index)).length()
 	var distance := simulation.position_of(index).minus(simulation.position_of(parent_index)).length()
 	panel.set_readout(
-		"Speed: %.2f km/s\nDistance to %s: %s"
-		% [relative_speed, world.bodies[parent_index].display_name, _distance_text(distance)]
+		tr("Speed: %.2f km/s\nDistance to %s: %s")
+		% [relative_speed, tr(world.bodies[parent_index].display_name), _distance_text(distance)]
 	)
 
 
@@ -493,7 +493,7 @@ func _plane_point(screen_position: Vector2) -> DVec3:
 func _begin_drag(screen_position: Vector2) -> void:
 	var cap: int = Quality.profile()["max_bodies"]
 	if world.bodies.size() >= cap:
-		panel.set_notice("Body limit reached for the %s preset." % Quality.PRESET_NAMES[Quality.preset])
+		panel.set_notice(_body_limit_notice())
 		return
 	panel.set_notice("")
 	var point := _plane_point(screen_position)
@@ -523,7 +523,7 @@ func _finish_drag() -> void:
 	var launch := _launch(_drag_origin, _drag_tip, spec["mass_kg"])
 	_spawn_counter += 1
 	var body := world.add_custom_body(
-		"%s %d" % [spec["name"], _spawn_counter],
+		"%s %d" % [tr(spec["name"]), _spawn_counter],
 		spec["kind"],
 		spec["color"],
 		spec["texture"],
@@ -543,13 +543,13 @@ func _update_preview() -> void:
 	renderer.set_preview(true, _drag_origin, _drag_tip, spec["radius_km"])
 	var launch := _launch(_drag_origin, _drag_tip, spec["mass_kg"])
 	if launch["reference"] == "":
-		_launch_status = "No body to orbit nearby"
-		panel.set_launch_text("No body to orbit. Add or keep a massive body nearby.")
+		_launch_status = tr("No body to orbit nearby")
+		panel.set_launch_text(tr("No body to orbit. Add or keep a massive body nearby."))
 		return
-	_launch_status = "Launch %.2f km/s relative to %s (%.2f x circular)" % [launch["speed"], launch["reference"], launch["ratio"]]
+	_launch_status = tr("Launch %.2f km/s relative to %s (%.2f x circular)") % [launch["speed"], tr(launch["reference"]), launch["ratio"]]
 	panel.set_launch_text(
-		"Launch speed relative to %s: %.2f km/s (%.2f x circular orbit speed)"
-		% [launch["reference"], launch["speed"], launch["ratio"]]
+		tr("Launch speed relative to %s: %.2f km/s (%.2f x circular orbit speed)")
+		% [tr(launch["reference"]), launch["speed"], launch["ratio"]]
 	)
 
 
@@ -659,7 +659,7 @@ func _update_labels() -> void:
 			labeled = screen.distance_to(parent_screen) > MOON_LABEL_HIDE_DISTANCE
 		entries.append(
 			{
-				"name": body.display_name,
+				"name": tr(body.display_name),
 				"position": screen,
 				"radius": minf(radius_pixels, viewport_size.y),
 				"labeled": labeled,

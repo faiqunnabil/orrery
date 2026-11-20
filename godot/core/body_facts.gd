@@ -61,12 +61,12 @@ static func escape_velocity_km_s(body: BodyDefinition) -> float:
 static func _explorer_rows(body: BodyDefinition, parent: BodyDefinition, distance_km: float) -> Array:
 	var rows: Array = []
 	var diameter := body.radius_km * 2.0
-	rows.append(["Width", "%s km (%s x Earth)" % [format_number(diameter, 0), _ratio(body.radius_km / EARTH_RADIUS_KM)]])
+	rows.append(["Width", Locale.t("%s km (%s x Earth)") % [format_number(diameter, 0), _ratio(body.radius_km / EARTH_RADIUS_KM)]])
 	if parent != null:
 		rows.append([_distance_label(parent), _friendly_distance(distance_km, parent)])
 		rows.append(["Year", _friendly_period(orbital_period_days(body), parent)])
 	rows.append(["Day", _friendly_rotation(body)])
-	rows.append(["Gravity", "%s x Earth" % _ratio(surface_gravity(body) / EARTH_GRAVITY_MS2)])
+	rows.append(["Gravity", Locale.t("%s x Earth") % _ratio(surface_gravity(body) / EARTH_GRAVITY_MS2)])
 	return rows
 
 
@@ -99,12 +99,12 @@ static func _precise_rotation(body: BodyDefinition) -> String:
 
 
 static func _distance_label(parent: BodyDefinition) -> String:
-	return "Distance from " + parent.display_name
+	return Locale.t("Distance from %s") % Locale.t(parent.display_name)
 
 
 static func _friendly_distance(distance_km: float, parent: BodyDefinition) -> String:
 	if parent.kind == "star":
-		return "%s million km" % format_number(distance_km / KM_PER_MILLION, 1)
+		return Locale.t("%s million km") % format_number(distance_km / KM_PER_MILLION, 1)
 	return "%s km" % format_number(distance_km, 0)
 
 
@@ -116,21 +116,21 @@ static func _precise_distance(distance_km: float, parent: BodyDefinition) -> Str
 
 static func _friendly_period(days: float, parent: BodyDefinition) -> String:
 	if parent.kind != "star":
-		return "%s days around %s" % [format_number(days, 1), parent.display_name]
+		return Locale.t("%s days around %s") % [format_number(days, 1), Locale.t(parent.display_name)]
 	if days < 1000.0:
-		return "%s Earth days" % format_number(days, 0)
-	return "%s Earth years" % format_number(days / DAYS_PER_YEAR, 1)
+		return Locale.t("%s Earth days") % format_number(days, 0)
+	return Locale.t("%s Earth years") % format_number(days / DAYS_PER_YEAR, 1)
 
 
 static func _friendly_rotation(body: BodyDefinition) -> String:
 	var hours := rotation_period_hours(body)
 	var text := ""
 	if hours < 48.0:
-		text = "%s hours" % format_number(hours, 1)
+		text = Locale.t("%s hours") % format_number(hours, 1)
 	else:
-		text = "%s Earth days" % format_number(hours / 24.0, 1)
+		text = Locale.t("%s Earth days") % format_number(hours / 24.0, 1)
 	if body.rotation_rate_deg_per_day < 0.0:
-		text += ", spins backwards"
+		text += Locale.t(", spins backwards")
 	return text
 
 
@@ -147,5 +147,5 @@ static func _inclination_label(body: BodyDefinition, parent: BodyDefinition) -> 
 		"laplace":
 			return "Inclination to Laplace plane"
 		"equator":
-			return "Inclination to %s's equator" % parent.display_name
+			return Locale.t("Inclination to %s's equator") % Locale.t(parent.display_name)
 	return "Inclination"

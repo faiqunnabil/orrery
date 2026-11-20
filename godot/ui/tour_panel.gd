@@ -70,8 +70,8 @@ func _ready() -> void:
 
 func show_step(tour_title: String, step: Dictionary, index: int, count: int) -> void:
 	visible = true
-	_tour_title.text = tour_title.to_upper()
-	_counter.text = "Step %d of %d" % [index + 1, count]
+	_tour_title.text = tr(tour_title).to_upper()
+	_counter.text = tr("Step %d of %d") % [index + 1, count]
 	_progress.max_value = count
 	_progress.value = index + 1
 	_step_title.text = step["title"]

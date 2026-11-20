@@ -154,7 +154,7 @@ func _process(delta: float) -> void:
 		_info_timer = 0.0
 		_refresh_info_values()
 	hud.refresh(clock)
-	hud.set_status("Focus: " + _focus_name())
+	hud.set_status(tr("Focus: %s") % _focus_name())
 	_scale_control.select(renderer.mapper.mode)
 	_tours_button.set_pressed_no_signal(_tour_menu.visible)
 
@@ -201,7 +201,7 @@ func _focus_mesh_summary() -> String:
 
 
 func _diagnostics_summary() -> String:
-	return "%d bodies, %s rocks" % [model.bodies.size(), Hud.format_count(Quality.profile()["asteroid_count"])]
+	return tr("%d bodies, %s rocks") % [model.bodies.size(), Hud.format_count(Quality.profile()["asteroid_count"])]
 
 
 func _on_preferences_changed() -> void:
@@ -276,8 +276,8 @@ func _anchor_position() -> PackedFloat64Array:
 
 func _focus_name() -> String:
 	if camera.anchor_id == "":
-		return "Free flight"
-	return model.get_body(camera.anchor_id).display_name
+		return tr("Free flight")
+	return tr(model.get_body(camera.anchor_id).display_name)
 
 
 func _toward_sun(body_id: String) -> Vector3:
@@ -364,7 +364,7 @@ func _update_labels() -> void:
 			labeled = screen.distance_to(parent_screen) > MOON_LABEL_HIDE_DISTANCE
 		entries.append(
 			{
-				"name": body.display_name,
+				"name": tr(body.display_name),
 				"position": screen,
 				"radius": minf(radius_pixels, viewport_size.y),
 				"labeled": labeled,

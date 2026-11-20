@@ -192,7 +192,7 @@ func new_body_spec() -> Dictionary:
 
 
 func set_body_count(count: int, cap: int) -> void:
-	_count_label.text = "%d / %d bodies" % [count, cap]
+	_count_label.text = tr("%d / %d bodies") % [count, cap]
 
 
 func set_placing(active: bool) -> void:
@@ -452,11 +452,11 @@ func _slider_from_radius(radius_km: float) -> float:
 
 
 func _mass_text(mass_kg: float) -> String:
-	return "Mass   %s Earths  (%s kg)" % [_earth_ratio_text(mass_kg / EARTH_MASS_KG), BodyFacts.format_scientific(mass_kg, 2)]
+	return tr("Mass   %s Earths  (%s kg)") % [_earth_ratio_text(mass_kg / EARTH_MASS_KG), BodyFacts.format_scientific(mass_kg, 2)]
 
 
 func _radius_text(radius_km: float) -> String:
-	return "Radius   %s km" % BodyFacts.format_number(radius_km, 1 if radius_km < 100.0 else 0)
+	return tr("Radius   %s km") % BodyFacts.format_number(radius_km, 1 if radius_km < 100.0 else 0)
 
 
 func _earth_ratio_text(earths: float) -> String:

@@ -220,7 +220,7 @@ func _focus_mesh_summary() -> String:
 static func mesh_summary(segments: int) -> String:
 	if segments <= 0:
 		return "None"
-	return "%d x %d segments" % [segments, segments / 2]
+	return Locale.t("%d x %d segments") % [segments, segments / 2]
 
 
 func _is_camera_idle_reset(event: InputEvent) -> bool:
@@ -250,7 +250,7 @@ func _take_screenshot() -> void:
 		hud.set_root_visible(true)
 	if saved_path != "":
 		Audio.play_effect(&"click")
-		hud.show_toast("Screenshot saved: " + saved_path)
+		hud.show_toast(tr("Screenshot saved: %s") % saved_path)
 	else:
 		hud.show_toast("Screenshot failed")
 
