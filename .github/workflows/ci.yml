@@ -1,0 +1,53 @@
+name: CI
+
+on:
+  push:
+    branches: [dev]
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+permissions:
+  contents: read
+
+jobs:
+  tests:
+    name: Import and tests
+    runs-on: ubuntu-24.04
+    timeout-minutes: 60
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: ./.github/actions/setup-godot
+
+      - name: Install a virtual display and software OpenGL
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y --no-install-recommends \
+            xvfb libgl1-mesa-dri libglx-mesa0 libegl1 libxcursor1 libxinerama1 libxrandr2 libxi6 libxkbcommon0 libfontconfig1
+
+      - name: Restore imported assets
+        uses: actions/cache@v4
+        with:
+          path: godot/.godot
+          key: godot-import-${{ hashFiles('godot/project.godot', 'godot/**/*.import') }}
+          restore-keys: godot-import-
+
+      - name: Import the project
+        run: |
+          godot --headless --path godot --import 2>&1 | tee import.log
+          if grep -E "SCRIPT ERROR|Parse Error" import.log; then
+            echo "::error::Scripts failed to compile during import"
+            exit 1
+          fi
+
+      - name: Run the test suite
+        env:
+          GODOT: godot
+          GODOT_ARGS: --display-driver x11 --rendering-driver opengl3 --audio-driver Dummy
+          LIBGL_ALWAYS_SOFTWARE: "1"
+        run: xvfb-run --auto-servernum --server-args="-screen 0 1280x720x24" tests/run_tests.sh
