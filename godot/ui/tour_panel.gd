@@ -6,8 +6,8 @@ signal next_pressed
 signal exit_pressed
 signal replay_pressed
 
-const PANEL_WIDTH := 620
-const CONTENT_WIDTH := 590
+const PANEL_WIDTH := 560
+const CONTENT_WIDTH := 528
 
 var _tour_title: Label
 var _counter: Label
@@ -22,6 +22,7 @@ var _replay_button: Button
 
 func _init() -> void:
 	custom_minimum_size = Vector2(PANEL_WIDTH, 0)
+	size_flags_horizontal = Control.SIZE_SHRINK_CENTER
 	visible = false
 	var box := VBoxContainer.new()
 	add_child(box)
@@ -34,8 +35,6 @@ func _init() -> void:
 	header.add_child(_counter)
 	_progress.show_percentage = false
 	_progress.custom_minimum_size = Vector2(0, 3)
-	_progress.add_theme_stylebox_override("background", OrreryTheme.box(Color(1, 1, 1, 0.08), 2, 0.0, 0.0))
-	_progress.add_theme_stylebox_override("fill", OrreryTheme.box(OrreryTheme.ACCENT, 2, 0.0, 0.0))
 	box.add_child(_progress)
 	_step_title.theme_type_variation = "TitleLabel"
 	box.add_child(_step_title)
@@ -44,20 +43,22 @@ func _init() -> void:
 	var buttons := HBoxContainer.new()
 	buttons.alignment = BoxContainer.ALIGNMENT_END
 	box.add_child(buttons)
-	var exit := Hud.make_button("Exit tour", func() -> void: exit_pressed.emit(), "Leave the tour (Esc)")
+	var exit := Hud.make_button("Exit tour", func() -> void: exit_pressed.emit(), "Leave the tour (Esc)", "log_out")
 	exit.theme_type_variation = "FlatButton"
 	buttons.add_child(exit)
 	var spacer := Control.new()
 	spacer.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 	buttons.add_child(spacer)
-	_voice_toggle = Hud.make_toggle("Voice", "Play the voice-over (captions always stay visible)", Audio.set_narration_enabled)
+	_voice_toggle = Hud.make_toggle("Voice", "Play the voice-over (captions always stay visible)", Audio.set_narration_enabled, "volume_2")
 	_voice_toggle.size_flags_horizontal = Control.SIZE_SHRINK_END
 	buttons.add_child(_voice_toggle)
-	_replay_button = Hud.make_button("Replay", func() -> void: replay_pressed.emit(), "Replay the voice-over for this step")
-	_replay_button.theme_type_variation = "FlatButton"
+	_replay_button = Hud.make_icon_button(
+		"rotate_ccw", func() -> void: replay_pressed.emit(), "Replay the voice-over for this step", "IconFlatButton"
+	)
 	buttons.add_child(_replay_button)
-	_previous_button = Hud.make_button("Previous", func() -> void: previous_pressed.emit(), "Previous step (Left)")
-	_next_button = Hud.make_accent_button("Next", func() -> void: next_pressed.emit(), "Next step (Right or Enter)")
+	_previous_button = Hud.make_icon_button("chevron_left", func() -> void: previous_pressed.emit(), "Previous step (Left)")
+	_next_button = Hud.make_accent_button("Next", func() -> void: next_pressed.emit(), "Next step (Right or Enter)", "chevron_right")
+	_next_button.icon_alignment = HORIZONTAL_ALIGNMENT_RIGHT
 	buttons.add_child(_previous_button)
 	buttons.add_child(_next_button)
 

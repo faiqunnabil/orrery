@@ -5,8 +5,8 @@ signal closed
 
 enum Stage { INTRO, QUESTION, ANSWERED, RESULTS }
 
-const PANEL_WIDTH := 620
-const CONTENT_WIDTH := 590
+const PANEL_WIDTH := 560
+const CONTENT_WIDTH := 528
 const OPTION_LETTERS := "ABCDEFGH"
 const PASS_RATIO := 0.6
 
@@ -17,6 +17,7 @@ var _heading := Label.new()
 var _body: Label
 var _options := VBoxContainer.new()
 var _feedback: Label
+var _feedback_panel := PanelContainer.new()
 var _secondary_button: Button
 var _primary_button: Button
 var _tour_title := ""
@@ -28,6 +29,7 @@ var _stage := Stage.INTRO
 
 func _init() -> void:
 	custom_minimum_size = Vector2(PANEL_WIDTH, 0)
+	size_flags_horizontal = Control.SIZE_SHRINK_CENTER
 	visible = false
 	var box := VBoxContainer.new()
 	box.add_theme_constant_override("separation", 8)
@@ -39,13 +41,9 @@ func _init() -> void:
 	header.add_child(_title)
 	_counter = Hud.make_label("", "DimLabel")
 	header.add_child(_counter)
-	var close := Hud.make_button("×", close_quiz, "Close the quiz (Esc)")
-	close.theme_type_variation = "FlatButton"
-	header.add_child(close)
+	header.add_child(Hud.make_close_button(close_quiz, "Close the quiz (Esc)"))
 	_progress.show_percentage = false
 	_progress.custom_minimum_size = Vector2(0, 3)
-	_progress.add_theme_stylebox_override("background", OrreryTheme.box(Color(1, 1, 1, 0.08), 2, 0.0, 0.0))
-	_progress.add_theme_stylebox_override("fill", OrreryTheme.box(OrreryTheme.ACCENT, 2, 0.0, 0.0))
 	box.add_child(_progress)
 	_heading.theme_type_variation = "HeaderLabel"
 	_heading.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
@@ -55,15 +53,17 @@ func _init() -> void:
 	box.add_child(_body)
 	_options.add_theme_constant_override("separation", 6)
 	box.add_child(_options)
-	_feedback = Hud.make_wrapped_label("", CONTENT_WIDTH)
-	box.add_child(_feedback)
+	_feedback = Hud.make_wrapped_label("", CONTENT_WIDTH - 2 * OrreryTheme.SPACE_M - 3, "InfoLabel")
+	_feedback_panel.add_child(_feedback)
+	box.add_child(_feedback_panel)
 	var buttons := HBoxContainer.new()
 	buttons.alignment = BoxContainer.ALIGNMENT_END
 	box.add_child(buttons)
 	_secondary_button = Hud.make_button("", _on_secondary)
 	_secondary_button.theme_type_variation = "FlatButton"
 	buttons.add_child(_secondary_button)
-	_primary_button = Hud.make_accent_button("", advance, "Continue (Enter)")
+	_primary_button = Hud.make_accent_button("", advance, "Continue (Enter)", "chevron_right")
+	_primary_button.icon_alignment = HORIZONTAL_ALIGNMENT_RIGHT
 	buttons.add_child(_primary_button)
 
 
@@ -76,7 +76,7 @@ func offer(tour_title: String, questions: Array[Dictionary]) -> void:
 	_body.text = "Answer %d questions about the %s tour." % [_questions.size(), tour_title]
 	_body.visible = true
 	_set_options([])
-	_feedback.visible = false
+	_feedback_panel.visible = false
 	_show_buttons("Not now", "Start quiz")
 
 
@@ -131,7 +131,7 @@ func _show_question() -> void:
 	for option: Variant in question["options"]:
 		labels.append(str(option))
 	_set_options(labels)
-	_feedback.visible = false
+	_feedback_panel.visible = false
 	_primary_button.visible = false
 	_secondary_button.visible = false
 
@@ -149,19 +149,22 @@ func _answer(choice: int) -> void:
 	var buttons := _options.get_children()
 	for index in buttons.size():
 		var button := buttons[index] as Button
-		var marker := ""
+		button.mouse_filter = Control.MOUSE_FILTER_IGNORE
 		if index == correct:
-			marker = "   (correct)"
-			button.theme_type_variation = "AccentButton"
+			button.theme_type_variation = "SuccessButton"
+			button.icon = OrreryTheme.icon("check")
+			button.tooltip_text = "Correct answer"
 		elif index == choice:
-			marker = "   (your answer)"
+			button.theme_type_variation = "DangerButton"
+			button.icon = OrreryTheme.icon("x")
+			button.tooltip_text = "Your answer"
 		else:
 			button.theme_type_variation = "FlatButton"
-		button.text += marker
+			button.modulate = Color(1, 1, 1, 0.6)
 	var verdict := "Correct." if right else "Not quite. The correct answer is %s." % OPTION_LETTERS[correct]
 	_feedback.text = verdict + " " + str(question.get("explanation", ""))
-	_feedback.theme_type_variation = "" if right else "WarningLabel"
-	_feedback.visible = true
+	_feedback_panel.theme_type_variation = "SuccessCallout" if right else "DangerCallout"
+	_feedback_panel.visible = true
 	_progress.value = _index + 1
 	_show_buttons("", "See results" if _index + 1 >= _questions.size() else "Next question")
 
@@ -179,7 +182,7 @@ func _show_results() -> void:
 		_body.text = "Replay the tour, then try again. Switching the information level changes the questions."
 	_body.visible = true
 	_set_options([])
-	_feedback.visible = false
+	_feedback_panel.visible = false
 	_show_buttons("Try again", "Close")
 
 
@@ -200,6 +203,7 @@ func _set_options(labels: Array[String]) -> void:
 	for index in labels.size():
 		var button := Hud.make_button("%s.   %s" % [OPTION_LETTERS[index], labels[index]], _answer.bind(index))
 		button.alignment = HORIZONTAL_ALIGNMENT_LEFT
+		button.icon_alignment = HORIZONTAL_ALIGNMENT_RIGHT
 		button.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
 		button.custom_minimum_size = Vector2(CONTENT_WIDTH, 0)
 		_options.add_child(button)

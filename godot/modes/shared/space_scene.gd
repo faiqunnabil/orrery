@@ -19,9 +19,12 @@ var hud := Hud.new()
 var pause_menu := PauseMenu.new()
 var space_environment := make_space_environment()
 
-var _help_template := ""
+var _help_groups: Array = []
+var _mode_label := ""
+var _mode_icon := ""
 var _mode_switch_template := ""
 var _diagnostics_timer := 0.0
+var _hud_visible_before_pause := true
 
 
 func _ready() -> void:
@@ -41,6 +44,7 @@ func _ready() -> void:
 	hud.mode_switch_pressed.connect(_switch_mode)
 	hud.menu_pressed.connect(_open_pause_menu)
 	pause_menu.main_menu_requested.connect(_open_main_menu)
+	pause_menu.closed.connect(_on_pause_menu_closed)
 	Quality.changed.connect(_apply_quality)
 	Quality.display_changed.connect(_apply_render_scale)
 	Preferences.changed.connect(_on_preferences_changed)
@@ -121,15 +125,23 @@ static func make_space_environment() -> Environment:
 	return environment
 
 
-func set_key_help(help_template: String, mode_switch_template: String) -> void:
-	_help_template = help_template
-	_mode_switch_template = mode_switch_template
+func set_key_help(help_groups: Array, mode_label: String, mode_tooltip: String, mode_icon: String) -> void:
+	_help_groups = help_groups
+	_mode_label = mode_label
+	_mode_switch_template = mode_tooltip
+	_mode_icon = mode_icon
 	_apply_key_help()
 
 
 func _apply_key_help() -> void:
-	hud.set_help(InputBindings.describe(_help_template))
-	hud.set_mode_switch(InputBindings.describe(_mode_switch_template))
+	var groups: Array = []
+	for group: Array in _help_groups:
+		var entries: Array = []
+		for entry: Array in group[1]:
+			entries.append([InputBindings.describe(entry[0]), entry[1]])
+		groups.append([group[0], entries])
+	hud.set_help(groups)
+	hud.set_mode_switch(_mode_label, InputBindings.describe(_mode_switch_template), _mode_icon)
 
 
 func pick_tolerance_angle() -> float:
@@ -227,7 +239,13 @@ func _switch_mode() -> void:
 
 
 func _open_pause_menu() -> void:
+	_hud_visible_before_pause = hud.is_root_visible()
+	hud.set_root_visible(false)
 	pause_menu.open()
+
+
+func _on_pause_menu_closed() -> void:
+	hud.set_root_visible(_hud_visible_before_pause)
 
 
 func _open_main_menu() -> void:

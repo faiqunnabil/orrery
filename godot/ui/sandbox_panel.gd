@@ -96,7 +96,7 @@ var _selected_radius_slider := HSlider.new()
 var _selected_radius_label := Label.new()
 var _selected_color := ColorPickerButton.new()
 var _selected_color_row: HBoxContainer
-var _freeze_check := CheckButton.new()
+var _freeze_check := Button.new()
 var _readout_label: Label
 var _integrator_control := SegmentedControl.new(INTEGRATOR_NAMES, "Numerical method used to advance the bodies")
 var _time_step_control := SegmentedControl.new(TIME_STEP_NAMES, "Adaptive shortens steps during close encounters; fixed steps show how step size affects accuracy")
@@ -264,6 +264,7 @@ func _build_new_body_section(box: VBoxContainer) -> void:
 	_place_button.text = "Place body"
 	_place_button.toggle_mode = true
 	_place_button.theme_type_variation = "AccentButton"
+	_place_button.icon = OrreryTheme.icon("circle_plus")
 	_place_button.focus_mode = Control.FOCUS_NONE
 	_place_button.tooltip_text = "Click and drag on the orbital plane to launch a body"
 	_place_button.toggled.connect(
@@ -302,14 +303,17 @@ func _build_selected_section(box: VBoxContainer) -> void:
 	_selected_color_row = _color_row("Color", _selected_color)
 	_selected_box.add_child(_selected_color_row)
 	_freeze_check.text = "Freeze in place"
+	_freeze_check.theme_type_variation = "ToggleButton"
+	_freeze_check.toggle_mode = true
 	_freeze_check.focus_mode = Control.FOCUS_NONE
 	_freeze_check.tooltip_text = "Hold this body still while it keeps pulling on others"
 	_freeze_check.toggled.connect(func(frozen: bool) -> void: freeze_toggled.emit(frozen))
 	_selected_box.add_child(_freeze_check)
 	var buttons := HBoxContainer.new()
-	var focus := Hud.make_button("Focus", func() -> void: focus_pressed.emit(), "Fly to this body")
+	var focus := Hud.make_button("Focus", func() -> void: focus_pressed.emit(), "Fly to this body", "crosshair")
 	focus.size_flags_horizontal = Control.SIZE_EXPAND_FILL
-	var remove := Hud.make_button("Remove", func() -> void: remove_pressed.emit(), "Delete this body (Del)")
+	var remove := Hud.make_button("Remove", func() -> void: remove_pressed.emit(), "Delete this body (Del)", "trash_2")
+	remove.theme_type_variation = "DangerButton"
 	remove.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 	buttons.add_child(focus)
 	buttons.add_child(remove)
@@ -327,7 +331,7 @@ func _build_world_section(box: VBoxContainer) -> void:
 	_preset_option.item_selected.connect(_show_preset_description)
 	preset_row.add_child(_preset_option)
 	preset_row.add_child(
-		Hud.make_accent_button(
+		Hud.make_button(
 			"Load",
 			func() -> void: preset_load_requested.emit(_preset_option.selected),
 			"Replace all bodies with this preset at the current simulation date"
@@ -340,11 +344,11 @@ func _build_world_section(box: VBoxContainer) -> void:
 	box.add_child(Hud.make_wrapped_label("Save every body as it is now and come back to it later.", CONTENT_WIDTH, "DimLabel"))
 	var snapshot_row := HBoxContainer.new()
 	box.add_child(snapshot_row)
-	var save := Hud.make_button("Save snapshot", func() -> void: snapshot_save_requested.emit(), "Store every body as it is now")
+	var save := Hud.make_button("Save snapshot", func() -> void: snapshot_save_requested.emit(), "Store every body as it is now", "save")
 	save.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 	snapshot_row.add_child(save)
 	_restore_button = Hud.make_button(
-		"Restore snapshot", func() -> void: snapshot_restore_requested.emit(), "Return to the last saved snapshot"
+		"Restore snapshot", func() -> void: snapshot_restore_requested.emit(), "Return to the last saved snapshot", "history"
 	)
 	_restore_button.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 	_restore_button.disabled = true
@@ -376,7 +380,7 @@ func _build_physics_section(box: VBoxContainer) -> void:
 	_frozen_label.visible = false
 	box.add_child(_frozen_label)
 	box.add_child(Hud.make_wrapped_label(CONSERVATION_NOTE, CONTENT_WIDTH, "DimLabel"))
-	var reset := Hud.make_button("Reset baseline", func() -> void: baseline_reset_requested.emit(), "Measure drift from now on")
+	var reset := Hud.make_button("Reset baseline", func() -> void: baseline_reset_requested.emit(), "Measure drift from now on", "rotate_ccw")
 	reset.size_flags_horizontal = Control.SIZE_SHRINK_END
 	box.add_child(reset)
 

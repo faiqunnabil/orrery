@@ -7,16 +7,65 @@ const CLICK_MOVE_TOLERANCE := 6.0
 const MOON_LABEL_HIDE_DISTANCE := 40.0
 const SCREEN_MARGIN := 40.0
 const SCALE_NAMES: Array[String] = ["Compressed", "True scale"]
-const HELP_TEXT := (
-	"{move_forward}/{move_left}/{move_back}/{move_right} move   {move_down}/{move_up} down/up   {boost} boost   "
-	+ "Drag or two-finger swipe orbit   Pinch or Ctrl+scroll zoom   Shift+scroll speed   Right mouse look   Click select   Double-click focus\n"
-	+ "{time_pause} pause   {time_reverse} reverse   {time_slower} {time_faster} time speed   {time_now} now   "
-	+ "{scale_toggle} scale   {toggle_labels} labels   {toggle_trails} orbit lines   {toggle_grid} distance rings   "
-	+ "{toggle_level} level\n"
-	+ "1-0 focus body   {focus_next} next   {focus_release} free flight   {toggle_auto_orbit} auto-orbit   {mode_sandbox} sandbox\n"
-	+ "{toggle_help} help   {toggle_diagnostics} perf   {toggle_hud} hide   {toggle_fullscreen} fullscreen   {take_screenshot} screenshot   Esc menu"
-)
+const HELP_GROUPS := [
+	[
+		"Camera",
+		[
+			["{move_forward}|{move_left}|{move_back}|{move_right}", "Move"],
+			["{move_down}|{move_up}", "Down / up"],
+			["{boost}", "Boost"],
+			["Drag|Swipe", "Orbit"],
+			["Pinch|Ctrl+Scroll", "Zoom"],
+			["Shift+Scroll", "Flight speed"],
+			["Right drag", "Look around"],
+		],
+	],
+	[
+		"Bodies",
+		[
+			["Click", "Select"],
+			["Double-click", "Focus"],
+			["1-0", "Focus a body"],
+			["{focus_next}", "Next body"],
+			["{focus_release}", "Free flight"],
+			["{toggle_auto_orbit}", "Auto-orbit"],
+		],
+	],
+	[
+		"Time",
+		[
+			["{time_pause}", "Pause"],
+			["{time_reverse}", "Reverse"],
+			["{time_slower}|{time_faster}", "Slower / faster"],
+			["{time_now}", "Now"],
+		],
+	],
+	[
+		"View",
+		[
+			["{scale_toggle}", "Scale"],
+			["{toggle_labels}", "Labels"],
+			["{toggle_trails}", "Orbit lines"],
+			["{toggle_grid}", "Distance rings"],
+			["{toggle_level}", "Depth level"],
+		],
+	],
+	[
+		"App",
+		[
+			["{mode_sandbox}", "Sandbox"],
+			["{toggle_help}", "Controls"],
+			["{toggle_diagnostics}", "Performance"],
+			["{toggle_hud}", "Hide interface"],
+			["{toggle_fullscreen}", "Fullscreen"],
+			["{take_screenshot}", "Screenshot"],
+			["Esc", "Menu"],
+		],
+	],
+]
+const MODE_SWITCH_LABEL := "Sandbox"
 const MODE_SWITCH_TEXT := "Open Sandbox ({mode_sandbox})"
+const MODE_SWITCH_ICON := "atom"
 
 var model: SolarSystemModel
 var renderer := SolarSystemRenderer.new()
@@ -56,15 +105,16 @@ func _build_world() -> void:
 	hud.add_setting(Hud.section_label("Scale"))
 	hud.add_setting(_scale_control)
 	_scale_control.selected.connect(func(index: int) -> void: _set_scale_mode(index as ScaleMapper.Mode))
-	_tours_button = Hud.make_button("Guided tours", _toggle_tour_menu, "Choose a guided tour")
+	_tours_button = Hud.make_button("Guided tours", _toggle_tour_menu, "Choose a guided tour", "route")
+	_tours_button.theme_type_variation = "ToggleButton"
 	_tours_button.toggle_mode = true
 	var tours_chip := PanelContainer.new()
-	tours_chip.theme_type_variation = "ChipPanel"
+	tours_chip.theme_type_variation = "ToolbarPanel"
 	tours_chip.size_flags_horizontal = Control.SIZE_SHRINK_BEGIN
 	tours_chip.add_child(_tours_button)
 	hud.left_column.add_child(tours_chip)
 	hud.left_column.move_child(tours_chip, 1)
-	set_key_help(HELP_TEXT, MODE_SWITCH_TEXT)
+	set_key_help(HELP_GROUPS, MODE_SWITCH_LABEL, MODE_SWITCH_TEXT, MODE_SWITCH_ICON)
 	for index in mini(model.bodies.size(), InputBindings.FOCUS_KEYS.size()):
 		_focus_actions.append(StringName("focus_body_%d" % index))
 	_info_panel.focus_requested.connect(_fly_to)

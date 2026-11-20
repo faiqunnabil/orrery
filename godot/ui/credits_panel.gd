@@ -20,7 +20,7 @@ func _ready() -> void:
 	var heading := Hud.make_label("Credits", "TitleLabel")
 	heading.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 	header.add_child(heading)
-	header.add_child(Hud.make_button("Back", func() -> void: back_requested.emit(), "Return (Esc)"))
+	header.add_child(Hud.make_button("Back", func() -> void: back_requested.emit(), "Return (Esc)", "chevron_left"))
 	var scroll := ScrollContainer.new()
 	scroll.custom_minimum_size = Vector2(0, CONTENT_HEIGHT)
 	scroll.horizontal_scroll_mode = ScrollContainer.SCROLL_MODE_DISABLED
@@ -55,7 +55,10 @@ func _populate(content: VBoxContainer, credits: Dictionary) -> void:
 		grid.add_child(nim)
 		grid.add_child(Hud.make_label(member.get("role", ""), "DimLabel"))
 	content.add_child(HSeparator.new())
-	content.add_child(Hud.make_wrapped_label(credits.get("notice", ""), CONTENT_WIDTH, "WarningLabel"))
+	var notice := PanelContainer.new()
+	notice.theme_type_variation = "InfoCallout"
+	notice.add_child(Hud.make_wrapped_label(credits.get("notice", ""), CONTENT_WIDTH - 2 * OrreryTheme.SPACE_M - 3, "InfoLabel"))
+	content.add_child(notice)
 	for section: Dictionary in credits.get("sections", []):
 		content.add_child(HSeparator.new())
 		content.add_child(Hud.section_label(section.get("title", "")))
