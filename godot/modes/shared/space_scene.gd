@@ -73,6 +73,17 @@ func _input(event: InputEvent) -> void:
 
 
 func _unhandled_input(event: InputEvent) -> void:
+	if event.is_action_pressed("focus_interface"):
+		get_viewport().set_input_as_handled()
+		if hud.has_keyboard_focus():
+			get_viewport().gui_release_focus()
+		else:
+			hud.focus_interface()
+		return
+	if event.is_action_pressed("cancel") and hud.has_keyboard_focus():
+		get_viewport().set_input_as_handled()
+		get_viewport().gui_release_focus()
+		return
 	if event.is_action_pressed("time_pause"):
 		clock.toggle_pause()
 	elif event.is_action_pressed("time_reverse"):

@@ -83,7 +83,7 @@ static func make_button(label: String, pressed_callback: Callable, tooltip: Stri
 	var button := Button.new()
 	button.text = label
 	button.tooltip_text = tooltip
-	button.focus_mode = Control.FOCUS_NONE
+	button.focus_mode = Control.FOCUS_ALL
 	button.pressed.connect(pressed_callback)
 	if icon_name != "":
 		button.icon = OrreryTheme.icon(icon_name)
@@ -134,7 +134,7 @@ static func make_toggle(label: String, tooltip: String, toggled_callback: Callab
 	if icon_name != "":
 		button.icon = OrreryTheme.icon(icon_name)
 	button.toggle_mode = true
-	button.focus_mode = Control.FOCUS_NONE
+	button.focus_mode = Control.FOCUS_ALL
 	button.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 	button.toggled.connect(toggled_callback)
 	return button
@@ -179,6 +179,22 @@ func _ready() -> void:
 	_depth_control.selected.connect(func(index: int) -> void: Preferences.set_depth_level(index as Preferences.DepthLevel))
 	Preferences.changed.connect(_sync_preferences)
 	_sync_preferences()
+
+
+func _input(event: InputEvent) -> void:
+	if event is InputEventMouseButton and not event.pressed:
+		var owner := get_viewport().gui_get_focus_owner()
+		if owner != null and _root.is_ancestor_of(owner) and not owner is LineEdit:
+			owner.release_focus.call_deferred()
+
+
+func has_keyboard_focus() -> bool:
+	var owner := get_viewport().gui_get_focus_owner()
+	return owner != null and _root.is_ancestor_of(owner) and not owner is LineEdit
+
+
+func focus_interface() -> void:
+	_reverse_button.grab_focus()
 
 
 func _process(delta: float) -> void:
@@ -384,7 +400,7 @@ func _build_time_panel() -> void:
 	_reverse_button.icon_alignment = HORIZONTAL_ALIGNMENT_CENTER
 	_reverse_button.custom_minimum_size = Vector2(ICON_BUTTON_WIDTH, 0)
 	_reverse_button.toggle_mode = true
-	_reverse_button.focus_mode = Control.FOCUS_NONE
+	_reverse_button.focus_mode = Control.FOCUS_ALL
 	_reverse_button.tooltip_text = "Run time backwards (R)"
 	_reverse_button.pressed.connect(func() -> void: reverse_pressed.emit())
 	row.add_child(_reverse_button)
@@ -392,7 +408,7 @@ func _build_time_panel() -> void:
 	_pause_button.icon = OrreryTheme.icon("pause")
 	_pause_button.icon_alignment = HORIZONTAL_ALIGNMENT_CENTER
 	_pause_button.custom_minimum_size = Vector2(ICON_BUTTON_WIDTH, 0)
-	_pause_button.focus_mode = Control.FOCUS_NONE
+	_pause_button.focus_mode = Control.FOCUS_ALL
 	_pause_button.tooltip_text = "Pause time (Space)"
 	_pause_button.pressed.connect(func() -> void: pause_pressed.emit())
 	row.add_child(_pause_button)
@@ -459,13 +475,13 @@ func _build_settings_panel() -> void:
 	box.add_child(actions)
 	for preset_name in Quality.PRESET_NAMES:
 		_quality_option.add_item(preset_name)
-	_quality_option.focus_mode = Control.FOCUS_NONE
+	_quality_option.focus_mode = Control.FOCUS_ALL
 	_quality_option.tooltip_text = "Graphics quality. Lower quality runs faster on older devices"
 	_quality_option.icon = OrreryTheme.icon("gauge")
 	_quality_option.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 	_quality_option.item_selected.connect(func(index: int) -> void: quality_selected.emit(index))
 	actions.add_child(_quality_option)
-	_mode_button.focus_mode = Control.FOCUS_NONE
+	_mode_button.focus_mode = Control.FOCUS_ALL
 	_mode_button.visible = false
 	_mode_button.pressed.connect(func() -> void: mode_switch_pressed.emit())
 	actions.add_child(_mode_button)

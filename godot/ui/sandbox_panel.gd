@@ -249,7 +249,7 @@ func _build_new_body_section(box: VBoxContainer) -> void:
 	for template in TEMPLATES:
 		_template_option.add_item(template["name"])
 	_template_option.select(1)
-	_template_option.focus_mode = Control.FOCUS_NONE
+	_template_option.focus_mode = Control.FOCUS_ALL
 	_template_option.item_selected.connect(_apply_template)
 	box.add_child(_template_option)
 	_add_slider(box, _new_mass_label, _new_mass_slider, MASS_LOG_RANGE)
@@ -265,7 +265,7 @@ func _build_new_body_section(box: VBoxContainer) -> void:
 	_place_button.toggle_mode = true
 	_place_button.theme_type_variation = "AccentButton"
 	_place_button.icon = OrreryTheme.icon("circle_plus")
-	_place_button.focus_mode = Control.FOCUS_NONE
+	_place_button.focus_mode = Control.FOCUS_ALL
 	_place_button.tooltip_text = "Click and drag on the orbital plane to launch a body"
 	_place_button.toggled.connect(
 		func(active: bool) -> void:
@@ -305,7 +305,7 @@ func _build_selected_section(box: VBoxContainer) -> void:
 	_freeze_check.text = "Freeze in place"
 	_freeze_check.theme_type_variation = "ToggleButton"
 	_freeze_check.toggle_mode = true
-	_freeze_check.focus_mode = Control.FOCUS_NONE
+	_freeze_check.focus_mode = Control.FOCUS_ALL
 	_freeze_check.tooltip_text = "Hold this body still while it keeps pulling on others"
 	_freeze_check.toggled.connect(func(frozen: bool) -> void: freeze_toggled.emit(frozen))
 	_selected_box.add_child(_freeze_check)
@@ -326,7 +326,7 @@ func _build_world_section(box: VBoxContainer) -> void:
 	var preset_row := HBoxContainer.new()
 	box.add_child(preset_row)
 	_preset_option.size_flags_horizontal = Control.SIZE_EXPAND_FILL
-	_preset_option.focus_mode = Control.FOCUS_NONE
+	_preset_option.focus_mode = Control.FOCUS_ALL
 	_preset_option.clip_text = true
 	_preset_option.item_selected.connect(_show_preset_description)
 	preset_row.add_child(_preset_option)
@@ -408,7 +408,7 @@ func _add_slider(box: VBoxContainer, label: Label, slider: HSlider, range_values
 	slider.min_value = range_values.x
 	slider.max_value = range_values.y
 	slider.step = SLIDER_STEP
-	slider.focus_mode = Control.FOCUS_NONE
+	slider.focus_mode = Control.FOCUS_ALL
 	slider.custom_minimum_size = Vector2(0, 18)
 	box.add_child(slider)
 
@@ -419,7 +419,7 @@ func _color_row(text: String, picker: ColorPickerButton) -> HBoxContainer:
 	label.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 	row.add_child(label)
 	picker.custom_minimum_size = Vector2(72, 24)
-	picker.focus_mode = Control.FOCUS_NONE
+	picker.focus_mode = Control.FOCUS_ALL
 	picker.edit_alpha = false
 	row.add_child(picker)
 	return row

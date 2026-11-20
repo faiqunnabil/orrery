@@ -57,6 +57,7 @@ const HELP_GROUPS := [
 		[
 			["{mode_sandbox}", "Sandbox"],
 			["{toggle_help}", "Controls"],
+			["{focus_interface}", "Keyboard navigation"],
 			["{toggle_diagnostics}", "Performance"],
 			["{toggle_hud}", "Hide interface"],
 			["{toggle_fullscreen}", "Fullscreen"],
@@ -160,6 +161,8 @@ func _process(delta: float) -> void:
 
 func _unhandled_input(event: InputEvent) -> void:
 	super(event)
+	if get_viewport().is_input_handled():
+		return
 	if event is InputEventMouseMotion:
 		return
 	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT:

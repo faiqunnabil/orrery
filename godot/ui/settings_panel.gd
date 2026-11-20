@@ -136,7 +136,7 @@ func _build_display_page(page: VBoxContainer) -> void:
 	_resolutions = Quality.available_window_sizes()
 	for window_size in _resolutions:
 		_resolution.add_item("%d × %d" % [window_size.x, window_size.y])
-	_resolution.focus_mode = Control.FOCUS_NONE
+	_resolution.focus_mode = Control.FOCUS_ALL
 	_resolution.tooltip_text = "Window size in windowed mode"
 	_resolution.item_selected.connect(func(index: int) -> void: Quality.set_window_size(_resolutions[index]))
 	_add_row(page, "Resolution", _resolution)
@@ -156,7 +156,7 @@ func _build_graphics_page(page: VBoxContainer) -> void:
 	_render_scale.min_value = Quality.MIN_RENDER_SCALE * 100.0
 	_render_scale.max_value = Quality.MAX_RENDER_SCALE * 100.0
 	_render_scale.step = 5.0
-	_render_scale.focus_mode = Control.FOCUS_NONE
+	_render_scale.focus_mode = Control.FOCUS_ALL
 	_render_scale.tooltip_text = "Resolution of the 3D scene relative to the window"
 	_render_scale.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 	_render_scale.size_flags_vertical = Control.SIZE_SHRINK_CENTER
@@ -208,7 +208,7 @@ func _add_volume_row(grid: GridContainer, label: String, tooltip: String, setter
 	slider.min_value = 0.0
 	slider.max_value = 100.0
 	slider.step = 1.0
-	slider.focus_mode = Control.FOCUS_NONE
+	slider.focus_mode = Control.FOCUS_ALL
 	slider.tooltip_text = tooltip
 	slider.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 	slider.size_flags_vertical = Control.SIZE_SHRINK_CENTER
