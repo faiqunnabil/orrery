@@ -72,6 +72,8 @@ func _run_step() -> void:
 			values["mid"] = scene.renderer.mesh_segments("earth")
 			_check("Earth at 4 radii uses fewer segments", values["mid"] < values["near"] and values["mid"] >= 32)
 			_check("distant Neptune uses the minimum mesh", scene.renderer.mesh_segments("neptune") == 16)
+			_check("the Moon is lit with its elevation normal map", visual["moon"]._material.get_shader_parameter("has_normal_texture"))
+			_check("Mercury keeps the albedo bump fallback", not visual["mercury"]._material.get_shader_parameter("has_normal_texture"))
 			_check("focus mesh is shown in the overlay summary", scene._focus_mesh_summary().begins_with(str(values["mid"])))
 			quality.set_preset(0)
 		3:
