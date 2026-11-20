@@ -3,6 +3,7 @@ name: Release
 on:
   push:
     tags: ["v*.*.*"]
+  workflow_dispatch:
 
 concurrency:
   group: release-${{ github.ref }}
@@ -20,8 +21,12 @@ jobs:
 
       - name: Check that the tag matches the project version
         run: |
-          version="${GITHUB_REF_NAME#v}"
           project="$(sed -n 's/^config\/version="\(.*\)"$/\1/p' godot/project.godot)"
+          if [[ "$GITHUB_REF_TYPE" != "tag" ]]; then
+            echo "VERSION=$project-${GITHUB_SHA::7}" >> "$GITHUB_ENV"
+            exit 0
+          fi
+          version="${GITHUB_REF_NAME#v}"
           if [[ "$version" != "$project" ]]; then
             echo "::error::Tag $GITHUB_REF_NAME does not match the project version $project"
             exit 1
@@ -48,7 +53,16 @@ jobs:
       - name: Package the builds
         run: tools/package_release.sh "$VERSION"
 
+      - name: Keep the packages of a manual run
+        if: github.ref_type != 'tag'
+        uses: actions/upload-artifact@v4
+        with:
+          name: orrery-${{ env.VERSION }}
+          path: dist/
+          retention-days: 7
+
       - name: Publish the release
+        if: github.ref_type == 'tag'
         env:
           GH_TOKEN: ${{ github.token }}
         run: |
