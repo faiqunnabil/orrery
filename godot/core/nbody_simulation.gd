@@ -9,6 +9,10 @@ const MAX_STEP_SECONDS := 604800.0
 const SOFTENING_FRACTION := 0.5
 const EPSILON := 1.0e-9
 const SI_PER_KM_SQUARED := 1.0e6
+const SPLIT_GAP_RATIO := 2.5
+const MIN_SPLIT_RATIO := 4.0
+const MAX_FAST_PAIRS_PER_BODY := 2
+const INNER_STEP_FRACTION := 1.0
 
 var count := 0
 var positions := PackedFloat64Array()
@@ -30,6 +34,14 @@ var _accelerations_valid := false
 var _contact := false
 var _carry_seconds := 0.0
 var _merges: Array[Vector2i] = []
+var _slow_accelerations := PackedFloat64Array()
+var _fast_accelerations := PackedFloat64Array()
+var _fast_pairs := PackedInt32Array()
+var _fast_bodies := PackedInt32Array()
+var _is_fast_pair := PackedByteArray()
+var _inner_step := 0.0
+var _outer_step := 0.0
+var _split_valid := false
 
 
 func add_body(position: DVec3, velocity: DVec3, mass_kg: float, radius_km: float) -> int:
@@ -170,13 +182,79 @@ func timestep_limit() -> float:
 	var limit := MAX_STEP_SECONDS
 	for i in count - 1:
 		for j in range(i + 1, count):
-			var dx := positions[j * 3] - positions[i * 3]
-			var dy := positions[j * 3 + 1] - positions[i * 3 + 1]
-			var dz := positions[j * 3 + 2] - positions[i * 3 + 2]
-			var distance_squared := dx * dx + dy * dy + dz * dz
-			var scale := distance_squared * sqrt(distance_squared) / (gm[i] + gm[j] + EPSILON)
-			limit = minf(limit, TIMESTEP_ETA * sqrt(scale))
+			limit = minf(limit, _pair_limit(i, j))
 	return maxf(limit, MIN_STEP_SECONDS)
+
+
+func uses_split_steps() -> bool:
+	return _split_valid
+
+
+func _pair_limit(i: int, j: int) -> float:
+	var dx := positions[j * 3] - positions[i * 3]
+	var dy := positions[j * 3 + 1] - positions[i * 3 + 1]
+	var dz := positions[j * 3 + 2] - positions[i * 3 + 2]
+	var distance_squared := dx * dx + dy * dy + dz * dz
+	var scale := distance_squared * sqrt(distance_squared) / (gm[i] + gm[j] + EPSILON)
+	return TIMESTEP_ETA * sqrt(scale)
+
+
+# Multiple time stepping (r-RESPA, Tuckerman, Berne and Martyna 1992): pairs whose dynamical time is far
+# shorter than the rest, such as moons and their planets, are sub-stepped while all other forces are applied
+# as half kicks at the outer step. The scheme stays symplectic, like plain velocity Verlet.
+func _plan_split() -> void:
+	_split_valid = false
+	_fast_pairs.clear()
+	_fast_bodies.clear()
+	_is_fast_pair.resize(count * count)
+	_is_fast_pair.fill(0)
+	if count < 3:
+		return
+	var entries: Array = []
+	for i in count - 1:
+		for j in range(i + 1, count):
+			entries.append([_pair_limit(i, j), i, j])
+	entries.sort_custom(func(a: Array, b: Array) -> bool: return a[0] < b[0])
+	var max_fast := mini(entries.size() - 1, MAX_FAST_PAIRS_PER_BODY * count)
+	var split := -1
+	var best_gap := SPLIT_GAP_RATIO
+	for index in range(1, max_fast + 1):
+		var gap: float = entries[index][0] / maxf(entries[index - 1][0], EPSILON)
+		if gap >= best_gap:
+			best_gap = gap
+			split = index
+	if split < 0:
+		return
+	var inner: float = maxf(entries[0][0] * INNER_STEP_FRACTION, MIN_STEP_SECONDS)
+	var outer: float = minf(entries[split][0], MAX_STEP_SECONDS)
+	if outer < inner * MIN_SPLIT_RATIO:
+		return
+	var group := PackedInt32Array()
+	group.resize(count)
+	for i in count:
+		group[i] = -1
+	for index in split:
+		var first := _group_root(group, entries[index][1])
+		var second := _group_root(group, entries[index][2])
+		if first != second:
+			group[second] = first
+	for i in count:
+		if group[i] == -1 and not _is_grouped(group, i):
+			continue
+		_fast_bodies.append(i)
+	for a in _fast_bodies.size() - 1:
+		for b in range(a + 1, _fast_bodies.size()):
+			var i := _fast_bodies[a]
+			var j := _fast_bodies[b]
+			if _group_root(group, i) != _group_root(group, j):
+				continue
+			_fast_pairs.append(i)
+			_fast_pairs.append(j)
+			_is_fast_pair[i * count + j] = 1
+			_is_fast_pair[j * count + i] = 1
+	_inner_step = inner
+	_outer_step = outer
+	_split_valid = true
 
 
 func advance(requested_seconds: float, budget_usec: int) -> float:
@@ -189,6 +267,10 @@ func advance(requested_seconds: float, budget_usec: int) -> float:
 		return _advance_fixed(requested_seconds, budget_usec)
 	var direction := 1.0 if requested_seconds > 0.0 else -1.0
 	var remaining := absf(requested_seconds)
+	if integrator == Integrator.VELOCITY_VERLET:
+		_plan_split()
+		if _split_valid:
+			return direction * _advance_split(remaining, direction, budget_usec)
 	var step_count := maxi(1, ceili(remaining / timestep_limit()))
 	var step := remaining / float(step_count)
 	var started := Time.get_ticks_usec()
@@ -199,6 +281,160 @@ func advance(requested_seconds: float, budget_usec: int) -> float:
 		if Time.get_ticks_usec() - started > budget_usec:
 			break
 	return direction * advanced
+
+
+static func _group_root(group: PackedInt32Array, index: int) -> int:
+	var root := index
+	while group[root] >= 0:
+		root = group[root]
+	return root
+
+
+static func _is_grouped(group: PackedInt32Array, index: int) -> bool:
+	for other in group.size():
+		if group[other] == index:
+			return true
+	return false
+
+
+func _advance_split(remaining: float, direction: float, budget_usec: int) -> float:
+	var outer_count := maxi(1, ceili(remaining / _outer_step))
+	var outer := remaining / float(outer_count)
+	var inner_count := maxi(1, ceili(outer / _inner_step))
+	_compute_split_accelerations(positions, _slow_accelerations, false, false)
+	var started := Time.get_ticks_usec()
+	var advanced := 0.0
+	for index in outer_count:
+		_step_split(direction * outer, inner_count)
+		advanced += outer
+		if _contact:
+			_resolve_contacts()
+			_accelerations_valid = false
+			break
+		if Time.get_ticks_usec() - started > budget_usec:
+			break
+	_accelerations_valid = false
+	return advanced
+
+
+func _step_split(dt: float, inner_count: int) -> void:
+	var half_dt := 0.5 * dt
+	for i in count:
+		if frozen[i] != 0:
+			continue
+		for axis in 3:
+			velocities[i * 3 + axis] += _slow_accelerations[i * 3 + axis] * half_dt
+	for index in count * 3:
+		_previous_positions[index] = positions[index]
+	var h := dt / float(inner_count)
+	var movers := PackedInt32Array()
+	for i in _fast_bodies:
+		if frozen[i] == 0:
+			movers.append(i)
+	_compute_fast_accelerations()
+	_kick(movers, 0.5 * h)
+	for substep in inner_count:
+		for i in movers:
+			var base := i * 3
+			positions[base] += velocities[base] * h
+			positions[base + 1] += velocities[base + 1] * h
+			positions[base + 2] += velocities[base + 2] * h
+		_compute_fast_accelerations()
+		_kick(movers, h if substep + 1 < inner_count else 0.5 * h)
+	for i in count:
+		if frozen[i] != 0 or _fast_bodies.has(i):
+			continue
+		for axis in 3:
+			positions[i * 3 + axis] += velocities[i * 3 + axis] * dt
+	for i in count:
+		var dx := positions[i * 3] - _previous_positions[i * 3]
+		var dy := positions[i * 3 + 1] - _previous_positions[i * 3 + 1]
+		var dz := positions[i * 3 + 2] - _previous_positions[i * 3 + 2]
+		_motion[i] = sqrt(dx * dx + dy * dy + dz * dz)
+	_compute_split_accelerations(positions, _slow_accelerations, true, _contact)
+	for i in count:
+		if frozen[i] != 0:
+			continue
+		for axis in 3:
+			velocities[i * 3 + axis] += _slow_accelerations[i * 3 + axis] * half_dt
+
+
+func _kick(movers: PackedInt32Array, dt: float) -> void:
+	for i in movers:
+		var base := i * 3
+		velocities[base] += _fast_accelerations[base] * dt
+		velocities[base + 1] += _fast_accelerations[base + 1] * dt
+		velocities[base + 2] += _fast_accelerations[base + 2] * dt
+
+
+func _compute_fast_accelerations() -> void:
+	_fast_accelerations.fill(0.0)
+	for pair in range(0, _fast_pairs.size(), 2):
+		var i := _fast_pairs[pair]
+		var j := _fast_pairs[pair + 1]
+		var dx := positions[j * 3] - positions[i * 3]
+		var dy := positions[j * 3 + 1] - positions[i * 3 + 1]
+		var dz := positions[j * 3 + 2] - positions[i * 3 + 2]
+		var reach := radii[i] + radii[j]
+		var softening := SOFTENING_FRACTION * reach
+		var separation_squared := dx * dx + dy * dy + dz * dz
+		var distance_squared := separation_squared + softening * softening
+		var inverse_cube := 1.0 / (distance_squared * sqrt(distance_squared))
+		var pull_on_i := gm[j] * inverse_cube
+		var pull_on_j := gm[i] * inverse_cube
+		_fast_accelerations[i * 3] += dx * pull_on_i
+		_fast_accelerations[i * 3 + 1] += dy * pull_on_i
+		_fast_accelerations[i * 3 + 2] += dz * pull_on_i
+		_fast_accelerations[j * 3] -= dx * pull_on_j
+		_fast_accelerations[j * 3 + 1] -= dy * pull_on_j
+		_fast_accelerations[j * 3 + 2] -= dz * pull_on_j
+		if separation_squared <= reach * reach:
+			_contact = true
+
+
+func _compute_split_accelerations(source: PackedFloat64Array, target: PackedFloat64Array, detect: bool, contact: bool) -> void:
+	target.fill(0.0)
+	_contact = contact
+	for i in count - 1:
+		var xi := source[i * 3]
+		var yi := source[i * 3 + 1]
+		var zi := source[i * 3 + 2]
+		var gm_i := gm[i]
+		var radius_i := radii[i]
+		var row := i * count
+		var ax := 0.0
+		var ay := 0.0
+		var az := 0.0
+		for j in range(i + 1, count):
+			var dx := source[j * 3] - xi
+			var dy := source[j * 3 + 1] - yi
+			var dz := source[j * 3 + 2] - zi
+			var reach := radius_i + radii[j]
+			var separation_squared := dx * dx + dy * dy + dz * dz
+			if detect and not _contact:
+				var sweep := reach + _motion[i] + _motion[j]
+				if separation_squared <= sweep * sweep and _touching(i, j):
+					_contact = true
+			if _is_fast_pair[row + j] != 0:
+				continue
+			var softening := SOFTENING_FRACTION * reach
+			var distance_squared := separation_squared + softening * softening
+			var inverse_cube := 1.0 / (distance_squared * sqrt(distance_squared))
+			var pull_on_i := gm[j] * inverse_cube
+			var pull_on_j := gm_i * inverse_cube
+			ax += dx * pull_on_i
+			ay += dy * pull_on_i
+			az += dz * pull_on_i
+			target[j * 3] -= dx * pull_on_j
+			target[j * 3 + 1] -= dy * pull_on_j
+			target[j * 3 + 2] -= dz * pull_on_j
+		target[i * 3] += ax
+		target[i * 3 + 1] += ay
+		target[i * 3 + 2] += az
+	for i in count:
+		if frozen[i] != 0:
+			for axis in 3:
+				target[i * 3 + axis] = 0.0
 
 
 func _advance_fixed(requested_seconds: float, budget_usec: int) -> float:
@@ -304,7 +540,10 @@ func _resize_buffers() -> void:
 	_stage_positions.resize(count * 3)
 	_stage_two.resize(count * 3)
 	_stage_three.resize(count * 3)
+	_slow_accelerations.resize(count * 3)
+	_fast_accelerations.resize(count * 3)
 	_accelerations_valid = false
+	_split_valid = false
 
 
 func _compute_accelerations(source: PackedFloat64Array, target: PackedFloat64Array, detect: bool) -> void:
