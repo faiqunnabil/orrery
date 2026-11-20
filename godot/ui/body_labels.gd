@@ -25,7 +25,7 @@ func set_entries(entries: Array) -> void:
 
 
 func _draw() -> void:
-	var font := OrreryTheme.font("medium")
+	var font := get_theme_font("font", "Button")
 	var placed: Array[Rect2] = []
 	for index in _priority_order():
 		var entry: Dictionary = _entries[index]

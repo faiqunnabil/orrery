@@ -50,31 +50,29 @@ const BUTTON_TYPES := [
 	"IconButton", "IconFlatButton", "ToggleIconButton", "OptionButton", "MenuButton",
 ]
 
-static var _fonts: Dictionary = {}
-
-
 static func build() -> Theme:
 	var theme := Theme.new()
-	theme.default_font = font("regular")
+	var fonts := {}
+	for weight: String in FONT_PATHS:
+		fonts[weight] = font(weight)
+	theme.default_font = fonts["regular"]
 	theme.default_font_size = FONT_SIZE
 	_add_containers(theme)
-	_add_buttons(theme)
-	_add_labels(theme)
+	_add_buttons(theme, fonts)
+	_add_labels(theme, fonts)
 	_add_ranges(theme)
 	_add_scrollbars(theme)
-	_add_popups(theme)
+	_add_popups(theme, fonts)
 	return theme
 
 
 static func font(weight: String) -> Font:
-	if not _fonts.has(weight):
-		var variation := FontVariation.new()
-		variation.base_font = load(FONT_PATHS[weight])
-		var tags := {}
-		tags[TextServerManager.get_primary_interface().name_to_tag("tnum")] = 1
-		variation.opentype_features = tags
-		_fonts[weight] = variation
-	return _fonts[weight]
+	var variation := FontVariation.new()
+	variation.base_font = load(FONT_PATHS[weight])
+	var tags := {}
+	tags[TextServerManager.get_primary_interface().name_to_tag("tnum")] = 1
+	variation.opentype_features = tags
+	return variation
 
 
 static func icon(name: String) -> Texture2D:
@@ -152,7 +150,7 @@ static func _add_containers(theme: Theme) -> void:
 	theme.set_constant("separation", "VSeparator", SPACE_S)
 
 
-static func _add_buttons(theme: Theme) -> void:
+static func _add_buttons(theme: Theme, fonts: Dictionary) -> void:
 	for variation in BUTTON_TYPES:
 		if not ["Button", "OptionButton", "MenuButton"].has(variation):
 			theme.set_type_variation(variation, "Button")
@@ -190,7 +188,7 @@ static func _add_buttons(theme: Theme) -> void:
 	for state in ["font_pressed_color", "font_hover_pressed_color", "font_hover_color"]:
 		theme.set_color(state, "SegmentButton", TEXT)
 	for variation in BUTTON_TYPES:
-		theme.set_font("font", variation, font("medium"))
+		theme.set_font("font", variation, fonts["medium"])
 		theme.set_constant("icon_max_width", variation, ICON_SIZE)
 		theme.set_constant("h_separation", variation, SPACE_S - 2)
 		theme.set_stylebox("focus", variation, focus_ring())
@@ -224,28 +222,28 @@ static func _style_button(
 	theme.set_color("icon_disabled_color", type, TEXT_DISABLED)
 
 
-static func _add_labels(theme: Theme) -> void:
+static func _add_labels(theme: Theme, fonts: Dictionary) -> void:
 	theme.set_color("font_color", "Label", TEXT)
-	_label_variation(theme, "TitleLabel", TITLE_FONT_SIZE, TEXT, "semibold")
-	_label_variation(theme, "HeaderLabel", HEADER_FONT_SIZE, TEXT, "semibold")
-	_label_variation(theme, "SectionLabel", SECTION_FONT_SIZE, TEXT_DIM, "semibold")
-	_label_variation(theme, "DimLabel", SMALL_FONT_SIZE, TEXT_DIM, "regular")
-	_label_variation(theme, "WarningLabel", SMALL_FONT_SIZE, WARNING, "regular")
-	_label_variation(theme, "SuccessLabel", SMALL_FONT_SIZE, SUCCESS, "regular")
-	_label_variation(theme, "DangerLabel", SMALL_FONT_SIZE, DANGER, "regular")
-	_label_variation(theme, "InfoLabel", SMALL_FONT_SIZE, TEXT, "regular")
-	_label_variation(theme, "KeyLabel", 12, TEXT, "semibold")
+	_label_variation(theme, "TitleLabel", TITLE_FONT_SIZE, TEXT, fonts["semibold"])
+	_label_variation(theme, "HeaderLabel", HEADER_FONT_SIZE, TEXT, fonts["semibold"])
+	_label_variation(theme, "SectionLabel", SECTION_FONT_SIZE, TEXT_DIM, fonts["semibold"])
+	_label_variation(theme, "DimLabel", SMALL_FONT_SIZE, TEXT_DIM, fonts["regular"])
+	_label_variation(theme, "WarningLabel", SMALL_FONT_SIZE, WARNING, fonts["regular"])
+	_label_variation(theme, "SuccessLabel", SMALL_FONT_SIZE, SUCCESS, fonts["regular"])
+	_label_variation(theme, "DangerLabel", SMALL_FONT_SIZE, DANGER, fonts["regular"])
+	_label_variation(theme, "InfoLabel", SMALL_FONT_SIZE, TEXT, fonts["regular"])
+	_label_variation(theme, "KeyLabel", 12, TEXT, fonts["semibold"])
 	theme.set_constant("line_spacing", "Label", 2)
 	theme.set_color("font_color", "TooltipLabel", TEXT)
 	theme.set_font_size("font_size", "TooltipLabel", SMALL_FONT_SIZE)
 	theme.set_stylebox("panel", "TooltipPanel", bordered(SURFACE_RAISED, 6, 10.0, 6.0, BORDER))
 
 
-static func _label_variation(theme: Theme, name: String, size: int, color: Color, weight: String) -> void:
+static func _label_variation(theme: Theme, name: String, size: int, color: Color, label_font: Font) -> void:
 	theme.set_type_variation(name, "Label")
 	theme.set_font_size("font_size", name, size)
 	theme.set_color("font_color", name, color)
-	theme.set_font("font", name, font(weight))
+	theme.set_font("font", name, label_font)
 
 
 static func _add_ranges(theme: Theme) -> void:
@@ -266,11 +264,11 @@ static func _add_scrollbars(theme: Theme) -> void:
 	theme.set_stylebox("grabber_pressed", "VScrollBar", box(Color(1, 1, 1, 0.38), 3, 3.0, 0.0))
 
 
-static func _add_popups(theme: Theme) -> void:
+static func _add_popups(theme: Theme, fonts: Dictionary) -> void:
 	var panel := bordered(SURFACE_RAISED, CONTROL_RADIUS, 6.0, 6.0, BORDER)
 	theme.set_stylebox("panel", "PopupMenu", panel)
 	theme.set_stylebox("hover", "PopupMenu", box(CONTROL_HOVER, 5, 8.0, 4.0))
 	theme.set_color("font_color", "PopupMenu", TEXT)
 	theme.set_color("font_hover_color", "PopupMenu", TEXT)
-	theme.set_font("font", "PopupMenu", font("regular"))
+	theme.set_font("font", "PopupMenu", fonts["regular"])
 	theme.set_stylebox("panel", "PopupPanel", panel)
