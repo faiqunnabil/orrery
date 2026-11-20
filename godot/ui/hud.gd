@@ -57,6 +57,8 @@ var _trails_toggle: Button
 var _rings_toggle: Button
 var _mode_button := Button.new()
 var _settings_extras := VBoxContainer.new()
+var _view_body := VBoxContainer.new()
+var _collapse_button: Button
 
 
 static func make_panel(parent: Control) -> VBoxContainer:
@@ -383,18 +385,24 @@ func _build_settings_panel() -> void:
 	header.add_child(view_label)
 	_fps_label.theme_type_variation = "DimLabel"
 	header.add_child(_fps_label)
-	box.add_child(_depth_control)
+	_collapse_button = make_icon_button(
+		"chevron_up", func() -> void: Preferences.set_view_panel_collapsed(not Preferences.view_panel_collapsed), "", "IconFlatButton"
+	)
+	_collapse_button.custom_minimum_size = Vector2(26, 0)
+	header.add_child(_collapse_button)
+	box.add_child(_view_body)
+	_view_body.add_child(_depth_control)
 	var toggles := HBoxContainer.new()
 	toggles.add_theme_constant_override("separation", OrreryTheme.SPACE_XS)
-	box.add_child(toggles)
+	_view_body.add_child(toggles)
 	_labels_toggle = make_toggle("Labels", "Show body names (L)", Preferences.set_labels_visible, "tag")
 	_trails_toggle = make_toggle("Orbits", "Show orbit lines (O)", Preferences.set_trails_visible, "orbit")
 	_rings_toggle = make_toggle("Rings", "Show distance rings around the Sun (G)", Preferences.set_rings_visible, "circle_dot_dashed")
 	toggles.add_child(_labels_toggle)
 	toggles.add_child(_trails_toggle)
 	toggles.add_child(_rings_toggle)
-	box.add_child(_settings_extras)
-	box.add_child(HSeparator.new())
+	_view_body.add_child(_settings_extras)
+	_view_body.add_child(HSeparator.new())
 	var actions := HBoxContainer.new()
 	actions.add_theme_constant_override("separation", OrreryTheme.SPACE_XS)
 	box.add_child(actions)
@@ -523,4 +531,8 @@ func _sync_preferences() -> void:
 	_labels_toggle.set_pressed_no_signal(Preferences.labels_visible)
 	_trails_toggle.set_pressed_no_signal(Preferences.trails_visible)
 	_rings_toggle.set_pressed_no_signal(Preferences.rings_visible)
+	var collapsed := Preferences.view_panel_collapsed
+	_view_body.visible = not collapsed
+	_collapse_button.icon = OrreryTheme.icon("chevron_down" if collapsed else "chevron_up")
+	_collapse_button.tooltip_text = "Show view options" if collapsed else "Hide view options to make room for body information"
 
