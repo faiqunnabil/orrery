@@ -4,6 +4,7 @@ var frame := 0
 var step := 0
 var wait := 60
 var failures := 0
+var info_height := 0.0
 var out_dir := ""
 
 
@@ -83,9 +84,15 @@ func _run_step() -> void:
 			scene._select("jupiter")
 		8:
 			_shot("a11y_info_130")
+			info_height = scene._info_panel.size.y
+			preferences.set_view_panel_collapsed(true)
+			wait = 30
+		9:
+			_check("collapsing the view panel gives body information more room", scene._info_panel.size.y > info_height + 80.0)
+			preferences.set_view_panel_collapsed(false)
 			quality.set_ui_scale(1.0)
 			preferences.set_orbit_palette(0)
-		9:
+		10:
 			_check("defaults restored", is_equal_approx(root.content_scale_factor, 1.0))
 			print("FAILURES: ", failures)
 			quit()
