@@ -7,10 +7,12 @@ const INCLINATION := 2
 const MEAN_LONGITUDE := 3
 const LONGITUDE_OF_PERIAPSIS := 4
 const LONGITUDE_OF_NODE := 5
+const LUNAR_THEORY := "meeus_lunar"
 
 var elements := PackedFloat64Array()
 var rates := PackedFloat64Array()
 var reference_plane := "ecliptic"
+var theory := ""
 
 var _plane_to_ecliptic := PackedFloat64Array()
 
@@ -19,6 +21,7 @@ static func from_dictionary(data: Dictionary) -> OrbitModel:
 	var model := OrbitModel.new()
 	model.elements = PackedFloat64Array(data["elements"])
 	model.rates = PackedFloat64Array(data["rates"])
+	model.theory = str(data.get("theory", ""))
 	if data.has("reference_pole"):
 		var pole: Array = data["reference_pole"]
 		model.reference_plane = str(data.get("reference_plane", "laplace"))
@@ -31,6 +34,8 @@ func period_seconds() -> float:
 
 
 func position_km(centuries: float) -> DVec3:
+	if theory == LUNAR_THEORY:
+		return LunarTheory.position_km(centuries)
 	var semi_major := elements[SEMI_MAJOR] + rates[SEMI_MAJOR] * centuries
 	var eccentricity := elements[ECCENTRICITY] + rates[ECCENTRICITY] * centuries
 	var inclination := elements[INCLINATION] + rates[INCLINATION] * centuries
