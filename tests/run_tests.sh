@@ -4,7 +4,7 @@ set -uo pipefail
 ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
 GODOT="${GODOT:-godot}"
 TIMEOUT_FRAMES=20000
-ALL_TESTS=(simulation_test ux_test input_test shell_test quiz_test panel_test binding_test a11y_test pointer_test graphics_test texture_test timezone_test)
+ALL_TESTS=(simulation_test ux_test language_test input_test shell_test quiz_test panel_test binding_test a11y_test pointer_test graphics_test texture_test timezone_test)
 
 usage() {
 	cat <<'EOF'
