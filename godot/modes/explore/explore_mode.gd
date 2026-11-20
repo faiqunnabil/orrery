@@ -28,6 +28,7 @@ const HELP_GROUPS := [
 			["1-0", "Focus a body"],
 			["{focus_next}", "Next body"],
 			["{focus_release}", "Free flight"],
+			["{search}", "Find a body"],
 			["{toggle_auto_orbit}", "Auto-orbit"],
 		],
 	],
@@ -108,12 +109,8 @@ func _build_world() -> void:
 	_tours_button = Hud.make_button("Guided tours", _toggle_tour_menu, "Choose a guided tour", "route")
 	_tours_button.theme_type_variation = "ToggleButton"
 	_tours_button.toggle_mode = true
-	var tours_chip := PanelContainer.new()
-	tours_chip.theme_type_variation = "ToolbarPanel"
-	tours_chip.size_flags_horizontal = Control.SIZE_SHRINK_BEGIN
-	tours_chip.add_child(_tours_button)
-	hud.left_column.add_child(tours_chip)
-	hud.left_column.move_child(tours_chip, 1)
+	hud.toolbar.add_child(_tours_button)
+	hud.toolbar.move_child(_tours_button, 0)
 	set_key_help(HELP_GROUPS, MODE_SWITCH_LABEL, MODE_SWITCH_TEXT, MODE_SWITCH_ICON)
 	for index in mini(model.bodies.size(), InputBindings.FOCUS_KEYS.size()):
 		_focus_actions.append(StringName("focus_body_%d" % index))
@@ -363,6 +360,20 @@ func _update_labels() -> void:
 			}
 		)
 	_labels.set_entries(entries)
+
+
+func _search_items() -> Array[Dictionary]:
+	var items: Array[Dictionary] = []
+	for body in model.bodies:
+		var name := tr(body.display_name)
+		items.append({"id": body.id, "name": name, "detail": tr(_info_catalog.type_label(body.id)), "keywords": [name, body.display_name]})
+	return items
+
+
+func _on_search_chosen(id: String) -> void:
+	if _tour_player.active:
+		_tour_player.stop()
+	_focus_body(id)
 
 
 func _toggle_tour_menu() -> void:

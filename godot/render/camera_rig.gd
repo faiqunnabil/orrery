@@ -98,7 +98,8 @@ func world_position(anchor_position: PackedFloat64Array) -> PackedFloat64Array:
 
 func update(delta: float, nearest_surface_distance: float) -> void:
 	_surface_distance = nearest_surface_distance
-	var input := Vector3(
+	var typing := get_viewport().gui_get_focus_owner() is LineEdit
+	var input := Vector3.ZERO if typing else Vector3(
 		Input.get_axis("move_left", "move_right"),
 		Input.get_axis("move_down", "move_up"),
 		Input.get_axis("move_forward", "move_back")

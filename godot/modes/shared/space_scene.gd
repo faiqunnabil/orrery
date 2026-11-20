@@ -45,6 +45,8 @@ func _ready() -> void:
 	hud.menu_pressed.connect(_open_pause_menu)
 	pause_menu.main_menu_requested.connect(_open_main_menu)
 	pause_menu.closed.connect(_on_pause_menu_closed)
+	hud.search_requested.connect(_open_search)
+	hud.search_panel.chosen.connect(_on_search_chosen)
 	Quality.changed.connect(_apply_quality)
 	Quality.display_changed.connect(_apply_render_scale)
 	Preferences.changed.connect(_on_preferences_changed)
@@ -94,6 +96,9 @@ func _unhandled_input(event: InputEvent) -> void:
 		hud.show_toast("Auto-orbit: On" if active else "Auto-orbit: Off")
 	elif event.is_action_pressed("take_screenshot"):
 		_take_screenshot()
+	elif event.is_action_pressed("search"):
+		get_viewport().set_input_as_handled()
+		_open_search()
 	elif event.is_action_pressed("toggle_labels"):
 		Preferences.set_labels_visible(not Preferences.labels_visible)
 	elif event.is_action_pressed("toggle_trails"):
@@ -142,6 +147,7 @@ func _apply_key_help() -> void:
 		groups.append([group[0], entries])
 	hud.set_help(groups)
 	hud.set_mode_switch(_mode_label, InputBindings.describe(_mode_switch_template), _mode_icon)
+	hud.refresh_binding_tooltips()
 
 
 func pick_tolerance_angle() -> float:
@@ -182,6 +188,18 @@ func _is_explore() -> bool:
 
 func _diagnostics_summary() -> String:
 	return ""
+
+
+func _open_search() -> void:
+	hud.search_panel.open(_search_items())
+
+
+func _search_items() -> Array[Dictionary]:
+	return []
+
+
+func _on_search_chosen(_id: String) -> void:
+	pass
 
 
 func _focus_mesh_summary() -> String:

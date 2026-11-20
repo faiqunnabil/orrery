@@ -38,6 +38,7 @@ const KEY_ACTIONS := {
 	"mode_explore": [KEY_F1],
 	"mode_sandbox": [KEY_F2],
 	"delete_body": [KEY_DELETE, KEY_BACKSPACE],
+	"search": [KEY_SLASH],
 }
 
 const ACTION_LABELS := {
@@ -58,6 +59,7 @@ const ACTION_LABELS := {
 	"focus_release": "Free flight",
 	"toggle_hud": "Hide interface",
 	"toggle_help": "Controls help",
+	"search": "Find a body",
 	"toggle_diagnostics": "Performance overlay",
 	"toggle_auto_orbit": "Cinematic auto-orbit",
 	"toggle_fullscreen": "Toggle fullscreen",

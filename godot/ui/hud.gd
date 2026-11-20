@@ -9,6 +9,7 @@ signal now_pressed
 signal quality_selected(preset: int)
 signal mode_switch_pressed
 signal menu_pressed
+signal search_requested
 
 const OUTER_MARGIN := 14
 const SIDE_PANEL_WIDTH := 340
@@ -28,6 +29,8 @@ var left_column := VBoxContainer.new()
 var right_column := VBoxContainer.new()
 var top_center := VBoxContainer.new()
 var bottom_center := VBoxContainer.new()
+var toolbar := HBoxContainer.new()
+var search_panel := SearchPanel.new()
 
 var _root := Control.new()
 var _date_label := Label.new()
@@ -59,6 +62,7 @@ var _mode_button := Button.new()
 var _settings_extras := VBoxContainer.new()
 var _view_body := VBoxContainer.new()
 var _collapse_button: Button
+var _search_button: Button
 
 
 static func make_panel(parent: Control) -> VBoxContainer:
@@ -160,6 +164,7 @@ func _ready() -> void:
 	_place_column(top_center, Control.PRESET_CENTER_TOP, Control.GROW_DIRECTION_BOTH, Control.GROW_DIRECTION_END)
 	_place_bottom_center()
 	_build_time_panel()
+	_build_toolbar()
 	_build_settings_panel()
 	_build_top_center()
 	_build_footer()
@@ -375,6 +380,22 @@ func _build_time_panel() -> void:
 	row.add_child(_now_button)
 
 
+func _build_toolbar() -> void:
+	var panel := PanelContainer.new()
+	panel.theme_type_variation = "ToolbarPanel"
+	panel.size_flags_horizontal = Control.SIZE_SHRINK_BEGIN
+	left_column.add_child(panel)
+	toolbar.add_theme_constant_override("separation", OrreryTheme.SPACE_XS)
+	panel.add_child(toolbar)
+	var search := make_icon_button("search", func() -> void: search_requested.emit(), "")
+	toolbar.add_child(search)
+	_search_button = search
+
+
+func refresh_binding_tooltips() -> void:
+	_search_button.tooltip_text = tr("Find a body (%s)") % InputBindings.keys_text("search")
+
+
 func _build_settings_panel() -> void:
 	var box := make_panel(right_column)
 	box.custom_minimum_size = Vector2(SIDE_PANEL_WIDTH, 0)
@@ -435,6 +456,7 @@ func _place_bottom_center() -> void:
 
 
 func _build_top_center() -> void:
+	top_center.add_child(search_panel)
 	_diagnostics_panel.custom_minimum_size = Vector2(DIAGNOSTICS_WIDTH, 0)
 	_diagnostics_panel.size_flags_horizontal = Control.SIZE_SHRINK_CENTER
 	_diagnostics_panel.visible = false

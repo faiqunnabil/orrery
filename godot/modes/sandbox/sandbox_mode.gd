@@ -30,6 +30,7 @@ const HELP_GROUPS := [
 		[
 			["Click", "Select"],
 			["1-0", "Focus a body"],
+			["{search}", "Find a body"],
 			["{delete_body}", "Remove"],
 			["{toggle_auto_orbit}", "Auto-orbit"],
 		],
@@ -188,6 +189,35 @@ func _unhandled_input(event: InputEvent) -> void:
 func _on_quality_changed() -> void:
 	renderer.apply_quality()
 	_refresh_count()
+
+
+func _search_items() -> Array[Dictionary]:
+	var items: Array[Dictionary] = []
+	for body in world.bodies:
+		var name := tr(body.display_name)
+		var detail := tr("Star") if body.emissive else tr("Body")
+		if body.definition != null:
+			detail = tr(_definition_kind(body.definition))
+		items.append({"id": body.id, "name": name, "detail": detail, "keywords": [name, body.display_name]})
+	return items
+
+
+static func _definition_kind(definition: BodyDefinition) -> String:
+	match definition.kind:
+		"star":
+			return "Star"
+		"planet":
+			return "Planet"
+		"moon":
+			return "Moon"
+		"dwarf_planet":
+			return "Dwarf planet"
+	return "Body"
+
+
+func _on_search_chosen(id: String) -> void:
+	_select(id)
+	_fly_to(id)
 
 
 func _focus_mesh_summary() -> String:
