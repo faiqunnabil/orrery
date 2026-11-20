@@ -39,6 +39,7 @@ const HELP_GROUPS := [
 			["{time_reverse}", "Reverse"],
 			["{time_slower}|{time_faster}", "Slower / faster"],
 			["{time_now}", "Now"],
+			["{jump_to_date}", "Go to a date"],
 		],
 	],
 	[
@@ -126,6 +127,8 @@ func _build_world() -> void:
 	_tour_panel.next_pressed.connect(_tour_player.next)
 	_tour_panel.exit_pressed.connect(_tour_player.stop)
 	_tour_panel.replay_pressed.connect(_tour_player.replay)
+	hud.date_requested.connect(_open_date_panel)
+	hud.date_panel.date_chosen.connect(_jump_to_unix)
 	model.update(clock.seconds)
 	renderer.compute_positions()
 	camera.focus_on(DEFAULT_FOCUS_ID, renderer.mapper.radius(model.get_body(DEFAULT_FOCUS_ID)), _toward_sun(DEFAULT_FOCUS_ID))
@@ -162,6 +165,9 @@ func _unhandled_input(event: InputEvent) -> void:
 		_set_scale_mode(_other_scale_mode())
 	elif event.is_action_pressed("focus_next"):
 		_focus_next()
+	elif event.is_action_pressed("jump_to_date"):
+		get_viewport().set_input_as_handled()
+		_open_date_panel()
 	elif event.is_action_pressed("focus_release"):
 		camera.release_anchor(camera.world_position(_anchor_position()))
 	elif event.is_action_pressed("tour_next"):
@@ -360,6 +366,15 @@ func _update_labels() -> void:
 			}
 		)
 	_labels.set_entries(entries)
+
+
+func _open_date_panel() -> void:
+	hud.date_panel.open(clock.seconds + Astro.J2000_UNIX_SECONDS, hud.utc_offset_minutes())
+
+
+func _jump_to_unix(unix_seconds: float) -> void:
+	clock.seconds = Astro.unix_to_simulation_seconds(unix_seconds)
+	clock.changed.emit()
 
 
 func _search_items() -> Array[Dictionary]:

@@ -39,6 +39,7 @@ const KEY_ACTIONS := {
 	"mode_sandbox": [KEY_F2],
 	"delete_body": [KEY_DELETE, KEY_BACKSPACE],
 	"search": [KEY_SLASH],
+	"jump_to_date": [KEY_J],
 }
 
 const ACTION_LABELS := {
@@ -60,6 +61,7 @@ const ACTION_LABELS := {
 	"toggle_hud": "Hide interface",
 	"toggle_help": "Controls help",
 	"search": "Find a body",
+	"jump_to_date": "Go to a date",
 	"toggle_diagnostics": "Performance overlay",
 	"toggle_auto_orbit": "Cinematic auto-orbit",
 	"toggle_fullscreen": "Toggle fullscreen",

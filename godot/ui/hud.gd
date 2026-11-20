@@ -10,6 +10,7 @@ signal quality_selected(preset: int)
 signal mode_switch_pressed
 signal menu_pressed
 signal search_requested
+signal date_requested
 
 const OUTER_MARGIN := 14
 const SIDE_PANEL_WIDTH := 340
@@ -31,6 +32,7 @@ var top_center := VBoxContainer.new()
 var bottom_center := VBoxContainer.new()
 var toolbar := HBoxContainer.new()
 var search_panel := SearchPanel.new()
+var date_panel := DatePanel.new()
 
 var _root := Control.new()
 var _date_label := Label.new()
@@ -63,6 +65,7 @@ var _settings_extras := VBoxContainer.new()
 var _view_body := VBoxContainer.new()
 var _collapse_button: Button
 var _search_button: Button
+var _date_button: Button
 
 
 static func make_panel(parent: Control) -> VBoxContainer:
@@ -164,6 +167,7 @@ func _ready() -> void:
 	_place_column(top_center, Control.PRESET_CENTER_TOP, Control.GROW_DIRECTION_BOTH, Control.GROW_DIRECTION_END)
 	_place_bottom_center()
 	_build_time_panel()
+	left_column.add_child(date_panel)
 	_build_toolbar()
 	_build_settings_panel()
 	_build_top_center()
@@ -217,6 +221,11 @@ func set_depth_visible(value: bool) -> void:
 func set_now_visible(value: bool) -> void:
 	_now_button.visible = value
 	_now_separator.visible = value
+	_date_button.visible = value
+
+
+func utc_offset_minutes() -> int:
+	return _utc_offset_minutes
 
 
 func set_auto_orbit_active(value: bool) -> void:
@@ -344,6 +353,8 @@ func _build_time_panel() -> void:
 	_date_label.theme_type_variation = "HeaderLabel"
 	_date_label.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 	header.add_child(_date_label)
+	_date_button = make_icon_button("calendar", func() -> void: date_requested.emit(), "", "IconFlatButton")
+	header.add_child(_date_button)
 	var zone := make_label(Astro.utc_offset_label(_utc_offset_minutes), "DimLabel")
 	zone.tooltip_text = "Times are shown in this computer's time zone"
 	zone.mouse_filter = Control.MOUSE_FILTER_STOP
@@ -394,6 +405,7 @@ func _build_toolbar() -> void:
 
 func refresh_binding_tooltips() -> void:
 	_search_button.tooltip_text = tr("Find a body (%s)") % InputBindings.keys_text("search")
+	_date_button.tooltip_text = tr("Go to a date (%s)") % InputBindings.keys_text("jump_to_date")
 
 
 func _build_settings_panel() -> void:
