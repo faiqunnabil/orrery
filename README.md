@@ -35,7 +35,7 @@ It is aimed at learners from elementary school to university. Every panel switch
 - **Bodies.** The Sun, 8 planets, 6 moons, 2 dwarf planets, and an instanced asteroid belt of up to 10,000 rocks.
 - **Accurate orbits.**
   - Planets use JPL Keplerian elements.
-  - The Moon uses Meeus mean elements.
+  - The Moon uses the main terms of Meeus' lunar theory, so eclipses happen within 2 minutes of their real times.
   - The Galilean moons use JPL satellite mean elements.
   - Ceres and Pluto use JPL Small-Body Database orbits.
   - Positions of the moons and dwarf planets agree with JPL Horizons to within 0.4°.
@@ -48,7 +48,7 @@ It is aimed at learners from elementary school to university. Every panel switch
 
 ### Sandbox
 
-- **Gravity simulation.** Mutual N-body gravity uses Velocity Verlet or RK4, with adaptive or fixed time steps and a per-frame CPU budget.
+- **Gravity simulation.** Mutual N-body gravity uses Velocity Verlet or RK4, with adaptive or fixed time steps and a per-frame CPU budget. Moon systems are sub-stepped, so the full solar system with every moon runs at about 150 days per second.
 - **Build systems.**
   - Place a body and drag to launch it.
   - Edit a body's mass, radius, and color, freeze it, or remove it.
@@ -68,7 +68,7 @@ It is aimed at learners from elementary school to university. Every panel switch
 - **Presentation tools.** Fullscreen toggle, clean screenshots without the interface (saved to `screenshots/` in the user data folder), a performance overlay with frame time and draw calls, and a cinematic auto-orbit that also starts after 20 seconds without input while a body is focused.
 - **Controls.** Every action can be rebound. Conflicting bindings are refused, and the grouped controls help (F3) follows the active keys.
 - **Accessibility.**
-  - Interface size of 100%, 115%, or 130%.
+  - Interface size of 100%, 115%, or 130%, and a view panel that collapses to make room for body information.
   - Text and controls meet WCAG AA contrast, and keyboard focus is always visible.
   - A colorblind-safe orbit palette (Okabe–Ito).
   - Captions are always shown for narration, and nothing flashes.
@@ -172,14 +172,14 @@ orrery/
 | Precision | Simulation state in double precision. Rendering uses a floating origin, and distant objects are drawn on a depth shell to keep the near and far planes usable at solar system scale |
 | Orbits | Analytic Kepler propagation in Explore. Satellite elements are rotated from their Laplace or equator plane into the ecliptic |
 | Orientation | IAU pole and prime-meridian models for every body |
-| N-body | Velocity Verlet and RK4 with Plummer softening, an adaptive dynamical time step, swept collision detection, and Hill-sphere parent tracking |
-| Shaders | Day and night surfaces with ocean specular, relief bump mapping, Saturn ring shadow, and eclipse shadows with umbra and penumbra; Sun surface and halo; atmosphere scattering; clouds; rings with planet shadow; and GPU-solved Keplerian asteroids |
-| Graphics techniques | GPU instancing, dynamic trail meshes, HDR glow, a panoramic sky, screen-space-error level of detail for spheres, mipmapped textures at 1K, 2K, or 4K by preset, and quality tiers |
+| N-body | Velocity Verlet and RK4 with Plummer softening, an adaptive dynamical time step, multiple time stepping (r-RESPA) for moon systems, swept collision detection, and Hill-sphere parent tracking |
+| Shaders | Day and night surfaces with ocean specular, normal maps from LOLA, MOLA, and ETOPO5 elevation, relief bump mapping, Saturn ring shadow, and eclipse shadows with umbra and penumbra; Sun surface and halo; atmosphere scattering; clouds; rings with planet shadow; and GPU-solved Keplerian asteroids |
+| Graphics techniques | GPU instancing, dynamic trail meshes, HDR glow, a panoramic sky, screen-space-error level of detail for spheres, mipmapped VRAM-compressed textures at 1K, 2K, or 4K by preset, and quality tiers |
 | Audio | Separate Music, Effects, and Narration buses. Music ducks while narration plays |
 
 ## Tests
 
-The `tests/` folder holds 155 automated checks for input, camera controls, menus, the sandbox panel, quizzes, key bindings, accessibility, eclipses, level of detail, texture tiers, and the time zone display. They drive the real application, so they need a display and open a window. From the repository root:
+The `tests/` folder holds 163 automated checks for input, camera controls, menus, the sandbox panel, quizzes, key bindings, accessibility, sandbox accuracy and speed, eclipses, level of detail, texture tiers, and the time zone display. They drive the real application, so they need a display and open a window. From the repository root:
 
 ```
 GODOT=/path/to/godot tests/run_tests.sh              # every test
@@ -204,6 +204,7 @@ All generated assets are committed, so these tools are only needed to regenerate
 - **Textures.**
   - Planets, the Sun, the Moon, the rings, and the sky: [Solar System Scope](https://www.solarsystemscope.com/textures/), CC BY 4.0.
   - Moons and dwarf planets: USGS Astrogeology and NASA mission mosaics, public domain.
+  - Elevation for normal maps: NASA LRO LOLA, NASA MGS MOLA, and NOAA ETOPO5, public domain.
 - **Orbital and physical data.** NASA JPL Solar System Dynamics, the IAU WGCCRE, and Meeus.
 - **Narration.** Synthesized offline with Kokoro-82M (Apache-2.0) through kokoro-onnx (MIT). No speech is synthesized at runtime.
 - **Music and sound effects.** Generated procedurally with `tools/audio`.
