@@ -63,9 +63,10 @@ It is aimed at learners from elementary school to university. Every panel switch
 - **Audio settings.** Separate volumes for music, effects, and narration, a music mute, and a voice-over toggle.
 - **Mouse and touchpad.** Drag or swipe with two fingers to orbit the focused body, and pinch or use the mouse wheel to zoom. In free flight, a two-finger swipe moves the camera. Touchpad scrolling is detected automatically, and the scroll behavior can be set to Auto, Orbit, Zoom, or Move.
 - **Presentation tools.** Fullscreen toggle, clean screenshots without the interface (saved to `screenshots/` in the user data folder), a performance overlay with frame time and draw calls, and a cinematic auto-orbit that also starts after 20 seconds without input while a body is focused.
-- **Controls.** Every action can be rebound. Conflicting bindings are refused, and the on-screen help follows the active keys.
+- **Controls.** Every action can be rebound. Conflicting bindings are refused, and the grouped controls help (F3) follows the active keys.
 - **Accessibility.**
   - Interface size of 100%, 115%, or 130%.
+  - Text and controls meet WCAG AA contrast, and keyboard focus is always visible.
   - A colorblind-safe orbit palette (Okabe–Ito).
   - Captions are always shown for narration, and nothing flashes.
 
@@ -73,14 +74,14 @@ It is aimed at learners from elementary school to university. Every panel switch
 
 | | |
 |---|---|
-| ![Main menu](.github/media/main_menu.jpg) | ![Earth](.github/media/earth.jpg) |
-| Main menu | Earth with city lights, clouds, and atmosphere |
+| ![Main menu](.github/media/main_menu.jpg) | ![Sandbox](.github/media/sandbox.jpg) |
+| Main menu | Sandbox physics panel with conservation readouts |
+| ![Guided tours](.github/media/tours.jpg) | ![Quiz](.github/media/quiz.jpg) |
+| Guided tours with voice-over and captions | Quiz feedback with explanations |
+| ![Earth](.github/media/earth.jpg) | ![Inner solar system](.github/media/inner_system.jpg) |
+| Earth with city lights, clouds, and atmosphere | Inner solar system with the instanced asteroid belt |
 | ![Saturn](.github/media/saturn.jpg) | ![Pluto](.github/media/pluto.jpg) |
 | Saturn's rings and the orbit of Titan | Pluto from New Horizons mosaics |
-| ![Guided tours](.github/media/tours.jpg) | ![Quiz](.github/media/quiz.jpg) |
-| Guided tours with quizzes | Quiz feedback with explanations |
-| ![Inner solar system](.github/media/inner_system.jpg) | ![Sandbox](.github/media/sandbox.jpg) |
-| Inner solar system with the instanced asteroid belt | Sandbox physics panel with conservation readouts |
 | ![Io's shadow on Jupiter](.github/media/io_shadow.jpg) | ![Lunar eclipse](.github/media/lunar_eclipse.jpg) |
 | Io's shadow crossing Jupiter | The lunar eclipse of 3 March 2026 at true scale |
 
@@ -190,6 +191,7 @@ All generated assets are committed, so these tools are only needed to regenerate
 - **Orbital and physical data.** NASA JPL Solar System Dynamics, the IAU WGCCRE, and Meeus.
 - **Narration.** Synthesized offline with Kokoro-82M (Apache-2.0) through kokoro-onnx (MIT). No speech is synthesized at runtime.
 - **Music and sound effects.** Generated procedurally with `tools/audio`.
+- **Typeface and icons.** [Inter](https://github.com/rsms/inter), SIL Open Font License 1.1, and [Lucide](https://lucide.dev) icons, ISC.
 - **Engine.** [Godot Engine](https://godotengine.org/license), MIT.
 
 Every asset is recorded with its source, author, and license in [`assets/LICENSES.md`](assets/LICENSES.md), and listed on the in-app credits screen.
