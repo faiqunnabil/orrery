@@ -1,32 +1,88 @@
 class_name OrreryTheme
 extends RefCounted
 
-const ACCENT := Color(0.42, 0.68, 1.0)
-const ACCENT_STRONG := Color(0.22, 0.44, 0.78, 0.95)
-const TEXT := Color(0.93, 0.95, 1.0)
-const TEXT_DIM := Color(0.66, 0.72, 0.83)
-const WARNING := Color(1.0, 0.76, 0.46)
-const PANEL_BACKGROUND := Color(0.035, 0.05, 0.095, 0.86)
-const PANEL_BORDER := Color(1.0, 1.0, 1.0, 0.07)
-const CONTROL_BACKGROUND := Color(1.0, 1.0, 1.0, 0.06)
-const CONTROL_HOVER := Color(1.0, 1.0, 1.0, 0.12)
-const CONTROL_PRESSED := Color(0.42, 0.68, 1.0, 0.32)
-const CONTROL_DISABLED := Color(1.0, 1.0, 1.0, 0.025)
-const FONT_SIZE := 15
-const PANEL_RADIUS := 10
-const CONTROL_RADIUS := 6
+const ACCENT := Color("#2b63d1")
+const ACCENT_HOVER := Color("#3a72e0")
+const ACCENT_PRESSED := Color("#2455b5")
+const ACCENT_TEXT := Color("#7caeff")
+const TEXT := Color("#e6ebf5")
+const TEXT_DIM := Color("#9aa6bc")
+const TEXT_DISABLED := Color("#7a869c")
+const SUCCESS := Color("#5ad08c")
+const WARNING := Color("#f2b84b")
+const DANGER := Color("#ff7b7b")
+const SURFACE := Color(0.039, 0.059, 0.11, 0.9)
+const SURFACE_RAISED := Color(0.06, 0.085, 0.15, 0.97)
+const BORDER := Color(1.0, 1.0, 1.0, 0.08)
+const CONTROL := Color(1.0, 1.0, 1.0, 0.07)
+const CONTROL_HOVER := Color(1.0, 1.0, 1.0, 0.11)
+const CONTROL_PRESSED := Color(1.0, 1.0, 1.0, 0.15)
+const CONTROL_DISABLED := Color(1.0, 1.0, 1.0, 0.035)
+const TRACK := Color(0.0, 0.0, 0.0, 0.32)
+const SEGMENT_SELECTED := Color(1.0, 1.0, 1.0, 0.15)
+const TINT_ALPHA := 0.16
+const SELECTION := ACCENT_TEXT
+
+const SPACE_XS := 4
+const SPACE_S := 8
+const SPACE_M := 12
+const SPACE_L := 16
+const PANEL_RADIUS := 12
+const CONTROL_RADIUS := 8
+const FOCUS_WIDTH := 2
+
+const FONT_SIZE := 14
+const SMALL_FONT_SIZE := 13
+const SECTION_FONT_SIZE := 11
+const HEADER_FONT_SIZE := 17
+const TITLE_FONT_SIZE := 22
+const ICON_SIZE := 16
+
+const FONT_PATHS := {
+	"regular": "res://assets/fonts/inter_regular.ttf",
+	"medium": "res://assets/fonts/inter_medium.ttf",
+	"semibold": "res://assets/fonts/inter_semibold.ttf",
+}
+const ICON_PATH := "res://assets/icons/%s.svg"
+
+const BUTTON_TYPES := [
+	"Button", "AccentButton", "FlatButton", "DangerButton", "SuccessButton", "ToggleButton", "SegmentButton",
+	"IconButton", "IconFlatButton", "ToggleIconButton", "OptionButton", "MenuButton",
+]
+
+static var _fonts: Dictionary = {}
 
 
 static func build() -> Theme:
 	var theme := Theme.new()
+	theme.default_font = font("regular")
 	theme.default_font_size = FONT_SIZE
 	_add_containers(theme)
 	_add_buttons(theme)
 	_add_labels(theme)
-	_add_sliders(theme)
+	_add_ranges(theme)
 	_add_scrollbars(theme)
 	_add_popups(theme)
 	return theme
+
+
+static func font(weight: String) -> Font:
+	if not _fonts.has(weight):
+		var variation := FontVariation.new()
+		variation.base_font = load(FONT_PATHS[weight])
+		var tags := {}
+		tags[TextServerManager.get_primary_interface().name_to_tag("tnum")] = 1
+		variation.opentype_features = tags
+		_fonts[weight] = variation
+	return _fonts[weight]
+
+
+static func icon(name: String) -> Texture2D:
+	return load(ICON_PATH % name)
+
+
+static func tint(color: Color, alpha: float = TINT_ALPHA) -> Color:
+	return Color(color, alpha)
 
 
 static func box(color: Color, radius: int, horizontal: float, vertical: float) -> StyleBoxFlat:
@@ -41,106 +97,180 @@ static func box(color: Color, radius: int, horizontal: float, vertical: float) -
 	return style
 
 
+static func bordered(color: Color, radius: int, horizontal: float, vertical: float, border: Color) -> StyleBoxFlat:
+	var style := box(color, radius, horizontal, vertical)
+	style.border_color = border
+	style.set_border_width_all(1)
+	return style
+
+
+static func focus_ring(radius: int = CONTROL_RADIUS) -> StyleBoxFlat:
+	var style := box(Color(0, 0, 0, 0), radius + FOCUS_WIDTH, 0.0, 0.0)
+	style.draw_center = false
+	style.border_color = ACCENT_TEXT
+	style.set_border_width_all(FOCUS_WIDTH)
+	style.set_expand_margin_all(FOCUS_WIDTH)
+	return style
+
+
 static func _add_containers(theme: Theme) -> void:
-	var panel := box(PANEL_BACKGROUND, PANEL_RADIUS, 14.0, 12.0)
-	panel.border_color = PANEL_BORDER
-	panel.set_border_width_all(1)
-	theme.set_stylebox("panel", "PanelContainer", panel)
+	theme.set_stylebox("panel", "PanelContainer", bordered(SURFACE, PANEL_RADIUS, SPACE_L, SPACE_M, BORDER))
 	theme.set_type_variation("ChipPanel", "PanelContainer")
-	theme.set_stylebox("panel", "ChipPanel", box(PANEL_BACKGROUND, 8, 12.0, 6.0))
-	theme.set_constant("separation", "VBoxContainer", 6)
-	theme.set_constant("separation", "HBoxContainer", 6)
-	theme.set_constant("h_separation", "GridContainer", 16)
-	theme.set_constant("v_separation", "GridContainer", 4)
+	theme.set_stylebox("panel", "ChipPanel", bordered(SURFACE, 999, SPACE_M, 6.0, BORDER))
+	theme.set_type_variation("OverlayPanel", "PanelContainer")
+	theme.set_stylebox("panel", "OverlayPanel", bordered(SURFACE_RAISED, PANEL_RADIUS, SPACE_L, SPACE_M, Color(1, 1, 1, 0.12)))
+	theme.set_type_variation("ToolbarPanel", "PanelContainer")
+	theme.set_stylebox("panel", "ToolbarPanel", bordered(SURFACE, PANEL_RADIUS, 5.0, 5.0, BORDER))
+	theme.set_type_variation("CardPanel", "PanelContainer")
+	theme.set_stylebox("panel", "CardPanel", box(Color(1, 1, 1, 0.035), CONTROL_RADIUS, SPACE_M, SPACE_M - 2))
+	theme.set_type_variation("SegmentTrack", "PanelContainer")
+	theme.set_stylebox("panel", "SegmentTrack", box(TRACK, CONTROL_RADIUS + 2, 3.0, 3.0))
+	theme.set_type_variation("KeyCap", "PanelContainer")
+	var key := bordered(CONTROL, 5, 6.0, 1.0, Color(1, 1, 1, 0.14))
+	key.border_width_bottom = 2
+	theme.set_stylebox("panel", "KeyCap", key)
+	for kind in [["InfoCallout", ACCENT_TEXT], ["WarningCallout", WARNING], ["SuccessCallout", SUCCESS], ["DangerCallout", DANGER]]:
+		theme.set_type_variation(kind[0], "PanelContainer")
+		var callout := box(tint(kind[1], 0.1), CONTROL_RADIUS, SPACE_M, SPACE_S + 2)
+		callout.border_color = tint(kind[1], 0.7)
+		callout.border_width_left = 3
+		theme.set_stylebox("panel", kind[0], callout)
+	theme.set_constant("separation", "VBoxContainer", SPACE_S - 2)
+	theme.set_constant("separation", "HBoxContainer", SPACE_S - 2)
+	theme.set_constant("h_separation", "GridContainer", SPACE_L)
+	theme.set_constant("v_separation", "GridContainer", SPACE_XS)
 	var line := StyleBoxLine.new()
-	line.color = PANEL_BORDER
+	line.color = BORDER
 	line.thickness = 1
 	theme.set_stylebox("separator", "HSeparator", line)
-	theme.set_constant("separation", "HSeparator", 12)
+	theme.set_constant("separation", "HSeparator", SPACE_M)
 	var vertical_line := StyleBoxLine.new()
-	vertical_line.color = PANEL_BORDER
+	vertical_line.color = BORDER
 	vertical_line.thickness = 1
 	vertical_line.vertical = true
 	theme.set_stylebox("separator", "VSeparator", vertical_line)
-	theme.set_constant("separation", "VSeparator", 8)
+	theme.set_constant("separation", "VSeparator", SPACE_S)
 
 
 static func _add_buttons(theme: Theme) -> void:
-	_style_button_type(theme, "Button", CONTROL_BACKGROUND, CONTROL_HOVER, CONTROL_PRESSED)
-	theme.set_type_variation("AccentButton", "Button")
-	_style_button_type(theme, "AccentButton", ACCENT_STRONG, ACCENT_STRONG.lightened(0.15), ACCENT_STRONG.darkened(0.2))
-	theme.set_type_variation("FlatButton", "Button")
-	_style_button_type(theme, "FlatButton", Color(0, 0, 0, 0), CONTROL_HOVER, CONTROL_PRESSED)
+	for variation in BUTTON_TYPES:
+		if not ["Button", "OptionButton", "MenuButton"].has(variation):
+			theme.set_type_variation(variation, "Button")
+	_style_button(theme, "Button", CONTROL, CONTROL_HOVER, CONTROL_PRESSED, TEXT)
+	_style_button(theme, "OptionButton", CONTROL, CONTROL_HOVER, CONTROL_PRESSED, TEXT)
+	_style_button(theme, "MenuButton", CONTROL, CONTROL_HOVER, CONTROL_PRESSED, TEXT)
+	_style_button(theme, "AccentButton", ACCENT, ACCENT_HOVER, ACCENT_PRESSED, Color.WHITE)
+	_style_button(theme, "FlatButton", Color(0, 0, 0, 0), CONTROL_HOVER, CONTROL_PRESSED, TEXT_DIM)
+	theme.set_color("font_hover_color", "FlatButton", TEXT)
+	theme.set_color("icon_hover_color", "FlatButton", TEXT)
+	_style_button(theme, "DangerButton", tint(DANGER, 0.12), tint(DANGER, 0.2), tint(DANGER, 0.28), DANGER)
+	_style_button(theme, "SuccessButton", tint(SUCCESS, TINT_ALPHA), tint(SUCCESS, TINT_ALPHA), tint(SUCCESS, TINT_ALPHA), SUCCESS)
+	_style_button(theme, "ToggleButton", CONTROL, CONTROL_HOVER, tint(ACCENT_TEXT, 0.2), TEXT_DIM)
+	var toggle_on := bordered(tint(ACCENT_TEXT, 0.18), CONTROL_RADIUS, SPACE_M, 6.0, tint(ACCENT_TEXT, 0.55))
+	theme.set_stylebox("pressed", "ToggleButton", toggle_on)
+	var toggle_on_hover := toggle_on.duplicate() as StyleBoxFlat
+	toggle_on_hover.bg_color = tint(ACCENT_TEXT, 0.26)
+	theme.set_stylebox("hover_pressed", "ToggleButton", toggle_on_hover)
+	for state in ["font_pressed_color", "font_hover_pressed_color", "icon_pressed_color", "icon_hover_pressed_color"]:
+		theme.set_color(state, "ToggleButton", TEXT)
+	theme.set_color("font_hover_color", "ToggleButton", TEXT)
+	theme.set_color("icon_hover_color", "ToggleButton", TEXT)
+	_style_button(theme, "IconButton", CONTROL, CONTROL_HOVER, CONTROL_PRESSED, TEXT, SPACE_S)
+	_style_button(theme, "IconFlatButton", Color(0, 0, 0, 0), CONTROL_HOVER, CONTROL_PRESSED, TEXT_DIM, SPACE_S)
+	theme.set_color("icon_hover_color", "IconFlatButton", TEXT)
+	_style_button(theme, "ToggleIconButton", CONTROL, CONTROL_HOVER, tint(ACCENT_TEXT, 0.2), TEXT, SPACE_S)
+	var icon_on := bordered(tint(ACCENT_TEXT, 0.18), CONTROL_RADIUS, SPACE_S, 6.0, tint(ACCENT_TEXT, 0.55))
+	theme.set_stylebox("pressed", "ToggleIconButton", icon_on)
+	theme.set_stylebox("hover_pressed", "ToggleIconButton", icon_on)
+	theme.set_color("icon_pressed_color", "ToggleIconButton", ACCENT_TEXT)
+	theme.set_color("icon_hover_pressed_color", "ToggleIconButton", ACCENT_TEXT)
+	_style_button(theme, "SegmentButton", Color(0, 0, 0, 0), Color(1, 1, 1, 0.06), SEGMENT_SELECTED, TEXT_DIM)
+	theme.set_stylebox("hover_pressed", "SegmentButton", box(SEGMENT_SELECTED, CONTROL_RADIUS - 1, SPACE_M, 5.0))
+	theme.set_stylebox("pressed", "SegmentButton", bordered(SEGMENT_SELECTED, CONTROL_RADIUS - 1, SPACE_M, 5.0, Color(1, 1, 1, 0.1)))
+	for state in ["font_pressed_color", "font_hover_pressed_color", "font_hover_color"]:
+		theme.set_color(state, "SegmentButton", TEXT)
+	for variation in BUTTON_TYPES:
+		theme.set_font("font", variation, font("medium"))
+		theme.set_constant("icon_max_width", variation, ICON_SIZE)
+		theme.set_constant("h_separation", variation, SPACE_S - 2)
+		theme.set_stylebox("focus", variation, focus_ring())
+	theme.set_font_size("font_size", "SegmentButton", SMALL_FONT_SIZE)
 	for type in ["CheckButton", "CheckBox"]:
 		var empty := StyleBoxEmpty.new()
 		empty.content_margin_left = 2.0
 		empty.content_margin_right = 2.0
 		empty.content_margin_top = 3.0
 		empty.content_margin_bottom = 3.0
-		for state in ["normal", "hover", "pressed", "hover_pressed", "disabled", "focus"]:
+		for state in ["normal", "hover", "pressed", "hover_pressed", "disabled"]:
 			theme.set_stylebox(state, type, empty)
-		theme.set_color("font_color", type, TEXT)
-		theme.set_color("font_hover_color", type, TEXT)
-		theme.set_color("font_pressed_color", type, TEXT)
-		theme.set_color("font_hover_pressed_color", type, TEXT)
+		theme.set_stylebox("focus", type, focus_ring(4))
+		for state in ["font_color", "font_hover_color", "font_pressed_color", "font_hover_pressed_color", "font_focus_color"]:
+			theme.set_color(state, type, TEXT)
 
 
-static func _style_button_type(theme: Theme, type: String, normal: Color, hover: Color, pressed: Color) -> void:
-	theme.set_stylebox("normal", type, box(normal, CONTROL_RADIUS, 12.0, 6.0))
-	theme.set_stylebox("hover", type, box(hover, CONTROL_RADIUS, 12.0, 6.0))
-	theme.set_stylebox("pressed", type, box(pressed, CONTROL_RADIUS, 12.0, 6.0))
-	theme.set_stylebox("hover_pressed", type, box(pressed.lightened(0.08), CONTROL_RADIUS, 12.0, 6.0))
-	theme.set_stylebox("disabled", type, box(CONTROL_DISABLED, CONTROL_RADIUS, 12.0, 6.0))
-	theme.set_stylebox("focus", type, StyleBoxEmpty.new())
-	theme.set_color("font_color", type, TEXT)
-	theme.set_color("font_hover_color", type, TEXT)
-	theme.set_color("font_pressed_color", type, TEXT)
-	theme.set_color("font_hover_pressed_color", type, TEXT)
-	theme.set_color("font_focus_color", type, TEXT)
-	theme.set_color("font_disabled_color", type, Color(TEXT_DIM, 0.45))
+static func _style_button(
+	theme: Theme, type: String, normal: Color, hover: Color, pressed: Color, text: Color, horizontal: float = SPACE_M
+) -> void:
+	theme.set_stylebox("normal", type, box(normal, CONTROL_RADIUS, horizontal, 6.0))
+	theme.set_stylebox("hover", type, box(hover, CONTROL_RADIUS, horizontal, 6.0))
+	theme.set_stylebox("pressed", type, box(pressed, CONTROL_RADIUS, horizontal, 6.0))
+	theme.set_stylebox("hover_pressed", type, box(pressed.lightened(0.06), CONTROL_RADIUS, horizontal, 6.0))
+	theme.set_stylebox("disabled", type, box(CONTROL_DISABLED, CONTROL_RADIUS, horizontal, 6.0))
+	for state in ["font_color", "font_hover_color", "font_pressed_color", "font_hover_pressed_color", "font_focus_color"]:
+		theme.set_color(state, type, text)
+	for state in ["icon_normal_color", "icon_hover_color", "icon_pressed_color", "icon_hover_pressed_color", "icon_focus_color"]:
+		theme.set_color(state, type, text)
+	theme.set_color("font_disabled_color", type, TEXT_DISABLED)
+	theme.set_color("icon_disabled_color", type, TEXT_DISABLED)
 
 
 static func _add_labels(theme: Theme) -> void:
 	theme.set_color("font_color", "Label", TEXT)
-	theme.set_type_variation("TitleLabel", "Label")
-	theme.set_font_size("font_size", "TitleLabel", 24)
-	theme.set_type_variation("HeaderLabel", "Label")
-	theme.set_font_size("font_size", "HeaderLabel", 19)
-	theme.set_type_variation("SectionLabel", "Label")
-	theme.set_font_size("font_size", "SectionLabel", 12)
-	theme.set_color("font_color", "SectionLabel", TEXT_DIM)
-	theme.set_type_variation("DimLabel", "Label")
-	theme.set_font_size("font_size", "DimLabel", 14)
-	theme.set_color("font_color", "DimLabel", TEXT_DIM)
-	theme.set_type_variation("WarningLabel", "Label")
-	theme.set_font_size("font_size", "WarningLabel", 14)
-	theme.set_color("font_color", "WarningLabel", WARNING)
+	_label_variation(theme, "TitleLabel", TITLE_FONT_SIZE, TEXT, "semibold")
+	_label_variation(theme, "HeaderLabel", HEADER_FONT_SIZE, TEXT, "semibold")
+	_label_variation(theme, "SectionLabel", SECTION_FONT_SIZE, TEXT_DIM, "semibold")
+	_label_variation(theme, "DimLabel", SMALL_FONT_SIZE, TEXT_DIM, "regular")
+	_label_variation(theme, "WarningLabel", SMALL_FONT_SIZE, WARNING, "regular")
+	_label_variation(theme, "SuccessLabel", SMALL_FONT_SIZE, SUCCESS, "regular")
+	_label_variation(theme, "DangerLabel", SMALL_FONT_SIZE, DANGER, "regular")
+	_label_variation(theme, "InfoLabel", SMALL_FONT_SIZE, TEXT, "regular")
+	_label_variation(theme, "KeyLabel", 12, TEXT, "semibold")
+	theme.set_constant("line_spacing", "Label", 2)
 	theme.set_color("font_color", "TooltipLabel", TEXT)
-	theme.set_stylebox("panel", "TooltipPanel", box(Color(0.03, 0.04, 0.08, 0.96), 6, 10.0, 6.0))
+	theme.set_font_size("font_size", "TooltipLabel", SMALL_FONT_SIZE)
+	theme.set_stylebox("panel", "TooltipPanel", bordered(SURFACE_RAISED, 6, 10.0, 6.0, BORDER))
 
 
-static func _add_sliders(theme: Theme) -> void:
-	var track := box(Color(1, 1, 1, 0.12), 2, 0.0, 2.0)
-	theme.set_stylebox("slider", "HSlider", track)
-	theme.set_stylebox("grabber_area", "HSlider", box(ACCENT, 2, 0.0, 2.0))
-	theme.set_stylebox("grabber_area_highlight", "HSlider", box(ACCENT.lightened(0.2), 2, 0.0, 2.0))
+static func _label_variation(theme: Theme, name: String, size: int, color: Color, weight: String) -> void:
+	theme.set_type_variation(name, "Label")
+	theme.set_font_size("font_size", name, size)
+	theme.set_color("font_color", name, color)
+	theme.set_font("font", name, font(weight))
+
+
+static func _add_ranges(theme: Theme) -> void:
+	theme.set_stylebox("slider", "HSlider", box(Color(1, 1, 1, 0.12), 2, 0.0, 2.0))
+	theme.set_stylebox("grabber_area", "HSlider", box(ACCENT_TEXT, 2, 0.0, 2.0))
+	theme.set_stylebox("grabber_area_highlight", "HSlider", box(ACCENT_TEXT.lightened(0.15), 2, 0.0, 2.0))
+	theme.set_stylebox("focus", "HSlider", focus_ring(4))
+	theme.set_stylebox("background", "ProgressBar", box(Color(1, 1, 1, 0.08), 2, 0.0, 0.0))
+	theme.set_stylebox("fill", "ProgressBar", box(ACCENT_TEXT, 2, 0.0, 0.0))
 
 
 static func _add_scrollbars(theme: Theme) -> void:
 	var track := box(Color(0, 0, 0, 0), 3, 3.0, 0.0)
 	theme.set_stylebox("scroll", "VScrollBar", track)
 	theme.set_stylebox("scroll_focus", "VScrollBar", track)
-	theme.set_stylebox("grabber", "VScrollBar", box(Color(1, 1, 1, 0.18), 3, 3.0, 0.0))
-	theme.set_stylebox("grabber_highlight", "VScrollBar", box(Color(1, 1, 1, 0.3), 3, 3.0, 0.0))
-	theme.set_stylebox("grabber_pressed", "VScrollBar", box(Color(1, 1, 1, 0.4), 3, 3.0, 0.0))
+	theme.set_stylebox("grabber", "VScrollBar", box(Color(1, 1, 1, 0.16), 3, 3.0, 0.0))
+	theme.set_stylebox("grabber_highlight", "VScrollBar", box(Color(1, 1, 1, 0.28), 3, 3.0, 0.0))
+	theme.set_stylebox("grabber_pressed", "VScrollBar", box(Color(1, 1, 1, 0.38), 3, 3.0, 0.0))
 
 
 static func _add_popups(theme: Theme) -> void:
-	var panel := box(Color(0.05, 0.07, 0.12, 0.98), 8, 6.0, 6.0)
-	panel.border_color = PANEL_BORDER
-	panel.set_border_width_all(1)
+	var panel := bordered(SURFACE_RAISED, CONTROL_RADIUS, 6.0, 6.0, BORDER)
 	theme.set_stylebox("panel", "PopupMenu", panel)
-	theme.set_stylebox("hover", "PopupMenu", box(CONTROL_HOVER, 4, 8.0, 4.0))
+	theme.set_stylebox("hover", "PopupMenu", box(CONTROL_HOVER, 5, 8.0, 4.0))
 	theme.set_color("font_color", "PopupMenu", TEXT)
 	theme.set_color("font_hover_color", "PopupMenu", TEXT)
+	theme.set_font("font", "PopupMenu", font("regular"))
 	theme.set_stylebox("panel", "PopupPanel", panel)

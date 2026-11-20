@@ -1,17 +1,21 @@
 class_name SegmentedControl
-extends HBoxContainer
+extends PanelContainer
 
 signal selected(index: int)
 
+var _row := HBoxContainer.new()
 var _buttons: Array[Button] = []
 
 
 func _init(options: Array[String], tooltip: String = "") -> void:
-	add_theme_constant_override("separation", 2)
+	theme_type_variation = "SegmentTrack"
+	_row.add_theme_constant_override("separation", 2)
+	add_child(_row)
 	var group := ButtonGroup.new()
 	for index in options.size():
 		var button := Button.new()
 		button.text = options[index]
+		button.theme_type_variation = "SegmentButton"
 		button.toggle_mode = true
 		button.button_group = group
 		button.focus_mode = Control.FOCUS_NONE
@@ -19,7 +23,7 @@ func _init(options: Array[String], tooltip: String = "") -> void:
 		button.tooltip_text = tooltip
 		button.pressed.connect(func() -> void: selected.emit(index))
 		_buttons.append(button)
-		add_child(button)
+		_row.add_child(button)
 
 
 func select(index: int) -> void:
