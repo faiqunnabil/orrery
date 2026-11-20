@@ -2,6 +2,7 @@ class_name DatePanel
 extends PanelContainer
 
 signal date_chosen(unix_seconds: float)
+signal eclipse_requested(direction: int)
 signal closed
 
 const PANEL_WIDTH := 330
@@ -55,6 +56,20 @@ func _init() -> void:
 		button.theme_type_variation = "FlatButton"
 		button.alignment = HORIZONTAL_ALIGNMENT_LEFT
 		box.add_child(button)
+	box.add_child(HSeparator.new())
+	box.add_child(Hud.section_label("Eclipses"))
+	var eclipse_row := HBoxContainer.new()
+	eclipse_row.add_theme_constant_override("separation", OrreryTheme.SPACE_S)
+	box.add_child(eclipse_row)
+	var previous := Hud.make_button("Previous", func() -> void: _request_eclipse(-1), "Go to the previous solar or lunar eclipse", "chevron_left")
+	var next := Hud.make_button("Next", func() -> void: _request_eclipse(1), "Go to the next solar or lunar eclipse", "chevron_right")
+	next.icon_alignment = HORIZONTAL_ALIGNMENT_RIGHT
+	for button in [previous, next]:
+		button.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+		eclipse_row.add_child(button)
+	var eclipse_note := Hud.make_label("Shows the moment of greatest eclipse at true scale.", "DimLabel")
+	eclipse_note.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
+	box.add_child(eclipse_note)
 
 
 func open(current_unix: float, offset_minutes: int) -> void:
@@ -95,6 +110,14 @@ static func parse_local(text: String, offset_minutes: int) -> Variant:
 	return float(Time.get_unix_time_from_datetime_dict(dictionary)) - offset_minutes * 60.0
 
 
+static func first_unix() -> float:
+	return float(Time.get_unix_time_from_datetime_dict({"year": MIN_YEAR, "month": 1, "day": 1, "hour": 0, "minute": 0, "second": 0}))
+
+
+static func last_unix() -> float:
+	return float(Time.get_unix_time_from_datetime_dict({"year": MAX_YEAR, "month": 12, "day": 31, "hour": 23, "minute": 59, "second": 59}))
+
+
 static func _days_in_month(year: int, month: int) -> int:
 	if month == 2:
 		var leap := (year % 4 == 0 and year % 100 != 0) or year % 400 == 0
@@ -122,6 +145,11 @@ func _submit() -> void:
 func _choose(unix: float) -> void:
 	close()
 	date_chosen.emit(unix)
+
+
+func _request_eclipse(direction: int) -> void:
+	close()
+	eclipse_requested.emit(direction)
 
 
 func _show_error(message: String) -> void:

@@ -67,6 +67,10 @@ const HELP_GROUPS := [
 	],
 ]
 const ONBOARDING_DELAY_SECONDS := 1.0
+const ECLIPSE_SPEED_STEP := 1
+const LUNAR_ECLIPSE_VIEW_RADII := 5.0
+const SOLAR_ECLIPSE_VIEW_RADII := 3.2
+const ECLIPSE_TOAST_SECONDS := 6.0
 const MODE_SWITCH_LABEL := "Sandbox"
 const MODE_SWITCH_TEXT := "Open Sandbox ({mode_sandbox})"
 const MODE_SWITCH_ICON := "atom"
@@ -90,10 +94,12 @@ var _info_timer := 0.0
 var _press_position := Vector2.ZERO
 var _current_step: Dictionary = {}
 var _focus_actions: Array[StringName] = []
+var _eclipse_search: EclipseSearch
 
 
 func _build_world() -> void:
 	model = SolarSystemModel.new(BodyCatalog.load_bodies())
+	_eclipse_search = EclipseSearch.new(model)
 	_info_catalog = BodyInfoCatalog.load_catalog()
 	_tours = TourCatalog.load_tours()
 	_quiz_catalog = QuizCatalog.load_catalog()
@@ -131,6 +137,7 @@ func _build_world() -> void:
 	_tour_panel.replay_pressed.connect(_tour_player.replay)
 	hud.date_requested.connect(_open_date_panel)
 	hud.date_panel.date_chosen.connect(_jump_to_unix)
+	hud.date_panel.eclipse_requested.connect(_go_to_eclipse)
 	model.update(clock.seconds)
 	renderer.compute_positions()
 	camera.focus_on(DEFAULT_FOCUS_ID, renderer.mapper.radius(model.get_body(DEFAULT_FOCUS_ID)), _toward_sun(DEFAULT_FOCUS_ID))
@@ -425,6 +432,54 @@ func _open_date_panel() -> void:
 func _jump_to_unix(unix_seconds: float) -> void:
 	clock.seconds = Astro.unix_to_simulation_seconds(unix_seconds)
 	clock.changed.emit()
+
+
+func _go_to_eclipse(direction: int) -> void:
+	var first := Astro.unix_to_simulation_seconds(DatePanel.first_unix())
+	var last := Astro.unix_to_simulation_seconds(DatePanel.last_unix())
+	var eclipse := _eclipse_search.find(clock.seconds, direction, first, last)
+	if eclipse.is_empty():
+		hud.show_toast(tr("No eclipse found between %d and %d in that direction") % [DatePanel.MIN_YEAR, DatePanel.MAX_YEAR])
+		return
+	if _tour_player.active:
+		_tour_player.stop()
+	_set_scale_mode(ScaleMapper.Mode.TRUE_SCALE)
+	clock.seconds = eclipse["seconds"]
+	clock.reversed = false
+	clock.step_index = ECLIPSE_SPEED_STEP
+	clock.changed.emit()
+	model.update(clock.seconds)
+	renderer.compute_positions()
+	var lunar: bool = eclipse["kind"] == EclipseSearch.Kind.LUNAR
+	var target := "moon" if lunar else "earth"
+	_select(target)
+	var body := model.get_body(target)
+	var toward := _toward_sun(target) if lunar else _toward_moon_shadow()
+	camera.fly_to(
+		target,
+		renderer.render_position(target),
+		camera.world_position(_anchor_position()),
+		renderer.mapper.radius(body),
+		toward,
+		LUNAR_ECLIPSE_VIEW_RADII if lunar else SOLAR_ECLIPSE_VIEW_RADII
+	)
+	var when := Astro.format_date(eclipse["seconds"], hud.utc_offset_minutes())
+	hud.show_toast(tr("%s, greatest at %s") % [tr(EclipseSearch.describe(eclipse)), when], ECLIPSE_TOAST_SECONDS)
+
+
+func _toward_moon_shadow() -> Vector3:
+	var earth := _render_vector("earth")
+	var moon := _render_vector("moon")
+	var axis := (moon - _render_vector("sun")).normalized()
+	var to_axis := moon + axis * (earth - moon).dot(axis) - earth
+	var radius := renderer.mapper.radius(model.get_body("earth"))
+	var depth := sqrt(maxf(radius * radius - to_axis.length_squared(), 0.0))
+	return to_axis - axis * depth
+
+
+func _render_vector(body_id: String) -> Vector3:
+	var position := renderer.render_position(body_id)
+	return Vector3(position[0], position[1], position[2])
 
 
 func _search_items() -> Array[Dictionary]:
