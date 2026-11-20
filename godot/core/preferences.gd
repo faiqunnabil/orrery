@@ -31,6 +31,7 @@ var trails_visible := true
 var rings_visible := true
 var view_panel_collapsed := false
 var onboarding_done := false
+var language := ""
 var trail_length: TrailLength = TrailLength.MEDIUM
 var orbit_palette: OrbitPalette = OrbitPalette.NATURAL
 var scroll_mode: ScrollMode = ScrollMode.AUTO
@@ -38,6 +39,7 @@ var scroll_mode: ScrollMode = ScrollMode.AUTO
 
 func _ready() -> void:
 	_load()
+	_apply_language()
 
 
 func is_scientist() -> bool:
@@ -76,6 +78,23 @@ func set_depth_level(value: DepthLevel) -> void:
 	depth_level = value
 	_save()
 	changed.emit()
+
+
+func effective_language() -> String:
+	return language if Locale.LANGUAGES.has(language) else Locale.system_language()
+
+
+func set_language(value: String) -> void:
+	if value == effective_language() and value == language:
+		return
+	language = value
+	_save()
+	_apply_language()
+	changed.emit()
+
+
+func _apply_language() -> void:
+	TranslationServer.set_locale(effective_language())
 
 
 func set_onboarding_done(value: bool) -> void:
@@ -136,6 +155,7 @@ func _load() -> void:
 	rings_visible = config.get_value(CONFIG_SECTION, "rings_visible", true)
 	view_panel_collapsed = config.get_value(CONFIG_SECTION, "view_panel_collapsed", false)
 	onboarding_done = config.get_value(CONFIG_SECTION, "onboarding_done", false)
+	language = config.get_value(CONFIG_SECTION, "language", "")
 	var stored_trail: int = config.get_value(CONFIG_SECTION, "trail_length", TrailLength.MEDIUM)
 	trail_length = clampi(stored_trail, TrailLength.SHORT, TrailLength.LONG) as TrailLength
 	var stored_palette: int = config.get_value(CONFIG_SECTION, "orbit_palette", OrbitPalette.NATURAL)
@@ -153,6 +173,7 @@ func _save() -> void:
 	config.set_value(CONFIG_SECTION, "rings_visible", rings_visible)
 	config.set_value(CONFIG_SECTION, "view_panel_collapsed", view_panel_collapsed)
 	config.set_value(CONFIG_SECTION, "onboarding_done", onboarding_done)
+	config.set_value(CONFIG_SECTION, "language", language)
 	config.set_value(CONFIG_SECTION, "trail_length", trail_length)
 	config.set_value(CONFIG_SECTION, "orbit_palette", orbit_palette)
 	config.set_value(CONFIG_SECTION, "scroll_mode", scroll_mode)

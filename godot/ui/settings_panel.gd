@@ -27,6 +27,8 @@ const GRAPHICS_NOTE := (
 	+ "Changing the preset resets the render scale to the preset default."
 )
 const AUDIO_NOTE := "Tour narration text is always shown on screen. The voice-over is synthesized speech."
+const VOICE_LANGUAGE_NOTE := "The voice-over is available in English only. Captions follow the chosen language."
+const LANGUAGE_NOTE := "Changing the language reloads the current screen."
 
 var _tabs := SegmentedControl.new(PAGE_NAMES)
 var _pages: Array[ScrollContainer] = []
@@ -48,6 +50,8 @@ var _binding_buttons: Dictionary = {}
 var _capturing := ""
 var _binding_message: Label
 var _intro_button: Button
+var _language := SegmentedControl.new(Locale.LANGUAGE_NAMES)
+var _voice_note: Label
 
 
 func _ready() -> void:
@@ -130,6 +134,12 @@ func _add_row(page: VBoxContainer, label: String, control: Control) -> void:
 
 
 func _build_display_page(page: VBoxContainer) -> void:
+	page.add_child(Hud.section_label("Language"))
+	_language.auto_translate_mode = Node.AUTO_TRANSLATE_MODE_DISABLED
+	_add_row(page, "Language", _language)
+	_language.selected.connect(_choose_language)
+	page.add_child(Hud.make_wrapped_label(LANGUAGE_NOTE, NOTE_WIDTH, "DimLabel"))
+	page.add_child(HSeparator.new())
 	page.add_child(Hud.section_label("Window"))
 	_add_row(page, "Window mode", _window_mode)
 	_window_mode.selected.connect(func(index: int) -> void: Quality.set_fullscreen(index == 1))
@@ -198,6 +208,8 @@ func _build_audio_page(page: VBoxContainer) -> void:
 	)
 	toggles.add_child(_voice_over_toggle)
 	page.add_child(Hud.make_wrapped_label(AUDIO_NOTE, NOTE_WIDTH, "DimLabel"))
+	_voice_note = Hud.make_wrapped_label(VOICE_LANGUAGE_NOTE, NOTE_WIDTH, "WarningLabel")
+	page.add_child(_voice_note)
 
 
 func _add_volume_row(grid: GridContainer, label: String, tooltip: String, setter: Callable) -> void:
@@ -284,7 +296,17 @@ func _cancel_capture() -> void:
 	_sync_bindings()
 
 
+func _choose_language(index: int) -> void:
+	var code := Locale.LANGUAGES[index]
+	if code == Locale.current():
+		return
+	Preferences.set_language(code)
+	get_tree().paused = false
+	get_tree().reload_current_scene.call_deferred()
+
+
 func _sync_display() -> void:
+	_language.select(Locale.LANGUAGES.find(Locale.current()))
 	_window_mode.select(1 if Quality.fullscreen else 0)
 	_resolution.select(_resolutions.find(Quality.window_size))
 	_resolution.disabled = Quality.fullscreen
@@ -306,7 +328,9 @@ func _sync_audio() -> void:
 		_volume_sliders[index].set_value_no_signal(volumes[index] * 100.0)
 		_volume_values[index].text = "%d%%" % roundi(volumes[index] * 100.0)
 	_music_mute_toggle.set_pressed_no_signal(Audio.music_muted)
-	_voice_over_toggle.set_pressed_no_signal(Audio.narration_enabled)
+	_voice_over_toggle.set_pressed_no_signal(Audio.narration_enabled and Locale.has_voice())
+	_voice_over_toggle.disabled = not Locale.has_voice()
+	_voice_note.visible = not Locale.has_voice()
 
 
 func _sync_bindings() -> void:

@@ -95,5 +95,9 @@ func _text_for(step: Dictionary) -> String:
 
 
 func _sync_voice() -> void:
-	_voice_toggle.set_pressed_no_signal(Audio.narration_enabled)
-	_replay_button.disabled = not Audio.narration_enabled
+	var available := Locale.has_voice()
+	_voice_toggle.set_pressed_no_signal(Audio.narration_enabled and available)
+	_voice_toggle.disabled = not available
+	_replay_button.disabled = not Audio.narration_enabled or not available
+	if not available:
+		_voice_toggle.tooltip_text = "The voice-over is available in English only"

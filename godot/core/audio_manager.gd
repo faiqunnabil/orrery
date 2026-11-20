@@ -99,7 +99,7 @@ func _clear_streams() -> void:
 
 
 func play_narration(id: String) -> void:
-	if not narration_enabled:
+	if not narration_enabled or not Locale.has_voice():
 		return
 	var path := NARRATION_PATH % id
 	if not ResourceLoader.exists(path):
