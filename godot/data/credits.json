@@ -87,6 +87,25 @@
 			]
 		},
 		{
+			"title": "Fonts and icons",
+			"entries": [
+				{
+					"name": "Inter typeface",
+					"author": "Rasmus Andersson and The Inter Project Authors",
+					"license": "SIL Open Font License 1.1",
+					"url": "https://github.com/rsms/inter",
+					"text": "Copyright (c) 2016 The Inter Project Authors. Licensed under the SIL Open Font License, Version 1.1 (https://openfontlicense.org)."
+				},
+				{
+					"name": "Lucide icons",
+					"author": "Lucide Contributors",
+					"license": "ISC",
+					"url": "https://lucide.dev",
+					"text": "Copyright (c) Lucide Contributors 2022, with portions copyright (c) Cole Bemis 2013-2022 as part of Feather (MIT). Licensed under the ISC License."
+				}
+			]
+		},
+		{
 			"title": "Engine",
 			"entries": [
 				{

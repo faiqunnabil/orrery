@@ -12,6 +12,8 @@ Every third-party asset bundled with Orrery is recorded here and surfaced in the
 | Titan global mosaic (Cassini ISS, PIA19658) | Texture source | USGS Astrogeology Science Center, NASA/JPL-Caltech/Space Science Institute | https://planetarymaps.usgs.gov/mosaic/ | Public domain | 2026-11-12 | Tinted orange with reduced contrast to suggest the haze seen in visible light |
 | Ceres global mosaic (Dawn FC, DLR) | Texture source | USGS Astrogeology Science Center, NASA/JPL-Caltech/UCLA/MPS/DLR/IDA | https://planetarymaps.usgs.gov/mosaic/ | Public domain (NASA mission data) | 2026-11-12 | Tinted from grayscale |
 | Pluto global mosaic (New Horizons LORRI and MVIC, July 2017) | Texture source | USGS Astrogeology Science Center, NASA/JHUAPL/SwRI | https://planetarymaps.usgs.gov/mosaic/ | Public domain | 2026-11-12 | Tinted from grayscale. The unimaged southern hemisphere is filled with an even tone |
+| Inter typeface 4.1 (Regular, Medium, SemiBold) | Font | Rasmus Andersson and The Inter Project Authors | https://github.com/rsms/inter | SIL Open Font License 1.1 | 2026-11-20 | License text bundled as `godot/assets/fonts/OFL.txt` |
+| Lucide icons 0.460.0 (30 icons) | Icon | Lucide Contributors, portions by Cole Bemis (Feather, MIT) | https://lucide.dev | ISC | 2026-11-20 | Stroke color set to white so the theme can tint them. License text bundled as `godot/assets/icons/LICENSE.txt` |
 
 ## Generated Assets
 
