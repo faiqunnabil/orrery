@@ -1,0 +1,3287 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: Orrery\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8-bit\n"
+"Language: id\n"
+
+#: core/audio_manager.gd:7 ui/settings_panel.gd:193
+msgid "Music"
+msgstr "Musik"
+
+#: core/audio_manager.gd:8 ui/settings_panel.gd:194
+msgid "Effects"
+msgstr "Efek"
+
+#: core/audio_manager.gd:9 data/credits.json ui/settings_panel.gd:195
+msgid "Narration"
+msgstr "Narasi"
+
+#: core/body_facts.gd:104
+msgid "Distance from %s"
+msgstr "Jarak dari %s"
+
+#: core/body_facts.gd:109
+msgid "%s million km"
+msgstr "%s juta km"
+
+#: core/body_facts.gd:121
+msgid "%s days around %s"
+msgstr "%s hari mengelilingi %s"
+
+#: core/body_facts.gd:123 core/body_facts.gd:133
+msgid "%s Earth days"
+msgstr "%s hari Bumi"
+
+#: core/body_facts.gd:124
+msgid "%s Earth years"
+msgstr "%s tahun Bumi"
+
+#: core/body_facts.gd:131
+msgid "%s hours"
+msgstr "%s jam"
+
+#: core/body_facts.gd:135
+msgid ", spins backwards"
+msgstr ", berputar terbalik"
+
+#: core/body_facts.gd:150
+msgid "Inclination to Laplace plane"
+msgstr "Inklinasi terhadap bidang Laplace"
+
+#: core/body_facts.gd:152
+msgid "Inclination to %s's equator"
+msgstr "Inklinasi terhadap ekuator %s"
+
+#: core/body_facts.gd:153
+msgid "Inclination"
+msgstr "Inklinasi"
+
+#: core/body_facts.gd:66
+msgid "%s km (%s x Earth)"
+msgstr "%s km (%s x Bumi)"
+
+#: core/body_facts.gd:66
+msgid "Width"
+msgstr "Lebar"
+
+#: core/body_facts.gd:69
+msgid "Year"
+msgstr "Tahun"
+
+#: core/body_facts.gd:70
+msgid "Day"
+msgstr "Hari"
+
+#: core/body_facts.gd:71
+msgid "%s x Earth"
+msgstr "%s x Bumi"
+
+#: core/body_facts.gd:71
+msgid "Gravity"
+msgstr "Gravitasi"
+
+#: core/body_facts.gd:77
+msgid "Mass"
+msgstr "Massa"
+
+#: core/body_facts.gd:78
+msgid "Mean radius"
+msgstr "Jari-jari rata-rata"
+
+#: core/body_facts.gd:79
+msgid "Surface gravity"
+msgstr "Gravitasi permukaan"
+
+#: core/body_facts.gd:80
+msgid "Escape velocity"
+msgstr "Kecepatan lepas"
+
+#: core/body_facts.gd:83
+msgid "Semi-major axis"
+msgstr "Sumbu semi-mayor"
+
+#: core/body_facts.gd:84
+msgid "Eccentricity"
+msgstr "Eksentrisitas"
+
+#: core/body_facts.gd:87
+msgid "Orbital period"
+msgstr "Periode orbit"
+
+#: core/body_facts.gd:88
+msgid "Current distance"
+msgstr "Jarak saat ini"
+
+#: core/body_facts.gd:89
+msgid "Orbital speed"
+msgstr "Kecepatan orbit"
+
+#: core/body_facts.gd:90
+msgid " (retrograde)"
+msgstr " (retrograd)"
+
+#: core/body_facts.gd:91
+msgid "Rotation period"
+msgstr "Periode rotasi"
+
+#: core/body_facts.gd:92
+msgid "Axial tilt"
+msgstr "Kemiringan sumbu"
+
+#: core/input_bindings.gd:47
+msgid "Move forward"
+msgstr "Maju"
+
+#: core/input_bindings.gd:48
+msgid "Move back"
+msgstr "Mundur"
+
+#: core/input_bindings.gd:49
+msgid "Move left"
+msgstr "Geser ke kiri"
+
+#: core/input_bindings.gd:50
+msgid "Move right"
+msgstr "Geser ke kanan"
+
+#: core/input_bindings.gd:51
+msgid "Move up"
+msgstr "Naik"
+
+#: core/input_bindings.gd:52
+msgid "Move down"
+msgstr "Turun"
+
+#: core/input_bindings.gd:53
+msgid "Speed boost"
+msgstr "Percepat gerak"
+
+#: core/input_bindings.gd:54
+msgid "Pause time"
+msgstr "Jeda waktu"
+
+#: core/input_bindings.gd:55
+msgid "Reverse time"
+msgstr "Balikkan waktu"
+
+#: core/input_bindings.gd:56
+msgid "Faster time"
+msgstr "Percepat waktu"
+
+#: core/input_bindings.gd:57
+msgid "Slower time"
+msgstr "Perlambat waktu"
+
+#: core/input_bindings.gd:58
+msgid "Jump to now"
+msgstr "Lompat ke saat ini"
+
+#: core/input_bindings.gd:59
+msgid "Toggle scale"
+msgstr "Ganti skala"
+
+#: core/input_bindings.gd:60
+msgid "Focus next body"
+msgstr "Fokus ke benda berikutnya"
+
+#: core/input_bindings.gd:61 modes/explore/explore_mode.gd:279 modes/explore/explore_mode.gd:30
+msgid "Free flight"
+msgstr "Terbang bebas"
+
+#: core/input_bindings.gd:62 modes/explore/explore_mode.gd:62 modes/sandbox/sandbox_mode.gd:66
+msgid "Hide interface"
+msgstr "Sembunyikan antarmuka"
+
+#: core/input_bindings.gd:63
+msgid "Controls help"
+msgstr "Bantuan kontrol"
+
+#: core/input_bindings.gd:64 modes/explore/explore_mode.gd:31 modes/sandbox/sandbox_mode.gd:33
+msgid "Find a body"
+msgstr "Cari benda langit"
+
+#: core/input_bindings.gd:65 modes/explore/explore_mode.gd:42 ui/date_panel.gd:30
+msgid "Go to a date"
+msgstr "Pergi ke tanggal"
+
+#: core/input_bindings.gd:66 modes/explore/explore_mode.gd:60 modes/sandbox/sandbox_mode.gd:64
+msgid "Keyboard navigation"
+msgstr "Navigasi keyboard"
+
+#: core/input_bindings.gd:67
+msgid "Performance overlay"
+msgstr "Panel performa"
+
+#: core/input_bindings.gd:68
+msgid "Cinematic auto-orbit"
+msgstr "Orbit otomatis sinematik"
+
+#: core/input_bindings.gd:69
+msgid "Toggle fullscreen"
+msgstr "Layar penuh"
+
+#: core/input_bindings.gd:70
+msgid "Take screenshot"
+msgstr "Ambil tangkapan layar"
+
+#: core/input_bindings.gd:71 modes/explore/explore_mode.gd:51 modes/sandbox/sandbox_mode.gd:55
+msgid "Distance rings"
+msgstr "Cincin jarak"
+
+#: core/input_bindings.gd:72 modes/explore/explore_mode.gd:49 modes/sandbox/sandbox_mode.gd:53
+msgid "Labels"
+msgstr "Label"
+
+#: core/input_bindings.gd:73 modes/explore/explore_mode.gd:50 modes/sandbox/sandbox_mode.gd:54
+msgid "Orbit lines"
+msgstr "Garis orbit"
+
+#: core/input_bindings.gd:74
+msgid "Information depth"
+msgstr "Tingkat informasi"
+
+#: core/input_bindings.gd:75
+msgid "Next tour stop"
+msgstr "Pemberhentian tur berikutnya"
+
+#: core/input_bindings.gd:76
+msgid "Previous tour stop"
+msgstr "Pemberhentian tur sebelumnya"
+
+#: core/input_bindings.gd:77
+msgid "Open Explore"
+msgstr "Buka Jelajah"
+
+#: core/input_bindings.gd:78
+msgid "Open Sandbox"
+msgstr "Buka Sandbox"
+
+#: core/input_bindings.gd:79
+msgid "Remove body"
+msgstr "Hapus benda"
+
+#: core/input_bindings.gd:83
+msgid "Cancel and menu"
+msgstr "Batal dan menu"
+
+#: core/input_bindings.gd:84 modes/explore/explore_mode.gd:28 modes/sandbox/sandbox_mode.gd:32
+msgid "Focus a body"
+msgstr "Fokus ke benda"
+
+#: core/locale.gd:7
+msgid "Bahasa Indonesia"
+msgstr "Bahasa Indonesia"
+
+#: core/locale.gd:7
+msgid "English"
+msgstr "English"
+
+#: core/preferences.gd:13
+msgid "Explorer"
+msgstr "Penjelajah"
+
+#: core/preferences.gd:13
+msgid "Scientist"
+msgstr "Ilmuwan"
+
+#: core/preferences.gd:14
+msgid "Long"
+msgstr "Panjang"
+
+#: core/preferences.gd:14 core/quality_settings.gd:10
+msgid "Medium"
+msgstr "Sedang"
+
+#: core/preferences.gd:14
+msgid "Short"
+msgstr "Pendek"
+
+#: core/preferences.gd:16
+msgid "Colorblind-safe"
+msgstr "Ramah buta warna"
+
+#: core/preferences.gd:16
+msgid "Natural"
+msgstr "Alami"
+
+#: core/preferences.gd:17
+msgid "Auto"
+msgstr "Otomatis"
+
+#: core/preferences.gd:17 modes/explore/explore_mode.gd:14 modes/sandbox/sandbox_mode.gd:19
+msgid "Move"
+msgstr "Gerak"
+
+#: core/preferences.gd:17 modes/explore/explore_mode.gd:17 modes/sandbox/sandbox_mode.gd:22
+msgid "Orbit"
+msgstr "Orbit"
+
+#: core/preferences.gd:17 modes/explore/explore_mode.gd:18 modes/sandbox/sandbox_mode.gd:23
+msgid "Zoom"
+msgstr "Zoom"
+
+#: core/quality_settings.gd:10
+msgid "High"
+msgstr "Tinggi"
+
+#: core/quality_settings.gd:10
+msgid "Low"
+msgstr "Rendah"
+
+#: core/simulation_clock.gd:10
+msgid "1 day/s"
+msgstr "1 hari/dtk"
+
+#: core/simulation_clock.gd:10
+msgid "1 hour/s"
+msgstr "1 jam/dtk"
+
+#: core/simulation_clock.gd:10
+msgid "1 min/s"
+msgstr "1 menit/dtk"
+
+#: core/simulation_clock.gd:10
+msgid "1 month/s"
+msgstr "1 bulan/dtk"
+
+#: core/simulation_clock.gd:10
+msgid "1 year/s"
+msgstr "1 tahun/dtk"
+
+#: core/simulation_clock.gd:10
+msgid "10 days/s"
+msgstr "10 hari/dtk"
+
+#: core/simulation_clock.gd:10
+msgid "10 years/s"
+msgstr "10 tahun/dtk"
+
+#: core/simulation_clock.gd:10
+msgid "6 months/s"
+msgstr "6 bulan/dtk"
+
+#: core/simulation_clock.gd:10
+msgid "Real time"
+msgstr "Waktu nyata"
+
+#: data/bodies.json data/quizzes.json
+msgid "Callisto"
+msgstr "Callisto"
+
+#: data/bodies.json data/tours.json
+msgid "Ceres"
+msgstr "Ceres"
+
+#: data/bodies.json data/quizzes.json data/tours.json
+msgid "Earth"
+msgstr "Bumi"
+
+#: data/bodies.json data/quizzes.json data/tours.json
+msgid "Europa"
+msgstr "Europa"
+
+#: data/bodies.json data/quizzes.json data/tours.json
+msgid "Ganymede"
+msgstr "Ganymede"
+
+#: data/bodies.json data/quizzes.json data/tours.json
+msgid "Io"
+msgstr "Io"
+
+#: data/bodies.json data/quizzes.json data/tours.json
+msgid "Jupiter"
+msgstr "Jupiter"
+
+#: data/bodies.json data/quizzes.json data/tours.json
+msgid "Mars"
+msgstr "Mars"
+
+#: data/bodies.json data/quizzes.json data/tours.json
+msgid "Mercury"
+msgstr "Merkurius"
+
+#: data/bodies.json data/body_info.json modes/sandbox/sandbox_mode.gd:215
+msgid "Moon"
+msgstr "Bulan"
+
+#: data/bodies.json data/quizzes.json data/tours.json
+msgid "Neptune"
+msgstr "Neptunus"
+
+#: data/bodies.json data/tours.json
+msgid "Pluto"
+msgstr "Pluto"
+
+#: data/bodies.json data/quizzes.json data/tours.json
+msgid "Saturn"
+msgstr "Saturnus"
+
+#: data/bodies.json
+msgid "Sun"
+msgstr "Matahari"
+
+#: data/bodies.json data/quizzes.json data/tours.json
+msgid "Titan"
+msgstr "Titan"
+
+#: data/bodies.json data/quizzes.json data/tours.json
+msgid "Uranus"
+msgstr "Uranus"
+
+#: data/bodies.json data/quizzes.json data/tours.json
+msgid "Venus"
+msgstr "Venus"
+
+#: data/body_info.json
+msgid "A G-type main-sequence star (G2V) fusing hydrogen into helium in its core at roughly 15 million K. Its effective surface temperature is about 5,772 K and its age is about 4.6 billion years."
+msgstr "Bintang deret utama kelas G (G2V) yang memfusikan hidrogen menjadi helium di intinya pada suhu sekitar 15 juta K. Suhu efektif permukaannya sekitar 5.772 K dan usianya sekitar 4,6 miliar tahun."
+
+#: data/body_info.json
+msgid "A Kuiper belt dwarf planet with a mean radius of 1,188 km, a bulk density of 1.85 g/cm3, and a thin nitrogen atmosphere with layered haze. It is locked in a 3:2 orbital resonance with Neptune."
+msgstr "Planet kerdil sabuk Kuiper dengan jari-jari rata-rata 1.188 km, massa jenis 1,85 g/cm3, dan atmosfer nitrogen tipis dengan kabut berlapis. Pluto terkunci dalam resonansi orbit 3:2 dengan Neptunus."
+
+#: data/body_info.json
+msgid "A day on Jupiter lasts only about 10 hours."
+msgstr "Satu hari di Jupiter hanya sekitar 10 jam."
+
+#: data/body_info.json
+msgid "A day on Mars is just a little longer than a day on Earth."
+msgstr "Satu hari di Mars hanya sedikit lebih lama daripada satu hari di Bumi."
+
+#: data/body_info.json
+msgid "A day on Venus is longer than its year."
+msgstr "Satu hari di Venus lebih panjang daripada satu tahunnya."
+
+#: data/body_info.json
+msgid "A deep ocean is thought to lie far beneath its icy crust."
+msgstr "Samudra yang dalam diduga berada jauh di bawah keraknya yang berupa es."
+
+#: data/body_info.json
+msgid "A differentiated moon with a mean radius of 1,560.8 km and an ice shell over a global liquid-water ocean. Galileo detected an induced magnetic field consistent with a conducting, salty ocean."
+msgstr "Bulan terdiferensiasi dengan jari-jari rata-rata 1.560,8 km dan lapisan es di atas samudra air cair global. Wahana Galileo mendeteksi medan magnet induksi yang sesuai dengan samudra asin yang menghantarkan listrik."
+
+#: data/body_info.json
+msgid "A gas giant composed mostly of hydrogen and helium, with the strongest planetary magnetic field in the solar system. Its rapid rotation produces banded zonal winds."
+msgstr "Raksasa gas yang sebagian besar tersusun dari hidrogen dan helium, dengan medan magnet planet terkuat di tata surya. Rotasinya yang cepat menghasilkan angin zonal berpita."
+
+#: data/body_info.json
+msgid "A gas giant of hydrogen and helium with a ring system of mostly water ice. The main rings extend hundreds of thousands of kilometers but are typically only about ten meters thick."
+msgstr "Raksasa gas berupa hidrogen dan helium dengan sistem cincin yang sebagian besar berupa es air. Cincin utamanya membentang ratusan ribu kilometer, tetapi umumnya hanya setebal sekitar sepuluh meter."
+
+#: data/body_info.json
+msgid "A moon with a mean radius of 2,410.3 km and a density of 1.83 g/cm3. Its moment of inertia indicates only partial differentiation, and Galileo magnetometer data suggest a subsurface ocean."
+msgstr "Bulan dengan jari-jari rata-rata 2.410,3 km dan massa jenis 1,83 g/cm3. Momen inersianya menunjukkan diferensiasi yang hanya sebagian, dan data magnetometer Galileo mengisyaratkan samudra di bawah permukaan."
+
+#: data/body_info.json
+msgid "A persistent hexagonal jet stream surrounds the north pole."
+msgstr "Arus jet berbentuk segi enam yang menetap mengelilingi kutub utaranya."
+
+#: data/body_info.json
+msgid "A terrestrial planet in a 3:2 spin-orbit resonance, rotating three times for every two orbits. Its large iron core spans roughly 85% of the planet's radius, and it holds only a tenuous exosphere."
+msgstr "Planet kebumian dalam resonansi spin-orbit 3:2, berotasi tiga kali setiap dua kali mengorbit. Inti besinya yang besar mencakup sekitar 85% jari-jari planet, dan planet ini hanya punya eksosfer yang sangat tipis."
+
+#: data/body_info.json
+msgid "A terrestrial planet with a dense carbon dioxide atmosphere and sulfuric acid clouds. A runaway greenhouse effect maintains a surface pressure of about 92 bar."
+msgstr "Planet kebumian dengan atmosfer karbon dioksida yang pekat dan awan asam sulfat. Efek rumah kaca tak terkendali menjaga tekanan permukaan sekitar 92 bar."
+
+#: data/body_info.json
+msgid "A terrestrial planet with a nitrogen-oxygen atmosphere, a global magnetic field, and active plate tectonics. Orbital data shown is for the Earth-Moon barycenter."
+msgstr "Planet kebumian dengan atmosfer nitrogen-oksigen, medan magnet global, dan lempeng tektonik yang aktif. Data orbit yang ditampilkan adalah untuk barisenter Bumi-Bulan."
+
+#: data/body_info.json
+msgid "A terrestrial planet with a thin carbon dioxide atmosphere at roughly 0.6% of Earth's surface pressure. Past liquid water is recorded in its geology."
+msgstr "Planet kebumian dengan atmosfer karbon dioksida yang tipis, sekitar 0,6% tekanan permukaan Bumi. Jejak air cair di masa lalu tercatat dalam geologinya."
+
+#: data/body_info.json
+msgid "A year on Mercury lasts only 88 Earth days."
+msgstr "Satu tahun di Merkurius hanya 88 hari Bumi."
+
+#: data/body_info.json
+msgid "About 1.3 million Earths could fit inside it."
+msgstr "Sekitar 1,3 juta Bumi bisa muat di dalamnya."
+
+#: data/body_info.json
+msgid "About 71% of Earth's surface is covered by water."
+msgstr "Sekitar 71% permukaan Bumi tertutup air."
+
+#: data/body_info.json
+msgid "Ahuna Mons, about 4 km high, is interpreted as a cryovolcanic dome."
+msgstr "Ahuna Mons, setinggi sekitar 4 km, ditafsirkan sebagai kubah kriovulkanik."
+
+#: data/body_info.json
+msgid "An eccentricity of 0.25 brings it closer to the Sun than Neptune for part of each orbit, as it was from 1979 to 1999."
+msgstr "Eksentrisitas 0,25 membuatnya lebih dekat ke Matahari daripada Neptunus selama sebagian orbitnya, seperti pada 1979 hingga 1999."
+
+#: data/body_info.json
+msgid "An ice giant with a hydrogen, helium, and methane atmosphere over a mantle of water, ammonia, and methane ices. It rotates retrograde on an axis tilted about 98 degrees."
+msgstr "Raksasa es dengan atmosfer hidrogen, helium, dan metana di atas mantel berupa es air, amonia, dan metana. Planet ini berotasi retrograd dengan sumbu yang miring sekitar 98 derajat."
+
+#: data/body_info.json
+msgid "An ice giant with an atmosphere of hydrogen, helium, and methane. It radiates more energy than it receives from the Sun and has the fastest sustained winds of any planet."
+msgstr "Raksasa es dengan atmosfer hidrogen, helium, dan metana. Planet ini memancarkan lebih banyak energi daripada yang diterimanya dari Matahari dan memiliki angin menetap tercepat di antara semua planet."
+
+#: data/body_info.json
+msgid "Bright grooved terrain cuts across older, darker, heavily cratered regions."
+msgstr "Medan beralur yang terang memotong wilayah yang lebih tua, lebih gelap, dan penuh kawah."
+
+#: data/body_info.json
+msgid "Bright spots inside the crater Occator are deposits of salt."
+msgstr "Bintik terang di dalam kawah Occator adalah endapan garam."
+
+#: data/body_info.json
+msgid "Callisto is almost as wide as the planet Mercury."
+msgstr "Callisto hampir selebar planet Merkurius."
+
+#: data/body_info.json
+msgid "Callisto is the outermost of Jupiter's four big moons. Its dark, icy surface is covered with more craters than almost any other world."
+msgstr "Callisto adalah bulan besar Jupiter yang paling luar. Permukaannya yang gelap dan berlapis es dipenuhi kawah lebih banyak daripada hampir semua dunia lain."
+
+#: data/body_info.json
+msgid "Ceres is the largest object in the asteroid belt between Mars and Jupiter. It is round like a planet, but small enough to fit inside Texas."
+msgstr "Ceres adalah objek terbesar di sabuk asteroid antara Mars dan Jupiter. Bentuknya bulat seperti planet, tetapi cukup kecil untuk muat di dalam negara bagian Texas."
+
+#: data/body_info.json
+msgid "Daytime surface temperatures reach about 430 degrees C, while nights drop to about -180 degrees C."
+msgstr "Suhu permukaan siang hari mencapai sekitar 430 derajat C, sedangkan malam hari turun hingga sekitar -180 derajat C."
+
+#: data/body_info.json modes/sandbox/sandbox_mode.gd:217
+msgid "Dwarf planet"
+msgstr "Planet kerdil"
+
+#: data/body_info.json
+msgid "ESA's JUICE spacecraft will orbit Ganymede in the 2030s."
+msgstr "Wahana JUICE milik ESA akan mengorbit Ganymede pada dekade 2030-an."
+
+#: data/body_info.json
+msgid "Each pole spends about 21 years in continuous sunlight, then 21 years in darkness."
+msgstr "Setiap kutubnya mengalami sekitar 21 tahun terang terus-menerus, lalu 21 tahun gelap."
+
+#: data/body_info.json
+msgid "Earth has one natural satellite, the Moon."
+msgstr "Bumi punya satu satelit alami, yaitu Bulan."
+
+#: data/body_info.json
+msgid "Earth is our home and the only place we know of that has life. Liquid water covers most of its surface."
+msgstr "Bumi adalah rumah kita dan satu-satunya tempat yang diketahui memiliki kehidupan. Air menutupi sebagian besar permukaannya."
+
+#: data/body_info.json
+msgid "Earth's only natural satellite, in synchronous rotation. Its mass is about 1.2% of Earth's, and its orbit is inclined about 5.1 degrees to the ecliptic."
+msgstr "Satu-satunya satelit alami Bumi, dengan rotasi sinkron. Massanya sekitar 1,2% massa Bumi, dan orbitnya miring sekitar 5,1 derajat terhadap ekliptika."
+
+#: data/body_info.json
+msgid "Earth's tilt is what gives us the seasons."
+msgstr "Kemiringan Bumi itulah yang menghasilkan musim."
+
+#: data/body_info.json
+msgid "Europa is covered by a shell of ice with a salty ocean hidden underneath. That ocean may hold more water than all of Earth's oceans."
+msgstr "Europa diselimuti lapisan es dengan samudra asin tersembunyi di bawahnya. Samudra itu mungkin berisi lebih banyak air daripada seluruh samudra di Bumi."
+
+#: data/body_info.json
+msgid "Few impact craters suggest a young surface, about 40 to 90 million years old."
+msgstr "Sedikitnya kawah tumbukan menandakan permukaan yang muda, berusia sekitar 40 sampai 90 juta tahun."
+
+#: data/body_info.json
+msgid "Ganymede is the largest moon in the solar system. It is even wider than the planet Mercury."
+msgstr "Ganymede adalah bulan terbesar di tata surya. Ukurannya bahkan lebih lebar daripada planet Merkurius."
+
+#: data/body_info.json ui/sandbox_panel.gd:57
+msgid "Gas giant"
+msgstr "Raksasa gas"
+
+#: data/body_info.json
+msgid "Global heat flow of about 2 W/m2, more than twenty times Earth's average."
+msgstr "Aliran panas global sekitar 2 W/m2, lebih dari dua puluh kali rata-rata Bumi."
+
+#: data/body_info.json
+msgid "Holds 99.86% of the total mass of the solar system."
+msgstr "Memuat 99,86% dari total massa tata surya."
+
+#: data/body_info.json
+msgid "Holds the coldest recorded planetary atmosphere, with a minimum near 49 K."
+msgstr "Memiliki atmosfer planet terdingin yang pernah tercatat, dengan suhu minimum mendekati 49 K."
+
+#: data/body_info.json
+msgid "Hundreds of volcanoes are active on Io, and some shoot plumes hundreds of kilometers high."
+msgstr "Ratusan gunung berapi aktif di Io, dan beberapa menyemburkan kepulan setinggi ratusan kilometer."
+
+#: data/body_info.json
+msgid "Ice giant"
+msgstr "Raksasa es"
+
+#: data/body_info.json
+msgid "Io is a little larger than our Moon."
+msgstr "Io sedikit lebih besar daripada Bulan kita."
+
+#: data/body_info.json
+msgid "Io is the most volcanic world in the solar system. Its yellow, orange, and white colors come from sulfur and frozen gases spread by its eruptions."
+msgstr "Io adalah dunia dengan aktivitas vulkanik tertinggi di tata surya. Warna kuning, jingga, dan putihnya berasal dari belerang dan gas beku yang tersebar oleh letusannya."
+
+#: data/body_info.json
+msgid "It has hundreds of known moons, including the large moon Titan."
+msgstr "Saturnus punya ratusan bulan yang diketahui, termasuk bulan besar Titan."
+
+#: data/body_info.json
+msgid "It has lakes and seas, but they are filled with liquid methane and ethane instead of water."
+msgstr "Titan punya danau dan laut, tetapi isinya metana dan etana cair, bukan air."
+
+#: data/body_info.json
+msgid "It is likely the result of a giant collision early in Earth's history."
+msgstr "Bulan kemungkinan terbentuk dari tabrakan raksasa di awal sejarah Bumi."
+
+#: data/body_info.json
+msgid "It is the only Galilean moon outside the Laplace resonance."
+msgstr "Callisto satu-satunya bulan Galilean di luar resonansi Laplace."
+
+#: data/body_info.json
+msgid "It is the only moon known to make its own magnetic field."
+msgstr "Ganymede satu-satunya bulan yang diketahui menghasilkan medan magnetnya sendiri."
+
+#: data/body_info.json
+msgid "It orbits farther from Jupiter's radiation, so it could be a base for future explorers."
+msgstr "Callisto mengorbit lebih jauh dari radiasi Jupiter, sehingga bisa menjadi pangkalan bagi penjelajah masa depan."
+
+#: data/body_info.json
+msgid "It was found in 1846 using math before it was ever seen through a telescope."
+msgstr "Neptunus ditemukan pada 1846 lewat perhitungan matematika sebelum pernah terlihat melalui teleskop."
+
+#: data/body_info.json
+msgid "It was the first asteroid ever discovered, by Giuseppe Piazzi in 1801."
+msgstr "Ceres adalah asteroid pertama yang pernah ditemukan, oleh Giuseppe Piazzi pada 1801."
+
+#: data/body_info.json
+msgid "Its ancient surface records about 4 billion years of impacts with little geologic resurfacing."
+msgstr "Permukaannya yang purba merekam sekitar 4 miliar tahun tumbukan dengan sedikit pembaruan geologis."
+
+#: data/body_info.json
+msgid "Its axial tilt of about 177 degrees reflects the retrograde spin."
+msgstr "Kemiringan sumbu sekitar 177 derajat mencerminkan putarannya yang retrograd."
+
+#: data/body_info.json
+msgid "Its axis is tilted nearly 98 degrees, so it spins on its side."
+msgstr "Sumbunya miring hampir 98 derajat, sehingga planet ini berputar dalam posisi terbaring."
+
+#: data/body_info.json
+msgid "Its biggest impact basin, Valhalla, has rings that spread out about 3,800 km."
+msgstr "Cekungan tumbukan terbesarnya, Valhalla, memiliki cincin yang membentang sekitar 3.800 km."
+
+#: data/body_info.json
+msgid "Its blue-green color comes from methane in the atmosphere."
+msgstr "Warna biru kehijauannya berasal dari metana di atmosfernya."
+
+#: data/body_info.json
+msgid "Its bright, heart-shaped region is a giant plain of frozen nitrogen."
+msgstr "Wilayahnya yang terang berbentuk hati adalah dataran raksasa berupa nitrogen beku."
+
+#: data/body_info.json
+msgid "Its gravity causes the ocean tides."
+msgstr "Gravitasinya menyebabkan pasang surut air laut."
+
+#: data/body_info.json
+msgid "Its large moon Triton orbits retrograde and is likely a captured Kuiper belt object."
+msgstr "Bulan besarnya, Triton, mengorbit secara retrograd dan kemungkinan adalah objek sabuk Kuiper yang tertangkap."
+
+#: data/body_info.json
+msgid "Its normalized moment of inertia of about 0.31 is among the lowest of any solid body."
+msgstr "Momen inersia ternormalisasinya sekitar 0,31, termasuk yang terendah di antara benda padat."
+
+#: data/body_info.json
+msgid "Its surface is covered in craters, much like our Moon."
+msgstr "Permukaannya dipenuhi kawah, mirip Bulan kita."
+
+#: data/body_info.json
+msgid "Jupiter is more than twice as massive as all the other planets combined."
+msgstr "Massa Jupiter lebih dari dua kali gabungan semua planet lain."
+
+#: data/body_info.json
+msgid "Jupiter is the largest planet. It is a huge ball of gas with colorful stripes and storms."
+msgstr "Jupiter adalah planet terbesar. Planet ini berupa bola gas raksasa dengan garis-garis warna-warni dan badai."
+
+#: data/body_info.json
+msgid "Jupiter's gravity squeezes Io as it orbits, heating its insides."
+msgstr "Gravitasi Jupiter meremas Io saat mengorbit, sehingga bagian dalamnya memanas."
+
+#: data/body_info.json
+msgid "Luminosity of about 3.83 x 10^26 W."
+msgstr "Luminositas sekitar 3,83 x 10^26 W."
+
+#: data/body_info.json
+msgid "Mars has two small moons, Phobos and Deimos."
+msgstr "Mars punya dua bulan kecil, Phobos dan Deimos."
+
+#: data/body_info.json
+msgid "Mars is a cold, dusty desert world. Its red color comes from rusty iron in the soil."
+msgstr "Mars adalah dunia gurun yang dingin dan berdebu. Warna merahnya berasal dari besi berkarat di tanahnya."
+
+#: data/body_info.json
+msgid "Mean density of about 0.69 g/cm3, the lowest of any planet."
+msgstr "Massa jenis rata-rata sekitar 0,69 g/cm3, terendah di antara semua planet."
+
+#: data/body_info.json
+msgid "Mean radius of about 11 Earth radii and a mass of about 318 Earth masses."
+msgstr "Jari-jari rata-rata sekitar 11 jari-jari Bumi dan massa sekitar 318 massa Bumi."
+
+#: data/body_info.json
+msgid "Mercury is the smallest planet and the closest to the Sun. It has no moons and almost no atmosphere."
+msgstr "Merkurius adalah planet terkecil dan terdekat dengan Matahari. Planet ini tidak punya bulan dan hampir tidak beratmosfer."
+
+#: data/body_info.json
+msgid "Moon of Jupiter"
+msgstr "Bulan Jupiter"
+
+#: data/body_info.json
+msgid "Moon of Saturn"
+msgstr "Bulan Saturnus"
+
+#: data/body_info.json
+msgid "More than 99.8% of all the mass in the solar system is in the Sun."
+msgstr "Lebih dari 99,8% seluruh massa tata surya ada di Matahari."
+
+#: data/body_info.json
+msgid "Much of the southern hemisphere was in polar night during the 2015 flyby, so this map shows it as an even tone."
+msgstr "Sebagian besar belahan selatannya sedang mengalami malam kutub saat dilintasi pada 2015, sehingga peta ini menampilkannya dengan warna rata."
+
+#: data/body_info.json
+msgid "NASA's Dawn spacecraft orbited Ceres from 2015 to 2018."
+msgstr "Wahana Dawn milik NASA mengorbit Ceres dari 2015 sampai 2018."
+
+#: data/body_info.json
+msgid "NASA's Europa Clipper spacecraft is on its way to study it."
+msgstr "Wahana Europa Clipper milik NASA sedang dalam perjalanan untuk mempelajarinya."
+
+#: data/body_info.json
+msgid "NASA's New Horizons flew past Pluto in July 2015 and took the first close-up pictures."
+msgstr "Wahana New Horizons milik NASA melintasi Pluto pada Juli 2015 dan mengambil foto jarak dekat pertamanya."
+
+#: data/body_info.json
+msgid "Nearly circular orbit with an eccentricity of 0.0068."
+msgstr "Orbit hampir melingkar dengan eksentrisitas 0,0068."
+
+#: data/body_info.json
+msgid "Neptune is a deep blue planet at the edge of the solar system. It is cold, dark, and very windy."
+msgstr "Neptunus adalah planet biru tua di tepi tata surya. Planet ini dingin, gelap, dan sangat berangin."
+
+#: data/body_info.json
+msgid "Olympus Mons, a volcano about 22 km tall, is the tallest in the solar system."
+msgstr "Olympus Mons, gunung berapi setinggi sekitar 22 km, adalah yang tertinggi di tata surya."
+
+#: data/body_info.json
+msgid "One solar day lasts about 176 Earth days, twice its orbital period."
+msgstr "Satu hari Matahari berlangsung sekitar 176 hari Bumi, dua kali periode orbitnya."
+
+#: data/body_info.json
+msgid "One year on Neptune lasts about 165 Earth years."
+msgstr "Satu tahun di Neptunus sekitar 165 tahun Bumi."
+
+#: data/body_info.json
+msgid "One year on Pluto lasts about 248 Earth years."
+msgstr "Satu tahun di Pluto sekitar 248 tahun Bumi."
+
+#: data/body_info.json
+msgid "One year on Uranus lasts about 84 Earth years."
+msgstr "Satu tahun di Uranus sekitar 84 tahun Bumi."
+
+#: data/body_info.json
+msgid "Orbital eccentricity of 0.093 makes seasons uneven between hemispheres."
+msgstr "Eksentrisitas orbit 0,093 membuat musim tidak seimbang di antara kedua belahan."
+
+#: data/body_info.json
+msgid "Orbital period of 1.769 days at about 5.9 Jupiter radii."
+msgstr "Periode orbit 1,769 hari pada jarak sekitar 5,9 jari-jari Jupiter."
+
+#: data/body_info.json
+msgid "Orbital period of 11.86 years at 5.2 AU, with more than 90 known moons."
+msgstr "Periode orbit 11,86 tahun pada jarak 5,2 AU, dengan lebih dari 90 bulan yang diketahui."
+
+#: data/body_info.json
+msgid "Orbital period of 15.945 days at about 20 Saturn radii."
+msgstr "Periode orbit 15,945 hari pada jarak sekitar 20 jari-jari Saturnus."
+
+#: data/body_info.json
+msgid "Orbital period of 16.69 days at about 26 Jupiter radii."
+msgstr "Periode orbit 16,69 hari pada jarak sekitar 26 jari-jari Jupiter."
+
+#: data/body_info.json
+msgid "Orbital period of 29.4 years and a rotation period of about 10.7 hours."
+msgstr "Periode orbit 29,4 tahun dan periode rotasi sekitar 10,7 jam."
+
+#: data/body_info.json
+msgid "Orbital period of 3.551 days, in a 2:1 resonance with Io."
+msgstr "Periode orbit 3,551 hari, dalam resonansi 2:1 dengan Io."
+
+#: data/body_info.json
+msgid "Orbital period of 7.155 days, in a 2:1 resonance with Europa."
+msgstr "Periode orbit 7,155 hari, dalam resonansi 2:1 dengan Europa."
+
+#: data/body_info.json
+msgid "Orbital period of about 164.8 years at 30.1 AU."
+msgstr "Periode orbit sekitar 164,8 tahun pada jarak 30,1 AU."
+
+#: data/body_info.json
+msgid "Pluto is a small, icy world far beyond Neptune. It was called the ninth planet until 2006, when astronomers named it a dwarf planet."
+msgstr "Pluto adalah dunia kecil dan berlapis es jauh di luar Neptunus. Pluto disebut planet kesembilan hingga 2006, ketika para astronom menggolongkannya sebagai planet kerdil."
+
+#: data/body_info.json
+msgid "Retrograde rotation with a sidereal period of about 243 days, longer than its 225-day orbit."
+msgstr "Rotasi retrograd dengan periode sideris sekitar 243 hari, lebih lama daripada orbitnya yang 225 hari."
+
+#: data/body_info.json
+msgid "Rotates differentially: about 25 days at the equator and about 35 days near the poles."
+msgstr "Berotasi secara diferensial: sekitar 25 hari di ekuator dan sekitar 35 hari di dekat kutub."
+
+#: data/body_info.json
+msgid "Rotation period of 24 h 37 min and an axial tilt of about 25 degrees give Earth-like seasons."
+msgstr "Periode rotasi 24 jam 37 menit dan kemiringan sumbu sekitar 25 derajat menghasilkan musim seperti di Bumi."
+
+#: data/body_info.json
+msgid "Saturn is famous for its bright rings, which are made of countless pieces of ice and rock."
+msgstr "Saturnus terkenal dengan cincinnya yang terang, yang tersusun dari bongkahan es dan batu yang tak terhitung jumlahnya."
+
+#: data/body_info.json
+msgid "Saturn is less dense than water, so it would float in a giant bathtub."
+msgstr "Saturnus kurang rapat daripada air, jadi planet ini akan mengapung di bak mandi raksasa."
+
+#: data/body_info.json
+msgid "Scientists think Europa is one of the best places to look for life beyond Earth."
+msgstr "Para ilmuwan menganggap Europa salah satu tempat terbaik untuk mencari kehidupan di luar Bumi."
+
+#: data/body_info.json
+msgid "Sidereal rotation period of about 17.2 hours, retrograde."
+msgstr "Periode rotasi sideris sekitar 17,2 jam, retrograd."
+
+#: data/body_info.json
+msgid "Sidereal rotation period of about 9.07 hours at a semi-major axis of 2.77 AU."
+msgstr "Periode rotasi sideris sekitar 9,07 jam dengan sumbu semi-mayor 2,77 AU."
+
+#: data/body_info.json
+msgid "Sidereal rotation period of roughly 9.9 hours."
+msgstr "Periode rotasi sideris sekitar 9,9 jam."
+
+#: data/body_info.json
+msgid "Sputnik Planitia is a convecting nitrogen-ice glacier about 1,000 km across."
+msgstr "Sputnik Planitia adalah gletser es nitrogen yang berkonveksi dengan lebar sekitar 1.000 km."
+
+#: data/body_info.json modes/sandbox/sandbox_mode.gd:201 modes/sandbox/sandbox_mode.gd:211
+msgid "Star"
+msgstr "Bintang"
+
+#: data/body_info.json
+msgid "Sunlight takes about 8 minutes to reach Earth."
+msgstr "Cahaya Matahari butuh sekitar 8 menit untuk sampai ke Bumi."
+
+#: data/body_info.json
+msgid "Surface temperature of about 94 K supports a methane cycle with clouds, rain, rivers, and polar seas such as Kraken Mare."
+msgstr "Suhu permukaan sekitar 94 K mendukung siklus metana dengan awan, hujan, sungai, dan laut kutub seperti Kraken Mare."
+
+#: data/body_info.json
+msgid "Surface temperatures of about 465 degrees C are hot enough to melt lead."
+msgstr "Suhu permukaan sekitar 465 derajat C cukup panas untuk melelehkan timah."
+
+#: data/body_info.json
+msgid "Terrestrial planet"
+msgstr "Planet kebumian"
+
+#: data/body_info.json
+msgid "The Great Red Spot is a storm wider than Earth that has lasted for centuries."
+msgstr "Bintik Merah Raksasa adalah badai yang lebih lebar dari Bumi dan sudah berlangsung berabad-abad."
+
+#: data/body_info.json
+msgid "The Huygens probe landed on Titan in 2005."
+msgstr "Wahana pendarat Huygens mendarat di Titan pada 2005."
+
+#: data/body_info.json
+msgid "The Moon is Earth's only natural satellite. It always shows us the same face as it circles our planet."
+msgstr "Bulan adalah satu-satunya satelit alami Bumi. Bulan selalu menunjukkan sisi yang sama kepada kita saat mengitari planet kita."
+
+#: data/body_info.json
+msgid "The Moon is slowly drifting away from Earth, about 3.8 centimeters each year."
+msgstr "Bulan perlahan menjauh dari Bumi, sekitar 3,8 sentimeter setiap tahun."
+
+#: data/body_info.json
+msgid "The Sun is the star at the center of our solar system. Its gravity keeps every planet in orbit, and its light and heat power life on Earth."
+msgstr "Matahari adalah bintang di pusat tata surya kita. Gravitasinya menjaga semua planet tetap di orbitnya, dan cahaya serta panasnya menghidupi kehidupan di Bumi."
+
+#: data/body_info.json
+msgid "The atmosphere is about 78% nitrogen and 21% oxygen."
+msgstr "Atmosfernya terdiri dari sekitar 78% nitrogen dan 21% oksigen."
+
+#: data/body_info.json
+msgid "The axial tilt of 23.44 degrees drives seasonal insolation changes."
+msgstr "Kemiringan sumbu 23,44 derajat menyebabkan perubahan penyinaran musiman."
+
+#: data/body_info.json
+msgid "The axial tilt of about 0.03 degrees is the smallest of any planet."
+msgstr "Kemiringan sumbu sekitar 0,03 derajat adalah yang terkecil di antara semua planet."
+
+#: data/body_info.json
+msgid "The bright faculae in Occator crater are mostly sodium carbonate brought up from a briny reservoir."
+msgstr "Fakula terang di kawah Occator sebagian besar berupa natrium karbonat yang naik dari reservoir air asin."
+
+#: data/body_info.json
+msgid "The dark lines across its surface are cracks and ridges in the ice."
+msgstr "Garis-garis gelap di permukaannya adalah retakan dan punggungan pada es."
+
+#: data/body_info.json
+msgid "The ice shell is estimated to be roughly 15 to 25 km thick over an ocean up to about 100 km deep."
+msgstr "Lapisan esnya diperkirakan setebal sekitar 15 sampai 25 km di atas samudra sedalam hingga sekitar 100 km."
+
+#: data/body_info.json
+msgid "The innermost Galilean moon, with a mean radius of 1,821.6 km and a density of 3.53 g/cm3. Tidal heating from its eccentric orbit, forced by the 1:2:4 Laplace resonance with Europa and Ganymede, drives intense silicate volcanism."
+msgstr "Bulan Galilean terdalam, dengan jari-jari rata-rata 1.821,6 km dan massa jenis 3,53 g/cm3. Pemanasan pasang surut dari orbitnya yang eksentrik, yang dipaksa oleh resonansi Laplace 1:2:4 dengan Europa dan Ganymede, memicu vulkanisme silikat yang hebat."
+
+#: data/body_info.json
+msgid "The largest moon, with a mean radius of 2,634.1 km and a density of 1.94 g/cm3. It is strongly differentiated, with an iron core that generates an intrinsic magnetic field and a magnetosphere embedded in Jupiter's."
+msgstr "Bulan terbesar, dengan jari-jari rata-rata 2.634,1 km dan massa jenis 1,94 g/cm3. Ganymede sangat terdiferensiasi, dengan inti besi yang membangkitkan medan magnet intrinsik dan magnetosfer yang tertanam di dalam magnetosfer Jupiter."
+
+#: data/body_info.json
+msgid "The only dwarf planet in the inner solar system, with a mean radius of about 470 km and a bulk density of 2.16 g/cm3. It is partly differentiated, with a rocky interior under a crust rich in ice, salts, and hydrated minerals."
+msgstr "Satu-satunya planet kerdil di tata surya bagian dalam, dengan jari-jari rata-rata sekitar 470 km dan massa jenis 2,16 g/cm3. Ceres terdiferensiasi sebagian, dengan bagian dalam berbatu di bawah kerak yang kaya es, garam, dan mineral terhidrasi."
+
+#: data/body_info.json
+msgid "The orbit's line of nodes regresses with a period of about 18.6 years."
+msgstr "Garis simpul orbitnya mundur dengan periode sekitar 18,6 tahun."
+
+#: data/body_info.json
+msgid "The orbital eccentricity of 0.0167 puts perihelion in early January."
+msgstr "Eksentrisitas orbit 0,0167 menempatkan perihelion di awal Januari."
+
+#: data/body_info.json
+msgid "The orbital eccentricity of 0.055 causes visible libration."
+msgstr "Eksentrisitas orbit 0,055 menyebabkan librasi yang terlihat."
+
+#: data/body_info.json
+msgid "The orbital eccentricity of 0.206 is the highest of any planet."
+msgstr "Eksentrisitas orbit 0,206 adalah yang tertinggi di antara semua planet."
+
+#: data/body_info.json
+msgid "The planet completed its first full orbit since discovery in 2011."
+msgstr "Planet ini menyelesaikan orbit penuh pertamanya sejak ditemukan pada 2011."
+
+#: data/body_info.json
+msgid "The rings are wide but extremely thin."
+msgstr "Cincinnya lebar tetapi sangat tipis."
+
+#: data/body_info.json
+msgid "The second-largest moon, with a mean radius of 2,574.7 km and a nitrogen atmosphere with a surface pressure of about 1.5 bar. Photochemistry of methane produces the organic haze that hides the surface in visible light."
+msgstr "Bulan terbesar kedua, dengan jari-jari rata-rata 2.574,7 km dan atmosfer nitrogen bertekanan permukaan sekitar 1,5 bar. Fotokimia metana menghasilkan kabut organik yang menyembunyikan permukaan dalam cahaya tampak."
+
+#: data/body_info.json
+msgid "The surface map shown here comes from Cassini near-infrared images taken through the haze."
+msgstr "Peta permukaan yang ditampilkan di sini berasal dari citra inframerah dekat Cassini yang diambil menembus kabut."
+
+#: data/body_info.json
+msgid "Tidally locked, so its rotation period equals its orbital period of 27.32 days."
+msgstr "Terkunci pasang surut, sehingga periode rotasinya sama dengan periode orbitnya, yaitu 27,32 hari."
+
+#: data/body_info.json
+msgid "Titan is Saturn's largest moon and the only moon with a thick atmosphere. An orange haze hides its surface from view."
+msgstr "Titan adalah bulan terbesar Saturnus dan satu-satunya bulan dengan atmosfer tebal. Kabut jingga menyembunyikan permukaannya dari pandangan."
+
+#: data/body_info.json
+msgid "Titan is bigger than the planet Mercury."
+msgstr "Titan lebih besar daripada planet Merkurius."
+
+#: data/body_info.json
+msgid "Uranus is a pale blue-green planet that rolls around the Sun tipped on its side."
+msgstr "Uranus adalah planet biru kehijauan pucat yang menggelinding mengelilingi Matahari dalam posisi miring di sisinya."
+
+#: data/body_info.json
+msgid "Valles Marineris stretches about 4,000 km."
+msgstr "Valles Marineris membentang sekitar 4.000 km."
+
+#: data/body_info.json
+msgid "Venus is the hottest planet, wrapped in thick clouds. It is similar in size to Earth, but its surface is a scorching, high-pressure desert."
+msgstr "Venus adalah planet terpanas dan diselimuti awan tebal. Ukurannya mirip Bumi, tetapi permukaannya berupa gurun yang sangat panas dan bertekanan tinggi."
+
+#: data/body_info.json
+msgid "Venus spins backwards compared with most planets."
+msgstr "Venus berputar terbalik dibandingkan kebanyakan planet."
+
+#: data/body_info.json
+msgid "Volcanic gases supply the Io plasma torus that surrounds Jupiter along Io's orbit."
+msgstr "Gas vulkanik mengisi torus plasma Io yang mengelilingi Jupiter di sepanjang orbit Io."
+
+#: data/body_info.json
+msgid "Winds on Neptune can blow faster than 2,000 kilometers per hour."
+msgstr "Angin di Neptunus bisa bertiup lebih cepat dari 2.000 kilometer per jam."
+
+#: data/credits.json
+msgid "Alexander William Sinjaya"
+msgstr "Alexander William Sinjaya"
+
+#: data/credits.json
+msgid "Background music and sound effects"
+msgstr "Musik latar dan efek suara"
+
+#: data/credits.json
+msgid "Data sources"
+msgstr "Sumber data"
+
+#: data/credits.json
+msgid "Engine"
+msgstr "Mesin"
+
+#: data/credits.json
+msgid "Fonts and icons"
+msgstr "Huruf dan ikon"
+
+#: data/credits.json
+msgid "FreeType"
+msgstr "FreeType"
+
+#: data/credits.json
+msgid "Godot Engine"
+msgstr "Godot Engine"
+
+#: data/credits.json
+msgid "Inter typeface"
+msgstr "Huruf Inter"
+
+#: data/credits.json
+msgid "Io, Europa, Ganymede, Callisto, Titan, Ceres, and Pluto textures"
+msgstr "Tekstur Io, Europa, Ganymede, Callisto, Titan, Ceres, dan Pluto"
+
+#: data/credits.json
+msgid "Keplerian Elements for Approximate Positions of the Major Planets"
+msgstr "Keplerian Elements for Approximate Positions of the Major Planets"
+
+#: data/credits.json
+msgid "Lucide icons"
+msgstr "Ikon Lucide"
+
+#: data/credits.json
+msgid "Lunar mean orbital elements"
+msgstr "Elemen orbit rata-rata Bulan"
+
+#: data/credits.json
+msgid "Member"
+msgstr "Anggota"
+
+#: data/credits.json
+msgid "Moon, Mars, and Earth elevation for normal maps"
+msgstr "Data ketinggian Bulan, Mars, dan Bumi untuk normal map"
+
+#: data/credits.json
+msgid "Muhamad Fahry Pratama Putra"
+msgstr "Muhamad Fahry Pratama Putra"
+
+#: data/credits.json
+msgid "Muhammad Atha Tsaqif"
+msgstr "Muhammad Atha Tsaqif"
+
+#: data/credits.json
+msgid "Muhammad Hafizh Faiqunnabil"
+msgstr "Muhammad Hafizh Faiqunnabil"
+
+#: data/credits.json
+msgid "Music and sound effects"
+msgstr "Musik dan efek suara"
+
+#: data/credits.json
+msgid "Physical parameters and rotation poles"
+msgstr "Parameter fisik dan kutub rotasi"
+
+#: data/credits.json
+msgid "Planetary satellite mean elements, Horizons ephemerides, and Small-Body Database"
+msgstr "Elemen rata-rata satelit planet, efemeris Horizons, dan Small-Body Database"
+
+#: data/credits.json
+msgid "Sun, planet, Moon, Saturn ring, and Milky Way textures"
+msgstr "Tekstur Matahari, planet, Bulan, cincin Saturnus, dan Bima Sakti"
+
+#: data/credits.json
+msgid "Team Lead"
+msgstr "Ketua Tim"
+
+#: data/credits.json
+msgid "Team Sepak Takraw"
+msgstr "Tim Sepak Takraw"
+
+#: data/credits.json
+msgid "Textures"
+msgstr "Tekstur"
+
+#: data/credits.json
+msgid "The narration voice is synthesized speech. It was generated offline during development with the Kokoro-82M text-to-speech model and is not a recording of a human speaker."
+msgstr "Suara narasi adalah suara sintetis. Suara ini dibuat secara offline selama pengembangan dengan model text-to-speech Kokoro-82M dan bukan rekaman suara manusia."
+
+#: data/credits.json
+msgid "Voice-over narration (voice af_bella)"
+msgstr "Suara narasi (suara af_bella)"
+
+#: data/quizzes.json
+msgid "0.006 bar"
+msgstr "0,006 bar"
+
+#: data/quizzes.json
+msgid "0.69 g/cm3"
+msgstr "0,69 g/cm3"
+
+#: data/quizzes.json
+msgid "1 AU"
+msgstr "1 AU"
+
+#: data/quizzes.json
+msgid "1 AU divided by the speed of light is about 499 s, or 8.3 minutes."
+msgstr "1 AU dibagi kecepatan cahaya kira-kira 499 detik, atau 8,3 menit."
+
+#: data/quizzes.json
+msgid "1 Earth radius"
+msgstr "1 jari-jari Bumi"
+
+#: data/quizzes.json
+msgid "1 bar"
+msgstr "1 bar"
+
+#: data/quizzes.json ui/sandbox_panel.gd:31
+msgid "1 day"
+msgstr "1 hari"
+
+#: data/quizzes.json
+msgid "1 km"
+msgstr "1 km"
+
+#: data/quizzes.json
+msgid "1,000 km"
+msgstr "1.000 km"
+
+#: data/quizzes.json
+msgid "1,274 km"
+msgstr "1.274 km"
+
+#: data/quizzes.json
+msgid "1,321 Earth masses"
+msgstr "1.321 massa Bumi"
+
+#: data/quizzes.json
+msgid "1,321 times"
+msgstr "1.321 kali"
+
+#: data/quizzes.json
+msgid "1.27 million km"
+msgstr "1,27 juta km"
+
+#: data/quizzes.json
+msgid "1.3 million"
+msgstr "1,3 juta"
+
+#: data/quizzes.json
+msgid "1.3 million times"
+msgstr "1,3 juta kali"
+
+#: data/quizzes.json
+msgid "1.33 g/cm3"
+msgstr "1,33 g/cm3"
+
+#: data/quizzes.json
+msgid "1.5 bar"
+msgstr "1,5 bar"
+
+#: data/quizzes.json
+msgid "109 times"
+msgstr "109 kali"
+
+#: data/quizzes.json
+msgid "12 years"
+msgstr "12 tahun"
+
+#: data/quizzes.json
+msgid "12,742 km"
+msgstr "12.742 km"
+
+#: data/quizzes.json
+msgid "127,420 km"
+msgstr "127.420 km"
+
+#: data/quizzes.json
+msgid "15 bar"
+msgstr "15 bar"
+
+#: data/quizzes.json
+msgid "177 degrees"
+msgstr "177 derajat"
+
+#: data/quizzes.json
+msgid "2,000 km/h"
+msgstr "2.000 km/jam"
+
+#: data/quizzes.json
+msgid "20 km/h"
+msgstr "20 km/jam"
+
+#: data/quizzes.json
+msgid "20,000 km/h"
+msgstr "20.000 km/jam"
+
+#: data/quizzes.json
+msgid "200 km/h"
+msgstr "200 km/jam"
+
+#: data/quizzes.json
+msgid "248 years"
+msgstr "248 tahun"
+
+#: data/quizzes.json
+msgid "27 days"
+msgstr "27 hari"
+
+#: data/quizzes.json
+msgid "28 degrees"
+msgstr "28 derajat"
+
+#: data/quizzes.json
+msgid "3 degrees"
+msgstr "3 derajat"
+
+#: data/quizzes.json
+msgid "3.93 g/cm3"
+msgstr "3,93 g/cm3"
+
+#: data/quizzes.json
+msgid "318 Earth masses"
+msgstr "318 massa Bumi"
+
+#: data/quizzes.json
+msgid "32 Earth masses"
+msgstr "32 massa Bumi"
+
+#: data/quizzes.json
+msgid "333,000 times"
+msgstr "333.000 kali"
+
+#: data/quizzes.json
+msgid "365 days"
+msgstr "365 hari"
+
+#: data/quizzes.json
+msgid "384,400 km divided by 6,371 km is about 60 Earth radii."
+msgstr "384.400 km dibagi 6.371 km kira-kira 60 jari-jari Bumi."
+
+#: data/quizzes.json
+msgid "384,400 km divided by the speed of light is about 1.28 s."
+msgstr "384.400 km dibagi kecepatan cahaya kira-kira 1,28 detik."
+
+#: data/quizzes.json
+msgid "5.51 g/cm3"
+msgstr "5,51 g/cm3"
+
+#: data/quizzes.json
+msgid "7 days"
+msgstr "7 hari"
+
+#: data/quizzes.json
+msgid "8 minutes"
+msgstr "8 menit"
+
+#: data/quizzes.json
+msgid "8.3 min"
+msgstr "8,3 menit"
+
+#: data/quizzes.json
+msgid "84 years"
+msgstr "84 tahun"
+
+#: data/quizzes.json
+msgid "88 days"
+msgstr "88 hari"
+
+#: data/quizzes.json
+msgid "9 bar"
+msgstr "9 bar"
+
+#: data/quizzes.json
+msgid "92 bar"
+msgstr "92 bar"
+
+#: data/quizzes.json
+msgid "920 bar"
+msgstr "920 bar"
+
+#: data/quizzes.json
+msgid "95 Earth masses"
+msgstr "95 massa Bumi"
+
+#: data/quizzes.json
+msgid "98 degrees"
+msgstr "98 derajat"
+
+#: data/quizzes.json
+msgid "A global salty ocean lies under Europa's ice shell."
+msgstr "Samudra asin global terletak di bawah lapisan es Europa."
+
+#: data/quizzes.json
+msgid "A layer of lava"
+msgstr "Lapisan lava"
+
+#: data/quizzes.json
+msgid "A retrograde orbit"
+msgstr "Orbit retrograd"
+
+#: data/quizzes.json
+msgid "A ring system"
+msgstr "Sistem cincin"
+
+#: data/quizzes.json
+msgid "A rocky desert"
+msgstr "Gurun berbatu"
+
+#: data/quizzes.json
+msgid "A runaway greenhouse effect keeps a dense carbon dioxide atmosphere at about 92 bar."
+msgstr "Efek rumah kaca tak terkendali menjaga atmosfer karbon dioksida yang pekat pada sekitar 92 bar."
+
+#: data/quizzes.json
+msgid "A salty ocean"
+msgstr "Samudra asin"
+
+#: data/quizzes.json
+msgid "A thick atmosphere"
+msgstr "Atmosfer tebal"
+
+#: data/quizzes.json
+msgid "About 1 day"
+msgstr "Sekitar 1 hari"
+
+#: data/quizzes.json
+msgid "About 1 hour"
+msgstr "Sekitar 1 jam"
+
+#: data/quizzes.json
+msgid "About 1 second"
+msgstr "Sekitar 1 detik"
+
+#: data/quizzes.json
+msgid "About 50%"
+msgstr "Sekitar 50%"
+
+#: data/quizzes.json
+msgid "About 75%"
+msgstr "Sekitar 75%"
+
+#: data/quizzes.json
+msgid "About 8 minutes"
+msgstr "Sekitar 8 menit"
+
+#: data/quizzes.json
+msgid "About 90%"
+msgstr "Sekitar 90%"
+
+#: data/quizzes.json
+msgid "About 99.86%"
+msgstr "Sekitar 99,86%"
+
+#: data/quizzes.json
+msgid "About how long does the Moon take to orbit Earth?"
+msgstr "Kira-kira berapa lama Bulan mengorbit Bumi?"
+
+#: data/quizzes.json
+msgid "About how many Earths could fit inside Jupiter?"
+msgstr "Kira-kira berapa banyak Bumi yang bisa muat di dalam Jupiter?"
+
+#: data/quizzes.json
+msgid "About how many times wider than Earth is the Sun?"
+msgstr "Matahari kira-kira berapa kali lebih lebar daripada Bumi?"
+
+#: data/quizzes.json
+msgid "An induced magnetic field measured by Galileo"
+msgstr "Medan magnet induksi yang diukur wahana Galileo"
+
+#: data/quizzes.json
+msgid "An intrinsic magnetic field"
+msgstr "Medan magnet intrinsik"
+
+#: data/quizzes.json
+msgid "Around Jupiter"
+msgstr "Mengelilingi Jupiter"
+
+#: data/quizzes.json
+msgid "At Earth's center"
+msgstr "Di pusat Bumi"
+
+#: data/quizzes.json
+msgid "At about 0.69 g/cm3, Saturn is the least dense planet, less dense than water."
+msgstr "Dengan massa jenis sekitar 0,69 g/cm3, Saturnus adalah planet dengan massa jenis terendah, lebih rendah daripada air."
+
+#: data/quizzes.json
+msgid "At the Moon's center"
+msgstr "Di pusat Bulan"
+
+#: data/quizzes.json
+msgid "At true scale, about how many Earth-widths away is the Moon?"
+msgstr "Dalam skala nyata, Bulan berjarak kira-kira berapa kali lebar Bumi?"
+
+#: data/quizzes.json
+msgid "At true scale, the planets would be tiny dots far apart. Try the true scale view to see it."
+msgstr "Dalam skala nyata, planet-planet akan menjadi titik kecil yang saling berjauhan. Coba tampilan skala nyata untuk melihatnya."
+
+#: data/quizzes.json
+msgid "Being the smallest planet"
+msgstr "Menjadi planet terkecil"
+
+#: data/quizzes.json
+msgid "Between Venus and Earth"
+msgstr "Di antara Venus dan Bumi"
+
+#: data/quizzes.json
+msgid "Beyond Neptune"
+msgstr "Di luar Neptunus"
+
+#: data/quizzes.json
+msgid "Ceres is the largest object in the asteroid belt between Mars and Jupiter."
+msgstr "Ceres adalah objek terbesar di sabuk asteroid antara Mars dan Jupiter."
+
+#: data/quizzes.json
+msgid "Dawn identified sodium carbonate deposited from brine that rose from below the crust."
+msgstr "Wahana Dawn mengidentifikasi natrium karbonat yang diendapkan oleh air asin yang naik dari bawah kerak."
+
+#: data/quizzes.json
+msgid "Day and night"
+msgstr "Siang dan malam"
+
+#: data/quizzes.json
+msgid "Earth blocks the other side"
+msgstr "Bumi menghalangi sisi lainnya"
+
+#: data/quizzes.json
+msgid "Earth is 12,742 km across."
+msgstr "Lebar Bumi 12.742 km."
+
+#: data/quizzes.json
+msgid "Earthquakes"
+msgstr "Gempa bumi"
+
+#: data/quizzes.json
+msgid "Exposed iron"
+msgstr "Besi yang tersingkap"
+
+#: data/quizzes.json
+msgid "Frequent large impacts"
+msgstr "Tumbukan besar yang sering terjadi"
+
+#: data/quizzes.json
+msgid "Frozen methane"
+msgstr "Metana beku"
+
+#: data/quizzes.json
+msgid "Ganymede is even wider than the planet Mercury."
+msgstr "Ganymede bahkan lebih lebar daripada planet Merkurius."
+
+#: data/quizzes.json
+msgid "Ganymede's iron core drives a dynamo, giving it a small magnetosphere of its own."
+msgstr "Inti besi Ganymede menggerakkan dinamo, sehingga Ganymede punya magnetosfer kecil sendiri."
+
+#: data/quizzes.json
+msgid "Halfway between Earth and the Moon"
+msgstr "Di tengah-tengah antara Bumi dan Bulan"
+
+#: data/quizzes.json
+msgid "How long does Pluto take to orbit the Sun?"
+msgstr "Berapa lama Pluto mengorbit Matahari?"
+
+#: data/quizzes.json
+msgid "How long does light take to travel from the Moon to Earth?"
+msgstr "Berapa lama cahaya menempuh perjalanan dari Bulan ke Bumi?"
+
+#: data/quizzes.json
+msgid "How long does sunlight take to reach Neptune?"
+msgstr "Berapa lama cahaya Matahari sampai ke Neptunus?"
+
+#: data/quizzes.json
+msgid "How wide is Earth?"
+msgstr "Berapa lebar Bumi?"
+
+#: data/quizzes.json
+msgid "In the asteroid belt"
+msgstr "Di sabuk asteroid"
+
+#: data/quizzes.json
+msgid "In true-scale mode, one render unit equals:"
+msgstr "Dalam mode skala nyata, satu unit render sama dengan:"
+
+#: data/quizzes.json
+msgid "Inside Earth, about 4,600 km from its center"
+msgstr "Di dalam Bumi, sekitar 4.600 km dari pusatnya"
+
+#: data/quizzes.json
+msgid "Io has hundreds of active volcanoes, heated by Jupiter's squeezing gravity."
+msgstr "Io punya ratusan gunung berapi aktif, dipanaskan oleh gravitasi Jupiter yang meremasnya."
+
+#: data/quizzes.json
+msgid "It has volcanoes everywhere"
+msgstr "Gunung berapi ada di mana-mana"
+
+#: data/quizzes.json
+msgid "It is the closest planet to the Sun"
+msgstr "Venus planet terdekat dengan Matahari"
+
+#: data/quizzes.json
+msgid "It spins once for every orbit"
+msgstr "Bulan berputar sekali setiap satu orbit"
+
+#: data/quizzes.json
+msgid "It spins very fast"
+msgstr "Venus berputar sangat cepat"
+
+#: data/quizzes.json
+msgid "Its blue oceans"
+msgstr "Samudranya yang biru"
+
+#: data/quizzes.json
+msgid "Its high bulk density"
+msgstr "Massa jenisnya yang tinggi"
+
+#: data/quizzes.json
+msgid "Its rings of ice"
+msgstr "Cincin esnya"
+
+#: data/quizzes.json
+msgid "Its synchronous rotation"
+msgstr "Rotasinya yang sinkron"
+
+#: data/quizzes.json
+msgid "Its thick clouds trap heat"
+msgstr "Awan tebalnya memerangkap panas"
+
+#: data/quizzes.json
+msgid "Jupiter has about 318 Earth masses. 95 is Saturn, and 1,321 is Jupiter's volume ratio."
+msgstr "Massa Jupiter sekitar 318 massa Bumi. Angka 95 milik Saturnus, dan 1.321 adalah perbandingan volume Jupiter."
+
+#: data/quizzes.json
+msgid "Jupiter is more than 11 times wider than Earth."
+msgstr "Jupiter lebih dari 11 kali lebih lebar daripada Bumi."
+
+#: data/quizzes.json
+msgid "Jupiter's mass is about:"
+msgstr "Massa Jupiter kira-kira:"
+
+#: data/quizzes.json
+msgid "Jupiter's volume is about 1,300 times Earth's."
+msgstr "Volume Jupiter sekitar 1.300 kali volume Bumi."
+
+#: data/quizzes.json
+msgid "Lava"
+msgstr "Lava"
+
+#: data/quizzes.json
+msgid "Light needs just over one second. Sunlight needs about eight minutes."
+msgstr "Cahaya butuh sedikit lebih dari satu detik. Cahaya Matahari butuh sekitar delapan menit."
+
+#: data/quizzes.json
+msgid "Liquid methane and ethane"
+msgstr "Metana dan etana cair"
+
+#: data/quizzes.json
+msgid "Liquid nitrogen"
+msgstr "Nitrogen cair"
+
+#: data/quizzes.json
+msgid "Liquid water seen at the surface"
+msgstr "Air cair yang terlihat di permukaan"
+
+#: data/quizzes.json
+msgid "Mercury orbits closest to the Sun and finishes a year in just 88 days."
+msgstr "Merkurius mengorbit paling dekat dengan Matahari dan menyelesaikan satu tahun hanya dalam 88 hari."
+
+#: data/quizzes.json
+msgid "Mercury rotates in which spin-orbit resonance?"
+msgstr "Merkurius berotasi dalam resonansi spin-orbit berapa?"
+
+#: data/quizzes.json
+msgid "Mercury rotates three times for every two orbits, so one solar day lasts about 176 Earth days."
+msgstr "Merkurius berotasi tiga kali setiap dua kali mengorbit, sehingga satu hari Matahari berlangsung sekitar 176 hari Bumi."
+
+#: data/quizzes.json
+msgid "Neptune is about 30 times farther from the Sun than Earth, so sunlight needs over four hours."
+msgstr "Neptunus sekitar 30 kali lebih jauh dari Matahari daripada Bumi, sehingga cahaya Matahari butuh lebih dari empat jam."
+
+#: data/quizzes.json
+msgid "Neptune's upper atmosphere carries the fastest sustained winds of any planet, above 2,000 km/h."
+msgstr "Atmosfer atas Neptunus membawa angin menetap tercepat di antara semua planet, di atas 2.000 km/jam."
+
+#: data/quizzes.json
+msgid "No time at all"
+msgstr "Tanpa waktu sama sekali"
+
+#: data/quizzes.json
+msgid "Ocean tides"
+msgstr "Pasang surut air laut"
+
+#: data/quizzes.json
+msgid "Orbital eccentricity and inclination"
+msgstr "Eksentrisitas dan inklinasi orbit"
+
+#: data/quizzes.json
+msgid "Our Moon"
+msgstr "Bulan kita"
+
+#: data/quizzes.json
+msgid "Over 4 hours"
+msgstr "Lebih dari 4 jam"
+
+#: data/quizzes.json
+msgid "Pluto is in which orbital resonance with Neptune?"
+msgstr "Pluto berada dalam resonansi orbit berapa dengan Neptunus?"
+
+#: data/quizzes.json
+msgid "Pluto is so far away that one orbit takes about 248 Earth years."
+msgstr "Pluto begitu jauh sehingga satu orbitnya butuh sekitar 248 tahun Bumi."
+
+#: data/quizzes.json
+msgid "Pluto orbits twice for every three orbits of Neptune, which keeps the two from ever meeting."
+msgstr "Pluto mengorbit dua kali setiap tiga kali Neptunus mengorbit, sehingga keduanya tidak pernah bertemu."
+
+#: data/quizzes.json
+msgid "Radar echoes from Earth"
+msgstr "Pantulan radar dari Bumi"
+
+#: data/quizzes.json
+msgid "Radioactive decay alone"
+msgstr "Peluruhan radioaktif saja"
+
+#: data/quizzes.json
+msgid "Real distances are too large to fit"
+msgstr "Jarak sebenarnya terlalu besar untuk dimuat"
+
+#: data/quizzes.json
+msgid "Refraction in Earth's atmosphere"
+msgstr "Pembiasan di atmosfer Bumi"
+
+#: data/quizzes.json
+msgid "Rotation is steady while orbital speed and tilt vary, so slightly more than half of the surface becomes visible over time."
+msgstr "Rotasinya tetap sementara kecepatan orbit dan kemiringannya berubah-ubah, sehingga seiring waktu sedikit lebih dari separuh permukaannya terlihat."
+
+#: data/quizzes.json
+msgid "Saturn's rings are made mostly of pieces of water ice."
+msgstr "Cincin Saturnus sebagian besar tersusun dari bongkahan es air."
+
+#: data/quizzes.json
+msgid "Seasons"
+msgstr "Musim"
+
+#: data/quizzes.json
+msgid "Sodium carbonate"
+msgstr "Natrium karbonat"
+
+#: data/quizzes.json
+msgid "Space is crowded"
+msgstr "Luar angkasa penuh sesak"
+
+#: data/quizzes.json
+msgid "Spinning on its side"
+msgstr "Berputar dalam posisi terbaring"
+
+#: data/quizzes.json
+msgid "Sulfur"
+msgstr "Belerang"
+
+#: data/quizzes.json
+msgid "Sustained winds on Neptune exceed about:"
+msgstr "Angin menetap di Neptunus melebihi sekitar:"
+
+#: data/quizzes.json
+msgid "The 1:2:4 Laplace resonance with Europa and Ganymede"
+msgstr "Resonansi Laplace 1:2:4 dengan Europa dan Ganymede"
+
+#: data/quizzes.json
+msgid "The Moon circles Earth about once every 27 days."
+msgstr "Bulan mengitari Bumi sekitar sekali setiap 27 hari."
+
+#: data/quizzes.json
+msgid "The Moon does not spin"
+msgstr "Bulan tidak berputar"
+
+#: data/quizzes.json
+msgid "The Moon has about 1.2% of Earth's mass, so the common center of mass lies inside Earth."
+msgstr "Massa Bulan sekitar 1,2% massa Bumi, sehingga pusat massa bersamanya terletak di dalam Bumi."
+
+#: data/quizzes.json
+msgid "The Moon has about 1/81 of Earth's mass, or 1.2%."
+msgstr "Massa Bulan sekitar 1/81 massa Bumi, atau 1,2%."
+
+#: data/quizzes.json
+msgid "The Moon is about 384,400 km away, roughly 30 Earth-widths."
+msgstr "Bulan berjarak sekitar 384.400 km, kira-kira 30 kali lebar Bumi."
+
+#: data/quizzes.json
+msgid "The Moon spins exactly once per orbit. Its far side does get sunlight, it just never faces Earth."
+msgstr "Bulan berputar tepat sekali setiap satu orbit. Sisi jauhnya tetap mendapat cahaya Matahari, hanya saja tidak pernah menghadap Bumi."
+
+#: data/quizzes.json
+msgid "The Moon's mass relative to Earth is about:"
+msgstr "Massa Bulan dibandingkan Bumi kira-kira:"
+
+#: data/quizzes.json
+msgid "The Moon's pull raises the ocean tides. Seasons come from Earth's tilt."
+msgstr "Tarikan Bulan menimbulkan pasang surut air laut. Musim berasal dari kemiringan Bumi."
+
+#: data/quizzes.json
+msgid "The Sun holds about 99.86% of all the mass in the solar system."
+msgstr "Matahari memuat sekitar 99,86% seluruh massa tata surya."
+
+#: data/quizzes.json
+msgid "The Sun is about 109 Earths wide. 1.3 million is how many Earths fit inside it."
+msgstr "Lebar Matahari sekitar 109 kali Bumi. Angka 1,3 juta adalah jumlah Bumi yang muat di dalamnya."
+
+#: data/quizzes.json
+msgid "The Sun is very small"
+msgstr "Matahari sangat kecil"
+
+#: data/quizzes.json
+msgid "The Sun's volume compared with Earth's is about:"
+msgstr "Volume Matahari dibandingkan Bumi kira-kira:"
+
+#: data/quizzes.json
+msgid "The bright spots in Ceres's Occator crater are mostly:"
+msgstr "Bintik terang di kawah Occator milik Ceres sebagian besar berupa:"
+
+#: data/quizzes.json
+msgid "The far side is always dark"
+msgstr "Sisi jauhnya selalu gelap"
+
+#: data/quizzes.json
+msgid "The induced field requires a conducting layer, best explained by a salty ocean."
+msgstr "Medan induksi membutuhkan lapisan penghantar listrik, yang paling masuk akal dijelaskan oleh samudra asin."
+
+#: data/quizzes.json
+msgid "The mean Earth-Moon distance is about how many Earth radii?"
+msgstr "Jarak rata-rata Bumi-Bulan kira-kira berapa kali jari-jari Bumi?"
+
+#: data/quizzes.json
+msgid "The planets are close together"
+msgstr "Planet-planet saling berdekatan"
+
+#: data/quizzes.json
+msgid "The resonance keeps Io's orbit eccentric, so Jupiter's tides keep flexing and heating it."
+msgstr "Resonansi itu menjaga orbit Io tetap eksentrik, sehingga pasang surut Jupiter terus melenturkan dan memanaskannya."
+
+#: data/quizzes.json
+msgid "The solar wind"
+msgstr "Angin Matahari"
+
+#: data/quizzes.json
+msgid "Tidal heating"
+msgstr "Pemanasan pasang surut"
+
+#: data/quizzes.json
+msgid "Titan is so cold that methane and ethane are liquid and rain down from its clouds."
+msgstr "Titan sangat dingin sehingga metana dan etana berwujud cair dan turun sebagai hujan dari awannya."
+
+#: data/quizzes.json
+msgid "Titan's nitrogen atmosphere reaches about 1.5 bar, higher than Earth's."
+msgstr "Atmosfer nitrogen Titan mencapai sekitar 1,5 bar, lebih tinggi daripada Bumi."
+
+#: data/quizzes.json
+msgid "True-scale mode draws sizes and distances at 1 render unit per 1,000 km."
+msgstr "Mode skala nyata menggambar ukuran dan jarak dengan 1 unit render per 1.000 km."
+
+#: data/quizzes.json
+msgid "Uranus has an obliquity of about 97.8 degrees. 177 degrees belongs to Venus."
+msgstr "Kemiringan sumbu Uranus sekitar 97,8 derajat. Nilai 177 derajat milik Venus."
+
+#: data/quizzes.json
+msgid "Uranus is tilted by almost 98 degrees, so it rolls around the Sun on its side."
+msgstr "Uranus miring hampir 98 derajat, sehingga ia menggelinding mengelilingi Matahari dalam posisi terbaring."
+
+#: data/quizzes.json
+msgid "Venus is farther from the Sun than Mercury, but its thick atmosphere traps heat like a greenhouse."
+msgstr "Venus lebih jauh dari Matahari daripada Merkurius, tetapi atmosfernya yang tebal memerangkap panas seperti rumah kaca."
+
+#: data/quizzes.json
+msgid "Volume scales with radius cubed: 109 cubed is about 1.3 million. 333,000 is the mass ratio."
+msgstr "Volume sebanding dengan pangkat tiga jari-jari: 109 pangkat tiga kira-kira 1,3 juta. Angka 333.000 adalah perbandingan massanya."
+
+#: data/quizzes.json
+msgid "Water"
+msgstr "Air"
+
+#: data/quizzes.json
+msgid "Water ice"
+msgstr "Es air"
+
+#: data/quizzes.json
+msgid "What does the Moon's gravity cause on Earth?"
+msgstr "Apa yang ditimbulkan gravitasi Bulan di Bumi?"
+
+#: data/quizzes.json
+msgid "What fills the lakes on Titan?"
+msgstr "Apa yang mengisi danau-danau di Titan?"
+
+#: data/quizzes.json
+msgid "What fraction of the solar system's mass is in the Sun?"
+msgstr "Berapa bagian massa tata surya yang ada di Matahari?"
+
+#: data/quizzes.json
+msgid "What is Saturn best known for?"
+msgstr "Saturnus paling terkenal karena apa?"
+
+#: data/quizzes.json
+msgid "What is Saturn's mean density?"
+msgstr "Berapa massa jenis rata-rata Saturnus?"
+
+#: data/quizzes.json
+msgid "What is hidden under Europa's ice?"
+msgstr "Apa yang tersembunyi di bawah es Europa?"
+
+#: data/quizzes.json
+msgid "What is the approximate surface pressure on Venus?"
+msgstr "Berapa kira-kira tekanan permukaan di Venus?"
+
+#: data/quizzes.json
+msgid "What is the one-way light time across 1 AU?"
+msgstr "Berapa waktu tempuh cahaya satu arah sejauh 1 AU?"
+
+#: data/quizzes.json
+msgid "What is the one-way light time from the Moon to Earth?"
+msgstr "Berapa waktu tempuh cahaya satu arah dari Bulan ke Bumi?"
+
+#: data/quizzes.json
+msgid "What is the surface pressure on Titan?"
+msgstr "Berapa tekanan permukaan di Titan?"
+
+#: data/quizzes.json
+msgid "What mainly causes the Moon's visible libration?"
+msgstr "Apa penyebab utama librasi Bulan yang terlihat?"
+
+#: data/quizzes.json
+msgid "What makes Ganymede unique among moons?"
+msgstr "Apa yang membuat Ganymede unik di antara bulan-bulan lain?"
+
+#: data/quizzes.json
+msgid "What sustains Io's tidal heating?"
+msgstr "Apa yang mempertahankan pemanasan pasang surut Io?"
+
+#: data/quizzes.json
+msgid "Where does the dwarf planet Ceres orbit?"
+msgstr "Di mana planet kerdil Ceres mengorbit?"
+
+#: data/quizzes.json
+msgid "Where is the Earth-Moon barycenter?"
+msgstr "Di mana letak barisenter Bumi-Bulan?"
+
+#: data/quizzes.json
+msgid "Which is the largest moon in the solar system?"
+msgstr "Bulan mana yang terbesar di tata surya?"
+
+#: data/quizzes.json
+msgid "Which is the largest planet?"
+msgstr "Planet mana yang terbesar?"
+
+#: data/quizzes.json
+msgid "Which measurement points to an ocean inside Europa?"
+msgstr "Pengukuran mana yang menunjukkan adanya samudra di dalam Europa?"
+
+#: data/quizzes.json
+msgid "Which moon has the most active volcanoes?"
+msgstr "Bulan mana yang paling banyak memiliki gunung berapi aktif?"
+
+#: data/quizzes.json
+msgid "Which planet is closest to the Sun?"
+msgstr "Planet mana yang paling dekat dengan Matahari?"
+
+#: data/quizzes.json
+msgid "Which planet rotates on its side?"
+msgstr "Planet mana yang berotasi dalam posisi terbaring?"
+
+#: data/quizzes.json
+msgid "Which value is closest to the obliquity of Uranus?"
+msgstr "Nilai mana yang paling mendekati kemiringan sumbu Uranus?"
+
+#: data/quizzes.json
+msgid "Why do most solar system pictures squeeze distances?"
+msgstr "Mengapa kebanyakan gambar tata surya memadatkan jarak?"
+
+#: data/quizzes.json
+msgid "Why do we always see the same side of the Moon?"
+msgstr "Mengapa kita selalu melihat sisi Bulan yang sama?"
+
+#: data/quizzes.json
+msgid "Why is Venus the hottest planet?"
+msgstr "Mengapa Venus menjadi planet terpanas?"
+
+#: data/sandbox_presets.json
+msgid "A half-solar-mass star sweeps past the outer planets about three years after loading"
+msgstr "Bintang bermassa setengah Matahari melintas dekat planet-planet luar sekitar tiga tahun setelah dimuat"
+
+#: data/sandbox_presets.json
+msgid "Binary star"
+msgstr "Bintang ganda"
+
+#: data/sandbox_presets.json
+msgid "Circumbinary planet"
+msgstr "Planet sirkumbiner"
+
+#: data/sandbox_presets.json
+msgid "Extra planet"
+msgstr "Planet tambahan"
+
+#: data/sandbox_presets.json
+msgid "Planet X"
+msgstr "Planet X"
+
+#: data/sandbox_presets.json
+msgid "Rogue star"
+msgstr "Bintang pengembara"
+
+#: data/sandbox_presets.json
+msgid "Rogue star flyby"
+msgstr "Bintang pengembara melintas"
+
+#: data/sandbox_presets.json
+msgid "Solar system"
+msgstr "Tata surya"
+
+#: data/sandbox_presets.json
+msgid "Star A"
+msgstr "Bintang A"
+
+#: data/sandbox_presets.json
+msgid "Star B"
+msgstr "Bintang B"
+
+#: data/sandbox_presets.json
+msgid "The Sun, the planets, the major moons, Ceres, and Pluto at the current simulation date"
+msgstr "Matahari, planet-planet, bulan-bulan besar, Ceres, dan Pluto pada tanggal simulasi saat ini"
+
+#: data/sandbox_presets.json
+msgid "The solar system plus a Jupiter-mass planet on a circular orbit between Mars and Jupiter"
+msgstr "Tata surya ditambah planet bermassa Jupiter pada orbit lingkaran di antara Mars dan Jupiter"
+
+#: data/sandbox_presets.json
+msgid "Two Sun-like stars on a 65-day mutual orbit with an Earth-mass planet circling both"
+msgstr "Dua bintang mirip Matahari yang saling mengorbit setiap 65 hari, dengan planet bermassa Bumi yang mengitari keduanya"
+
+#: data/tours.json
+msgid "A G2V star with a mean radius of 695,700 km and 99.86% of the solar system's mass. Planetary orbits here are computed from JPL Keplerian elements."
+msgstr "Bintang G2V dengan jari-jari rata-rata 695.700 km dan 99,86% massa tata surya. Orbit planet di sini dihitung dari elemen Kepler JPL."
+
+#: data/tours.json
+msgid "A planet and its Moon"
+msgstr "Planet dan Bulannya"
+
+#: data/tours.json
+msgid "A second away"
+msgstr "Sejauh satu detik"
+
+#: data/tours.json
+msgid "Always the same face"
+msgstr "Selalu sisi yang sama"
+
+#: data/tours.json
+msgid "At 384,400 km the one-way light time is about 1.28 s. At 1 AU the light time is about 499 s."
+msgstr "Pada jarak 384.400 km, waktu tempuh cahaya satu arah sekitar 1,28 detik. Pada jarak 1 AU, waktu tempuh cahaya sekitar 499 detik."
+
+#: data/tours.json
+msgid "At true scale, the Moon is about 30 Earth-widths away. Distances in space are far larger than most models suggest."
+msgstr "Dalam skala nyata, Bulan berjarak sekitar 30 kali lebar Bumi. Jarak di luar angkasa jauh lebih besar daripada yang ditunjukkan kebanyakan model."
+
+#: data/tours.json
+msgid "Ceres is the biggest object in the asteroid belt and the closest dwarf planet to the Sun. Its bright spots are salt left behind by salty water."
+msgstr "Ceres adalah objek terbesar di sabuk asteroid dan planet kerdil terdekat dengan Matahari. Bintik terangnya adalah garam yang ditinggalkan air asin."
+
+#: data/tours.json
+msgid "Compare the true sizes and distances of Earth, Jupiter, the Sun, and Neptune."
+msgstr "Bandingkan ukuran dan jarak sebenarnya dari Bumi, Jupiter, Matahari, dan Neptunus."
+
+#: data/tours.json
+msgid "Dawn found sodium carbonate faculae in Occator crater, deposited from brine that reached the surface from below the crust."
+msgstr "Wahana Dawn menemukan fakula natrium karbonat di kawah Occator, yang diendapkan oleh air asin yang naik ke permukaan dari bawah kerak."
+
+#: data/tours.json
+msgid "Earth and Moon"
+msgstr "Bumi dan Bulan"
+
+#: data/tours.json
+msgid "Earth and the Moon form a pair. The Moon's gravity raises our ocean tides and helps keep Earth's tilt steady over very long times."
+msgstr "Bumi dan Bulan adalah pasangan. Gravitasi Bulan menimbulkan pasang air laut dan membantu menjaga kemiringan Bumi tetap stabil dalam waktu yang sangat lama."
+
+#: data/tours.json
+msgid "Earth is the third planet from the Sun and the only world known to host life. Notice its blue oceans."
+msgstr "Bumi adalah planet ketiga dari Matahari dan satu-satunya dunia yang diketahui memiliki kehidupan. Perhatikan samudranya yang biru."
+
+#: data/tours.json
+msgid "Galileo measured an induced magnetic field that points to a conducting ocean beneath an ice shell roughly 15 to 25 km thick."
+msgstr "Wahana Galileo mengukur medan magnet induksi yang menandakan samudra penghantar listrik di bawah lapisan es setebal sekitar 15 sampai 25 km."
+
+#: data/tours.json
+msgid "Ganymede is the largest moon in the solar system, wider than the planet Mercury. It is the only moon with its own magnetic field."
+msgstr "Ganymede adalah bulan terbesar di tata surya, lebih lebar daripada planet Merkurius. Ganymede satu-satunya bulan yang punya medan magnet sendiri."
+
+#: data/tours.json
+msgid "Grand Tour"
+msgstr "Tur Besar"
+
+#: data/tours.json
+msgid "Io is the most volcanic world we know. Jupiter's gravity squeezes it on every orbit, and that heat feeds hundreds of active volcanoes."
+msgstr "Io adalah dunia paling vulkanik yang kita ketahui. Gravitasi Jupiter meremasnya setiap kali mengorbit, dan panas itu menghidupi ratusan gunung berapi aktif."
+
+#: data/tours.json
+msgid "Io's forced eccentricity comes from the 1:2:4 Laplace resonance with Europa and Ganymede. Tidal dissipation yields a global heat flow of about 2 W/m2."
+msgstr "Eksentrisitas paksa Io berasal dari resonansi Laplace 1:2:4 dengan Europa dan Ganymede. Disipasi pasang surut menghasilkan aliran panas global sekitar 2 W/m2."
+
+#: data/tours.json
+msgid "Jupiter is about 11 times wider than Earth. More than 1,300 Earths could fit inside it."
+msgstr "Jupiter sekitar 11 kali lebih lebar daripada Bumi. Lebih dari 1.300 Bumi bisa muat di dalamnya."
+
+#: data/tours.json
+msgid "Jupiter is the giant of the solar system, more than 11 times wider than Earth. Its bands are storm clouds stretched out by its fast spin."
+msgstr "Jupiter adalah raksasa tata surya, lebih dari 11 kali lebih lebar daripada Bumi. Pita-pitanya adalah awan badai yang teregang oleh putarannya yang cepat."
+
+#: data/tours.json
+msgid "Light takes just over one second to travel from the Moon to Earth. Sunlight, by comparison, needs about eight minutes."
+msgstr "Cahaya butuh sedikit lebih dari satu detik untuk menempuh jarak dari Bulan ke Bumi. Sebagai perbandingan, cahaya Matahari butuh sekitar delapan menit."
+
+#: data/tours.json
+msgid "Mars is a cold desert planet with giant volcanoes and deep canyons. Robots have been exploring its surface for decades."
+msgstr "Mars adalah planet gurun yang dingin dengan gunung berapi raksasa dan ngarai yang dalam. Robot-robot sudah menjelajahi permukaannya selama puluhan tahun."
+
+#: data/tours.json
+msgid "Mean radius 6,371 km. All sizes and distances in true-scale mode are drawn at 1 render unit per 1,000 km."
+msgstr "Jari-jari rata-rata 6.371 km. Semua ukuran dan jarak dalam mode skala nyata digambar dengan 1 unit render per 1.000 km."
+
+#: data/tours.json
+msgid "Mean radius 69,911 km, a volume ratio of about 1,321 Earths, and a mass of about 318 Earth masses."
+msgstr "Jari-jari rata-rata 69.911 km, perbandingan volume sekitar 1.321 Bumi, dan massa sekitar 318 massa Bumi."
+
+#: data/tours.json
+msgid "Mean radius 695,700 km, a volume ratio of about 1.3 million Earths, and 99.86% of the solar system's mass."
+msgstr "Jari-jari rata-rata 695.700 km, perbandingan volume sekitar 1,3 juta Bumi, dan 99,86% massa tata surya."
+
+#: data/tours.json
+msgid "Meet volcanic Io, ocean world Europa, giant Ganymede, hazy Titan, and the dwarf planets Ceres and Pluto."
+msgstr "Kenali Io yang penuh gunung berapi, Europa si dunia samudra, Ganymede yang raksasa, Titan yang berkabut, serta planet kerdil Ceres dan Pluto."
+
+#: data/tours.json
+msgid "Mercury is the closest planet to the Sun and completes an orbit in just 88 days. It is about 40% wider than our Moon."
+msgstr "Merkurius adalah planet terdekat dengan Matahari dan menyelesaikan satu orbit hanya dalam 88 hari. Lebarnya sekitar 40% lebih besar daripada Bulan kita."
+
+#: data/tours.json
+msgid "Moons and Dwarf Planets"
+msgstr "Bulan dan Planet Kerdil"
+
+#: data/tours.json
+msgid "Neptune is the most distant planet, about 30 times farther from the Sun than Earth. Sunlight takes over four hours to reach it."
+msgstr "Neptunus adalah planet terjauh, sekitar 30 kali lebih jauh dari Matahari daripada Bumi. Cahaya Matahari butuh lebih dari empat jam untuk mencapainya."
+
+#: data/tours.json
+msgid "Neptune orbits about 4.5 billion kilometers from the Sun. Sunlight needs over four hours to reach it."
+msgstr "Neptunus mengorbit sekitar 4,5 miliar kilometer dari Matahari. Cahaya Matahari butuh lebih dari empat jam untuk mencapainya."
+
+#: data/tours.json
+msgid "Our journey starts at the Sun, a star about 109 times wider than Earth. Everything in the solar system is held in orbit by its gravity."
+msgstr "Perjalanan kita dimulai di Matahari, bintang yang sekitar 109 kali lebih lebar daripada Bumi. Semua benda di tata surya tertahan di orbitnya oleh gravitasi Matahari."
+
+#: data/tours.json
+msgid "Pluto lives far beyond Neptune and takes 248 years to circle the Sun. Its heart-shaped plain is a giant field of frozen nitrogen."
+msgstr "Pluto berada jauh di luar Neptunus dan butuh 248 tahun untuk mengelilingi Matahari. Dataran berbentuk hatinya adalah hamparan raksasa nitrogen beku."
+
+#: data/tours.json
+msgid "Pluto orbits in a 3:2 resonance with Neptune. Sputnik Planitia is a convecting nitrogen-ice glacier about 1,000 km across."
+msgstr "Pluto mengorbit dalam resonansi 3:2 dengan Neptunus. Sputnik Planitia adalah gletser es nitrogen yang berkonveksi dengan lebar sekitar 1.000 km."
+
+#: data/tours.json
+msgid "Saturn is the second-largest planet and is known for its system of icy rings. It is so light for its size that it would float in water."
+msgstr "Saturnus adalah planet terbesar kedua dan terkenal dengan sistem cincin esnya. Planet ini begitu ringan untuk ukurannya sehingga akan mengapung di air."
+
+#: data/tours.json
+msgid "See how the Moon orbits Earth, and how far away it really is."
+msgstr "Lihat bagaimana Bulan mengorbit Bumi, dan seberapa jauh sebenarnya."
+
+#: data/tours.json
+msgid "Semi-major axis 0.387 AU, eccentricity 0.206, period 87.97 days. A 3:2 spin-orbit resonance gives a solar day of about 176 Earth days."
+msgstr "Sumbu semi-mayor 0,387 AU, eksentrisitas 0,206, periode 87,97 hari. Resonansi spin-orbit 3:2 menghasilkan satu hari Matahari sekitar 176 hari Bumi."
+
+#: data/tours.json
+msgid "Semi-major axis 0.723 AU, period 224.7 days, retrograde sidereal rotation of 243 days, and a surface pressure of about 92 bar."
+msgstr "Sumbu semi-mayor 0,723 AU, periode 224,7 hari, rotasi sideris retrograd 243 hari, dan tekanan permukaan sekitar 92 bar."
+
+#: data/tours.json
+msgid "Semi-major axis 1.000 AU, eccentricity 0.0167, obliquity 23.44 degrees. The elements used describe the Earth-Moon barycenter."
+msgstr "Sumbu semi-mayor 1,000 AU, eksentrisitas 0,0167, kemiringan sumbu 23,44 derajat. Elemen yang dipakai menggambarkan barisenter Bumi-Bulan."
+
+#: data/tours.json
+msgid "Semi-major axis 1.524 AU, eccentricity 0.093, period 687 days, and an obliquity of 25.2 degrees that gives Earth-like seasons of unequal length."
+msgstr "Sumbu semi-mayor 1,524 AU, eksentrisitas 0,093, periode 687 hari, dan kemiringan sumbu 25,2 derajat yang menghasilkan musim seperti di Bumi dengan panjang yang tidak sama."
+
+#: data/tours.json
+msgid "Semi-major axis 19.19 AU, period 84 years, obliquity 97.8 degrees, and a retrograde rotation period of about 17.2 hours."
+msgstr "Sumbu semi-mayor 19,19 AU, periode 84 tahun, kemiringan sumbu 97,8 derajat, dan periode rotasi retrograd sekitar 17,2 jam."
+
+#: data/tours.json
+msgid "Semi-major axis 30.07 AU, period 164.8 years, and sustained winds above 2,000 km/h in its upper atmosphere."
+msgstr "Sumbu semi-mayor 30,07 AU, periode 164,8 tahun, dan angin menetap di atas 2.000 km/jam di atmosfer atasnya."
+
+#: data/tours.json
+msgid "Semi-major axis 30.07 AU, so the one-way light time from the Sun is about 4.2 hours."
+msgstr "Sumbu semi-mayor 30,07 AU, sehingga waktu tempuh cahaya satu arah dari Matahari sekitar 4,2 jam."
+
+#: data/tours.json
+msgid "Semi-major axis 384,400 km, eccentricity 0.055, inclination 5.14 degrees, sidereal period 27.32 days. Tidal locking keeps its near side facing Earth."
+msgstr "Sumbu semi-mayor 384.400 km, eksentrisitas 0,055, inklinasi 5,14 derajat, periode sideris 27,32 hari. Penguncian pasang surut membuat sisi dekatnya selalu menghadap Bumi."
+
+#: data/tours.json
+msgid "Semi-major axis 5.203 AU, period 11.86 years, a mass of about 318 Earth masses, and a sidereal rotation period near 9.9 hours."
+msgstr "Sumbu semi-mayor 5,203 AU, periode 11,86 tahun, massa sekitar 318 massa Bumi, dan periode rotasi sideris mendekati 9,9 jam."
+
+#: data/tours.json
+msgid "Semi-major axis 9.537 AU, period 29.4 years, a mean density of about 0.69 g/cm3, and rings made mostly of water ice."
+msgstr "Sumbu semi-mayor 9,537 AU, periode 29,4 tahun, massa jenis rata-rata sekitar 0,69 g/cm3, dan cincin yang sebagian besar berupa es air."
+
+#: data/tours.json
+msgid "Sense of Scale"
+msgstr "Merasakan Skala"
+
+#: data/tours.json
+msgid "The Moon"
+msgstr "Bulan"
+
+#: data/tours.json
+msgid "The Moon always shows Earth the same face. It takes about 27 days to orbit Earth, and the same time to spin once."
+msgstr "Bulan selalu menunjukkan sisi yang sama kepada Bumi. Bulan butuh sekitar 27 hari untuk mengorbit Bumi, dan waktu yang sama untuk berputar sekali."
+
+#: data/tours.json
+msgid "The Moon circles Earth about once every 27 days. In this compressed view it is drawn much closer to Earth than it truly is."
+msgstr "Bulan mengitari Bumi sekitar sekali setiap 27 hari. Dalam tampilan yang dipadatkan ini, Bulan digambar jauh lebih dekat ke Bumi daripada kenyataannya."
+
+#: data/tours.json
+msgid "The Moon has about 1.2% of Earth's mass, so the two bodies orbit a common barycenter that lies inside Earth, about 4,600 km from its center."
+msgstr "Massa Bulan sekitar 1,2% massa Bumi, sehingga keduanya mengorbit barisenter bersama yang terletak di dalam Bumi, sekitar 4.600 km dari pusatnya."
+
+#: data/tours.json
+msgid "The Sun"
+msgstr "Matahari"
+
+#: data/tours.json
+msgid "The Sun is about 109 times wider than Earth, and about 1.3 million Earths could fit inside it."
+msgstr "Matahari sekitar 109 kali lebih lebar daripada Bumi, dan sekitar 1,3 juta Bumi bisa muat di dalamnya."
+
+#: data/tours.json
+msgid "The mean Earth-Moon distance of 384,400 km is about 60 Earth radii, or 30 Earth diameters."
+msgstr "Jarak rata-rata Bumi-Bulan 384.400 km setara dengan sekitar 60 jari-jari Bumi, atau 30 diameter Bumi."
+
+#: data/tours.json
+msgid "The true distance"
+msgstr "Jarak sebenarnya"
+
+#: data/tours.json
+msgid "This is Earth at true scale, 12,742 km across. Remember this size as we compare other worlds."
+msgstr "Inilah Bumi dalam skala nyata, dengan lebar 12.742 km. Ingat ukuran ini saat kita membandingkan dunia lain."
+
+#: data/tours.json
+msgid "Tidal locking synchronizes the sidereal rotation period with the 27.32-day orbital period. Orbital eccentricity of 0.055 causes visible libration."
+msgstr "Penguncian pasang surut menyelaraskan periode rotasi sideris dengan periode orbit 27,32 hari. Eksentrisitas orbit 0,055 menyebabkan librasi yang terlihat."
+
+#: data/tours.json
+msgid "Titan's nitrogen atmosphere reaches about 1.5 bar at the surface, where 94 K temperatures let methane and ethane exist as liquids."
+msgstr "Atmosfer nitrogen Titan bertekanan sekitar 1,5 bar di permukaan, tempat suhu 94 K membuat metana dan etana bisa berwujud cair."
+
+#: data/tours.json
+msgid "Titan, Saturn's biggest moon, has a thick orange sky. Rain made of methane fills its rivers, lakes, and seas."
+msgstr "Titan, bulan terbesar Saturnus, punya langit jingga yang tebal. Hujan metana mengisi sungai, danau, dan lautnya."
+
+#: data/tours.json
+msgid "Under Europa's cracked ice lies a salty ocean with more water than all of Earth's oceans. It is one of the best places to search for life."
+msgstr "Di bawah es Europa yang retak terdapat samudra asin dengan lebih banyak air daripada seluruh samudra di Bumi. Europa salah satu tempat terbaik untuk mencari kehidupan."
+
+#: data/tours.json
+msgid "Uranus is an ice giant that rotates on its side. Its pale blue-green color comes from methane in its atmosphere."
+msgstr "Uranus adalah raksasa es yang berotasi dalam posisi terbaring. Warna biru kehijauannya yang pucat berasal dari metana di atmosfernya."
+
+#: data/tours.json
+msgid "Venus is wrapped in thick clouds that trap heat, making it the hottest planet. It spins backwards, so the Sun rises in the west."
+msgstr "Venus diselimuti awan tebal yang memerangkap panas, sehingga menjadi planet terpanas. Venus berputar terbalik, jadi Matahari terbit di barat."
+
+#: data/tours.json
+msgid "Visit the Sun and every planet, from Mercury to Neptune."
+msgstr "Kunjungi Matahari dan semua planet, dari Merkurius sampai Neptunus."
+
+#: data/tours.json
+msgid "With a radius of 2,634 km and a normalized moment of inertia near 0.31, Ganymede has an iron core whose dynamo creates a small magnetosphere."
+msgstr "Dengan jari-jari 2.634 km dan momen inersia ternormalisasi mendekati 0,31, Ganymede punya inti besi yang dinamonya menciptakan magnetosfer kecil."
+
+#: modes/explore/explore_mode.gd:109 modes/explore/explore_mode.gd:48
+msgid "Scale"
+msgstr "Skala"
+
+#: modes/explore/explore_mode.gd:112
+msgid "Choose a guided tour"
+msgstr "Pilih tur berpemandu"
+
+#: modes/explore/explore_mode.gd:112 ui/tour_menu.gd:32
+msgid "Guided tours"
+msgstr "Tur berpemandu"
+
+#: modes/explore/explore_mode.gd:12 modes/sandbox/sandbox_mode.gd:17
+msgid "Camera"
+msgstr "Kamera"
+
+#: modes/explore/explore_mode.gd:15 modes/sandbox/sandbox_mode.gd:20
+msgid "Down / up"
+msgstr "Turun / naik"
+
+#: modes/explore/explore_mode.gd:157 modes/sandbox/sandbox_mode.gd:279
+msgid "Focus: %s"
+msgstr "Fokus: %s"
+
+#: modes/explore/explore_mode.gd:16 modes/sandbox/sandbox_mode.gd:21
+msgid "Boost"
+msgstr "Percepat"
+
+#: modes/explore/explore_mode.gd:17 modes/sandbox/sandbox_mode.gd:22
+msgid "Drag|Swipe"
+msgstr "Seret|Usap"
+
+#: modes/explore/explore_mode.gd:18 modes/sandbox/sandbox_mode.gd:23
+msgid "Pinch|Ctrl+Scroll"
+msgstr "Cubit|Ctrl+Gulir"
+
+#: modes/explore/explore_mode.gd:19 modes/sandbox/sandbox_mode.gd:24
+msgid "Flight speed"
+msgstr "Kecepatan terbang"
+
+#: modes/explore/explore_mode.gd:19 modes/sandbox/sandbox_mode.gd:24
+msgid "Shift+Scroll"
+msgstr "Shift+Gulir"
+
+#: modes/explore/explore_mode.gd:20 modes/explore/explore_mode.gd:391 modes/sandbox/sandbox_mode.gd:25
+msgid "Look around"
+msgstr "Lihat sekeliling"
+
+#: modes/explore/explore_mode.gd:20 modes/sandbox/sandbox_mode.gd:25
+msgid "Right drag"
+msgstr "Seret kanan"
+
+#: modes/explore/explore_mode.gd:204
+msgid "%d bodies, %s rocks"
+msgstr "%d benda, %s batuan"
+
+#: modes/explore/explore_mode.gd:24 modes/sandbox/sandbox_mode.gd:29 ui/sandbox_panel.gd:24
+msgid "Bodies"
+msgstr "Benda langit"
+
+#: modes/explore/explore_mode.gd:26 modes/sandbox/sandbox_mode.gd:31 modes/sandbox/sandbox_mode.gd:41
+msgid "Click"
+msgstr "Klik"
+
+#: modes/explore/explore_mode.gd:26 modes/sandbox/sandbox_mode.gd:31
+msgid "Select"
+msgstr "Pilih"
+
+#: modes/explore/explore_mode.gd:27
+msgid "Double-click"
+msgstr "Klik ganda"
+
+#: modes/explore/explore_mode.gd:27 ui/info_panel.gd:42 ui/sandbox_panel.gd:312
+msgid "Focus"
+msgstr "Fokus"
+
+#: modes/explore/explore_mode.gd:29
+msgid "Next body"
+msgstr "Benda berikutnya"
+
+#: modes/explore/explore_mode.gd:32 modes/sandbox/sandbox_mode.gd:35
+msgid "Auto-orbit"
+msgstr "Orbit otomatis"
+
+#: modes/explore/explore_mode.gd:36
+msgid "Time"
+msgstr "Waktu"
+
+#: modes/explore/explore_mode.gd:38 modes/sandbox/sandbox_mode.gd:50
+msgid "Pause"
+msgstr "Jeda"
+
+#: modes/explore/explore_mode.gd:387
+msgid "Welcome to Orrery"
+msgstr "Selamat datang di Orrery"
+
+#: modes/explore/explore_mode.gd:388
+msgid "Here is a quick look at the controls. It takes about a minute, and you can skip it at any time."
+msgstr "Berikut pengenalan singkat cara mengendalikan Orrery. Hanya sekitar satu menit, dan kamu bisa melewatinya kapan saja."
+
+#: modes/explore/explore_mode.gd:39 modes/sandbox/sandbox_mode.gd:51
+msgid "Reverse"
+msgstr "Mundur"
+
+#: modes/explore/explore_mode.gd:392
+msgid "Drag with the mouse, or swipe with two fingers, to orbit the body in view. Scroll or pinch to zoom, and move freely with W, A, S, and D."
+msgstr "Seret dengan mouse, atau usap dengan dua jari, untuk mengitari benda yang terlihat. Gulir atau cubit untuk memperbesar, dan bergerak bebas dengan W, A, S, dan D."
+
+#: modes/explore/explore_mode.gd:395
+msgid "Meet the bodies"
+msgstr "Kenali benda langit"
+
+#: modes/explore/explore_mode.gd:396
+msgid "Click a planet or moon to read about it, and double-click to fly to it. This button finds any body by name."
+msgstr "Klik planet atau bulan untuk membaca tentangnya, lalu klik ganda untuk terbang ke sana. Tombol ini mencari benda apa pun berdasarkan namanya."
+
+#: modes/explore/explore_mode.gd:40 modes/sandbox/sandbox_mode.gd:52
+msgid "Slower / faster"
+msgstr "Lebih lambat / cepat"
+
+#: modes/explore/explore_mode.gd:400
+msgid "Control time"
+msgstr "Kendalikan waktu"
+
+#: modes/explore/explore_mode.gd:401
+msgid "Play, pause, reverse, or speed up time here. The calendar jumps to any date between 1800 and 2050."
+msgstr "Jalankan, jeda, balikkan, atau percepat waktu di sini. Kalender bisa melompat ke tanggal mana pun antara 1800 dan 2050."
+
+#: modes/explore/explore_mode.gd:405
+msgid "Take a guided tour"
+msgstr "Ikuti tur berpemandu"
+
+#: modes/explore/explore_mode.gd:406
+msgid "Tours show the highlights with narration, and each one ends with a short quiz."
+msgstr "Tur menampilkan hal-hal menarik dengan narasi, dan setiap tur diakhiri kuis singkat."
+
+#: modes/explore/explore_mode.gd:41 ui/hud.gd:423
+msgid "Now"
+msgstr "Sekarang"
+
+#: modes/explore/explore_mode.gd:410
+msgid "Choose what you see"
+msgstr "Atur yang kamu lihat"
+
+#: modes/explore/explore_mode.gd:411
+msgid "Explorer keeps the facts simple and Scientist shows full data. Labels, orbits, rings, and the scale can be switched here."
+msgstr "Penjelajah menyajikan fakta sederhana, sedangkan Ilmuwan menampilkan data lengkap. Label, orbit, cincin, dan skala bisa diubah di sini."
+
+#: modes/explore/explore_mode.gd:415
+msgid "You are ready"
+msgstr "Kamu siap"
+
+#: modes/explore/explore_mode.gd:416
+msgid "Press F3 at any time to see every control. Enjoy the solar system."
+msgstr "Tekan F3 kapan saja untuk melihat semua kontrol. Selamat menjelajahi tata surya."
+
+#: modes/explore/explore_mode.gd:46 ui/hud.gd:450
+msgid "View"
+msgstr "Tampilan"
+
+#: modes/explore/explore_mode.gd:52 modes/sandbox/sandbox_mode.gd:56
+msgid "Depth level"
+msgstr "Tingkat informasi"
+
+#: modes/explore/explore_mode.gd:56 modes/sandbox/sandbox_mode.gd:60
+msgid "App"
+msgstr "Aplikasi"
+
+#: modes/explore/explore_mode.gd:58 modes/explore/explore_mode.gd:70 modes/menu/main_menu.gd:44
+msgid "Sandbox"
+msgstr "Sandbox"
+
+#: modes/explore/explore_mode.gd:59 modes/sandbox/sandbox_mode.gd:63 ui/hud.gd:588
+msgid "Controls"
+msgstr "Kontrol"
+
+#: modes/explore/explore_mode.gd:61 modes/sandbox/sandbox_mode.gd:65 ui/hud.gd:514
+msgid "Performance"
+msgstr "Performa"
+
+#: modes/explore/explore_mode.gd:63 modes/sandbox/sandbox_mode.gd:67 ui/settings_panel.gd:13
+msgid "Fullscreen"
+msgstr "Layar penuh"
+
+#: modes/explore/explore_mode.gd:64 modes/sandbox/sandbox_mode.gd:68
+msgid "Screenshot"
+msgstr "Tangkapan layar"
+
+#: modes/explore/explore_mode.gd:65 modes/sandbox/sandbox_mode.gd:44 modes/sandbox/sandbox_mode.gd:69
+msgid "Esc"
+msgstr "Esc"
+
+#: modes/explore/explore_mode.gd:65 modes/sandbox/sandbox_mode.gd:69 ui/hud.gd:488
+msgid "Menu"
+msgstr "Menu"
+
+#: modes/explore/explore_mode.gd:86
+msgid "Distance and size scale (T)"
+msgstr "Skala jarak dan ukuran (T)"
+
+#: modes/explore/explore_mode.gd:9
+msgid "Compressed"
+msgstr "Dipadatkan"
+
+#: modes/explore/explore_mode.gd:9
+msgid "True scale"
+msgstr "Skala nyata"
+
+#: modes/menu/main_menu.gd:4
+msgid "Orrery"
+msgstr "Orrery"
+
+#: modes/menu/main_menu.gd:43 modes/sandbox/sandbox_mode.gd:62 modes/sandbox/sandbox_mode.gd:73
+msgid "Explore"
+msgstr "Jelajah"
+
+#: modes/menu/main_menu.gd:45 ui/pause_menu.gd:29 ui/settings_panel.gd:60
+msgid "Settings"
+msgstr "Pengaturan"
+
+#: modes/menu/main_menu.gd:46 ui/credits_panel.gd:20 ui/pause_menu.gd:30
+msgid "Credits"
+msgstr "Kredit"
+
+#: modes/menu/main_menu.gd:47 ui/pause_menu.gd:32
+msgid "Quit"
+msgstr "Keluar"
+
+#: modes/menu/main_menu.gd:5
+msgid "An interactive 3D solar system for exploration and gravity experiments."
+msgstr "Tata surya 3D interaktif untuk menjelajah dan bereksperimen dengan gravitasi."
+
+#: modes/sandbox/sandbox_mode.gd:201 modes/sandbox/sandbox_mode.gd:218
+msgid "Body"
+msgstr "Benda"
+
+#: modes/sandbox/sandbox_mode.gd:213
+msgid "Planet"
+msgstr "Planet"
+
+#: modes/sandbox/sandbox_mode.gd:232
+msgid "%d/%d bodies, %s"
+msgstr "%d/%d benda, %s"
+
+#: modes/sandbox/sandbox_mode.gd:283
+msgid "Placing a body"
+msgstr "Sedang menempatkan benda"
+
+#: modes/sandbox/sandbox_mode.gd:285
+msgid "Simulation speed limited by performance"
+msgstr "Kecepatan simulasi dibatasi oleh performa"
+
+#: modes/sandbox/sandbox_mode.gd:333
+msgid "Body limit reached for the %s preset."
+msgstr "Batas jumlah benda untuk preset %s sudah tercapai."
+
+#: modes/sandbox/sandbox_mode.gd:34 ui/sandbox_panel.gd:314
+msgid "Remove"
+msgstr "Hapus"
+
+#: modes/sandbox/sandbox_mode.gd:347
+msgid "The snapshot could not be saved."
+msgstr "Snapshot tidak dapat disimpan."
+
+#: modes/sandbox/sandbox_mode.gd:353
+msgid "The saved snapshot could not be read."
+msgstr "Snapshot yang tersimpan tidak dapat dibaca."
+
+#: modes/sandbox/sandbox_mode.gd:39
+msgid "Place a body"
+msgstr "Menempatkan benda"
+
+#: modes/sandbox/sandbox_mode.gd:41
+msgid "Place on the plane"
+msgstr "Tempatkan di bidang orbit"
+
+#: modes/sandbox/sandbox_mode.gd:42
+msgid "Drag"
+msgstr "Seret"
+
+#: modes/sandbox/sandbox_mode.gd:42
+msgid "Set velocity"
+msgstr "Atur kecepatan"
+
+#: modes/sandbox/sandbox_mode.gd:43
+msgid "Launch"
+msgstr "Luncurkan"
+
+#: modes/sandbox/sandbox_mode.gd:43
+msgid "Release"
+msgstr "Lepas"
+
+#: modes/sandbox/sandbox_mode.gd:44
+msgid "Cancel"
+msgstr "Batal"
+
+#: modes/sandbox/sandbox_mode.gd:440
+msgid "Speed: %.2f km/s"
+msgstr "Kecepatan: %.2f km/dtk"
+
+#: modes/sandbox/sandbox_mode.gd:445
+msgid "Speed: %.2f km/s\nDistance to %s: %s"
+msgstr "Kecepatan: %.2f km/dtk\nJarak ke %s: %s"
+
+#: modes/sandbox/sandbox_mode.gd:48
+msgid "Time and view"
+msgstr "Waktu dan tampilan"
+
+#: modes/sandbox/sandbox_mode.gd:546
+msgid "No body to orbit nearby"
+msgstr "Tidak ada benda di dekat sini untuk diorbit"
+
+#: modes/sandbox/sandbox_mode.gd:547
+msgid "No body to orbit. Add or keep a massive body nearby."
+msgstr "Tidak ada benda untuk diorbit. Tambahkan atau pertahankan benda bermassa besar di dekatnya."
+
+#: modes/sandbox/sandbox_mode.gd:549
+msgid "Launch %.2f km/s relative to %s (%.2f x circular)"
+msgstr "Luncur %.2f km/dtk relatif terhadap %s (%.2f x orbit lingkaran)"
+
+#: modes/sandbox/sandbox_mode.gd:551
+msgid "Launch speed relative to %s: %.2f km/s (%.2f x circular orbit speed)"
+msgstr "Kecepatan luncur relatif terhadap %s: %.2f km/dtk (%.2f x kecepatan orbit lingkaran)"
+
+#: modes/shared/space_scene.gd:107
+msgid "Auto-orbit: Off"
+msgstr "Orbit otomatis: mati"
+
+#: modes/shared/space_scene.gd:107
+msgid "Auto-orbit: On"
+msgstr "Orbit otomatis: nyala"
+
+#: modes/shared/space_scene.gd:222
+msgid "None"
+msgstr "Tidak ada"
+
+#: modes/shared/space_scene.gd:223
+msgid "%d x %d segments"
+msgstr "%d x %d segmen"
+
+#: modes/shared/space_scene.gd:253
+msgid "Screenshot saved: %s"
+msgstr "Tangkapan layar disimpan: %s"
+
+#: modes/shared/space_scene.gd:255
+msgid "Screenshot failed"
+msgstr "Tangkapan layar gagal"
+
+#: ui/credits_panel.gd:23
+msgid "Version %s"
+msgstr "Versi %s"
+
+#: ui/credits_panel.gd:25 ui/settings_panel.gd:63
+msgid "Back"
+msgstr "Kembali"
+
+#: ui/credits_panel.gd:25 ui/settings_panel.gd:63
+msgid "Return (Esc)"
+msgstr "Kembali (Esc)"
+
+#: ui/date_panel.gd:11
+msgid "Apollo 11 lands on the Moon"
+msgstr "Apollo 11 mendarat di Bulan"
+
+#: ui/date_panel.gd:113
+msgid "Write the date as YYYY-MM-DD, optionally followed by HH:MM."
+msgstr "Tulis tanggal sebagai YYYY-MM-DD, boleh diikuti HH:MM."
+
+#: ui/date_panel.gd:117
+msgid "The orbits are accurate from %d to %d. Choose a date in that range."
+msgstr "Orbit akurat dari tahun %d sampai %d. Pilih tanggal dalam rentang itu."
+
+#: ui/date_panel.gd:12
+msgid "Jupiter and Saturn meet in the sky"
+msgstr "Jupiter dan Saturnus bertemu di langit"
+
+#: ui/date_panel.gd:13
+msgid "Total solar eclipse over North Africa"
+msgstr "Gerhana Matahari total di atas Afrika Utara"
+
+#: ui/date_panel.gd:42
+msgid "Go"
+msgstr "Pergi"
+
+#: ui/date_panel.gd:42
+msgid "Jump to this date (Enter)"
+msgstr "Lompat ke tanggal ini (Enter)"
+
+#: ui/date_panel.gd:47
+msgid "Dates from %d to %d, in this computer's time zone."
+msgstr "Tanggal dari %d sampai %d, dalam zona waktu komputer ini."
+
+#: ui/date_panel.gd:51
+msgid "Moments to visit"
+msgstr "Momen untuk dikunjungi"
+
+#: ui/hud.gd:107
+msgid "Close (Esc)"
+msgstr "Tutup (Esc)"
+
+#: ui/hud.gd:17
+msgid "   |   %s controls"
+msgstr "   |   %s kontrol"
+
+#: ui/hud.gd:18
+msgid "   |   Auto-orbit"
+msgstr "   |   Orbit otomatis"
+
+#: ui/hud.gd:362 ui/hud.gd:412
+msgid "Pause time (Space)"
+msgstr "Jeda waktu (Spasi)"
+
+#: ui/hud.gd:362
+msgid "Resume time (Space)"
+msgstr "Lanjutkan waktu (Spasi)"
+
+#: ui/hud.gd:392
+msgid "Times are shown in this computer's time zone"
+msgstr "Waktu ditampilkan dalam zona waktu komputer ini"
+
+#: ui/hud.gd:404
+msgid "Run time backwards (R)"
+msgstr "Jalankan waktu mundur (R)"
+
+#: ui/hud.gd:416
+msgid "Slower ([)"
+msgstr "Lebih lambat ([)"
+
+#: ui/hud.gd:421
+msgid "Faster (])"
+msgstr "Lebih cepat (])"
+
+#: ui/hud.gd:423
+msgid "Jump to the current date (N)"
+msgstr "Lompat ke tanggal hari ini (N)"
+
+#: ui/hud.gd:440
+msgid "Find a body (%s)"
+msgstr "Cari benda langit (%s)"
+
+#: ui/hud.gd:441
+msgid "Go to a date (%s)"
+msgstr "Pergi ke tanggal (%s)"
+
+#: ui/hud.gd:465
+msgid "Show body names (L)"
+msgstr "Tampilkan nama benda (L)"
+
+#: ui/hud.gd:466 ui/settings_panel.gd:176
+msgid "Orbits"
+msgstr "Orbit"
+
+#: ui/hud.gd:466
+msgid "Show orbit lines (O)"
+msgstr "Tampilkan garis orbit (O)"
+
+#: ui/hud.gd:467
+msgid "Rings"
+msgstr "Cincin"
+
+#: ui/hud.gd:467
+msgid "Show distance rings around the Sun (G)"
+msgstr "Tampilkan cincin jarak di sekitar Matahari (G)"
+
+#: ui/hud.gd:479
+msgid "Graphics quality. Lower quality runs faster on older devices"
+msgstr "Kualitas grafis. Kualitas lebih rendah berjalan lebih cepat di perangkat lama"
+
+#: ui/hud.gd:488
+msgid "Pause menu, settings and credits (Esc)"
+msgstr "Menu jeda, pengaturan, dan kredit (Esc)"
+
+#: ui/hud.gd:521
+msgid "Frame / CPU"
+msgstr "Frame / CPU"
+
+#: ui/hud.gd:522
+msgid "Draw calls"
+msgstr "Draw call"
+
+#: ui/hud.gd:523
+msgid "Primitives"
+msgstr "Primitif"
+
+#: ui/hud.gd:525
+msgid "Scene"
+msgstr "Adegan"
+
+#: ui/hud.gd:526
+msgid "Focus mesh"
+msgstr "Mesh fokus"
+
+#: ui/hud.gd:591
+msgid "Close (%s)"
+msgstr "Tutup (%s)"
+
+#: ui/hud.gd:60
+msgid "Information depth (M)"
+msgstr "Tingkat informasi (M)"
+
+#: ui/hud.gd:605
+msgid "Hide view options to make room for body information"
+msgstr "Sembunyikan pilihan tampilan agar informasi benda lebih lega"
+
+#: ui/hud.gd:605
+msgid "Show view options"
+msgstr "Tampilkan pilihan tampilan"
+
+#: ui/info_panel.gd:42 ui/sandbox_panel.gd:312
+msgid "Fly to this body"
+msgstr "Terbang ke benda ini"
+
+#: ui/info_panel.gd:56
+msgid "Data"
+msgstr "Data"
+
+#: ui/info_panel.gd:80
+msgid "Did you know?"
+msgstr "Tahukah kamu?"
+
+#: ui/info_panel.gd:80
+msgid "Technical notes"
+msgstr "Catatan teknis"
+
+#: ui/onboarding.gd:43
+msgid "Close the introduction (Esc)"
+msgstr "Tutup pengenalan (Esc)"
+
+#: ui/onboarding.gd:43
+msgid "Skip"
+msgstr "Lewati"
+
+#: ui/onboarding.gd:46
+msgid "Previous tip (Left)"
+msgstr "Tips sebelumnya (Kiri)"
+
+#: ui/onboarding.gd:48 ui/onboarding.gd:91 ui/tour_panel.gd:60
+msgid "Next"
+msgstr "Lanjut"
+
+#: ui/onboarding.gd:48
+msgid "Next tip (Right or Enter)"
+msgstr "Tips berikutnya (Kanan atau Enter)"
+
+#: ui/onboarding.gd:89
+msgid "%d of %d"
+msgstr "%d dari %d"
+
+#: ui/onboarding.gd:91
+msgid "Start exploring"
+msgstr "Mulai menjelajah"
+
+#: ui/pause_menu.gd:11
+msgid "Paused"
+msgstr "Dijeda"
+
+#: ui/pause_menu.gd:28
+msgid "Resume"
+msgstr "Lanjutkan"
+
+#: ui/pause_menu.gd:31
+msgid "Main menu"
+msgstr "Menu utama"
+
+#: ui/quiz_panel.gd:118
+msgid "Quiz: %s"
+msgstr "Kuis: %s"
+
+#: ui/quiz_panel.gd:126
+msgid "Question %d of %d"
+msgstr "Pertanyaan %d dari %d"
+
+#: ui/quiz_panel.gd:156
+msgid "Correct answer"
+msgstr "Jawaban benar"
+
+#: ui/quiz_panel.gd:160
+msgid "Your answer"
+msgstr "Jawabanmu"
+
+#: ui/quiz_panel.gd:164
+msgid "Correct."
+msgstr "Benar."
+
+#: ui/quiz_panel.gd:164
+msgid "Not quite. The correct answer is %s."
+msgstr "Belum tepat. Jawaban yang benar adalah %s."
+
+#: ui/quiz_panel.gd:169
+msgid "Next question"
+msgstr "Pertanyaan berikutnya"
+
+#: ui/quiz_panel.gd:169
+msgid "See results"
+msgstr "Lihat hasil"
+
+#: ui/quiz_panel.gd:175
+msgid "You answered %d of %d correctly."
+msgstr "Kamu menjawab benar %d dari %d pertanyaan."
+
+#: ui/quiz_panel.gd:178
+msgid "A perfect score. You know this tour inside out."
+msgstr "Nilai sempurna. Kamu benar-benar memahami tur ini."
+
+#: ui/quiz_panel.gd:180
+msgid "Well done. Replay the tour to review the questions you missed."
+msgstr "Bagus sekali. Ulangi tur untuk meninjau pertanyaan yang terlewat."
+
+#: ui/quiz_panel.gd:182
+msgid "Replay the tour, then try again. Switching the information level changes the questions."
+msgstr "Ulangi tur, lalu coba lagi. Mengganti tingkat informasi akan mengganti pertanyaannya."
+
+#: ui/quiz_panel.gd:186
+msgid "Close"
+msgstr "Tutup"
+
+#: ui/quiz_panel.gd:186
+msgid "Try again"
+msgstr "Coba lagi"
+
+#: ui/quiz_panel.gd:44
+msgid "Close the quiz (Esc)"
+msgstr "Tutup kuis (Esc)"
+
+#: ui/quiz_panel.gd:65
+msgid "Continue (Enter)"
+msgstr "Lanjutkan (Enter)"
+
+#: ui/quiz_panel.gd:75
+msgid "Ready for a quick quiz?"
+msgstr "Siap untuk kuis singkat?"
+
+#: ui/quiz_panel.gd:76
+msgid "Answer %d questions about the %s tour."
+msgstr "Jawab %d pertanyaan tentang tur %s."
+
+#: ui/quiz_panel.gd:80
+msgid "Not now"
+msgstr "Nanti saja"
+
+#: ui/quiz_panel.gd:80
+msgid "Start quiz"
+msgstr "Mulai kuis"
+
+#: ui/sandbox_panel.gd:100
+msgid "Numerical method used to advance the bodies"
+msgstr "Metode numerik untuk menggerakkan benda"
+
+#: ui/sandbox_panel.gd:101
+msgid "Adaptive shortens steps during close encounters; fixed steps show how step size affects accuracy"
+msgstr "Adaptif memperpendek langkah saat benda saling mendekat; langkah tetap menunjukkan pengaruh ukuran langkah terhadap akurasi"
+
+#: ui/sandbox_panel.gd:194
+msgid "%d / %d bodies"
+msgstr "%d / %d benda"
+
+#: ui/sandbox_panel.gd:199 ui/sandbox_panel.gd:263
+msgid "Place body"
+msgstr "Tempatkan benda"
+
+#: ui/sandbox_panel.gd:199
+msgid "Placing... (Esc to stop)"
+msgstr "Menempatkan... (Esc untuk berhenti)"
+
+#: ui/sandbox_panel.gd:24
+msgid "Physics"
+msgstr "Fisika"
+
+#: ui/sandbox_panel.gd:24
+msgid "World"
+msgstr "Dunia"
+
+#: ui/sandbox_panel.gd:247
+msgid "New body"
+msgstr "Benda baru"
+
+#: ui/sandbox_panel.gd:25
+msgid "Click the orbital plane to place a body, then drag to set its launch velocity."
+msgstr "Klik bidang orbit untuk menempatkan benda, lalu seret untuk mengatur kecepatan luncurnya."
+
+#: ui/sandbox_panel.gd:262 ui/sandbox_panel.gd:302
+msgid "Color"
+msgstr "Warna"
+
+#: ui/sandbox_panel.gd:268
+msgid "Click and drag on the orbital plane to launch a body"
+msgstr "Klik dan seret di bidang orbit untuk meluncurkan benda"
+
+#: ui/sandbox_panel.gd:282
+msgid "Selected body"
+msgstr "Benda terpilih"
+
+#: ui/sandbox_panel.gd:30
+msgid "Velocity Verlet"
+msgstr "Velocity Verlet"
+
+#: ui/sandbox_panel.gd:304
+msgid "Freeze in place"
+msgstr "Bekukan di tempat"
+
+#: ui/sandbox_panel.gd:308
+msgid "Hold this body still while it keeps pulling on others"
+msgstr "Tahan benda ini diam sementara gravitasinya tetap menarik benda lain"
+
+#: ui/sandbox_panel.gd:31
+msgid "1 hour"
+msgstr "1 jam"
+
+#: ui/sandbox_panel.gd:31
+msgid "6 hours"
+msgstr "6 jam"
+
+#: ui/sandbox_panel.gd:31
+msgid "Adaptive"
+msgstr "Adaptif"
+
+#: ui/sandbox_panel.gd:314
+msgid "Delete this body (Del)"
+msgstr "Hapus benda ini (Del)"
+
+#: ui/sandbox_panel.gd:324
+msgid "Presets"
+msgstr "Preset"
+
+#: ui/sandbox_panel.gd:334
+msgid "Load"
+msgstr "Muat"
+
+#: ui/sandbox_panel.gd:336
+msgid "Replace all bodies with this preset at the current simulation date"
+msgstr "Ganti semua benda dengan preset ini pada tanggal simulasi saat ini"
+
+#: ui/sandbox_panel.gd:34
+msgid "An exact solution keeps both values constant. Drift since the baseline shows the integrator's numerical error. Merges, edits, and new bodies reset the baseline."
+msgstr "Solusi eksak menjaga kedua nilai tetap. Penyimpangan sejak titik acuan menunjukkan galat numerik integrator. Penggabungan, perubahan, dan benda baru mengatur ulang titik acuan."
+
+#: ui/sandbox_panel.gd:342
+msgid "Snapshot"
+msgstr "Snapshot"
+
+#: ui/sandbox_panel.gd:343
+msgid "Save every body as it is now and come back to it later."
+msgstr "Simpan semua benda seperti saat ini dan kembali lagi nanti."
+
+#: ui/sandbox_panel.gd:346
+msgid "Save snapshot"
+msgstr "Simpan snapshot"
+
+#: ui/sandbox_panel.gd:346
+msgid "Store every body as it is now"
+msgstr "Simpan semua benda seperti saat ini"
+
+#: ui/sandbox_panel.gd:350
+msgid "Restore snapshot"
+msgstr "Pulihkan snapshot"
+
+#: ui/sandbox_panel.gd:350
+msgid "Return to the last saved snapshot"
+msgstr "Kembali ke snapshot terakhir"
+
+#: ui/sandbox_panel.gd:358
+msgid "Integrator"
+msgstr "Integrator"
+
+#: ui/sandbox_panel.gd:36
+msgid "Frozen bodies are held by an outside force, so energy and angular momentum are not conserved."
+msgstr "Benda yang dibekukan ditahan oleh gaya luar, sehingga energi dan momentum sudut tidak kekal."
+
+#: ui/sandbox_panel.gd:362
+msgid "Time step"
+msgstr "Langkah waktu"
+
+#: ui/sandbox_panel.gd:367
+msgid "Conservation"
+msgstr "Kekekalan"
+
+#: ui/sandbox_panel.gd:371
+msgid "Angular momentum"
+msgstr "Momentum sudut"
+
+#: ui/sandbox_panel.gd:371
+msgid "Energy drift"
+msgstr "Penyimpangan energi"
+
+#: ui/sandbox_panel.gd:371
+msgid "Momentum drift"
+msgstr "Penyimpangan momentum"
+
+#: ui/sandbox_panel.gd:371
+msgid "Total energy"
+msgstr "Energi total"
+
+#: ui/sandbox_panel.gd:382
+msgid "Measure drift from now on"
+msgstr "Ukur penyimpangan mulai sekarang"
+
+#: ui/sandbox_panel.gd:382
+msgid "Reset baseline"
+msgstr "Atur ulang acuan"
+
+#: ui/sandbox_panel.gd:39
+msgid "Asteroid"
+msgstr "Asteroid"
+
+#: ui/sandbox_panel.gd:454
+msgid "Mass   %s Earths  (%s kg)"
+msgstr "Massa   %s Bumi  (%s kg)"
+
+#: ui/sandbox_panel.gd:458
+msgid "Radius   %s km"
+msgstr "Jari-jari   %s km"
+
+#: ui/sandbox_panel.gd:48
+msgid "Rocky planet"
+msgstr "Planet berbatu"
+
+#: ui/sandbox_panel.gd:77
+msgid "Sandbox sections"
+msgstr "Bagian Sandbox"
+
+#: ui/search_panel.gd:30
+msgid "Find a body, such as Saturn or Europa"
+msgstr "Cari benda, misalnya Saturnus atau Europa"
+
+#: ui/search_panel.gd:42
+msgid "No body matches that name"
+msgstr "Tidak ada benda dengan nama itu"
+
+#: ui/search_panel.gd:45
+msgid "Arrow keys to choose, Enter to fly there, Esc to close"
+msgstr "Panah untuk memilih, Enter untuk terbang ke sana, Esc untuk menutup"
+
+#: ui/settings_panel.gd:12
+msgid "Audio"
+msgstr "Audio"
+
+#: ui/settings_panel.gd:12
+msgid "Display"
+msgstr "Layar"
+
+#: ui/settings_panel.gd:12
+msgid "Graphics"
+msgstr "Grafis"
+
+#: ui/settings_panel.gd:13
+msgid "Windowed"
+msgstr "Jendela"
+
+#: ui/settings_panel.gd:133 ui/settings_panel.gd:135
+msgid "Language"
+msgstr "Bahasa"
+
+#: ui/settings_panel.gd:139
+msgid "Window"
+msgstr "Jendela"
+
+#: ui/settings_panel.gd:14
+msgid "Press a key..."
+msgstr "Tekan tombol..."
+
+#: ui/settings_panel.gd:140
+msgid "Window mode"
+msgstr "Mode jendela"
+
+#: ui/settings_panel.gd:146
+msgid "Window size in windowed mode"
+msgstr "Ukuran jendela dalam mode jendela"
+
+#: ui/settings_panel.gd:148
+msgid "Resolution"
+msgstr "Resolusi"
+
+#: ui/settings_panel.gd:15
+msgid "Click an action, then press a key. Esc cancels."
+msgstr "Klik sebuah aksi, lalu tekan tombol. Esc membatalkan."
+
+#: ui/settings_panel.gd:151
+msgid "Accessibility"
+msgstr "Aksesibilitas"
+
+#: ui/settings_panel.gd:152
+msgid "Interface size"
+msgstr "Ukuran antarmuka"
+
+#: ui/settings_panel.gd:158
+msgid "Quality"
+msgstr "Kualitas"
+
+#: ui/settings_panel.gd:159
+msgid "Preset"
+msgstr "Preset"
+
+#: ui/settings_panel.gd:16
+msgid "%s is already used for %s. Press another key, or Esc to cancel."
+msgstr "%s sudah dipakai untuk %s. Tekan tombol lain, atau Esc untuk membatalkan."
+
+#: ui/settings_panel.gd:166
+msgid "Resolution of the 3D scene relative to the window"
+msgstr "Resolusi adegan 3D dibandingkan jendela"
+
+#: ui/settings_panel.gd:17
+msgid "Resolution applies in windowed mode. Fullscreen uses the screen resolution."
+msgstr "Resolusi berlaku dalam mode jendela. Layar penuh memakai resolusi layar."
+
+#: ui/settings_panel.gd:173
+msgid "Render scale"
+msgstr "Skala render"
+
+#: ui/settings_panel.gd:177
+msgid "Trail length"
+msgstr "Panjang jejak orbit"
+
+#: ui/settings_panel.gd:18
+msgid "Larger sizes suit high-resolution screens and reading from a distance. 130% works best at 1600 x 900 or above."
+msgstr "Ukuran lebih besar cocok untuk layar beresolusi tinggi dan membaca dari jauh. 130% paling baik pada 1600 x 900 atau lebih."
+
+#: ui/settings_panel.gd:181
+msgid "Orbit colors"
+msgstr "Warna orbit"
+
+#: ui/settings_panel.gd:188
+msgid "Volume"
+msgstr "Volume"
+
+#: ui/settings_panel.gd:193
+msgid "Background music volume"
+msgstr "Volume musik latar"
+
+#: ui/settings_panel.gd:194
+msgid "Sound effects volume"
+msgstr "Volume efek suara"
+
+#: ui/settings_panel.gd:195
+msgid "Voice-over volume"
+msgstr "Volume suara narasi"
+
+#: ui/settings_panel.gd:197
+msgid "Playback"
+msgstr "Pemutaran"
+
+#: ui/settings_panel.gd:20
+msgid "Drag with the left button to orbit the focused body. Auto makes mouse wheel steps zoom. A two-finger touchpad swipe orbits the focused body, or moves the camera in free flight. Pinch or Ctrl + scroll always zooms, and Shift + scroll changes flight speed."
+msgstr "Seret dengan tombol kiri untuk mengitari benda yang difokus. Otomatis membuat roda mouse memperbesar. Usap dua jari di touchpad mengitari benda yang difokus, atau menggerakkan kamera saat terbang bebas. Cubit atau Ctrl + gulir selalu memperbesar, dan Shift + gulir mengubah kecepatan terbang."
+
+#: ui/settings_panel.gd:200
+msgid "Mute music"
+msgstr "Matikan musik"
+
+#: ui/settings_panel.gd:200
+msgid "Silence the background music"
+msgstr "Matikan musik latar"
+
+#: ui/settings_panel.gd:203
+msgid "Play spoken narration during guided tours"
+msgstr "Putar narasi suara selama tur berpemandu"
+
+#: ui/settings_panel.gd:203
+msgid "Voice-over"
+msgstr "Suara narasi"
+
+#: ui/settings_panel.gd:23
+msgid "Lower presets and render scales run faster on older devices. Changing the preset resets the render scale to the preset default."
+msgstr "Preset dan skala render yang lebih rendah berjalan lebih cepat di perangkat lama. Mengganti preset mengembalikan skala render ke bawaan preset."
+
+#: ui/settings_panel.gd:233
+msgid "Mouse and touchpad"
+msgstr "Mouse dan touchpad"
+
+#: ui/settings_panel.gd:234
+msgid "Vertical scroll"
+msgstr "Gulir vertikal"
+
+#: ui/settings_panel.gd:238
+msgid "Introduction"
+msgstr "Pengenalan"
+
+#: ui/settings_panel.gd:241
+msgid "Show the welcome tips again the next time Explore opens."
+msgstr "Tampilkan lagi tips sambutan saat Jelajah dibuka berikutnya."
+
+#: ui/settings_panel.gd:245
+msgid "Show again"
+msgstr "Tampilkan lagi"
+
+#: ui/settings_panel.gd:248
+msgid "Keyboard"
+msgstr "Keyboard"
+
+#: ui/settings_panel.gd:25
+msgid "Tour narration text is always shown on screen. The voice-over is synthesized speech."
+msgstr "Teks narasi tur selalu tampil di layar. Suara narasi adalah suara sintetis."
+
+#: ui/settings_panel.gd:254
+msgid "Reset to defaults"
+msgstr "Kembalikan bawaan"
+
+#: ui/settings_panel.gd:254
+msgid "Restore the default key bindings"
+msgstr "Kembalikan tombol bawaan"
+
+#: ui/settings_panel.gd:26
+msgid "The voice-over is available in English only. Captions follow the chosen language."
+msgstr "Suara narasi hanya tersedia dalam bahasa Inggris. Teks narasi mengikuti bahasa yang dipilih."
+
+#: ui/settings_panel.gd:263
+msgid "Click, then press a new key"
+msgstr "Klik, lalu tekan tombol baru"
+
+#: ui/settings_panel.gd:27
+msgid "Changing the language reloads the current screen."
+msgstr "Mengganti bahasa akan memuat ulang layar saat ini."
+
+#: ui/settings_panel.gd:271
+msgid "Will show"
+msgstr "Akan tampil"
+
+#: ui/settings_panel.gd:38
+msgid "Colorblind-safe colors use the Okabe-Ito palette"
+msgstr "Warna ramah buta warna memakai palet Okabe-Ito"
+
+#: ui/settings_panel.gd:39
+msgid "Size of text and panels"
+msgstr "Ukuran teks dan panel"
+
+#: ui/settings_panel.gd:40
+msgid "What vertical scrolling does"
+msgstr "Fungsi gulir vertikal"
+
+#: ui/tour_menu.gd:55
+msgid "%d stops"
+msgstr "%d pemberhentian"
+
+#: ui/tour_menu.gd:61
+msgid "Quiz"
+msgstr "Kuis"
+
+#: ui/tour_menu.gd:61
+msgid "Test what you know about this tour"
+msgstr "Uji pengetahuanmu tentang tur ini"
+
+#: ui/tour_menu.gd:64
+msgid "Begin this guided tour"
+msgstr "Mulai tur berpemandu ini"
+
+#: ui/tour_menu.gd:64
+msgid "Start tour"
+msgstr "Mulai tur"
+
+#: ui/tour_panel.gd:103
+msgid "The voice-over is available in English only"
+msgstr "Suara narasi hanya tersedia dalam bahasa Inggris"
+
+#: ui/tour_panel.gd:46
+msgid "Exit tour"
+msgstr "Keluar tur"
+
+#: ui/tour_panel.gd:46
+msgid "Leave the tour (Esc)"
+msgstr "Tinggalkan tur (Esc)"
+
+#: ui/tour_panel.gd:52
+msgid "Play the voice-over (captions always stay visible)"
+msgstr "Putar suara narasi (teks narasi selalu tampil)"
+
+#: ui/tour_panel.gd:52
+msgid "Voice"
+msgstr "Suara"
+
+#: ui/tour_panel.gd:56
+msgid "Replay the voice-over for this step"
+msgstr "Putar ulang suara narasi langkah ini"
+
+#: ui/tour_panel.gd:59
+msgid "Previous step (Left)"
+msgstr "Langkah sebelumnya (Kiri)"
+
+#: ui/tour_panel.gd:60
+msgid "Next step (Right or Enter)"
+msgstr "Langkah berikutnya (Kanan atau Enter)"
+
+#: ui/tour_panel.gd:74
+msgid "Step %d of %d"
+msgstr "Langkah %d dari %d"
+
+#: ui/tour_panel.gd:80
+msgid "Finish"
+msgstr "Selesai"
