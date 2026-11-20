@@ -33,6 +33,7 @@ var bottom_center := VBoxContainer.new()
 var toolbar := HBoxContainer.new()
 var search_panel := SearchPanel.new()
 var date_panel := DatePanel.new()
+var onboarding := Onboarding.new()
 
 var _root := Control.new()
 var _date_label := Label.new()
@@ -66,6 +67,8 @@ var _view_body := VBoxContainer.new()
 var _collapse_button: Button
 var _search_button: Button
 var _date_button: Button
+var _time_panel: Control
+var _view_panel: Control
 
 
 static func make_panel(parent: Control) -> VBoxContainer:
@@ -172,6 +175,7 @@ func _ready() -> void:
 	_build_settings_panel()
 	_build_top_center()
 	_build_footer()
+	_root.add_child(onboarding)
 	_depth_control.selected.connect(func(index: int) -> void: Preferences.set_depth_level(index as Preferences.DepthLevel))
 	Preferences.changed.connect(_sync_preferences)
 	_sync_preferences()
@@ -222,6 +226,18 @@ func set_now_visible(value: bool) -> void:
 	_now_button.visible = value
 	_now_separator.visible = value
 	_date_button.visible = value
+
+
+func time_panel() -> Control:
+	return _time_panel
+
+
+func view_panel() -> Control:
+	return _view_panel
+
+
+func search_button() -> Control:
+	return _search_button
 
 
 func utc_offset_minutes() -> int:
@@ -348,6 +364,7 @@ func _place_column(
 
 func _build_time_panel() -> void:
 	var box := make_panel(left_column)
+	_time_panel = box.get_parent()
 	var header := HBoxContainer.new()
 	box.add_child(header)
 	_date_label.theme_type_variation = "HeaderLabel"
@@ -410,6 +427,7 @@ func refresh_binding_tooltips() -> void:
 
 func _build_settings_panel() -> void:
 	var box := make_panel(right_column)
+	_view_panel = box.get_parent()
 	box.custom_minimum_size = Vector2(SIDE_PANEL_WIDTH, 0)
 	var header := HBoxContainer.new()
 	box.add_child(header)

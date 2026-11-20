@@ -65,6 +65,7 @@ const HELP_GROUPS := [
 		],
 	],
 ]
+const ONBOARDING_DELAY_SECONDS := 1.0
 const MODE_SWITCH_LABEL := "Sandbox"
 const MODE_SWITCH_TEXT := "Open Sandbox ({mode_sandbox})"
 const MODE_SWITCH_ICON := "atom"
@@ -133,6 +134,8 @@ func _build_world() -> void:
 	renderer.compute_positions()
 	camera.focus_on(DEFAULT_FOCUS_ID, renderer.mapper.radius(model.get_body(DEFAULT_FOCUS_ID)), _toward_sun(DEFAULT_FOCUS_ID))
 	Audio.play_narration_once("welcome")
+	if not Preferences.onboarding_done:
+		get_tree().create_timer(ONBOARDING_DELAY_SECONDS).timeout.connect(_start_onboarding)
 
 
 func _process(delta: float) -> void:
@@ -368,6 +371,50 @@ func _update_labels() -> void:
 	_labels.set_entries(entries)
 
 
+func _start_onboarding() -> void:
+	if Preferences.onboarding_done or _tour_player.active:
+		return
+	hud.onboarding.finished.connect(func() -> void: Preferences.set_onboarding_done(true), CONNECT_ONE_SHOT)
+	hud.onboarding.start(_onboarding_steps())
+
+
+func _onboarding_steps() -> Array[Dictionary]:
+	return [
+		{
+			"title": "Welcome to Orrery",
+			"text": "Here is a quick look at the controls. It takes about a minute, and you can skip it at any time.",
+		},
+		{
+			"title": "Look around",
+			"text": "Drag with the mouse, or swipe with two fingers, to orbit the body in view. Scroll or pinch to zoom, and move freely with W, A, S, and D.",
+		},
+		{
+			"title": "Meet the bodies",
+			"text": "Click a planet or moon to read about it, and double-click to fly to it. This button finds any body by name.",
+			"target": hud.search_button,
+		},
+		{
+			"title": "Control time",
+			"text": "Play, pause, reverse, or speed up time here. The calendar jumps to any date between 1800 and 2050.",
+			"target": hud.time_panel,
+		},
+		{
+			"title": "Take a guided tour",
+			"text": "Tours show the highlights with narration, and each one ends with a short quiz.",
+			"target": func() -> Control: return _tours_button,
+		},
+		{
+			"title": "Choose what you see",
+			"text": "Explorer keeps the facts simple and Scientist shows full data. Labels, orbits, rings, and the scale can be switched here.",
+			"target": hud.view_panel,
+		},
+		{
+			"title": "You are ready",
+			"text": "Press F3 at any time to see every control. Enjoy the solar system.",
+		},
+	]
+
+
 func _open_date_panel() -> void:
 	hud.date_panel.open(clock.seconds + Astro.J2000_UNIX_SECONDS, hud.utc_offset_minutes())
 
@@ -423,7 +470,9 @@ func _on_tour_stopped() -> void:
 
 
 func _cancel() -> void:
-	if _quiz_panel.is_open():
+	if hud.onboarding.is_running():
+		hud.onboarding.finish()
+	elif _quiz_panel.is_open():
 		_quiz_panel.close_quiz()
 	elif _tour_player.active:
 		_tour_player.stop()

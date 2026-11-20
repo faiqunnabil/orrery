@@ -47,6 +47,7 @@ var _voice_over_toggle: Button
 var _binding_buttons: Dictionary = {}
 var _capturing := ""
 var _binding_message: Label
+var _intro_button: Button
 
 
 func _ready() -> void:
@@ -226,6 +227,16 @@ func _build_controls_page(page: VBoxContainer) -> void:
 	_scroll_mode.selected.connect(func(index: int) -> void: Preferences.set_scroll_mode(index as Preferences.ScrollMode))
 	page.add_child(Hud.make_wrapped_label(POINTER_NOTE, NOTE_WIDTH, "DimLabel"))
 	page.add_child(HSeparator.new())
+	page.add_child(Hud.section_label("Introduction"))
+	var intro_row := HBoxContainer.new()
+	page.add_child(intro_row)
+	var intro_note := Hud.make_label("Show the welcome tips again the next time Explore opens.", "DimLabel")
+	intro_note.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+	intro_note.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
+	intro_row.add_child(intro_note)
+	_intro_button = Hud.make_button("Show again", _reset_onboarding, "", "rotate_ccw")
+	intro_row.add_child(_intro_button)
+	page.add_child(HSeparator.new())
 	page.add_child(Hud.section_label("Keyboard"))
 	var header := HBoxContainer.new()
 	page.add_child(header)
@@ -245,6 +256,12 @@ func _build_controls_page(page: VBoxContainer) -> void:
 		button.custom_minimum_size = Vector2(BINDING_WIDTH, 0)
 		row.add_child(button)
 		_binding_buttons[action] = button
+
+
+func _reset_onboarding() -> void:
+	Preferences.set_onboarding_done(false)
+	_intro_button.text = "Will show"
+	_intro_button.disabled = true
 
 
 func _style_value(label: Label) -> void:

@@ -30,6 +30,7 @@ var labels_visible := true
 var trails_visible := true
 var rings_visible := true
 var view_panel_collapsed := false
+var onboarding_done := false
 var trail_length: TrailLength = TrailLength.MEDIUM
 var orbit_palette: OrbitPalette = OrbitPalette.NATURAL
 var scroll_mode: ScrollMode = ScrollMode.AUTO
@@ -75,6 +76,13 @@ func set_depth_level(value: DepthLevel) -> void:
 	depth_level = value
 	_save()
 	changed.emit()
+
+
+func set_onboarding_done(value: bool) -> void:
+	if value == onboarding_done:
+		return
+	onboarding_done = value
+	_save()
 
 
 func set_view_panel_collapsed(value: bool) -> void:
@@ -127,6 +135,7 @@ func _load() -> void:
 	trails_visible = config.get_value(CONFIG_SECTION, "trails_visible", true)
 	rings_visible = config.get_value(CONFIG_SECTION, "rings_visible", true)
 	view_panel_collapsed = config.get_value(CONFIG_SECTION, "view_panel_collapsed", false)
+	onboarding_done = config.get_value(CONFIG_SECTION, "onboarding_done", false)
 	var stored_trail: int = config.get_value(CONFIG_SECTION, "trail_length", TrailLength.MEDIUM)
 	trail_length = clampi(stored_trail, TrailLength.SHORT, TrailLength.LONG) as TrailLength
 	var stored_palette: int = config.get_value(CONFIG_SECTION, "orbit_palette", OrbitPalette.NATURAL)
@@ -143,6 +152,7 @@ func _save() -> void:
 	config.set_value(CONFIG_SECTION, "trails_visible", trails_visible)
 	config.set_value(CONFIG_SECTION, "rings_visible", rings_visible)
 	config.set_value(CONFIG_SECTION, "view_panel_collapsed", view_panel_collapsed)
+	config.set_value(CONFIG_SECTION, "onboarding_done", onboarding_done)
 	config.set_value(CONFIG_SECTION, "trail_length", trail_length)
 	config.set_value(CONFIG_SECTION, "orbit_palette", orbit_palette)
 	config.set_value(CONFIG_SECTION, "scroll_mode", scroll_mode)
