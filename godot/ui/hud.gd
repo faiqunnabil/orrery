@@ -348,10 +348,10 @@ func refresh_diagnostics(scene_summary: String, focus_mesh: String) -> void:
 	_diag_values["mesh"].text = focus_mesh
 
 
-func show_toast(text: String) -> void:
+func show_toast(text: String, seconds: float = TOAST_SECONDS) -> void:
 	_toast_label.text = text
 	_toast_panel.visible = true
-	_toast_timer = TOAST_SECONDS
+	_toast_timer = seconds
 
 
 func refresh(clock: SimulationClock) -> void:
