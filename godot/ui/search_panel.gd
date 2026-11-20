@@ -106,7 +106,7 @@ static func _score(item: Dictionary, query: String) -> int:
 			score = NAME_CONTAINS_SCORE
 		if score >= 0 and (best < 0 or score < best):
 			best = score
-	if best < 0 and str(item["detail"]).to_lower().contains(query):
+	if best < 0 and (" " + str(item["detail"]).to_lower()).contains(" " + query):
 		best = DETAIL_SCORE
 	return best
 
