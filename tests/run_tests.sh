@@ -12,7 +12,8 @@ Usage: tests/run_tests.sh [test_name ...]
 
 Runs the Orrery UI, input, and rendering tests in a real window. With no
 arguments every test runs. Set GODOT to the Godot 4.7.2 executable when it is
-not on PATH. Set SHOT_DIR to also save the screenshots some tests take.
+not on PATH, and GODOT_ARGS to pass extra engine options such as
+--display-driver x11. Set SHOT_DIR to also save the screenshots some tests take.
 
 The user settings and sandbox snapshot are backed up before the run and
 restored afterwards, so the tests never change your saved preferences.
@@ -67,7 +68,7 @@ PROJECT="$(native_path "${ROOT}/godot")"
 failed=0
 for test in "${TESTS[@]}"; do
 	script="$(native_path "${ROOT}/tests/${test}.gd")"
-	output="$("${GODOT}" --path "${PROJECT}" --script "${script}" --quit-after "${TIMEOUT_FRAMES}" 2>&1)"
+	output="$("${GODOT}" ${GODOT_ARGS:-} --path "${PROJECT}" --script "${script}" --quit-after "${TIMEOUT_FRAMES}" 2>&1)"
 	passes="$(grep -c '^PASS' <<< "${output}")"
 	summary="$(grep -m1 '^FAILURES:' <<< "${output}")"
 	if [[ "${summary}" == "FAILURES: 0" ]]; then

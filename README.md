@@ -8,6 +8,8 @@
 ![Renderer](https://img.shields.io/badge/renderer-Compatibility%20(OpenGL%203.3)-555)
 ![Platforms](https://img.shields.io/badge/platforms-Windows%20%7C%20Linux-2ea44f)
 ![Offline](https://img.shields.io/badge/runs-fully%20offline-6f42c1)
+[![CI](https://github.com/Ablebil/orrery/actions/workflows/ci.yml/badge.svg?branch=dev)](https://github.com/Ablebil/orrery/actions/workflows/ci.yml)
+[![Release](https://img.shields.io/github/v/release/Ablebil/orrery)](https://github.com/Ablebil/orrery/releases/latest)
 
 ![Jupiter and the Galilean moons in Explore mode](.github/media/jupiter_system.jpg)
 
@@ -149,6 +151,7 @@ These are the default bindings. Every keyboard action can be rebound in **Settin
 
 ```
 orrery/
+├── .github/                Workflows for tests and releases, the setup-godot action, and README media
 ├── assets/LICENSES.md      Register of every third-party asset and data source
 ├── docs/PRD.md             Product requirements document
 ├── godot/                  Godot project
@@ -187,6 +190,26 @@ GODOT=/path/to/godot tests/run_tests.sh pointer_test # one test
 ```
 
 On Windows, run the script from Git Bash and point `GODOT` at the console executable. Your saved settings and sandbox snapshot are backed up before the run and restored afterwards.
+
+## Continuous integration and releases
+
+Two GitHub Actions workflows keep `main` working and publish builds:
+
+| Workflow | Trigger | What it does |
+|---|---|---|
+| [CI](.github/workflows/ci.yml) | Every push to `dev` and every pull request into `main` | Imports the project and runs the whole test suite on Ubuntu with a virtual display and software OpenGL |
+| [Release](.github/workflows/release.yml) | Pushing a tag such as `v1.1.0`, or a manual run from the Actions tab | Checks the tag against the project version, exports the Windows and Linux builds, packages them, and publishes a GitHub release. A manual run only keeps the packages as a downloadable artifact for 7 days |
+
+`main` only accepts pull requests whose CI run has passed. To release a new version:
+
+```
+tools/release.sh bump 1.1.0   # on dev: sets the version in the project and the Windows metadata, then commits
+git push origin dev           # then open a pull request into main and merge it once CI passes
+git checkout main && git pull
+tools/release.sh tag 1.1.0    # tags v1.1.0 and, after you confirm, pushes the tag
+```
+
+`tools/package_release.sh <version>` builds the same archives locally from the output of `build.sh`.
 
 ## Offline tooling
 

@@ -1,0 +1,75 @@
+name: Release
+
+on:
+  push:
+    tags: ["v*.*.*"]
+  workflow_dispatch:
+
+concurrency:
+  group: release-${{ github.ref }}
+
+permissions:
+  contents: write
+
+jobs:
+  release:
+    name: Build and publish
+    runs-on: ubuntu-24.04
+    timeout-minutes: 60
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Check that the tag matches the project version
+        run: |
+          project="$(sed -n 's/^config\/version="\(.*\)"$/\1/p' godot/project.godot)"
+          if [[ "$GITHUB_REF_TYPE" != "tag" ]]; then
+            echo "VERSION=$project-${GITHUB_SHA::7}" >> "$GITHUB_ENV"
+            exit 0
+          fi
+          version="${GITHUB_REF_NAME#v}"
+          if [[ "$version" != "$project" ]]; then
+            echo "::error::Tag $GITHUB_REF_NAME does not match the project version $project"
+            exit 1
+          fi
+          echo "VERSION=$version" >> "$GITHUB_ENV"
+
+      - uses: ./.github/actions/setup-godot
+        with:
+          templates: "true"
+
+      - name: Restore imported assets
+        uses: actions/cache@v4
+        with:
+          path: godot/.godot
+          key: godot-import-${{ hashFiles('godot/project.godot', 'godot/**/*.import') }}
+          restore-keys: godot-import-
+
+      - name: Import the project
+        run: godot --headless --path godot --import
+
+      - name: Export the Windows and Linux builds
+        run: ./build.sh all
+
+      - name: Package the builds
+        run: tools/package_release.sh "$VERSION"
+
+      - name: Keep the packages of a manual run
+        if: github.ref_type != 'tag'
+        uses: actions/upload-artifact@v4
+        with:
+          name: orrery-${{ env.VERSION }}
+          path: dist/
+          retention-days: 7
+
+      - name: Publish the release
+        if: github.ref_type == 'tag'
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          sed "s/{{VERSION}}/$VERSION/g" .github/release_notes.md > dist/notes.md
+          gh release create "$GITHUB_REF_NAME" \
+            --verify-tag \
+            --title "Orrery $VERSION" \
+            --notes-file dist/notes.md \
+            --generate-notes \
+            dist/*.zip dist/*.tar.gz dist/SHA256SUMS.txt

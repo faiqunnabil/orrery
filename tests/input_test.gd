@@ -109,61 +109,66 @@ func _run_step() -> void:
 			_key(KEY_ESCAPE)
 		7:
 			_check("Esc exits the tour", not scene._tour_player.active)
+			scene.clock.paused = true
 			scene.camera.aim(scene.renderer.camera_relative_position("earth"))
 			wait = 180
 		8:
-			var earth := _screen_of(scene, "earth")
-			_click(earth)
+			var earth_body = scene.model.get_body("earth")
+			scene.camera.focus_on("earth", scene.renderer.mapper.radius(earth_body), scene._toward_sun("earth"), 6.0)
+			scene.camera.reset_idle()
+			wait = 5
 		9:
+			_click(_screen_of(scene, "earth"))
+		10:
 			_check("clicking Earth selects it", scene._selected_id == "earth")
 			_click(_empty_point(scene))
-		10:
+		11:
 			_check("clicking empty space clears the selection", scene._selected_id == "")
 			_key(KEY_T)
-		11:
+		12:
 			_check("key T switches to true scale", scene.renderer.mapper.mode == 1)
 			_key(KEY_T)
 			_key(KEY_F2)
 			wait = 40
-		12:
+		13:
 			_check("F2 opens the sandbox", scene.get_script().get_global_name() == "SandboxMode")
 			_check("Now button hidden in sandbox", _button_center(scene, "Now") == Vector2(-1, -1))
 			placed_count = scene.world.bodies.size()
 			sandbox_seconds = scene.world.seconds
 			_key(KEY_N)
-		13:
+		14:
 			_check("key N does not reset the sandbox", scene.world.seconds >= sandbox_seconds)
 			scene.camera.reanchor("sun", PackedFloat64Array([0.0, 500000.0, 1.0]))
 			scene.camera.aim(Vector3(0.0, -1.0, -0.000002))
 			_click(_button_center(scene, "Place body"))
-		14:
+		15:
 			_check("Place body button enters placement", scene._placing)
 			_mouse_button(Vector2(820, 360), true)
-		15:
+		16:
 			_check("pressing on the plane starts a drag", scene._dragging)
 			_mouse_motion(Vector2(820, 300), Vector2(0, -60))
-		16:
+		17:
 			_check("dragging updates the launch readout", scene._launch_status.begins_with("Launch"))
 			_mouse_button(Vector2(820, 300), false)
-		17:
+		18:
 			_check("releasing launches a new body", scene.world.bodies.size() == placed_count + 1)
 			_check("new body is selected", scene._selected_id.begins_with("body_"))
 			_key(KEY_ESCAPE)
-		18:
+		19:
 			_check("Esc leaves placement", not scene._placing)
 			_key(KEY_DELETE)
-		19:
+		20:
 			_check("Delete removes the selected body", scene.world.bodies.size() == placed_count)
 			var rings_before: bool = root.get_node("Preferences").rings_visible
 			_key(KEY_G)
 			wait = 10
 			set_meta("rings_before", rings_before)
-		20:
+		21:
 			_check("key G toggles distance rings", root.get_node("Preferences").rings_visible != get_meta("rings_before"))
 			_key(KEY_G)
 			_key(KEY_F1)
 			wait = 40
-		21:
+		22:
 			_check("F1 returns to explore", scene.get_script().get_global_name() == "ExploreMode")
 			print("FAILURES: ", failures)
 			quit()
