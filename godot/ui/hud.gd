@@ -16,9 +16,13 @@ const HELP_HINT := "   |   %s controls"
 const AUTO_ORBIT_HINT := "   |   Auto-orbit"
 const SPEED_LABEL_WIDTH := 92
 const BOTTOM_RESERVE := 60.0
+const BOTTOM_CENTER_MARGIN := 58
+const ICON_BUTTON_WIDTH := 34
 const SCROLLBAR_GUTTER := 12
 const DIAGNOSTICS_WIDTH := 240
 const TOAST_SECONDS := 2.5
+const HELP_COLUMN_WIDTH := 168
+const KEY_SEPARATOR := "|"
 
 var left_column := VBoxContainer.new()
 var right_column := VBoxContainer.new()
@@ -35,7 +39,8 @@ var _now_separator := VSeparator.new()
 var _fps_label := Label.new()
 var _status_label := Label.new()
 var _help_panel := PanelContainer.new()
-var _help_label := Label.new()
+var _help_flow := HFlowContainer.new()
+var _help_entries: Array = []
 var _diagnostics_panel := PanelContainer.new()
 var _diag_values: Dictionary[String, Label] = {}
 var _toast_panel := PanelContainer.new()
@@ -52,6 +57,8 @@ var _trails_toggle: Button
 var _rings_toggle: Button
 var _mode_button := Button.new()
 var _settings_extras := VBoxContainer.new()
+var _view_body := VBoxContainer.new()
+var _collapse_button: Button
 
 
 static func make_panel(parent: Control) -> VBoxContainer:
@@ -62,19 +69,33 @@ static func make_panel(parent: Control) -> VBoxContainer:
 	return box
 
 
-static func make_button(label: String, pressed_callback: Callable, tooltip: String = "") -> Button:
+static func make_button(label: String, pressed_callback: Callable, tooltip: String = "", icon_name: String = "") -> Button:
 	var button := Button.new()
 	button.text = label
 	button.tooltip_text = tooltip
 	button.focus_mode = Control.FOCUS_NONE
 	button.pressed.connect(pressed_callback)
+	if icon_name != "":
+		button.icon = OrreryTheme.icon(icon_name)
 	return button
 
 
-static func make_accent_button(label: String, pressed_callback: Callable, tooltip: String = "") -> Button:
-	var button := make_button(label, pressed_callback, tooltip)
+static func make_accent_button(label: String, pressed_callback: Callable, tooltip: String = "", icon_name: String = "") -> Button:
+	var button := make_button(label, pressed_callback, tooltip, icon_name)
 	button.theme_type_variation = "AccentButton"
 	return button
+
+
+static func make_icon_button(icon_name: String, pressed_callback: Callable, tooltip: String, variation: String = "IconButton") -> Button:
+	var button := make_button("", pressed_callback, tooltip, icon_name)
+	button.theme_type_variation = variation
+	button.icon_alignment = HORIZONTAL_ALIGNMENT_CENTER
+	button.custom_minimum_size = Vector2(ICON_BUTTON_WIDTH, 0)
+	return button
+
+
+static func make_close_button(pressed_callback: Callable, tooltip: String = "Close (Esc)") -> Button:
+	return make_icon_button("x", pressed_callback, tooltip, "IconFlatButton")
 
 
 static func make_label(text: String, variation: String = "") -> Label:
@@ -95,10 +116,13 @@ static func section_label(text: String) -> Label:
 	return make_label(text.to_upper(), "SectionLabel")
 
 
-static func make_toggle(label: String, tooltip: String, toggled_callback: Callable) -> Button:
+static func make_toggle(label: String, tooltip: String, toggled_callback: Callable, icon_name: String = "") -> Button:
 	var button := Button.new()
 	button.text = label
 	button.tooltip_text = tooltip
+	button.theme_type_variation = "ToggleButton"
+	if icon_name != "":
+		button.icon = OrreryTheme.icon(icon_name)
 	button.toggle_mode = true
 	button.focus_mode = Control.FOCUS_NONE
 	button.size_flags_horizontal = Control.SIZE_EXPAND_FILL
@@ -134,7 +158,7 @@ func _ready() -> void:
 	_place_column(left_column, Control.PRESET_TOP_LEFT, Control.GROW_DIRECTION_END, Control.GROW_DIRECTION_END)
 	_place_column(right_column, Control.PRESET_TOP_RIGHT, Control.GROW_DIRECTION_BEGIN, Control.GROW_DIRECTION_END)
 	_place_column(top_center, Control.PRESET_CENTER_TOP, Control.GROW_DIRECTION_BOTH, Control.GROW_DIRECTION_END)
-	_place_column(bottom_center, Control.PRESET_CENTER_BOTTOM, Control.GROW_DIRECTION_BOTH, Control.GROW_DIRECTION_BEGIN)
+	_place_bottom_center()
 	_build_time_panel()
 	_build_settings_panel()
 	_build_top_center()
@@ -174,8 +198,10 @@ func add_setting(control: Control) -> void:
 	_settings_extras.add_child(control)
 
 
-func set_mode_switch(label: String) -> void:
+func set_mode_switch(label: String, tooltip: String = "", icon_name: String = "") -> void:
 	_mode_button.text = label
+	_mode_button.tooltip_text = tooltip
+	_mode_button.icon = OrreryTheme.icon(icon_name) if icon_name != "" else null
 	_mode_button.visible = label != ""
 
 
@@ -197,16 +223,60 @@ func set_status(text: String) -> void:
 	_status_label.text = full if _help_panel.visible else full + HELP_HINT % InputBindings.keys_text("toggle_help")
 
 
-func set_help(text: String) -> void:
-	_help_label.text = text
+func set_help(groups: Array) -> void:
+	_help_entries.clear()
+	for child in _help_flow.get_children():
+		_help_flow.remove_child(child)
+		child.queue_free()
+	for group: Array in groups:
+		var column := VBoxContainer.new()
+		column.custom_minimum_size = Vector2(HELP_COLUMN_WIDTH, 0)
+		column.add_theme_constant_override("separation", OrreryTheme.SPACE_XS)
+		column.mouse_filter = Control.MOUSE_FILTER_IGNORE
+		_help_flow.add_child(column)
+		column.add_child(section_label(group[0]))
+		for entry: Array in group[1]:
+			column.add_child(_help_row(entry[0], entry[1]))
+			_help_entries.append("%s %s" % [entry[0].replace(KEY_SEPARATOR, "/"), entry[1]])
+
+
+func help_text() -> String:
+	return "   ".join(_help_entries)
+
+
+func _help_row(keys: String, description: String) -> HBoxContainer:
+	var row := HBoxContainer.new()
+	row.add_theme_constant_override("separation", 3)
+	row.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	for key in keys.split(KEY_SEPARATOR):
+		var cap := PanelContainer.new()
+		cap.theme_type_variation = "KeyCap"
+		cap.mouse_filter = Control.MOUSE_FILTER_IGNORE
+		cap.add_child(make_label(key, "KeyLabel"))
+		row.add_child(cap)
+	var label := make_label(description, "DimLabel")
+	label.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+	label.text_overrun_behavior = TextServer.OVERRUN_TRIM_ELLIPSIS
+	row.add_child(label)
+	return row
 
 
 func toggle_help() -> void:
 	_help_panel.visible = not _help_panel.visible
+	_fit_help()
 
 
 func set_help_visible(value: bool) -> void:
 	_help_panel.visible = value
+	_fit_help()
+
+
+func _fit_help() -> void:
+	var columns := maxi(_help_flow.get_child_count(), 1)
+	var chrome := 2.0 * OrreryTheme.SPACE_L
+	var full := columns * HELP_COLUMN_WIDTH + (columns - 1) * OrreryTheme.SPACE_L + chrome
+	var available := _root.get_viewport_rect().size.x - 2.0 * OUTER_MARGIN
+	_help_panel.custom_minimum_size.x = minf(full, available)
 
 
 func toggle_diagnostics() -> bool:
@@ -242,7 +312,8 @@ func refresh(clock: SimulationClock) -> void:
 	_date_label.text = Astro.format_date(clock.seconds, _utc_offset_minutes)
 	_speed_label.text = clock.speed_label()
 	_reverse_button.set_pressed_no_signal(clock.reversed)
-	_pause_button.text = "Play" if clock.paused else "Pause"
+	_pause_button.icon = OrreryTheme.icon("play" if clock.paused else "pause")
+	_pause_button.tooltip_text = ("Resume" if clock.paused else "Pause") + " time (Space)"
 	_fps_label.text = "%d FPS" % Engine.get_frames_per_second()
 
 
@@ -273,25 +344,32 @@ func _build_time_panel() -> void:
 	zone.mouse_filter = Control.MOUSE_FILTER_STOP
 	header.add_child(zone)
 	var row := HBoxContainer.new()
+	row.add_theme_constant_override("separation", OrreryTheme.SPACE_XS)
 	box.add_child(row)
-	_reverse_button.text = "Reverse"
+	_reverse_button.theme_type_variation = "ToggleIconButton"
+	_reverse_button.icon = OrreryTheme.icon("rewind")
+	_reverse_button.icon_alignment = HORIZONTAL_ALIGNMENT_CENTER
+	_reverse_button.custom_minimum_size = Vector2(ICON_BUTTON_WIDTH, 0)
 	_reverse_button.toggle_mode = true
 	_reverse_button.focus_mode = Control.FOCUS_NONE
 	_reverse_button.tooltip_text = "Run time backwards (R)"
 	_reverse_button.pressed.connect(func() -> void: reverse_pressed.emit())
 	row.add_child(_reverse_button)
+	_pause_button.theme_type_variation = "IconButton"
+	_pause_button.icon = OrreryTheme.icon("pause")
+	_pause_button.icon_alignment = HORIZONTAL_ALIGNMENT_CENTER
+	_pause_button.custom_minimum_size = Vector2(ICON_BUTTON_WIDTH, 0)
 	_pause_button.focus_mode = Control.FOCUS_NONE
-	_pause_button.tooltip_text = "Pause or resume time (Space)"
-	_pause_button.custom_minimum_size = Vector2(64, 0)
+	_pause_button.tooltip_text = "Pause time (Space)"
 	_pause_button.pressed.connect(func() -> void: pause_pressed.emit())
 	row.add_child(_pause_button)
 	row.add_child(VSeparator.new())
-	row.add_child(make_button("−", func() -> void: slower_pressed.emit(), "Slower ([)"))
+	row.add_child(make_icon_button("minus", func() -> void: slower_pressed.emit(), "Slower ([)"))
 	_speed_label.custom_minimum_size = Vector2(SPEED_LABEL_WIDTH, 0)
 	_speed_label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
 	_speed_label.vertical_alignment = VERTICAL_ALIGNMENT_CENTER
 	row.add_child(_speed_label)
-	row.add_child(make_button("+", func() -> void: faster_pressed.emit(), "Faster (])"))
+	row.add_child(make_icon_button("plus", func() -> void: faster_pressed.emit(), "Faster (])"))
 	row.add_child(_now_separator)
 	_now_button = make_button("Now", func() -> void: now_pressed.emit(), "Jump to the current date (N)")
 	row.add_child(_now_button)
@@ -307,40 +385,53 @@ func _build_settings_panel() -> void:
 	header.add_child(view_label)
 	_fps_label.theme_type_variation = "DimLabel"
 	header.add_child(_fps_label)
-	box.add_child(_depth_control)
+	_collapse_button = make_icon_button(
+		"chevron_up", func() -> void: Preferences.set_view_panel_collapsed(not Preferences.view_panel_collapsed), "", "IconFlatButton"
+	)
+	_collapse_button.custom_minimum_size = Vector2(26, 0)
+	header.add_child(_collapse_button)
+	box.add_child(_view_body)
+	_view_body.add_child(_depth_control)
 	var toggles := HBoxContainer.new()
-	toggles.add_theme_constant_override("separation", 2)
-	box.add_child(toggles)
-	_labels_toggle = make_toggle("Labels", "Show body names (L)", Preferences.set_labels_visible)
-	_trails_toggle = make_toggle("Orbits", "Show orbit lines (O)", Preferences.set_trails_visible)
-	_rings_toggle = make_toggle("Rings", "Show distance rings around the Sun (G)", Preferences.set_rings_visible)
+	toggles.add_theme_constant_override("separation", OrreryTheme.SPACE_XS)
+	_view_body.add_child(toggles)
+	_labels_toggle = make_toggle("Labels", "Show body names (L)", Preferences.set_labels_visible, "tag")
+	_trails_toggle = make_toggle("Orbits", "Show orbit lines (O)", Preferences.set_trails_visible, "orbit")
+	_rings_toggle = make_toggle("Rings", "Show distance rings around the Sun (G)", Preferences.set_rings_visible, "circle_dot_dashed")
 	toggles.add_child(_labels_toggle)
 	toggles.add_child(_trails_toggle)
 	toggles.add_child(_rings_toggle)
-	box.add_child(_settings_extras)
-	box.add_child(HSeparator.new())
-	var quality_row := HBoxContainer.new()
-	box.add_child(quality_row)
-	var quality_label := section_label("Graphics")
-	quality_label.size_flags_horizontal = Control.SIZE_EXPAND_FILL
-	quality_row.add_child(quality_label)
-	quality_row.add_child(_quality_option)
+	_view_body.add_child(_settings_extras)
+	_view_body.add_child(HSeparator.new())
+	var actions := HBoxContainer.new()
+	actions.add_theme_constant_override("separation", OrreryTheme.SPACE_XS)
+	box.add_child(actions)
 	for preset_name in Quality.PRESET_NAMES:
 		_quality_option.add_item(preset_name)
 	_quality_option.focus_mode = Control.FOCUS_NONE
-	_quality_option.tooltip_text = "Lower quality runs faster on older devices"
+	_quality_option.tooltip_text = "Graphics quality. Lower quality runs faster on older devices"
+	_quality_option.icon = OrreryTheme.icon("gauge")
+	_quality_option.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 	_quality_option.item_selected.connect(func(index: int) -> void: quality_selected.emit(index))
-	_quality_option.custom_minimum_size = Vector2(120, 0)
-	box.add_child(HSeparator.new())
-	var actions := HBoxContainer.new()
-	box.add_child(actions)
-	_mode_button.theme_type_variation = "AccentButton"
+	actions.add_child(_quality_option)
 	_mode_button.focus_mode = Control.FOCUS_NONE
 	_mode_button.visible = false
-	_mode_button.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 	_mode_button.pressed.connect(func() -> void: mode_switch_pressed.emit())
 	actions.add_child(_mode_button)
-	actions.add_child(make_button("Menu", func() -> void: menu_pressed.emit(), "Pause menu, settings and credits (Esc)"))
+	actions.add_child(make_button("Menu", func() -> void: menu_pressed.emit(), "Pause menu, settings and credits (Esc)", "menu"))
+
+
+func _place_bottom_center() -> void:
+	bottom_center.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	bottom_center.add_theme_constant_override("separation", OUTER_MARGIN - 4)
+	bottom_center.alignment = BoxContainer.ALIGNMENT_END
+	_root.add_child(bottom_center)
+	bottom_center.set_anchors_preset(Control.PRESET_BOTTOM_WIDE)
+	bottom_center.offset_left = OUTER_MARGIN
+	bottom_center.offset_right = -(SIDE_PANEL_WIDTH + 2 * OUTER_MARGIN)
+	bottom_center.offset_bottom = -BOTTOM_CENTER_MARGIN
+	bottom_center.offset_top = -BOTTOM_CENTER_MARGIN
+	bottom_center.grow_vertical = Control.GROW_DIRECTION_BEGIN
 
 
 func _build_top_center() -> void:
@@ -403,23 +494,36 @@ static func format_count(value: int) -> String:
 func _build_footer() -> void:
 	var footer := VBoxContainer.new()
 	footer.mouse_filter = Control.MOUSE_FILTER_IGNORE
-	footer.add_theme_constant_override("separation", OUTER_MARGIN - 4)
 	_root.add_child(footer)
 	footer.set_anchors_and_offsets_preset(Control.PRESET_BOTTOM_LEFT, Control.PRESET_MODE_MINSIZE, OUTER_MARGIN)
 	footer.grow_horizontal = Control.GROW_DIRECTION_END
 	footer.grow_vertical = Control.GROW_DIRECTION_BEGIN
-	footer.add_child(_help_panel)
-	_help_panel.visible = false
-	var help_box := VBoxContainer.new()
-	_help_panel.add_child(help_box)
-	help_box.add_child(section_label("Controls"))
-	_help_label.theme_type_variation = "DimLabel"
-	help_box.add_child(_help_label)
 	var chip := PanelContainer.new()
 	chip.theme_type_variation = "ChipPanel"
 	chip.size_flags_horizontal = Control.SIZE_SHRINK_BEGIN
 	footer.add_child(chip)
+	_status_label.theme_type_variation = "DimLabel"
 	chip.add_child(_status_label)
+	_help_panel.visible = false
+	_help_panel.theme_type_variation = "OverlayPanel"
+	var help_center := CenterContainer.new()
+	help_center.set_anchors_preset(Control.PRESET_FULL_RECT)
+	help_center.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	_root.add_child(help_center)
+	help_center.add_child(_help_panel)
+	get_viewport().size_changed.connect(_fit_help)
+	var help_box := VBoxContainer.new()
+	help_box.add_theme_constant_override("separation", OrreryTheme.SPACE_S)
+	_help_panel.add_child(help_box)
+	var header := HBoxContainer.new()
+	help_box.add_child(header)
+	var title := make_label("Controls", "HeaderLabel")
+	title.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+	header.add_child(title)
+	header.add_child(make_close_button(toggle_help, "Close (%s)" % InputBindings.keys_text("toggle_help")))
+	_help_flow.add_theme_constant_override("h_separation", OrreryTheme.SPACE_L)
+	_help_flow.add_theme_constant_override("v_separation", OrreryTheme.SPACE_M)
+	help_box.add_child(_help_flow)
 
 
 func _sync_preferences() -> void:
@@ -427,4 +531,8 @@ func _sync_preferences() -> void:
 	_labels_toggle.set_pressed_no_signal(Preferences.labels_visible)
 	_trails_toggle.set_pressed_no_signal(Preferences.trails_visible)
 	_rings_toggle.set_pressed_no_signal(Preferences.rings_visible)
+	var collapsed := Preferences.view_panel_collapsed
+	_view_body.visible = not collapsed
+	_collapse_button.icon = OrreryTheme.icon("chevron_down" if collapsed else "chevron_up")
+	_collapse_button.tooltip_text = "Show view options" if collapsed else "Hide view options to make room for body information"
 

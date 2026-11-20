@@ -1,0 +1,8 @@
+[project]
+name = "orrery-branding-tools"
+version = "0.1.0"
+description = "Application icon and boot splash generation for Orrery"
+requires-python = ">=3.10,<3.13"
+dependencies = [
+    "pillow>=10.0",
+]

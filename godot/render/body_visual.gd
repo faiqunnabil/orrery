@@ -184,6 +184,9 @@ func add_rings(inner_ratio: float, outer_ratio: float, texture_path: String) -> 
 
 func add_surface_detail(definition: BodyDefinition) -> void:
 	_material.set_shader_parameter("relief_strength", definition.relief_strength)
+	if definition.normal_texture_path != "":
+		_material.set_shader_parameter("has_normal_texture", true)
+		_bind_texture(_material, "normal_texture", definition.normal_texture_path)
 	if definition.specular_texture_path != "":
 		_material.set_shader_parameter("has_specular_texture", true)
 		_bind_texture(_material, "specular_texture", definition.specular_texture_path)

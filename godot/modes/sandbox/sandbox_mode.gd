@@ -12,15 +12,65 @@ const SCREEN_MARGIN := 40.0
 const INITIAL_OFFSET := Vector3(0.0, 3.0e5, 4.0e5)
 const DEFAULT_ANCHOR_ID := "sun"
 const KM_PER_AU := 149597870.7
-const HELP_TEXT := (
-	"{move_forward}/{move_left}/{move_back}/{move_right} move   {move_down}/{move_up} down/up   {boost} boost   "
-	+ "Drag or two-finger swipe orbit   Pinch or Ctrl+scroll zoom   Shift+scroll speed   Right mouse look   Click select\n"
-	+ "Place body: click the orbital plane, drag to set velocity, release to launch   Esc cancel   {delete_body} remove\n"
-	+ "{time_pause} pause   {time_reverse} reverse   {time_slower} {time_faster} time speed   {toggle_labels} labels   "
-	+ "{toggle_trails} orbit lines   {toggle_grid} distance rings   {toggle_level} level   1-0 focus body   {toggle_auto_orbit} auto-orbit\n"
-	+ "{mode_explore} explore   {toggle_help} help   {toggle_diagnostics} perf   {toggle_hud} hide   {toggle_fullscreen} fullscreen   {take_screenshot} screenshot   Esc menu"
-)
+const HELP_GROUPS := [
+	[
+		"Camera",
+		[
+			["{move_forward}|{move_left}|{move_back}|{move_right}", "Move"],
+			["{move_down}|{move_up}", "Down / up"],
+			["{boost}", "Boost"],
+			["Drag|Swipe", "Orbit"],
+			["Pinch|Ctrl+Scroll", "Zoom"],
+			["Shift+Scroll", "Flight speed"],
+			["Right drag", "Look around"],
+		],
+	],
+	[
+		"Bodies",
+		[
+			["Click", "Select"],
+			["1-0", "Focus a body"],
+			["{delete_body}", "Remove"],
+			["{toggle_auto_orbit}", "Auto-orbit"],
+		],
+	],
+	[
+		"Place a body",
+		[
+			["Click", "Place on the plane"],
+			["Drag", "Set velocity"],
+			["Release", "Launch"],
+			["Esc", "Cancel"],
+		],
+	],
+	[
+		"Time and view",
+		[
+			["{time_pause}", "Pause"],
+			["{time_reverse}", "Reverse"],
+			["{time_slower}|{time_faster}", "Slower / faster"],
+			["{toggle_labels}", "Labels"],
+			["{toggle_trails}", "Orbit lines"],
+			["{toggle_grid}", "Distance rings"],
+			["{toggle_level}", "Depth level"],
+		],
+	],
+	[
+		"App",
+		[
+			["{mode_explore}", "Explore"],
+			["{toggle_help}", "Controls"],
+			["{toggle_diagnostics}", "Performance"],
+			["{toggle_hud}", "Hide interface"],
+			["{toggle_fullscreen}", "Fullscreen"],
+			["{take_screenshot}", "Screenshot"],
+			["Esc", "Menu"],
+		],
+	],
+]
+const MODE_SWITCH_LABEL := "Explore"
 const MODE_SWITCH_TEXT := "Open Explore ({mode_explore})"
+const MODE_SWITCH_ICON := "telescope"
 
 var model: SolarSystemModel
 var world: SandboxWorld
@@ -53,7 +103,7 @@ func _build_world() -> void:
 	add_child(renderer)
 	hud.add_overlay(_labels)
 	hud.left_column.add_child(panel)
-	set_key_help(HELP_TEXT, MODE_SWITCH_TEXT)
+	set_key_help(HELP_GROUPS, MODE_SWITCH_LABEL, MODE_SWITCH_TEXT, MODE_SWITCH_ICON)
 	hud.set_now_visible(false)
 	hud.set_depth_visible(true)
 	for index in 10:

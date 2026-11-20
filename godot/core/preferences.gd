@@ -29,6 +29,7 @@ var depth_level: DepthLevel = DepthLevel.EXPLORER
 var labels_visible := true
 var trails_visible := true
 var rings_visible := true
+var view_panel_collapsed := false
 var trail_length: TrailLength = TrailLength.MEDIUM
 var orbit_palette: OrbitPalette = OrbitPalette.NATURAL
 var scroll_mode: ScrollMode = ScrollMode.AUTO
@@ -76,6 +77,14 @@ func set_depth_level(value: DepthLevel) -> void:
 	changed.emit()
 
 
+func set_view_panel_collapsed(value: bool) -> void:
+	if value == view_panel_collapsed:
+		return
+	view_panel_collapsed = value
+	_save()
+	changed.emit()
+
+
 func set_labels_visible(value: bool) -> void:
 	if value == labels_visible:
 		return
@@ -117,6 +126,7 @@ func _load() -> void:
 	labels_visible = config.get_value(CONFIG_SECTION, "labels_visible", true)
 	trails_visible = config.get_value(CONFIG_SECTION, "trails_visible", true)
 	rings_visible = config.get_value(CONFIG_SECTION, "rings_visible", true)
+	view_panel_collapsed = config.get_value(CONFIG_SECTION, "view_panel_collapsed", false)
 	var stored_trail: int = config.get_value(CONFIG_SECTION, "trail_length", TrailLength.MEDIUM)
 	trail_length = clampi(stored_trail, TrailLength.SHORT, TrailLength.LONG) as TrailLength
 	var stored_palette: int = config.get_value(CONFIG_SECTION, "orbit_palette", OrbitPalette.NATURAL)
@@ -132,6 +142,7 @@ func _save() -> void:
 	config.set_value(CONFIG_SECTION, "labels_visible", labels_visible)
 	config.set_value(CONFIG_SECTION, "trails_visible", trails_visible)
 	config.set_value(CONFIG_SECTION, "rings_visible", rings_visible)
+	config.set_value(CONFIG_SECTION, "view_panel_collapsed", view_panel_collapsed)
 	config.set_value(CONFIG_SECTION, "trail_length", trail_length)
 	config.set_value(CONFIG_SECTION, "orbit_palette", orbit_palette)
 	config.set_value(CONFIG_SECTION, "scroll_mode", scroll_mode)

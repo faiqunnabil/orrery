@@ -39,10 +39,8 @@ func _init() -> void:
 	var actions := HBoxContainer.new()
 	actions.size_flags_vertical = Control.SIZE_SHRINK_BEGIN
 	header.add_child(actions)
-	actions.add_child(Hud.make_accent_button("Focus", func() -> void: focus_requested.emit(body_id), "Fly to this body"))
-	var close := Hud.make_button("×", func() -> void: close_requested.emit(), "Close (Esc)")
-	close.theme_type_variation = "FlatButton"
-	actions.add_child(close)
+	actions.add_child(Hud.make_accent_button("Focus", func() -> void: focus_requested.emit(body_id), "Fly to this body", "crosshair"))
+	actions.add_child(Hud.make_close_button(func() -> void: close_requested.emit()))
 	box.add_child(HSeparator.new())
 	_scroll.custom_minimum_size = Vector2(0, SCROLL_HEIGHT)
 	_scroll.horizontal_scroll_mode = ScrollContainer.SCROLL_MODE_DISABLED

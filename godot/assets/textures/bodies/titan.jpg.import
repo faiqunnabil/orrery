@@ -3,19 +3,20 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://byh85we0wkjah"
-path="res://.godot/imported/titan.jpg-d6b503721d5f4f4e58c0fdd27775728e.ctex"
+path.s3tc="res://.godot/imported/titan.jpg-d6b503721d5f4f4e58c0fdd27775728e.s3tc.ctex"
 metadata={
-"vram_texture": false
+"imported_formats": ["s3tc_bptc"],
+"vram_texture": true
 }
 
 [deps]
 
 source_file="res://assets/textures/bodies/titan.jpg"
-dest_files=["res://.godot/imported/titan.jpg-d6b503721d5f4f4e58c0fdd27775728e.ctex"]
+dest_files=["res://.godot/imported/titan.jpg-d6b503721d5f4f4e58c0fdd27775728e.s3tc.ctex"]
 
 [params]
 
-compress/mode=0
+compress/mode=2
 compress/high_quality=false
 compress/lossy_quality=0.7
 compress/uastc_level=0

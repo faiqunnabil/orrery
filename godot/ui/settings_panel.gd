@@ -59,7 +59,7 @@ func _ready() -> void:
 	var heading := Hud.make_label("Settings", "TitleLabel")
 	heading.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 	header.add_child(heading)
-	header.add_child(Hud.make_button("Back", func() -> void: back_requested.emit(), "Return (Esc)"))
+	header.add_child(Hud.make_button("Back", func() -> void: back_requested.emit(), "Return (Esc)", "chevron_left"))
 	box.add_child(_tabs)
 	_tabs.selected.connect(_show_page)
 	for _page in PAGE_NAMES:
@@ -232,7 +232,7 @@ func _build_controls_page(page: VBoxContainer) -> void:
 	var hint := Hud.make_label(CAPTURE_HINT, "DimLabel")
 	hint.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 	header.add_child(hint)
-	var reset := Hud.make_button("Reset to defaults", InputBindings.reset_to_defaults, "Restore the default key bindings")
+	var reset := Hud.make_button("Reset to defaults", InputBindings.reset_to_defaults, "Restore the default key bindings", "rotate_ccw")
 	header.add_child(reset)
 	page.add_child(HSeparator.new())
 	for action: String in InputBindings.ACTION_LABELS:

@@ -2,7 +2,7 @@
 
 | | |
 |---|---|
-| **Status** | v1.0, reflects the implemented release |
+| **Status** | v1.0, reflects release 1.0.0 |
 | **Course** | Computer Graphics (Final Project) |
 | **Team** | Sepak Takraw |
 | **Engine** | Godot 4.7.2 (standard, GDScript), Compatibility renderer |
@@ -95,7 +95,7 @@ Priority: **P0** = must have, **P1** = should have, **P2** = stretch. Every requ
 | F-23 | Reset to the default solar system or to a saved preset | P0 | Done | Plus a saved snapshot of the current state |
 | F-24 | Collision handling: merge bodies with conservation of momentum | P1 | Done | Swept contact test so fast bodies cannot pass through each other |
 | F-25 | Presets (e.g. binary star, extra planet, rogue star flyby) | P1 | Done | Solar system, binary star, extra planet, rogue star flyby |
-| F-26 | Selectable integrator (Velocity Verlet / RK4) and time step for Scientist level | P1 | Done | Adaptive or fixed time step |
+| F-26 | Selectable integrator (Velocity Verlet / RK4) and time step for Scientist level | P1 | Done | Adaptive or fixed time step. The adaptive Verlet mode sub-steps moon systems (§7.3) |
 | F-27 | Live readouts of total energy and angular momentum to illustrate numerical drift | P2 | Done | Physics tab at the Scientist level, with a resettable baseline |
 | F-28 | Maximum body count enforced per quality preset | P0 | Done | 32, 64, and 128 bodies |
 
@@ -130,12 +130,15 @@ These features were not in the original requirements and were added during devel
 | Feature | Description |
 |---|---|
 | Mouse and touchpad camera | Left drag or a two-finger swipe orbits the focused body, and a two-finger swipe moves the camera in free flight. Pinch or Ctrl + scroll zooms, and Shift + scroll changes flight speed. Touchpad scrolling is detected automatically, and Settings offers Auto, Orbit, Zoom, or Move for scrolling. Pinch gestures suppress accidental swipes |
-| Binding-driven help | The F3 help overlay and the status line are built from the active key bindings |
-| Interface scale | 100%, 115%, or 130% (N-06) |
+| Binding-driven help | The F3 help overlay groups controls by Camera, Bodies, Time, View, and App, shows each key as a key cap, and follows the active key bindings |
+| Interface scale | 100%, 115%, or 130% (N-06). The view panel can collapse to give body information more room |
+| Interface design system | One theme defines every color, spacing step, and button role: a single blue accent for the primary action, success, warning, and danger colors, separate toggle and segmented styles, the Inter typeface with tabular numbers, Lucide icons, and a visible keyboard focus ring. Text and controls meet WCAG AA contrast. Panels at the bottom of the screen stay clear of the side columns, and the main menu shows a rotating Earth |
 | Colorblind-safe orbit palette | Okabe–Ito colors for orbit trails (N-06) |
 | Tabbed sandbox panel | Bodies, World, and Physics tabs. Physics is shown only at the Scientist level |
 | Presentation tools | Fullscreen toggle (F11), screenshots without the interface (F12), a performance overlay with frame time, draw calls, primitives, and video memory (F4), and a cinematic auto-orbit (F9) that also starts after 20 seconds without input while a body is focused |
 | Build and launch scripts | `build.sh` exports both release builds and can install the export templates. `run.sh` launches the project from source on Linux |
+| Application identity | An application icon and a boot splash built from the Orrery emblem by `tools/branding`, and version 1.0.0 in the executable metadata and on the credits screen |
+| Automated tests | 163 checks in `tests/` drive the real application: input, camera controls, menus, the sandbox panel, quizzes, key bindings, accessibility, sandbox accuracy and speed, eclipses, level of detail, texture tiers, and the time zone display. `tests/run_tests.sh` runs them and restores the user's settings |
 
 ## 6. Non-Functional Requirements
 
@@ -181,7 +184,7 @@ The render scale can be adjusted from 50% to 100% on every preset. Orbit trail l
 Notes on the presets:
 
 - **Level of detail.** The tessellation in the table is a cap. Each body uses the coarsest sphere whose silhouette error stays under half a pixel on screen (§8), so distant bodies use as few as 16 segments.
-- **Textures.** Body textures carry mipmaps. The Low preset halves every body texture when it is loaded, which cuts its video memory by three quarters. The 4K textures of the High preset are stored with VRAM compression (S3TC), so each needs about 6 MB of video memory instead of 43 MB. The sky keeps its 2K texture on Low because it fills the screen.
+- **Textures.** Body and sky textures carry mipmaps and are stored with VRAM compression (S3TC), so a 2K texture needs about 1.4 MB of video memory instead of 11 MB, and a 4K texture about 6 MB instead of 43 MB. The Low preset halves every body texture when it is loaded, which cuts its video memory by another three quarters. The sky keeps its 2K texture on Low because it fills the screen.
 - **Shadows** use analytic tests in the shaders instead of shadow maps: Saturn casts a shadow on its rings, the rings cast a shadow on Saturn, and planets and moons cast eclipse shadows on each other. All are disabled on Low.
 
 ## 7. Technical Approach
@@ -208,12 +211,13 @@ Two models share the same body data:
 
 - **Explore mode** propagates every body analytically along its Keplerian orbit. This is exact at any time speed, supports reversing and jumping in time at no cost, and keeps cost linear in the number of bodies.
   - Planets use the NASA JPL Keplerian elements and rates, valid 1800 AD – 2050 AD.
-  - The Moon uses Meeus mean elements around Earth.
+  - The Moon uses the main periodic terms of Meeus' lunar theory (Astronomical Algorithms, chapter 47), converted from the ecliptic of date to the J2000 ecliptic. Lunar and solar eclipses from 2024 to 2026 occur within 2 minutes of their published times.
   - The Galilean moons use JPL satellite mean elements, rotated from their Laplace plane into the ecliptic. Titan uses JPL Horizons elements in Saturn's equator frame, because the published node convention for Saturn's moons did not match Horizons.
   - Ceres and Pluto use JPL Small-Body Database orbits.
 - **Sandbox mode** integrates mutual gravity numerically. Bodies start from state vectors derived from the same orbital elements.
   - Fixed-step simulation decoupled from frame rate, with sub-stepping at high time multipliers.
   - Default integrator: Velocity Verlet. RK4 available as an option. Both use Plummer softening.
+  - With the adaptive Verlet step, moon systems are sub-stepped with multiple time stepping (r-RESPA): pairs whose dynamical time is far shorter than the rest, grouped into subsystems such as Jupiter and its moons, take many inner steps while all other forces act as half kicks at the outer step. The scheme stays symplectic. With every moon present it runs about 150 simulated days per second within the 5 ms budget, against about 10 before, with smaller position errors than single-step Verlet and a relative energy drift near 1e-9 after 30 days.
   - Pairwise gravity is O(n²), which is why body count is capped per quality preset.
   - The time step adapts to the shortest dynamical time among body pairs, so close encounters and tight orbits stay stable.
   - Each frame has a fixed CPU budget for simulation. When the requested time speed cannot be met within the budget, the effective speed drops gracefully and the HUD reports that the simulation speed is limited. This keeps the application responsive on low-spec devices (N-05, N-08).
@@ -266,7 +270,7 @@ orrery/
 | Texture mapping | Every body surface, rings, sky | Done |
 | Specular map with Blinn-Phong highlight and Fresnel term | Earth's oceans | Done |
 | Bump mapping from albedo luminance | Rocky and icy bodies, with a footprint-aware step to avoid shimmer | Done |
-| Normal maps from dedicated height data | Planet and moon surfaces | Not implemented. Bump mapping is used instead |
+| Normal maps from dedicated height data | The Moon, Mars, and Earth, from LRO LOLA, MGS MOLA, and NOAA ETOPO5 elevation. Slopes are measured on the sphere and stored in tangent space; other bodies use bump mapping from the albedo | Done |
 | Mipmapping and texture resolution tiers | Body and sky textures: 1K on Low, 2K on Medium, 4K on High | Done |
 | Lighting model (point light from the Sun, emissive Sun) | Day/night terminator with city lights, shading | Done |
 | Custom shaders (spatial shader) | Atmosphere scattering, clouds, Saturn's rings, Sun surface and halo | Done |
@@ -297,6 +301,7 @@ orrery/
 - Surface textures: Solar System Scope (CC BY 4.0) for the Sun, planets, Moon, Earth's specular map, rings, and sky. USGS Astrogeology global mosaics from NASA missions (public domain) for the Galilean moons, Titan, Ceres, and Pluto, prepared by `tools/textures`.
 - Music and sound effects: generated by the team (§7.5), so no third-party license applies.
 - Narration: Kokoro-82M (Apache-2.0) with the `af_bella` voice. The synthesized voice is disclosed in the credits.
+- Typeface and icons: Inter (SIL Open Font License 1.1) and Lucide icons (ISC). Both license texts are bundled with the build.
 - Every asset is recorded in `assets/LICENSES.md` with source URL, author, license, and date retrieved.
 - All records are surfaced in the in-app credits (F-32).
 
@@ -333,7 +338,7 @@ No cut was needed. Every P0, P1, and P2 requirement shipped.
 | Risk | Impact | Mitigation | Outcome |
 |---|---|---|---|
 | Floating-point jitter at large distances | Visual artifacts | Double-precision simulation and floating origin from M0 | Resolved |
-| N-body instability at high time speed | Wrong or exploding orbits | Sub-stepping, Verlet, energy monitoring | Resolved with an adaptive time step and a CPU budget. Close moons such as Io limit the sandbox to about 10 days per second on the test laptop |
+| N-body instability at high time speed | Wrong or exploding orbits | Sub-stepping, Verlet, energy monitoring | Resolved with an adaptive time step, multiple time stepping for moon systems, and a CPU budget |
 | Scope too large for 4 weeks | Incomplete product | Strict P0/P1/P2 prioritization, the cut order in §11.1, and Sandbox built on the week 1 core | Resolved |
 | Mixed Godot versions in the team | Project corruption | Everyone pins Godot 4.7.2 | Resolved |
 | Linux regressions go unnoticed | Broken Linux release | Export a Linux build in week 1 and re-test on the team's Linux laptop at the end of every week | Resolved. Tested in WSL and on the team's Linux laptop |
@@ -363,10 +368,8 @@ No cut was needed. Every P0, P1, and P2 requirement shipped.
 | Item | Type |
 |---|---|
 | Test on a genuinely low-spec device, if one becomes available | Verification |
-| Sandbox speed is limited to about 10 days per second when close moons such as Io are present | Limitation |
-| At 130% interface scale in a 1280×720 window, the information panel is cropped | Limitation |
-| Eclipse timing in Explore follows the mean lunar orbit, so eclipses can be a few hours off their real times | Limitation |
-| Normal maps from dedicated height data are not used. Bump mapping from the albedo is used instead | Optional graphics |
+| Re-test the 1.0.0 build on the team's Linux laptop, including the new interface, fonts, and icons | Verification |
+| Mercury, the moons of Jupiter and Saturn, Ceres, and Pluto keep bump mapping from the albedo, because no complete global elevation model of them is small enough to bundle | Limitation |
 
 ## Appendix A — Credits
 

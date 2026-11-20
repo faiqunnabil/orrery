@@ -41,6 +41,49 @@ MAPS = [
 ]
 
 
+@dataclass(frozen=True)
+class Elevation:
+    body: str
+    url: str
+    shape: tuple[int, int]
+    dtype: str
+    meters_per_unit: float
+    radius_km: float
+    land_only: bool = False
+
+
+ELEVATIONS = [
+    Elevation(
+        "moon",
+        "https://pds-geosciences.wustl.edu/lro/lro-l-lola-3-rdr-v1/lrolol_1xxx/data/lola_gdr/cylindrical/img/ldem_16.img",
+        (2880, 5760),
+        "<i2",
+        0.5,
+        1737.4,
+    ),
+    Elevation(
+        "mars",
+        "https://pds-geosciences.wustl.edu/mgs/mgs-m-mola-5-megdr-l3-v1/mgsl_300x/meg016/megt90n000eb.img",
+        (2880, 5760),
+        ">i2",
+        1.0,
+        3389.5,
+    ),
+    Elevation(
+        "earth",
+        "https://www.ngdc.noaa.gov/mgg/global/relief/ETOPO5/TOPO/ETOPO5/ETOPO5.DAT",
+        (2160, 4320),
+        ">i2",
+        1.0,
+        6371.0,
+        True,
+    ),
+]
+NORMAL_TARGET_SLOPE = 0.35
+NORMAL_MIN_COS_LATITUDE = 0.05
+NORMAL_POLAR_FADE_DEGREES = (70.0, 85.0)
+NORMAL_SUFFIX = "_normal"
+
 HIGH_RESOLUTION = {
     "bodies/sun": "8k_sun.jpg",
     "bodies/mercury": "8k_mercury.jpg",
@@ -65,6 +108,11 @@ def parse_arguments() -> argparse.Namespace:
         "--high",
         action="store_true",
         help="Build the 4K textures of the High preset from Solar System Scope 8K maps instead",
+    )
+    parser.add_argument(
+        "--normals",
+        action="store_true",
+        help="Build tangent-space normal maps from LOLA, MOLA, and ETOPO5 elevation data instead",
     )
     parser.add_argument("--textures", type=Path, default=REPOSITORY_ROOT / "godot/assets/textures")
     return parser.parse_args()
@@ -195,8 +243,58 @@ def convert_high(name: str, source: Path, textures: Path) -> None:
     print(f"Wrote {target.relative_to(textures)}")
 
 
+def fetch_url(url: str, cache: Path) -> Path:
+    cache.mkdir(parents=True, exist_ok=True)
+    target = cache / url.rsplit("/", 1)[-1]
+    if not target.exists():
+        print(f"Downloading {target.name}")
+        partial = target.with_suffix(target.suffix + ".part")
+        with urllib.request.urlopen(url) as response, partial.open("wb") as handle:
+            for chunk in iter(lambda: response.read(DOWNLOAD_CHUNK), b""):
+                handle.write(chunk)
+        partial.rename(target)
+    return target
+
+
+def build_normal_map(entry: Elevation, source: Path, output: Path) -> None:
+    heights = np.fromfile(source, dtype=entry.dtype).reshape(entry.shape).astype(np.float32) * entry.meters_per_unit
+    if entry.land_only:
+        heights = np.maximum(heights, 0.0)
+    heights = resize_plane(heights, OUTPUT_SIZE)
+    heights = np.roll(heights, OUTPUT_SIZE[0] // 2, axis=1)
+    rows, columns = heights.shape
+    latitude = np.radians(90.0 - (np.arange(rows) + 0.5) * 180.0 / rows)
+    radius_m = entry.radius_km * 1000.0
+    east_step = radius_m * np.maximum(np.cos(latitude), NORMAL_MIN_COS_LATITUDE) * (2.0 * np.pi / columns)
+    north_step = radius_m * np.pi / rows
+    east_slope = (np.roll(heights, -1, axis=1) - np.roll(heights, 1, axis=1)) / (2.0 * east_step[:, np.newaxis])
+    padded = np.pad(heights, ((1, 1), (0, 0)), mode="edge")
+    north_slope = (padded[:-2] - padded[2:]) / (2.0 * north_step)
+    fade = np.clip(
+        (NORMAL_POLAR_FADE_DEGREES[1] - np.degrees(np.abs(latitude)))
+        / (NORMAL_POLAR_FADE_DEGREES[1] - NORMAL_POLAR_FADE_DEGREES[0]),
+        0.0,
+        1.0,
+    )[:, np.newaxis]
+    east_slope *= fade
+    north_slope *= fade
+    slope = np.sqrt(east_slope ** 2 + north_slope ** 2)
+    exaggeration = NORMAL_TARGET_SLOPE / max(float(np.percentile(slope, 99.0)), 1.0e-6)
+    normal = np.stack([-exaggeration * east_slope, -exaggeration * north_slope, np.ones_like(heights)], axis=2)
+    normal /= np.linalg.norm(normal, axis=2, keepdims=True)
+    pixels = ((normal * 0.5 + 0.5) * 255.0 + 0.5).astype(np.uint8)
+    target = output / f"{entry.body}{NORMAL_SUFFIX}.png"
+    Image.fromarray(pixels, mode="RGB").save(target, optimize=True)
+    print(f"Wrote {target.name}, relief exaggerated {exaggeration:.1f}x")
+
+
 def main() -> int:
     arguments = parse_arguments()
+    if arguments.normals:
+        for entry in ELEVATIONS:
+            if arguments.only is None or entry.body in arguments.only:
+                build_normal_map(entry, fetch_url(entry.url, arguments.cache), arguments.output)
+        return 0
     if arguments.high:
         for name, source in HIGH_RESOLUTION.items():
             if arguments.only is None or name.split("/")[-1] in arguments.only:

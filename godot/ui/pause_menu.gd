@@ -2,10 +2,11 @@ class_name PauseMenu
 extends CanvasLayer
 
 signal main_menu_requested
+signal closed
 
 const MENU_LAYER := 10
 const TITLE_FONT_SIZE := 40
-const SHADE_COLOR := Color(0.0, 0.0, 0.02, 0.6)
+const SHADE_COLOR := Color(0.01, 0.015, 0.03, 0.72)
 
 var _menu := ShellMenu.new("Paused", "", TITLE_FONT_SIZE)
 
@@ -24,11 +25,11 @@ func _ready() -> void:
 	shade.set_anchors_preset(Control.PRESET_FULL_RECT)
 	root.add_child(shade)
 	root.add_child(_menu)
-	_menu.add_entry("Resume", close, true)
-	_menu.add_entry("Settings", _menu.open_settings)
-	_menu.add_entry("Credits", _menu.open_credits)
-	_menu.add_entry("Main menu", func() -> void: main_menu_requested.emit())
-	_menu.add_entry("Quit", Audio.quit_application)
+	_menu.add_entry("Resume", close, true, "play")
+	_menu.add_entry("Settings", _menu.open_settings, false, "settings")
+	_menu.add_entry("Credits", _menu.open_credits, false, "info")
+	_menu.add_entry("Main menu", func() -> void: main_menu_requested.emit(), false, "house")
+	_menu.add_entry("Quit", Audio.quit_application, false, "power")
 	_menu.root_cancelled.connect(close)
 
 
@@ -43,6 +44,7 @@ func close() -> void:
 	get_viewport().gui_release_focus()
 	visible = false
 	get_tree().paused = false
+	closed.emit()
 
 
 func _unhandled_input(event: InputEvent) -> void:
