@@ -22,13 +22,15 @@ static func format_number(value: float, decimals: int) -> String:
 	var text := ("%." + str(decimals) + "f") % absf(value)
 	var parts := text.split(".")
 	var integer_part := parts[0]
+	var indonesian := Locale.current() == Locale.INDONESIAN
+	var grouping := "." if indonesian else ","
 	var grouped := ""
 	for index in integer_part.length():
 		if index > 0 and (integer_part.length() - index) % 3 == 0:
-			grouped += ","
+			grouped += grouping
 		grouped += integer_part[index]
 	if parts.size() > 1:
-		grouped += "." + parts[1]
+		grouped += ("," if indonesian else ".") + parts[1]
 	return ("-" if value < 0.0 else "") + grouped
 
 
@@ -37,7 +39,7 @@ static func format_scientific(value: float, decimals: int) -> String:
 		return "0"
 	var exponent := int(floor(log(absf(value)) / log(10.0)))
 	var mantissa := value / pow(10.0, exponent)
-	return ("%." + str(decimals) + "f x 10^%d") % [mantissa, exponent]
+	return "%s x 10^%d" % [format_number(mantissa, decimals), exponent]
 
 
 static func rotation_period_hours(body: BodyDefinition) -> float:
@@ -74,20 +76,20 @@ static func _scientist_rows(body: BodyDefinition, parent: BodyDefinition, distan
 	var rows: Array = []
 	rows.append(["Mass", "%s kg" % format_scientific(body.mass_kg, 4)])
 	rows.append(["Mean radius", "%s km" % format_number(body.radius_km, 1)])
-	rows.append(["Surface gravity", "%.2f m/s2" % surface_gravity(body)])
-	rows.append(["Escape velocity", "%.2f km/s" % escape_velocity_km_s(body)])
+	rows.append(["Surface gravity", "%s m/s2" % format_number(surface_gravity(body), 2)])
+	rows.append(["Escape velocity", "%s km/s" % format_number(escape_velocity_km_s(body), 2)])
 	if parent != null:
 		var semi_major_km: float = body.orbit.elements[OrbitModel.SEMI_MAJOR] * Astro.AU_KM
 		rows.append(["Semi-major axis", _precise_distance(semi_major_km, parent)])
-		rows.append(["Eccentricity", "%.4f" % body.orbit.elements[OrbitModel.ECCENTRICITY]])
+		rows.append(["Eccentricity", format_number(body.orbit.elements[OrbitModel.ECCENTRICITY], 4)])
 		var inclination_label := _inclination_label(body, parent)
-		rows.append([inclination_label, "%.2f deg" % absf(body.orbit.elements[OrbitModel.INCLINATION])])
+		rows.append([inclination_label, "%s°" % format_number(absf(body.orbit.elements[OrbitModel.INCLINATION]), 2)])
 		rows.append(["Orbital period", "%s d" % format_number(orbital_period_days(body), 3)])
 		rows.append(["Current distance", _precise_distance(distance_km, parent)])
-		rows.append(["Orbital speed", "%.2f km/s" % speed_km_s])
-	var retrograde := " (retrograde)" if body.rotation_rate_deg_per_day < 0.0 else ""
+		rows.append(["Orbital speed", "%s km/s" % format_number(speed_km_s, 2)])
+	var retrograde := Locale.t(" (retrograde)") if body.rotation_rate_deg_per_day < 0.0 else ""
 	rows.append(["Rotation period", _precise_rotation(body) + retrograde])
-	rows.append(["Axial tilt", "%.2f deg" % body.obliquity_deg])
+	rows.append(["Axial tilt", "%s°" % format_number(body.obliquity_deg, 2)])
 	return rows
 
 
@@ -110,7 +112,7 @@ static func _friendly_distance(distance_km: float, parent: BodyDefinition) -> St
 
 static func _precise_distance(distance_km: float, parent: BodyDefinition) -> String:
 	if parent.kind == "star":
-		return "%.5f AU" % (distance_km / Astro.AU_KM)
+		return "%s AU" % format_number(distance_km / Astro.AU_KM, 5)
 	return "%s km" % format_number(distance_km, 0)
 
 
@@ -138,8 +140,8 @@ static func _ratio(value: float) -> String:
 	if value >= 10.0:
 		return format_number(value, 0)
 	if value >= 1.0:
-		return "%.1f" % value
-	return "%.2f" % value
+		return format_number(value, 1)
+	return format_number(value, 2)
 
 
 static func _inclination_label(body: BodyDefinition, parent: BodyDefinition) -> String:
