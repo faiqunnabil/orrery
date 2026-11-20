@@ -1,3 +1,5 @@
+<img src="godot/icon.png" alt="Orrery icon" width="96" align="right">
+
 # Orrery
 
 **An interactive 3D solar system for exploration and gravity experiments.**
@@ -155,7 +157,7 @@ orrery/
 │   ├── render/             Renderers, camera, trails, asteroid belt, shaders
 │   ├── ui/                 Theme, HUD, panels, menus
 │   └── assets/             Textures, music, effects, narration
-├── tools/                  Offline generators for narration, audio, and textures
+├── tools/                  Offline generators for narration, audio, textures, and branding
 ├── build.sh                Release export helper (Linux / Windows)
 ├── run.sh                  Linux launcher script
 └── LICENSE                 MIT license for the project source
@@ -181,7 +183,8 @@ All generated assets are committed, so these tools are only needed to regenerate
 |---|---|
 | [`tools/tts`](tools/tts) | Tour and welcome narration with Kokoro-82M, voice `af_bella` |
 | [`tools/audio`](tools/audio) | Procedural background music and sound effects with fixed seeds |
-| [`tools/textures`](tools/textures) | Moon and dwarf planet textures from USGS global mosaics |
+| [`tools/textures`](tools/textures) | Moon and dwarf planet textures from USGS global mosaics, and the 4K High preset textures |
+| [`tools/branding`](tools/branding) | Application icon and boot splash from the Orrery emblem |
 
 ## Credits
 
