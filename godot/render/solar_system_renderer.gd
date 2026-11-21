@@ -31,7 +31,7 @@ var _eclipses := EclipseFinder.new()
 func setup(model: SolarSystemModel) -> void:
 	_model = model
 	for body in _model.bodies:
-		var visual := BodyVisual.new(body.texture_path, body.night_texture_path, body.emissive)
+		var visual := BodyVisual.new(body.texture_path, body.night_texture_path, body.emissive, body.tint)
 		if body.ring_texture_path != "":
 			visual.add_rings(body.ring_inner_km / body.radius_km, body.ring_outer_km / body.radius_km, body.ring_texture_path)
 		visual.add_atmosphere_layers(body)

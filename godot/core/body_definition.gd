@@ -32,6 +32,7 @@ var cloud_texture_path := ""
 var cloud_altitude := 0.0
 var cloud_opacity := 0.0
 var color: Color
+var tint := Color.WHITE
 var emissive: bool
 
 
@@ -72,6 +73,7 @@ static func from_dictionary(data: Dictionary) -> BodyDefinition:
 		body.cloud_altitude = clouds["altitude"]
 		body.cloud_opacity = clouds["opacity"]
 	body.color = Color.html(data["color"])
+	body.tint = Color.html(data.get("tint", "#FFFFFF"))
 	body.emissive = data.get("emissive", false)
 	return body
 
