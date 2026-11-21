@@ -92,13 +92,19 @@ It is aimed at learners from elementary school to university. Every panel switch
 | ![Main menu](.github/media/main_menu.jpg) | ![Sandbox](.github/media/sandbox.jpg) |
 | Main menu | Sandbox physics panel with conservation readouts |
 | ![Guided tours](.github/media/tours.jpg) | ![Quiz](.github/media/quiz.jpg) |
-| Guided tours with voice-over and captions | Quiz feedback with explanations |
+| The Eclipses and Comets tour at the lunar eclipse of March 2026 | Quiz feedback with explanations |
 | ![Earth](.github/media/earth.jpg) | ![Inner solar system](.github/media/inner_system.jpg) |
 | Earth with city lights, clouds, and atmosphere | Inner solar system with the instanced asteroid belt |
 | ![Saturn](.github/media/saturn.jpg) | ![Pluto](.github/media/pluto.jpg) |
 | Saturn's rings and the orbit of Titan | Pluto from New Horizons mosaics |
 | ![Io's shadow on Jupiter](.github/media/io_shadow.jpg) | ![Lunar eclipse](.github/media/lunar_eclipse.jpg) |
 | Io's shadow crossing Jupiter | The lunar eclipse of 3 March 2026 at true scale |
+| ![Night sky](.github/media/night_sky.jpg) | ![Halley's Comet](.github/media/comet.jpg) |
+| Orion and its neighbors with constellation figures and names | Halley's Comet in March 1986 with its ion and dust tails |
+| ![Gravity well](.github/media/gravity_well.jpg) | ![Challenges](.github/media/challenges.jpg) |
+| The gravity well under a binary star | A Sandbox challenge in progress |
+| ![Solar eclipse](.github/media/solar_eclipse.jpg) | ![Figure-eight](.github/media/figure_eight.jpg) |
+| The Moon's shadow on the North Atlantic, 12 August 2026 | Three stars on the figure-eight orbit |
 
 ## Getting started
 
