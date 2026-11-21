@@ -110,5 +110,45 @@
 				"velocity_km_s": [0.0, 29.7706, 0.0]
 			}
 		]
+	},
+	{
+		"id": "slingshot",
+		"title": "Gravity assist",
+		"goal": "Send a probe past the giant planet so the pass adds at least 30% to its orbital energy around the star.",
+		"hint": "Launch from inside the planet's orbit, about 1.25 x circular orbit speed, so the probe crosses the orbit just behind the planet. Passing behind a planet speeds a probe up, and passing in front slows it down. Time starts paused so you can aim.",
+		"type": "slingshot",
+		"start_paused": true,
+		"center": "star",
+		"planet": "giant",
+		"min_gain": 0.3,
+		"encounter_au": 0.1,
+		"speed_step": 5,
+		"view_au": 2.5,
+		"bodies": [
+			{
+				"id": "star",
+				"name": "Star",
+				"kind": "star",
+				"mass_kg": 1.98847e+30,
+				"radius_km": 695700.0,
+				"texture": "res://assets/textures/bodies/sun.jpg",
+				"color": "#FFD27D",
+				"emissive": true,
+				"position_km": [0.0, 0.0, 0.0],
+				"velocity_km_s": [0.0, -0.02843, 0.0]
+			},
+			{
+				"id": "giant",
+				"name": "Giant planet",
+				"kind": "planet",
+				"mass_kg": 1.89813e+27,
+				"radius_km": 69911.0,
+				"texture": "res://assets/textures/bodies/jupiter.jpg",
+				"color": "#D8B48A",
+				"emissive": false,
+				"position_km": [149597870.7, 0.0, 0.0],
+				"velocity_km_s": [0.0, 29.7706, 0.0]
+			}
+		]
 	}
 ]
