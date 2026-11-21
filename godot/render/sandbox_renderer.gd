@@ -10,6 +10,7 @@ const MIN_NEAR := 0.001
 const MAX_NEAR := 1.0e6
 const FAR_MARGIN := 1.5
 const DEFAULT_PERIOD_SECONDS := 3.15576e7
+const DOMINANT_MASS_FRACTION := 0.9
 const PREVIEW_COLOR := Color(0.55, 0.85, 1.0, 0.95)
 const HALO_SHADER := preload("res://render/shaders/sun_halo.gdshader")
 
@@ -326,11 +327,11 @@ func _update_trail(index: int, camera_position: PackedFloat64Array, shell: float
 	var trail: SandboxTrail = _trails[body.id]
 	trail.set_parent_id(body.parent_id)
 	var parent_index := world.index_of(body.parent_id)
+	var simulation := world.simulation
 	if parent_index < 0:
-		trail.visible = false
+		_update_barycentric_trail(index, trail, camera_position, shell)
 		return
 	trail.visible = _trails_visible
-	var simulation := world.simulation
 	var relative := simulation.position_of(index).minus(simulation.position_of(parent_index))
 	var parent_position: PackedFloat64Array = _render_positions[body.parent_id]
 	var parent_camera := PackedFloat64Array(
@@ -344,6 +345,22 @@ func _update_trail(index: int, camera_position: PackedFloat64Array, shell: float
 	var total_gm := simulation.gm[index] + simulation.gm[parent_index]
 	var period := TAU * sqrt(distance * distance * distance / maxf(total_gm, 1.0e-9))
 	trail.update(world.seconds, relative, parent_camera, shell, period if period > 0.0 else DEFAULT_PERIOD_SECONDS)
+
+
+func _update_barycentric_trail(index: int, trail: SandboxTrail, camera_position: PackedFloat64Array, shell: float) -> void:
+	var simulation := world.simulation
+	var system_gm := 0.0
+	for other in world.bodies.size():
+		system_gm += simulation.gm[other]
+	if world.bodies.size() < 2 or simulation.gm[index] > system_gm * DOMINANT_MASS_FRACTION:
+		trail.visible = false
+		return
+	trail.visible = _trails_visible
+	var relative := simulation.position_of(index)
+	var origin_camera := PackedFloat64Array([-camera_position[0], -camera_position[1], -camera_position[2]])
+	var distance := maxf(relative.length(), 1.0)
+	var period := TAU * sqrt(distance * distance * distance / maxf(system_gm, 1.0e-9))
+	trail.update(world.seconds, relative, origin_camera, shell, period if period > 0.0 else DEFAULT_PERIOD_SECONDS)
 
 
 func _sync_bodies() -> void:
