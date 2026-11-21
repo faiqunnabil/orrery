@@ -128,6 +128,9 @@ func _run_step() -> void:
 			scene._start_onboarding()
 		12:
 			_check("the introduction starts when it has not been seen", hud.onboarding.is_running())
+			var steps: Array = hud.onboarding._steps
+			var sandbox_tip: Array = steps.filter(func(entry: Dictionary) -> bool: return entry["title"] == "Try the Sandbox")
+			_check("the introduction points out the Sandbox button", sandbox_tip.size() == 1 and sandbox_tip[0]["target"].call() == hud.mode_button())
 			_key(KEY_RIGHT)
 		13:
 			_check("Right moves to the next tip", hud.onboarding._index == 1)
