@@ -43,7 +43,8 @@ func _cloud_width(scene) -> int:
 
 
 func _sky_width(scene) -> int:
-	return (scene.space_environment.sky.sky_material as PanoramaSkyMaterial).panorama.get_width()
+	var panorama: Texture2D = (scene.space_environment.sky.sky_material as ShaderMaterial).get_shader_parameter("panorama")
+	return panorama.get_width()
 
 
 func _timed_preset(quality, preset: int) -> float:

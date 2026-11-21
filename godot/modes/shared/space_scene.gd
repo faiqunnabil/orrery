@@ -3,6 +3,7 @@ extends Node3D
 
 const SKY_TEXTURE_PATH := "res://assets/textures/sky/stars_milky_way.jpg"
 const SKY_ENERGY := 0.7
+const SKY_SHADER := preload("res://render/shaders/galactic_sky.gdshader")
 const GLOW_INTENSITY := 0.8
 const GLOW_BLOOM := 0.4
 const GLOW_THRESHOLD := 0.3
@@ -126,8 +127,10 @@ func _unhandled_input(event: InputEvent) -> void:
 
 
 static func make_space_environment() -> Environment:
-	var sky_material := PanoramaSkyMaterial.new()
-	sky_material.panorama = TextureTiers.sky_texture(SKY_TEXTURE_PATH)
+	var sky_material := ShaderMaterial.new()
+	sky_material.shader = SKY_SHADER
+	sky_material.set_shader_parameter("panorama", TextureTiers.sky_texture(SKY_TEXTURE_PATH))
+	sky_material.set_shader_parameter("render_to_galactic", StarField.render_to_galactic())
 	var sky := Sky.new()
 	sky.sky_material = sky_material
 	var environment := Environment.new()
@@ -291,6 +294,6 @@ func _apply_quality() -> void:
 	_apply_render_scale()
 	get_viewport().msaa_3d = profile["msaa"]
 	space_environment.glow_enabled = profile["glow"]
-	(space_environment.sky.sky_material as PanoramaSkyMaterial).panorama = TextureTiers.sky_texture(SKY_TEXTURE_PATH)
+	(space_environment.sky.sky_material as ShaderMaterial).set_shader_parameter("panorama", TextureTiers.sky_texture(SKY_TEXTURE_PATH))
 	hud.sync_quality(Quality.preset)
 	_on_quality_changed()
