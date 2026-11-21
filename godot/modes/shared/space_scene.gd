@@ -19,6 +19,7 @@ var camera := CameraRig.new()
 var hud := Hud.new()
 var pause_menu := PauseMenu.new()
 var space_environment := make_space_environment()
+var star_field := StarField.new()
 
 var _help_groups: Array = []
 var _mode_label := ""
@@ -32,6 +33,7 @@ func _ready() -> void:
 	var world_environment := WorldEnvironment.new()
 	world_environment.environment = space_environment
 	add_child(world_environment)
+	add_child(star_field)
 	add_child(camera)
 	camera.current = true
 	add_child(hud)
@@ -117,6 +119,8 @@ func _unhandled_input(event: InputEvent) -> void:
 		Preferences.set_trails_visible(not Preferences.trails_visible)
 	elif event.is_action_pressed("toggle_grid"):
 		Preferences.set_rings_visible(not Preferences.rings_visible)
+	elif event.is_action_pressed("toggle_constellations"):
+		Preferences.set_constellations_visible(not Preferences.constellations_visible)
 	elif event.is_action_pressed("toggle_level"):
 		var next := Preferences.DepthLevel.EXPLORER if Preferences.is_scientist() else Preferences.DepthLevel.SCIENTIST
 		Preferences.set_depth_level(next)

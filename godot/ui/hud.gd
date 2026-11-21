@@ -59,6 +59,7 @@ var _utc_offset_minutes := Astro.local_offset_minutes()
 var _quality_option := OptionButton.new()
 var _depth_control := SegmentedControl.new(Preferences.DEPTH_NAMES, "Information depth (M)")
 var _labels_toggle: Button
+var _constellations_toggle: Button
 var _trails_toggle: Button
 var _rings_toggle: Button
 var _mode_button := Button.new()
@@ -459,8 +460,10 @@ func _build_settings_panel() -> void:
 	header.add_child(_collapse_button)
 	box.add_child(_view_body)
 	_view_body.add_child(_depth_control)
-	var toggles := HBoxContainer.new()
-	toggles.add_theme_constant_override("separation", OrreryTheme.SPACE_XS)
+	var toggles := GridContainer.new()
+	toggles.columns = 2
+	toggles.add_theme_constant_override("h_separation", OrreryTheme.SPACE_XS)
+	toggles.add_theme_constant_override("v_separation", OrreryTheme.SPACE_XS)
 	_view_body.add_child(toggles)
 	_labels_toggle = make_toggle("Labels", "Show body names (L)", Preferences.set_labels_visible, "tag")
 	_trails_toggle = make_toggle("Orbits", "Show orbit lines (O)", Preferences.set_trails_visible, "orbit")
@@ -468,6 +471,10 @@ func _build_settings_panel() -> void:
 	toggles.add_child(_labels_toggle)
 	toggles.add_child(_trails_toggle)
 	toggles.add_child(_rings_toggle)
+	_constellations_toggle = make_toggle(
+		"Constellations", "Show constellation figures (C)", Preferences.set_constellations_visible, "sparkles"
+	)
+	toggles.add_child(_constellations_toggle)
 	_view_body.add_child(_settings_extras)
 	_view_body.add_child(HSeparator.new())
 	var actions := HBoxContainer.new()
@@ -599,6 +606,7 @@ func _sync_preferences() -> void:
 	_labels_toggle.set_pressed_no_signal(Preferences.labels_visible)
 	_trails_toggle.set_pressed_no_signal(Preferences.trails_visible)
 	_rings_toggle.set_pressed_no_signal(Preferences.rings_visible)
+	_constellations_toggle.set_pressed_no_signal(Preferences.constellations_visible)
 	var collapsed := Preferences.view_panel_collapsed
 	_view_body.visible = not collapsed
 	_collapse_button.icon = OrreryTheme.icon("chevron_down" if collapsed else "chevron_up")

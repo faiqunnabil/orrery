@@ -53,6 +53,7 @@ const HELP_GROUPS := [
 			["{toggle_labels}", "Labels"],
 			["{toggle_trails}", "Orbit lines"],
 			["{toggle_grid}", "Distance rings"],
+			["{toggle_constellations}", "Constellations"],
 			["{toggle_level}", "Depth level"],
 		],
 	],
