@@ -1047,8 +1047,8 @@ msgid "The only dwarf planet in the inner solar system, with a mean radius of ab
 msgstr "Satu-satunya planet kerdil di tata surya bagian dalam, dengan jari-jari rata-rata sekitar 470 km dan massa jenis 2,16 g/cm3. Ceres terdiferensiasi sebagian, dengan bagian dalam berbatu di bawah kerak yang kaya es, garam, dan mineral terhidrasi."
 
 #: data/body_info.json
-msgid "The orbit is a fixed ellipse from JPL elements, so perihelion dates far from 1986 drift because planetary perturbations are ignored. The nucleus surface is a darkened stand-in map."
-msgstr "Orbitnya berupa elips tetap dari elemen JPL, sehingga tanggal perihelion yang jauh dari 1986 bergeser karena gangguan planet diabaikan. Permukaan intinya memakai peta pengganti yang digelapkan."
+msgid "The orbit switches between the JPL solutions for the 1835, 1910, and 1986 returns, so each perihelion falls on its real date. The nucleus shape follows its 15 by 8 km size, while the surface map is an illustration."
+msgstr "Orbitnya berganti di antara solusi JPL untuk kemunculan 1835, 1910, dan 1986, sehingga setiap perihelion jatuh pada tanggal sebenarnya. Bentuk intinya mengikuti ukuran 15 kali 8 km, sedangkan peta permukaannya hanya ilustrasi."
 
 #: data/body_info.json
 msgid "The orbit's line of nodes regresses with a period of about 18.6 years."
