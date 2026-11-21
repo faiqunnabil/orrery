@@ -149,143 +149,147 @@ msgstr ""
 msgid "Partial solar eclipse"
 msgstr ""
 
-#: core/input_bindings.gd:47
+#: core/input_bindings.gd:48
 msgid "Move forward"
 msgstr ""
 
-#: core/input_bindings.gd:48
+#: core/input_bindings.gd:49
 msgid "Move back"
 msgstr ""
 
-#: core/input_bindings.gd:49
+#: core/input_bindings.gd:50
 msgid "Move left"
 msgstr ""
 
-#: core/input_bindings.gd:50
+#: core/input_bindings.gd:51
 msgid "Move right"
 msgstr ""
 
-#: core/input_bindings.gd:51
+#: core/input_bindings.gd:52
 msgid "Move up"
 msgstr ""
 
-#: core/input_bindings.gd:52
+#: core/input_bindings.gd:53
 msgid "Move down"
 msgstr ""
 
-#: core/input_bindings.gd:53
+#: core/input_bindings.gd:54
 msgid "Speed boost"
 msgstr ""
 
-#: core/input_bindings.gd:54
+#: core/input_bindings.gd:55
 msgid "Pause time"
 msgstr ""
 
-#: core/input_bindings.gd:55
+#: core/input_bindings.gd:56
 msgid "Reverse time"
 msgstr ""
 
-#: core/input_bindings.gd:56
+#: core/input_bindings.gd:57
 msgid "Faster time"
 msgstr ""
 
-#: core/input_bindings.gd:57
+#: core/input_bindings.gd:58
 msgid "Slower time"
 msgstr ""
 
-#: core/input_bindings.gd:58
+#: core/input_bindings.gd:59
 msgid "Jump to now"
 msgstr ""
 
-#: core/input_bindings.gd:59
+#: core/input_bindings.gd:60
 msgid "Toggle scale"
 msgstr ""
 
-#: core/input_bindings.gd:60
+#: core/input_bindings.gd:61
 msgid "Focus next body"
 msgstr ""
 
-#: core/input_bindings.gd:61 modes/explore/explore_mode.gd:286 modes/explore/explore_mode.gd:30
+#: core/input_bindings.gd:62 modes/explore/explore_mode.gd:287 modes/explore/explore_mode.gd:30
 msgid "Free flight"
 msgstr ""
 
-#: core/input_bindings.gd:62 modes/explore/explore_mode.gd:62 modes/sandbox/sandbox_mode.gd:66
+#: core/input_bindings.gd:63 modes/explore/explore_mode.gd:63 modes/sandbox/sandbox_mode.gd:67
 msgid "Hide interface"
 msgstr ""
 
-#: core/input_bindings.gd:63
+#: core/input_bindings.gd:64
 msgid "Controls help"
 msgstr ""
 
-#: core/input_bindings.gd:64 modes/explore/explore_mode.gd:31 modes/sandbox/sandbox_mode.gd:33
+#: core/input_bindings.gd:65 modes/explore/explore_mode.gd:31 modes/sandbox/sandbox_mode.gd:33
 msgid "Find a body"
 msgstr ""
 
-#: core/input_bindings.gd:65 modes/explore/explore_mode.gd:42 ui/date_panel.gd:31
+#: core/input_bindings.gd:66 modes/explore/explore_mode.gd:42 ui/date_panel.gd:31
 msgid "Go to a date"
 msgstr ""
 
-#: core/input_bindings.gd:66 modes/explore/explore_mode.gd:60 modes/sandbox/sandbox_mode.gd:64
+#: core/input_bindings.gd:67 modes/explore/explore_mode.gd:61 modes/sandbox/sandbox_mode.gd:65
 msgid "Keyboard navigation"
 msgstr ""
 
-#: core/input_bindings.gd:67
+#: core/input_bindings.gd:68
 msgid "Performance overlay"
 msgstr ""
 
-#: core/input_bindings.gd:68
+#: core/input_bindings.gd:69
 msgid "Cinematic auto-orbit"
 msgstr ""
 
-#: core/input_bindings.gd:69
+#: core/input_bindings.gd:70
 msgid "Toggle fullscreen"
 msgstr ""
 
-#: core/input_bindings.gd:70
+#: core/input_bindings.gd:71
 msgid "Take screenshot"
 msgstr ""
 
-#: core/input_bindings.gd:71 modes/explore/explore_mode.gd:51 modes/sandbox/sandbox_mode.gd:55
+#: core/input_bindings.gd:72 modes/explore/explore_mode.gd:51 modes/sandbox/sandbox_mode.gd:55
 msgid "Distance rings"
 msgstr ""
 
-#: core/input_bindings.gd:72 modes/explore/explore_mode.gd:49 modes/sandbox/sandbox_mode.gd:53
+#: core/input_bindings.gd:73 modes/explore/explore_mode.gd:49 modes/sandbox/sandbox_mode.gd:53
 msgid "Labels"
 msgstr ""
 
-#: core/input_bindings.gd:73 modes/explore/explore_mode.gd:50 modes/sandbox/sandbox_mode.gd:54
+#: core/input_bindings.gd:74 modes/explore/explore_mode.gd:50 modes/sandbox/sandbox_mode.gd:54
 msgid "Orbit lines"
 msgstr ""
 
-#: core/input_bindings.gd:74
-msgid "Information depth"
-msgstr ""
-
-#: core/input_bindings.gd:75
-msgid "Next tour stop"
+#: core/input_bindings.gd:75 modes/explore/explore_mode.gd:52 modes/sandbox/sandbox_mode.gd:56
+msgid "Constellations"
 msgstr ""
 
 #: core/input_bindings.gd:76
-msgid "Previous tour stop"
+msgid "Information depth"
 msgstr ""
 
 #: core/input_bindings.gd:77
-msgid "Open Explore"
+msgid "Next tour stop"
 msgstr ""
 
 #: core/input_bindings.gd:78
-msgid "Open Sandbox"
+msgid "Previous tour stop"
 msgstr ""
 
 #: core/input_bindings.gd:79
+msgid "Open Explore"
+msgstr ""
+
+#: core/input_bindings.gd:80
+msgid "Open Sandbox"
+msgstr ""
+
+#: core/input_bindings.gd:81
 msgid "Remove body"
 msgstr ""
 
-#: core/input_bindings.gd:83
+#: core/input_bindings.gd:85
 msgid "Cancel and menu"
 msgstr ""
 
-#: core/input_bindings.gd:84 modes/explore/explore_mode.gd:28 modes/sandbox/sandbox_mode.gd:32
+#: core/input_bindings.gd:86 modes/explore/explore_mode.gd:28 modes/sandbox/sandbox_mode.gd:32
 msgid "Focus a body"
 msgstr ""
 
@@ -421,7 +425,7 @@ msgstr ""
 msgid "Mercury"
 msgstr ""
 
-#: data/bodies.json data/body_info.json modes/sandbox/sandbox_mode.gd:215
+#: data/bodies.json data/body_info.json modes/sandbox/sandbox_mode.gd:216
 msgid "Moon"
 msgstr ""
 
@@ -565,7 +569,7 @@ msgstr ""
 msgid "Daytime surface temperatures reach about 430 degrees C, while nights drop to about -180 degrees C."
 msgstr ""
 
-#: data/body_info.json modes/sandbox/sandbox_mode.gd:217
+#: data/body_info.json modes/sandbox/sandbox_mode.gd:218
 msgid "Dwarf planet"
 msgstr ""
 
@@ -881,7 +885,7 @@ msgstr ""
 msgid "Sputnik Planitia is a convecting nitrogen-ice glacier about 1,000 km across."
 msgstr ""
 
-#: data/body_info.json modes/sandbox/sandbox_mode.gd:201 modes/sandbox/sandbox_mode.gd:211
+#: data/body_info.json modes/sandbox/sandbox_mode.gd:202 modes/sandbox/sandbox_mode.gd:212
 msgid "Star"
 msgstr ""
 
@@ -1034,6 +1038,10 @@ msgid "Background music and sound effects"
 msgstr ""
 
 #: data/credits.json
+msgid "Constellation figures"
+msgstr ""
+
+#: data/credits.json
 msgid "Data sources"
 msgstr ""
 
@@ -1103,6 +1111,10 @@ msgstr ""
 
 #: data/credits.json
 msgid "Planetary satellite mean elements, Horizons ephemerides, and Small-Body Database"
+msgstr ""
+
+#: data/credits.json
+msgid "Star positions, brightness, and colors"
 msgstr ""
 
 #: data/credits.json
@@ -2217,15 +2229,15 @@ msgstr ""
 msgid "With a radius of 2,634 km and a normalized moment of inertia near 0.31, Ganymede has an iron core whose dynamo creates a small magnetosphere."
 msgstr ""
 
-#: modes/explore/explore_mode.gd:115 modes/explore/explore_mode.gd:48
+#: modes/explore/explore_mode.gd:116 modes/explore/explore_mode.gd:48
 msgid "Scale"
 msgstr ""
 
-#: modes/explore/explore_mode.gd:118
+#: modes/explore/explore_mode.gd:119
 msgid "Choose a guided tour"
 msgstr ""
 
-#: modes/explore/explore_mode.gd:118 ui/tour_menu.gd:32
+#: modes/explore/explore_mode.gd:119 ui/tour_menu.gd:32
 msgid "Guided tours"
 msgstr ""
 
@@ -2241,7 +2253,7 @@ msgstr ""
 msgid "Boost"
 msgstr ""
 
-#: modes/explore/explore_mode.gd:164 modes/sandbox/sandbox_mode.gd:279
+#: modes/explore/explore_mode.gd:165 modes/sandbox/sandbox_mode.gd:280
 msgid "Focus: %s"
 msgstr ""
 
@@ -2261,7 +2273,7 @@ msgstr ""
 msgid "Shift+Scroll"
 msgstr ""
 
-#: modes/explore/explore_mode.gd:20 modes/explore/explore_mode.gd:398 modes/sandbox/sandbox_mode.gd:25
+#: modes/explore/explore_mode.gd:20 modes/explore/explore_mode.gd:399 modes/sandbox/sandbox_mode.gd:25
 msgid "Look around"
 msgstr ""
 
@@ -2269,7 +2281,7 @@ msgstr ""
 msgid "Right drag"
 msgstr ""
 
-#: modes/explore/explore_mode.gd:211
+#: modes/explore/explore_mode.gd:212
 msgid "%d bodies, %s rocks"
 msgstr ""
 
@@ -2313,111 +2325,111 @@ msgstr ""
 msgid "Reverse"
 msgstr ""
 
-#: modes/explore/explore_mode.gd:394
+#: modes/explore/explore_mode.gd:395
 msgid "Welcome to Orrery"
 msgstr ""
 
-#: modes/explore/explore_mode.gd:395
+#: modes/explore/explore_mode.gd:396
 msgid "Here is a quick look at the controls. It takes about a minute, and you can skip it at any time."
-msgstr ""
-
-#: modes/explore/explore_mode.gd:399
-msgid "Drag with the mouse, or swipe with two fingers, to orbit the body in view. Scroll or pinch to zoom, and move freely with W, A, S, and D."
 msgstr ""
 
 #: modes/explore/explore_mode.gd:40 modes/sandbox/sandbox_mode.gd:52
 msgid "Slower / faster"
 msgstr ""
 
-#: modes/explore/explore_mode.gd:402
-msgid "Meet the bodies"
+#: modes/explore/explore_mode.gd:400
+msgid "Drag with the mouse, or swipe with two fingers, to orbit the body in view. Scroll or pinch to zoom, and move freely with W, A, S, and D."
 msgstr ""
 
 #: modes/explore/explore_mode.gd:403
+msgid "Meet the bodies"
+msgstr ""
+
+#: modes/explore/explore_mode.gd:404
 msgid "Click a planet or moon to read about it, and double-click to fly to it. This button finds any body by name."
 msgstr ""
 
-#: modes/explore/explore_mode.gd:407
+#: modes/explore/explore_mode.gd:408
 msgid "Control time"
 msgstr ""
 
-#: modes/explore/explore_mode.gd:408
+#: modes/explore/explore_mode.gd:409
 msgid "Play, pause, reverse, or speed up time here. The calendar jumps to any date between 1800 and 2050."
 msgstr ""
 
-#: modes/explore/explore_mode.gd:41 ui/hud.gd:423
+#: modes/explore/explore_mode.gd:41 ui/hud.gd:424
 msgid "Now"
 msgstr ""
 
-#: modes/explore/explore_mode.gd:412
+#: modes/explore/explore_mode.gd:413
 msgid "Take a guided tour"
 msgstr ""
 
-#: modes/explore/explore_mode.gd:413
+#: modes/explore/explore_mode.gd:414
 msgid "Tours show the highlights with narration, and each one ends with a short quiz."
 msgstr ""
 
-#: modes/explore/explore_mode.gd:417
+#: modes/explore/explore_mode.gd:418
 msgid "Choose what you see"
 msgstr ""
 
-#: modes/explore/explore_mode.gd:418
+#: modes/explore/explore_mode.gd:419
 msgid "Explorer keeps the facts simple and Scientist shows full data. Labels, orbits, rings, and the scale can be switched here."
 msgstr ""
 
-#: modes/explore/explore_mode.gd:422
+#: modes/explore/explore_mode.gd:423
 msgid "You are ready"
 msgstr ""
 
-#: modes/explore/explore_mode.gd:423
+#: modes/explore/explore_mode.gd:424
 msgid "Press F3 at any time to see every control. Enjoy the solar system."
 msgstr ""
 
-#: modes/explore/explore_mode.gd:442
+#: modes/explore/explore_mode.gd:443
 msgid "No eclipse found between %d and %d in that direction"
 msgstr ""
 
-#: modes/explore/explore_mode.gd:46 ui/hud.gd:450
+#: modes/explore/explore_mode.gd:46 ui/hud.gd:451
 msgid "View"
 msgstr ""
 
-#: modes/explore/explore_mode.gd:467
+#: modes/explore/explore_mode.gd:468
 msgid "%s, greatest at %s"
 msgstr ""
 
-#: modes/explore/explore_mode.gd:52 modes/sandbox/sandbox_mode.gd:56
+#: modes/explore/explore_mode.gd:53 modes/sandbox/sandbox_mode.gd:57
 msgid "Depth level"
 msgstr ""
 
-#: modes/explore/explore_mode.gd:56 modes/sandbox/sandbox_mode.gd:60
+#: modes/explore/explore_mode.gd:57 modes/sandbox/sandbox_mode.gd:61
 msgid "App"
 msgstr ""
 
-#: modes/explore/explore_mode.gd:58 modes/explore/explore_mode.gd:74 modes/menu/main_menu.gd:44
+#: modes/explore/explore_mode.gd:59 modes/explore/explore_mode.gd:75 modes/menu/main_menu.gd:44
 msgid "Sandbox"
 msgstr ""
 
-#: modes/explore/explore_mode.gd:59 modes/sandbox/sandbox_mode.gd:63 ui/hud.gd:588
+#: modes/explore/explore_mode.gd:60 modes/sandbox/sandbox_mode.gd:64 ui/hud.gd:595
 msgid "Controls"
 msgstr ""
 
-#: modes/explore/explore_mode.gd:61 modes/sandbox/sandbox_mode.gd:65 ui/hud.gd:514
+#: modes/explore/explore_mode.gd:62 modes/sandbox/sandbox_mode.gd:66 ui/hud.gd:521
 msgid "Performance"
 msgstr ""
 
-#: modes/explore/explore_mode.gd:63 modes/sandbox/sandbox_mode.gd:67 ui/settings_panel.gd:13
+#: modes/explore/explore_mode.gd:64 modes/sandbox/sandbox_mode.gd:68 ui/settings_panel.gd:13
 msgid "Fullscreen"
 msgstr ""
 
-#: modes/explore/explore_mode.gd:64 modes/sandbox/sandbox_mode.gd:68
+#: modes/explore/explore_mode.gd:65 modes/sandbox/sandbox_mode.gd:69
 msgid "Screenshot"
 msgstr ""
 
-#: modes/explore/explore_mode.gd:65 modes/sandbox/sandbox_mode.gd:44 modes/sandbox/sandbox_mode.gd:69
+#: modes/explore/explore_mode.gd:66 modes/sandbox/sandbox_mode.gd:44 modes/sandbox/sandbox_mode.gd:70
 msgid "Esc"
 msgstr ""
 
-#: modes/explore/explore_mode.gd:65 modes/sandbox/sandbox_mode.gd:69 ui/hud.gd:488
+#: modes/explore/explore_mode.gd:66 modes/sandbox/sandbox_mode.gd:70 ui/hud.gd:495
 msgid "Menu"
 msgstr ""
 
@@ -2429,7 +2441,7 @@ msgstr ""
 msgid "True scale"
 msgstr ""
 
-#: modes/explore/explore_mode.gd:90
+#: modes/explore/explore_mode.gd:91
 msgid "Distance and size scale (T)"
 msgstr ""
 
@@ -2437,7 +2449,7 @@ msgstr ""
 msgid "Orrery"
 msgstr ""
 
-#: modes/menu/main_menu.gd:43 modes/sandbox/sandbox_mode.gd:62 modes/sandbox/sandbox_mode.gd:73
+#: modes/menu/main_menu.gd:43 modes/sandbox/sandbox_mode.gd:63 modes/sandbox/sandbox_mode.gd:74
 msgid "Explore"
 msgstr ""
 
@@ -2457,27 +2469,27 @@ msgstr ""
 msgid "An interactive 3D solar system for exploration and gravity experiments."
 msgstr ""
 
-#: modes/sandbox/sandbox_mode.gd:201 modes/sandbox/sandbox_mode.gd:218
+#: modes/sandbox/sandbox_mode.gd:202 modes/sandbox/sandbox_mode.gd:219
 msgid "Body"
 msgstr ""
 
-#: modes/sandbox/sandbox_mode.gd:213
+#: modes/sandbox/sandbox_mode.gd:214
 msgid "Planet"
 msgstr ""
 
-#: modes/sandbox/sandbox_mode.gd:232
+#: modes/sandbox/sandbox_mode.gd:233
 msgid "%d/%d bodies, %s"
 msgstr ""
 
-#: modes/sandbox/sandbox_mode.gd:283
+#: modes/sandbox/sandbox_mode.gd:284
 msgid "Placing a body"
 msgstr ""
 
-#: modes/sandbox/sandbox_mode.gd:285
+#: modes/sandbox/sandbox_mode.gd:286
 msgid "Simulation speed limited by performance"
 msgstr ""
 
-#: modes/sandbox/sandbox_mode.gd:333
+#: modes/sandbox/sandbox_mode.gd:334
 msgid "Body limit reached for the %s preset."
 msgstr ""
 
@@ -2485,11 +2497,11 @@ msgstr ""
 msgid "Remove"
 msgstr ""
 
-#: modes/sandbox/sandbox_mode.gd:347
+#: modes/sandbox/sandbox_mode.gd:348
 msgid "The snapshot could not be saved."
 msgstr ""
 
-#: modes/sandbox/sandbox_mode.gd:353
+#: modes/sandbox/sandbox_mode.gd:354
 msgid "The saved snapshot could not be read."
 msgstr ""
 
@@ -2521,11 +2533,11 @@ msgstr ""
 msgid "Cancel"
 msgstr ""
 
-#: modes/sandbox/sandbox_mode.gd:440
+#: modes/sandbox/sandbox_mode.gd:441
 msgid "Speed: %.2f km/s"
 msgstr ""
 
-#: modes/sandbox/sandbox_mode.gd:445
+#: modes/sandbox/sandbox_mode.gd:446
 msgid "Speed: %.2f km/s\nDistance to %s: %s"
 msgstr ""
 
@@ -2533,43 +2545,43 @@ msgstr ""
 msgid "Time and view"
 msgstr ""
 
-#: modes/sandbox/sandbox_mode.gd:546
+#: modes/sandbox/sandbox_mode.gd:547
 msgid "No body to orbit nearby"
 msgstr ""
 
-#: modes/sandbox/sandbox_mode.gd:547
+#: modes/sandbox/sandbox_mode.gd:548
 msgid "No body to orbit. Add or keep a massive body nearby."
 msgstr ""
 
-#: modes/sandbox/sandbox_mode.gd:549
+#: modes/sandbox/sandbox_mode.gd:550
 msgid "Launch %.2f km/s relative to %s (%.2f x circular)"
 msgstr ""
 
-#: modes/sandbox/sandbox_mode.gd:551
+#: modes/sandbox/sandbox_mode.gd:552
 msgid "Launch speed relative to %s: %.2f km/s (%.2f x circular orbit speed)"
 msgstr ""
 
-#: modes/shared/space_scene.gd:107
+#: modes/shared/space_scene.gd:110
 msgid "Auto-orbit: Off"
 msgstr ""
 
-#: modes/shared/space_scene.gd:107
+#: modes/shared/space_scene.gd:110
 msgid "Auto-orbit: On"
 msgstr ""
 
-#: modes/shared/space_scene.gd:222
+#: modes/shared/space_scene.gd:229
 msgid "None"
 msgstr ""
 
-#: modes/shared/space_scene.gd:223
+#: modes/shared/space_scene.gd:230
 msgid "%d x %d segments"
 msgstr ""
 
-#: modes/shared/space_scene.gd:253
+#: modes/shared/space_scene.gd:260
 msgid "Screenshot saved: %s"
 msgstr ""
 
-#: modes/shared/space_scene.gd:255
+#: modes/shared/space_scene.gd:262
 msgid "Screenshot failed"
 msgstr ""
 
@@ -2645,7 +2657,7 @@ msgstr ""
 msgid "Shows the moment of greatest eclipse at true scale."
 msgstr ""
 
-#: ui/hud.gd:107
+#: ui/hud.gd:108
 msgid "Close (Esc)"
 msgstr ""
 
@@ -2657,91 +2669,95 @@ msgstr ""
 msgid "   |   Auto-orbit"
 msgstr ""
 
-#: ui/hud.gd:362 ui/hud.gd:412
+#: ui/hud.gd:363 ui/hud.gd:413
 msgid "Pause time (Space)"
 msgstr ""
 
-#: ui/hud.gd:362
+#: ui/hud.gd:363
 msgid "Resume time (Space)"
 msgstr ""
 
-#: ui/hud.gd:392
+#: ui/hud.gd:393
 msgid "Times are shown in this computer's time zone"
 msgstr ""
 
-#: ui/hud.gd:404
+#: ui/hud.gd:405
 msgid "Run time backwards (R)"
 msgstr ""
 
-#: ui/hud.gd:416
+#: ui/hud.gd:417
 msgid "Slower ([)"
 msgstr ""
 
-#: ui/hud.gd:421
+#: ui/hud.gd:422
 msgid "Faster (])"
 msgstr ""
 
-#: ui/hud.gd:423
+#: ui/hud.gd:424
 msgid "Jump to the current date (N)"
 msgstr ""
 
-#: ui/hud.gd:440
+#: ui/hud.gd:441
 msgid "Find a body (%s)"
 msgstr ""
 
-#: ui/hud.gd:441
+#: ui/hud.gd:442
 msgid "Go to a date (%s)"
 msgstr ""
 
-#: ui/hud.gd:465
+#: ui/hud.gd:468
 msgid "Show body names (L)"
 msgstr ""
 
-#: ui/hud.gd:466 ui/settings_panel.gd:176
+#: ui/hud.gd:469 ui/settings_panel.gd:176
 msgid "Orbits"
 msgstr ""
 
-#: ui/hud.gd:466
+#: ui/hud.gd:469
 msgid "Show orbit lines (O)"
 msgstr ""
 
-#: ui/hud.gd:467
+#: ui/hud.gd:470
 msgid "Rings"
 msgstr ""
 
-#: ui/hud.gd:467
+#: ui/hud.gd:470
 msgid "Show distance rings around the Sun (G)"
 msgstr ""
 
-#: ui/hud.gd:479
+#: ui/hud.gd:475
+msgid "Show constellation figures (C)"
+msgstr ""
+
+#: ui/hud.gd:486
 msgid "Graphics quality. Lower quality runs faster on older devices"
 msgstr ""
 
-#: ui/hud.gd:488
+#: ui/hud.gd:495
 msgid "Pause menu, settings and credits (Esc)"
 msgstr ""
 
-#: ui/hud.gd:521
+#: ui/hud.gd:528
 msgid "Frame / CPU"
 msgstr ""
 
-#: ui/hud.gd:522
+#: ui/hud.gd:529
 msgid "Draw calls"
 msgstr ""
 
-#: ui/hud.gd:523
+#: ui/hud.gd:530
 msgid "Primitives"
 msgstr ""
 
-#: ui/hud.gd:525
+#: ui/hud.gd:532
 msgid "Scene"
 msgstr ""
 
-#: ui/hud.gd:526
+#: ui/hud.gd:533
 msgid "Focus mesh"
 msgstr ""
 
-#: ui/hud.gd:591
+#: ui/hud.gd:598
 msgid "Close (%s)"
 msgstr ""
 
@@ -2749,11 +2765,11 @@ msgstr ""
 msgid "Information depth (M)"
 msgstr ""
 
-#: ui/hud.gd:605
+#: ui/hud.gd:613
 msgid "Hide view options to make room for body information"
 msgstr ""
 
-#: ui/hud.gd:605
+#: ui/hud.gd:613
 msgid "Show view options"
 msgstr ""
 
