@@ -14,14 +14,19 @@ signal freeze_toggled(frozen: bool)
 signal selected_mass_changed(mass_kg: float)
 signal selected_radius_changed(radius_km: float)
 signal selected_color_changed(color: Color)
+signal challenge_start_requested(index: int)
+signal challenge_restart_requested
+signal challenge_leave_requested
 
-enum Page { BODIES, WORLD, PHYSICS }
+enum Page { BODIES, WORLD, PHYSICS, CHALLENGES }
 
 const PANEL_WIDTH := 340
 const CONTENT_WIDTH := 300
 const SCROLL_HEIGHT := 460
 const MIN_SCROLL_HEIGHT := 180.0
-const PAGE_NAMES: Array[String] = ["Bodies", "World", "Physics"]
+const PAGE_NAMES: Array[String] = ["Bodies", "World", "Physics", "Challenges"]
+const CHALLENGE_BUTTON_ROOM := 90.0
+const CHALLENGES_NOTE := "Short missions with an automatic check. Starting one replaces the bodies in the Sandbox."
 const GRAVITY_WELL_NOTE := "Heavier bodies dig deeper wells. Depth is compressed so small worlds stay visible next to stars."
 const DEFAULT_LAUNCH_HINT := "Click the orbital plane to place a body, then drag to set its launch velocity."
 const EARTH_MASS_KG := 5.9722e24
@@ -109,6 +114,16 @@ var _preset_description: Label
 var _preset_descriptions: Array[String] = []
 var _restore_button: Button
 var _gravity_well_toggle: Button
+var _challenge_list := VBoxContainer.new()
+var _challenge_active := VBoxContainer.new()
+var _challenge_title := Label.new()
+var _challenge_goal: Label
+var _challenge_hint: Label
+var _challenge_progress := ProgressBar.new()
+var _challenge_status: Label
+var _challenge_place := Button.new()
+var _challenge_launch: Label
+var _challenge_note: Label
 
 
 func _init() -> void:
@@ -141,6 +156,7 @@ func _init() -> void:
 	_build_new_body_section(_pages[Page.BODIES])
 	_build_world_section(_pages[Page.WORLD])
 	_build_physics_section(_pages[Page.PHYSICS])
+	_build_challenge_section(_pages[Page.CHALLENGES])
 	_apply_template(1)
 	show_page(Page.BODIES)
 
@@ -198,14 +214,16 @@ func set_body_count(count: int, cap: int) -> void:
 
 
 func set_placing(active: bool) -> void:
-	_place_button.set_pressed_no_signal(active)
-	_place_button.text = "Placing... (Esc to stop)" if active else "Place body"
+	for button in [_place_button, _challenge_place]:
+		button.set_pressed_no_signal(active)
+		button.text = "Placing... (Esc to stop)" if active else "Place body"
 	if active:
-		show_page(Page.BODIES)
+		_show_bodies_page()
 
 
 func set_launch_text(text: String) -> void:
 	_launch_label.text = text
+	_challenge_launch.text = text
 
 
 func set_notice(text: String) -> void:
@@ -225,7 +243,7 @@ func show_selected(
 	_freeze_check.set_pressed_no_signal(frozen)
 	_selected_color.color = color
 	_selected_color_row.visible = colorable
-	show_page(Page.BODIES)
+	_show_bodies_page()
 
 
 func hide_selected() -> void:
@@ -362,6 +380,103 @@ func _build_world_section(box: VBoxContainer) -> void:
 		"Show gravity well", "Bend a grid by each body's gravitational potential (V)", Preferences.set_gravity_well_visible
 	)
 	box.add_child(_gravity_well_toggle)
+
+
+func set_challenges(challenges: Array[Dictionary]) -> void:
+	for child in _challenge_list.get_children():
+		child.queue_free()
+	for index in challenges.size():
+		var challenge := challenges[index]
+		var row := HBoxContainer.new()
+		row.add_theme_constant_override("separation", OrreryTheme.SPACE_S)
+		_challenge_list.add_child(row)
+		var text := VBoxContainer.new()
+		text.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+		row.add_child(text)
+		var title := Hud.make_label(str(challenge.get("title", "")), "InfoLabel")
+		text.add_child(title)
+		var goal := Hud.make_wrapped_label(str(challenge.get("goal", "")), CONTENT_WIDTH - CHALLENGE_BUTTON_ROOM, "DimLabel")
+		text.add_child(goal)
+		if Preferences.is_challenge_complete(str(challenge.get("id", ""))):
+			text.add_child(Hud.make_label("Completed", "SuccessLabel"))
+		var start := Hud.make_button("Start", func() -> void: challenge_start_requested.emit(index), "Start this challenge")
+		start.size_flags_vertical = Control.SIZE_SHRINK_BEGIN
+		row.add_child(start)
+
+
+func show_challenge(challenge: Dictionary) -> void:
+	_challenge_title.text = str(challenge.get("title", ""))
+	_challenge_goal.text = str(challenge.get("goal", ""))
+	_challenge_hint.text = str(challenge.get("hint", ""))
+	_challenge_progress.value = 0.0
+	_challenge_status.text = ""
+	_challenge_list.visible = false
+	_challenge_note.visible = false
+	_challenge_active.visible = true
+	show_page(Page.CHALLENGES)
+
+
+func hide_challenge() -> void:
+	_challenge_active.visible = false
+	_challenge_list.visible = true
+	_challenge_note.visible = true
+
+
+func is_showing_challenge() -> bool:
+	return _challenge_active.visible
+
+
+func set_challenge_progress(progress: float, status: String, complete: bool) -> void:
+	_challenge_progress.value = progress * 100.0
+	_challenge_status.text = status
+	_challenge_status.theme_type_variation = "SuccessLabel" if complete else "InfoLabel"
+
+
+func _show_bodies_page() -> void:
+	if not is_showing_challenge():
+		show_page(Page.BODIES)
+
+
+func _build_challenge_section(box: VBoxContainer) -> void:
+	_challenge_note = Hud.make_wrapped_label(CHALLENGES_NOTE, CONTENT_WIDTH, "DimLabel")
+	box.add_child(_challenge_note)
+	_challenge_list.add_theme_constant_override("separation", OrreryTheme.SPACE_M)
+	box.add_child(_challenge_list)
+	_challenge_active.visible = false
+	_challenge_active.add_theme_constant_override("separation", OrreryTheme.SPACE_S)
+	box.add_child(_challenge_active)
+	_challenge_title.theme_type_variation = "HeaderLabel"
+	_challenge_active.add_child(_challenge_title)
+	_challenge_goal = Hud.make_wrapped_label("", CONTENT_WIDTH, "InfoLabel")
+	_challenge_active.add_child(_challenge_goal)
+	_challenge_hint = Hud.make_wrapped_label("", CONTENT_WIDTH, "DimLabel")
+	_challenge_active.add_child(_challenge_hint)
+	_challenge_progress.show_percentage = false
+	_challenge_progress.custom_minimum_size = Vector2(0, 6)
+	_challenge_active.add_child(_challenge_progress)
+	_challenge_status = Hud.make_wrapped_label("", CONTENT_WIDTH, "InfoLabel")
+	_challenge_active.add_child(_challenge_status)
+	_challenge_place.text = "Place body"
+	_challenge_place.toggle_mode = true
+	_challenge_place.theme_type_variation = "AccentButton"
+	_challenge_place.icon = OrreryTheme.icon("circle_plus")
+	_challenge_place.focus_mode = Control.FOCUS_ALL
+	_challenge_place.tooltip_text = "Click and drag on the orbital plane to launch a body"
+	_challenge_place.toggled.connect(
+		func(active: bool) -> void:
+			set_placing(active)
+			place_toggled.emit(active)
+	)
+	_challenge_active.add_child(_challenge_place)
+	_challenge_launch = Hud.make_wrapped_label(DEFAULT_LAUNCH_HINT, CONTENT_WIDTH, "DimLabel")
+	_challenge_active.add_child(_challenge_launch)
+	var actions := HBoxContainer.new()
+	_challenge_active.add_child(actions)
+	var restart := Hud.make_button("Restart", func() -> void: challenge_restart_requested.emit(), "Set the challenge up again", "rotate_ccw")
+	var leave := Hud.make_button("Leave", func() -> void: challenge_leave_requested.emit(), "Stop the challenge and keep the bodies", "log_out")
+	for button in [restart, leave]:
+		button.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+		actions.add_child(button)
 
 
 func _build_physics_section(box: VBoxContainer) -> void:
