@@ -54,6 +54,7 @@ const HELP_GROUPS := [
 			["{toggle_trails}", "Orbit lines"],
 			["{toggle_grid}", "Distance rings"],
 			["{toggle_constellations}", "Constellations"],
+			["{toggle_gravity_well}", "Gravity well"],
 			["{toggle_level}", "Depth level"],
 		],
 	],
@@ -155,6 +156,7 @@ func _process(delta: float) -> void:
 	renderer.compute_positions()
 	camera.update(delta, renderer.nearest_surface_distance)
 	renderer.update(camera.world_position(_anchor_position()))
+	renderer.update_gravity_well(camera.world_position(_anchor_position()), _well_center())
 	camera.set_clip_range(renderer.near_plane, renderer.far_plane)
 	_update_labels()
 	_info_timer += delta
@@ -180,6 +182,8 @@ func _unhandled_input(event: InputEvent) -> void:
 		_cancel()
 	elif event.is_action_pressed("delete_body"):
 		_remove_selected()
+	elif event.is_action_pressed("toggle_gravity_well"):
+		Preferences.set_gravity_well_visible(not Preferences.gravity_well_visible)
 	elif event.is_action_pressed("focus_release"):
 		camera.release_anchor(camera.world_position(_anchor_position()))
 	else:
@@ -237,6 +241,7 @@ func _on_preferences_changed() -> void:
 	renderer.set_trails_visible(Preferences.trails_visible)
 	renderer.apply_trail_colors()
 	renderer.set_rings_visible(Preferences.rings_visible)
+	renderer.set_gravity_well_visible(Preferences.gravity_well_visible)
 
 
 func _handle_left_button(event: InputEventMouseButton) -> void:
@@ -265,6 +270,12 @@ func _handle_left_button(event: InputEventMouseButton) -> void:
 
 func _pick(screen_position: Vector2) -> String:
 	return renderer.pick(camera.project_ray_normal(screen_position), pick_tolerance_angle())
+
+
+func _well_center() -> PackedFloat64Array:
+	if camera.anchor_id != "" and world.index_of(camera.anchor_id) >= 0:
+		return renderer.render_position(camera.anchor_id)
+	return camera.world_position(_anchor_position())
 
 
 func _anchor_position() -> PackedFloat64Array:

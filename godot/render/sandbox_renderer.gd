@@ -27,6 +27,7 @@ var _camera_radius: Dictionary = {}
 var _camera_true_radius: Dictionary = {}
 var _trails_visible := true
 var _rings := ReferenceRings.new()
+var gravity_well := GravityWell.new()
 var _eclipses := EclipseFinder.new()
 var _ring_radii: Array[float] = []
 var _preview_active := false
@@ -55,6 +56,7 @@ func _ready() -> void:
 	_preview_line.mesh = _preview_mesh
 	_preview_line.visible = false
 	add_child(_rings)
+	add_child(gravity_well)
 	for radius_au in ReferenceRings.RING_RADII_AU:
 		_ring_radii.append(radius_au * Astro.AU_KM / UNIT_KM)
 	add_child(_preview_marker)
@@ -80,6 +82,7 @@ func set_world(value: SandboxWorld) -> void:
 
 func apply_quality() -> void:
 	var profile := Quality.profile()
+	gravity_well.apply_quality(Quality.preset)
 	for visual: BodyVisual in _visuals.values():
 		visual.set_mesh_detail(profile["sphere_radial_segments"])
 		visual.set_effects_detail(profile["full_effects"])
@@ -426,6 +429,31 @@ func _to_camera_relative(position_km: DVec3, camera_position: PackedFloat64Array
 		position_km.z / UNIT_KM - camera_position[1],
 		-position_km.y / UNIT_KM - camera_position[2]
 	)
+
+
+func set_gravity_well_visible(value: bool) -> void:
+	gravity_well.visible = value
+
+
+func update_gravity_well(camera_position: PackedFloat64Array, center: PackedFloat64Array) -> void:
+	if not gravity_well.visible:
+		return
+	var simulation := world.simulation
+	var ids: Array[String] = []
+	var offsets: Array[Vector3] = []
+	var radii := PackedFloat64Array()
+	for index in world.bodies.size():
+		var position: PackedFloat64Array = _render_positions[world.bodies[index].id]
+		ids.append(world.bodies[index].id)
+		offsets.append(Vector3(position[0] - center[0], position[1], position[2] - center[2]))
+		radii.append(simulation.radii[index] / UNIT_KM)
+	var view_distance := Vector3(
+		camera_position[0] - center[0], camera_position[1], camera_position[2] - center[2]
+	).length()
+	var camera_relative_center := Vector3(
+		center[0] - camera_position[0], -camera_position[1], center[2] - camera_position[2]
+	)
+	gravity_well.update(camera_relative_center, view_distance, ids, offsets, simulation.gm, radii)
 
 
 func set_rings_visible(value: bool) -> void:

@@ -22,6 +22,7 @@ const CONTENT_WIDTH := 300
 const SCROLL_HEIGHT := 460
 const MIN_SCROLL_HEIGHT := 180.0
 const PAGE_NAMES: Array[String] = ["Bodies", "World", "Physics"]
+const GRAVITY_WELL_NOTE := "Heavier bodies dig deeper wells. Depth is compressed so small worlds stay visible next to stars."
 const DEFAULT_LAUNCH_HINT := "Click the orbital plane to place a body, then drag to set its launch velocity."
 const EARTH_MASS_KG := 5.9722e24
 const MASS_LOG_RANGE := Vector2(-10.0, 6.5)
@@ -107,6 +108,7 @@ var _preset_option := OptionButton.new()
 var _preset_description: Label
 var _preset_descriptions: Array[String] = []
 var _restore_button: Button
+var _gravity_well_toggle: Button
 
 
 func _init() -> void:
@@ -353,6 +355,13 @@ func _build_world_section(box: VBoxContainer) -> void:
 	_restore_button.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 	_restore_button.disabled = true
 	snapshot_row.add_child(_restore_button)
+	box.add_child(HSeparator.new())
+	box.add_child(Hud.section_label("Gravity well"))
+	box.add_child(Hud.make_wrapped_label(GRAVITY_WELL_NOTE, CONTENT_WIDTH, "DimLabel"))
+	_gravity_well_toggle = Hud.make_toggle(
+		"Show gravity well", "Bend a grid by each body's gravitational potential (V)", Preferences.set_gravity_well_visible
+	)
+	box.add_child(_gravity_well_toggle)
 
 
 func _build_physics_section(box: VBoxContainer) -> void:
@@ -396,6 +405,7 @@ func _drift_text(drift: float) -> String:
 
 
 func _sync_level() -> void:
+	_gravity_well_toggle.set_pressed_no_signal(Preferences.gravity_well_visible)
 	var scientist := Preferences.is_scientist()
 	_tabs.set_option_visible(Page.PHYSICS, scientist)
 	if not scientist and _page == Page.PHYSICS:
