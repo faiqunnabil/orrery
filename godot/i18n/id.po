@@ -466,7 +466,7 @@ msgstr "Europa"
 msgid "Ganymede"
 msgstr "Ganymede"
 
-#: data/bodies.json
+#: data/bodies.json data/tours.json
 msgid "Halley's Comet"
 msgstr "Komet Halley"
 
@@ -1307,6 +1307,14 @@ msgid "0.006 bar"
 msgstr "0,006 bar"
 
 #: data/quizzes.json
+msgid "0.058 AU"
+msgstr "0,058 AU"
+
+#: data/quizzes.json
+msgid "0.575 AU"
+msgstr "0,575 AU"
+
+#: data/quizzes.json
 msgid "0.69 g/cm3"
 msgstr "0,69 g/cm3"
 
@@ -1443,6 +1451,10 @@ msgid "333,000 times"
 msgstr "333.000 kali"
 
 #: data/quizzes.json
+msgid "35 AU"
+msgstr "35 AU"
+
+#: data/quizzes.json
 msgid "365 days"
 msgstr "365 hari"
 
@@ -1457,6 +1469,10 @@ msgstr "384.400 km dibagi kecepatan cahaya kira-kira 1,28 detik."
 #: data/quizzes.json
 msgid "5.51 g/cm3"
 msgstr "5,51 g/cm3"
+
+#: data/quizzes.json
+msgid "5.75 AU"
+msgstr "5,75 AU"
 
 #: data/quizzes.json
 msgid "7 days"
@@ -1497,6 +1513,10 @@ msgstr "95 massa Bumi"
 #: data/quizzes.json
 msgid "98 degrees"
 msgstr "98 derajat"
+
+#: data/quizzes.json
+msgid "A cloud covers the Sun"
+msgstr "Awan menutupi Matahari"
 
 #: data/quizzes.json
 msgid "A global salty ocean lies under Europa's ice shell."
@@ -1543,6 +1563,14 @@ msgid "About 1 second"
 msgstr "Sekitar 1 detik"
 
 #: data/quizzes.json
+msgid "About 10 Moon diameters"
+msgstr "Sekitar 10 diameter Bulan"
+
+#: data/quizzes.json
+msgid "About 2.7 Moon diameters"
+msgstr "Sekitar 2,7 diameter Bulan"
+
+#: data/quizzes.json
 msgid "About 50%"
 msgstr "Sekitar 50%"
 
@@ -1575,6 +1603,10 @@ msgid "About how many times wider than Earth is the Sun?"
 msgstr "Matahari kira-kira berapa kali lebih lebar daripada Bumi?"
 
 #: data/quizzes.json
+msgid "About how often does Halley's Comet come back?"
+msgstr "Kira-kira seberapa sering Komet Halley kembali?"
+
+#: data/quizzes.json
 msgid "An induced magnetic field measured by Galileo"
 msgstr "Medan magnet induksi yang diukur wahana Galileo"
 
@@ -1587,6 +1619,10 @@ msgid "Around Jupiter"
 msgstr "Mengelilingi Jupiter"
 
 #: data/quizzes.json
+msgid "As wide as Earth"
+msgstr "Selebar Bumi"
+
+#: data/quizzes.json
 msgid "At Earth's center"
 msgstr "Di pusat Bumi"
 
@@ -1595,8 +1631,16 @@ msgid "At about 0.69 g/cm3, Saturn is the least dense planet, less dense than wa
 msgstr "Dengan massa jenis sekitar 0,69 g/cm3, Saturnus adalah planet dengan massa jenis terendah, lebih rendah daripada air."
 
 #: data/quizzes.json
+msgid "At any new or full moon"
+msgstr "Di setiap bulan baru atau purnama"
+
+#: data/quizzes.json
 msgid "At the Moon's center"
 msgstr "Di pusat Bulan"
+
+#: data/quizzes.json
+msgid "At the Moon's distance, about how wide is Earth's umbra?"
+msgstr "Pada jarak Bulan, kira-kira seberapa lebar umbra Bumi?"
 
 #: data/quizzes.json
 msgid "At true scale, about how many Earth-widths away is the Moon?"
@@ -1605,6 +1649,14 @@ msgstr "Dalam skala nyata, Bulan berjarak kira-kira berapa kali lebar Bumi?"
 #: data/quizzes.json
 msgid "At true scale, the planets would be tiny dots far apart. Try the true scale view to see it."
 msgstr "Dalam skala nyata, planet-planet akan menjadi titik kecil yang saling berjauhan. Coba tampilan skala nyata untuk melihatnya."
+
+#: data/quizzes.json
+msgid "Away from the Sun"
+msgstr "Menjauhi Matahari"
+
+#: data/quizzes.json
+msgid "Behind the comet"
+msgstr "Di belakang komet"
 
 #: data/quizzes.json
 msgid "Being the smallest planet"
@@ -1619,8 +1671,16 @@ msgid "Beyond Neptune"
 msgstr "Di luar Neptunus"
 
 #: data/quizzes.json
+msgid "Both tails equally"
+msgstr "Kedua ekor sama saja"
+
+#: data/quizzes.json
 msgid "Ceres is the largest object in the asteroid belt between Mars and Jupiter."
 msgstr "Ceres adalah objek terbesar di sabuk asteroid antara Mars dan Jupiter."
+
+#: data/quizzes.json
+msgid "Charged gas is carried by the solar wind straight outward, while dust grains drift on their own orbits and form a curved tail."
+msgstr "Gas bermuatan dibawa angin Matahari lurus keluar, sedangkan butiran debu bergerak di orbitnya sendiri dan membentuk ekor yang melengkung."
 
 #: data/quizzes.json
 msgid "Dawn identified sodium carbonate deposited from brine that rose from below the crust."
@@ -1631,6 +1691,10 @@ msgid "Day and night"
 msgstr "Siang dan malam"
 
 #: data/quizzes.json
+msgid "Earth blocks the Sun from the Moon"
+msgstr "Bumi menghalangi Matahari dari Bulan"
+
+#: data/quizzes.json
 msgid "Earth blocks the other side"
 msgstr "Bumi menghalangi sisi lainnya"
 
@@ -1639,8 +1703,36 @@ msgid "Earth is 12,742 km across."
 msgstr "Lebar Bumi 12.742 km."
 
 #: data/quizzes.json
+msgid "Earth's air magnifies the Moon"
+msgstr "Udara Bumi memperbesar Bulan"
+
+#: data/quizzes.json
+msgid "Earth's atmosphere bends and reddens sunlight into the shadow, so the eclipsed Moon glows red."
+msgstr "Atmosfer Bumi membelokkan dan memerahkan cahaya Matahari ke dalam bayangan, sehingga Bulan yang tergerhana bercahaya merah."
+
+#: data/quizzes.json
+msgid "Earth's shadow is too short"
+msgstr "Bayangan Bumi terlalu pendek"
+
+#: data/quizzes.json
 msgid "Earthquakes"
 msgstr "Gempa bumi"
+
+#: data/quizzes.json
+msgid "Every 1,000 years"
+msgstr "Setiap 1.000 tahun"
+
+#: data/quizzes.json
+msgid "Every 10 years"
+msgstr "Setiap 10 tahun"
+
+#: data/quizzes.json
+msgid "Every 76 years"
+msgstr "Setiap 76 tahun"
+
+#: data/quizzes.json
+msgid "Every year"
+msgstr "Setiap tahun"
 
 #: data/quizzes.json
 msgid "Exposed iron"
@@ -1655,6 +1747,10 @@ msgid "Frozen methane"
 msgstr "Metana beku"
 
 #: data/quizzes.json
+msgid "Full moons are too bright"
+msgstr "Purnama terlalu terang"
+
+#: data/quizzes.json
 msgid "Ganymede is even wider than the planet Mercury."
 msgstr "Ganymede bahkan lebih lebar daripada planet Merkurius."
 
@@ -1663,8 +1759,20 @@ msgid "Ganymede's iron core drives a dynamo, giving it a small magnetosphere of 
 msgstr "Inti besi Ganymede menggerakkan dinamo, sehingga Ganymede punya magnetosfer kecil sendiri."
 
 #: data/quizzes.json
+msgid "Half a Moon diameter"
+msgstr "Setengah diameter Bulan"
+
+#: data/quizzes.json
 msgid "Halfway between Earth and the Moon"
 msgstr "Di tengah-tengah antara Bumi dan Bulan"
+
+#: data/quizzes.json
+msgid "Halley comes within 0.575 AU of the Sun, inside the orbit of Venus. 35 AU is its aphelion."
+msgstr "Halley mendekat hingga 0,575 AU dari Matahari, di dalam orbit Venus. 35 AU adalah aphelionnya."
+
+#: data/quizzes.json
+msgid "Halley's Comet returns about every 75 to 76 years. It last passed the Sun in 1986."
+msgstr "Komet Halley kembali sekitar setiap 75 sampai 76 tahun. Terakhir kali komet itu melewati Matahari pada 1986."
 
 #: data/quizzes.json
 msgid "How long does Pluto take to orbit the Sun?"
@@ -1755,6 +1863,10 @@ msgid "Lava"
 msgstr "Lava"
 
 #: data/quizzes.json
+msgid "Light from Mars"
+msgstr "Cahaya dari Mars"
+
+#: data/quizzes.json
 msgid "Light needs just over one second. Sunlight needs about eight minutes."
 msgstr "Cahaya butuh sedikit lebih dari satu detik. Cahaya Matahari butuh sekitar delapan menit."
 
@@ -1783,6 +1895,10 @@ msgid "Mercury rotates three times for every two orbits, so one solar day lasts 
 msgstr "Merkurius berotasi tiga kali setiap dua kali mengorbit, sehingga satu hari Matahari berlangsung sekitar 176 hari Bumi."
 
 #: data/quizzes.json
+msgid "Neither tail"
+msgstr "Tidak satu pun"
+
+#: data/quizzes.json
 msgid "Neptune is about 30 times farther from the Sun than Earth, so sunlight needs over four hours."
 msgstr "Neptunus sekitar 30 kali lebih jauh dari Matahari daripada Bumi, sehingga cahaya Matahari butuh lebih dari empat jam."
 
@@ -1797,6 +1913,14 @@ msgstr "Tanpa waktu sama sekali"
 #: data/quizzes.json
 msgid "Ocean tides"
 msgstr "Pasang surut air laut"
+
+#: data/quizzes.json
+msgid "Only at the solstices"
+msgstr "Hanya saat titik balik Matahari"
+
+#: data/quizzes.json
+msgid "Only when the Moon is at perigee"
+msgstr "Hanya saat Bulan di perigee"
 
 #: data/quizzes.json
 msgid "Orbital eccentricity and inclination"
@@ -1835,6 +1959,10 @@ msgid "Real distances are too large to fit"
 msgstr "Jarak sebenarnya terlalu besar untuk dimuat"
 
 #: data/quizzes.json
+msgid "Red rocks on the Moon"
+msgstr "Batuan merah di Bulan"
+
+#: data/quizzes.json
 msgid "Refraction in Earth's atmosphere"
 msgstr "Pembiasan di atmosfer Bumi"
 
@@ -1867,6 +1995,14 @@ msgid "Sulfur"
 msgstr "Belerang"
 
 #: data/quizzes.json
+msgid "Sunlight and the solar wind push the gas and dust away from the Sun, whichever way the comet moves."
+msgstr "Cahaya Matahari dan angin Matahari mendorong gas dan debu menjauhi Matahari, ke mana pun komet bergerak."
+
+#: data/quizzes.json
+msgid "Sunlight bent through Earth's air"
+msgstr "Cahaya Matahari yang dibelokkan udara Bumi"
+
+#: data/quizzes.json
 msgid "Sustained winds on Neptune exceed about:"
 msgstr "Angin menetap di Neptunus melebihi sekitar:"
 
@@ -1883,6 +2019,10 @@ msgid "The Moon does not spin"
 msgstr "Bulan tidak berputar"
 
 #: data/quizzes.json
+msgid "The Moon gets hot"
+msgstr "Bulan menjadi panas"
+
+#: data/quizzes.json
 msgid "The Moon has about 1.2% of Earth's mass, so the common center of mass lies inside Earth."
 msgstr "Massa Bulan sekitar 1,2% massa Bumi, sehingga pusat massa bersamanya terletak di dalam Bumi."
 
@@ -1895,12 +2035,40 @@ msgid "The Moon is about 384,400 km away, roughly 30 Earth-widths."
 msgstr "Bulan berjarak sekitar 384.400 km, kira-kira 30 kali lebar Bumi."
 
 #: data/quizzes.json
+msgid "The Moon is closer to the Sun"
+msgstr "Bulan lebih dekat ke Matahari"
+
+#: data/quizzes.json
+msgid "The Moon is too small"
+msgstr "Bulan terlalu kecil"
+
+#: data/quizzes.json
+msgid "The Moon lines up between the Sun and Earth, and its shadow falls on a small part of Earth."
+msgstr "Bulan sejajar di antara Matahari dan Bumi, dan bayangannya jatuh di sebagian kecil Bumi."
+
+#: data/quizzes.json
+msgid "The Moon must be close to where its tilted orbit crosses the ecliptic, which happens in eclipse seasons about every 173 days."
+msgstr "Bulan harus dekat dengan titik tempat orbitnya yang miring memotong ekliptika, yang terjadi pada musim gerhana sekitar setiap 173 hari."
+
+#: data/quizzes.json
+msgid "The Moon passes between the Sun and Earth"
+msgstr "Bulan lewat di antara Matahari dan Bumi"
+
+#: data/quizzes.json
 msgid "The Moon spins exactly once per orbit. Its far side does get sunlight, it just never faces Earth."
 msgstr "Bulan berputar tepat sekali setiap satu orbit. Sisi jauhnya tetap mendapat cahaya Matahari, hanya saja tidak pernah menghadap Bumi."
 
 #: data/quizzes.json
 msgid "The Moon's mass relative to Earth is about:"
 msgstr "Massa Bulan dibandingkan Bumi kira-kira:"
+
+#: data/quizzes.json
+msgid "The Moon's orbit is tilted"
+msgstr "Orbit Bulan miring"
+
+#: data/quizzes.json
+msgid "The Moon's orbit is tilted by about 5 degrees, so the Moon usually passes above or below Earth's shadow."
+msgstr "Orbit Bulan miring sekitar 5 derajat, sehingga Bulan biasanya lewat di atas atau di bawah bayangan Bumi."
 
 #: data/quizzes.json
 msgid "The Moon's pull raises the ocean tides. Seasons come from Earth's tilt."
@@ -1915,8 +2083,16 @@ msgid "The Sun is about 109 Earths wide. 1.3 million is how many Earths fit insi
 msgstr "Lebar Matahari sekitar 109 kali Bumi. Angka 1,3 juta adalah jumlah Bumi yang muat di dalamnya."
 
 #: data/quizzes.json
+msgid "The Sun is about 400 times wider and 400 times farther"
+msgstr "Matahari sekitar 400 kali lebih lebar dan 400 kali lebih jauh"
+
+#: data/quizzes.json
 msgid "The Sun is very small"
 msgstr "Matahari sangat kecil"
+
+#: data/quizzes.json
+msgid "The Sun switches off"
+msgstr "Matahari padam"
 
 #: data/quizzes.json
 msgid "The Sun's volume compared with Earth's is about:"
@@ -1927,12 +2103,20 @@ msgid "The bright spots in Ceres's Occator crater are mostly:"
 msgstr "Bintik terang di kawah Occator milik Ceres sebagian besar berupa:"
 
 #: data/quizzes.json
+msgid "The dust tail"
+msgstr "Ekor debu"
+
+#: data/quizzes.json
 msgid "The far side is always dark"
 msgstr "Sisi jauhnya selalu gelap"
 
 #: data/quizzes.json
 msgid "The induced field requires a conducting layer, best explained by a salty ocean."
 msgstr "Medan induksi membutuhkan lapisan penghantar listrik, yang paling masuk akal dijelaskan oleh samudra asin."
+
+#: data/quizzes.json
+msgid "The ion tail"
+msgstr "Ekor ion"
 
 #: data/quizzes.json
 msgid "The mean Earth-Moon distance is about how many Earth radii?"
@@ -1951,6 +2135,18 @@ msgid "The solar wind"
 msgstr "Angin Matahari"
 
 #: data/quizzes.json
+msgid "The two ratios nearly cancel, which is why total and annular solar eclipses are both possible."
+msgstr "Kedua perbandingan itu hampir saling meniadakan, sehingga gerhana Matahari total maupun cincin sama-sama mungkin terjadi."
+
+#: data/quizzes.json
+msgid "The umbra narrows with distance, and at the Moon's orbit it is about 2.7 Moon diameters across."
+msgstr "Umbra menyempit seiring jarak, dan di orbit Bulan lebarnya sekitar 2,7 diameter Bulan."
+
+#: data/quizzes.json
+msgid "They are the same size"
+msgstr "Ukurannya memang sama"
+
+#: data/quizzes.json
 msgid "Tidal heating"
 msgstr "Pemanasan pasang surut"
 
@@ -1961,6 +2157,14 @@ msgstr "Titan sangat dingin sehingga metana dan etana berwujud cair dan turun se
 #: data/quizzes.json
 msgid "Titan's nitrogen atmosphere reaches about 1.5 bar, higher than Earth's."
 msgstr "Atmosfer nitrogen Titan mencapai sekitar 1,5 bar, lebih tinggi daripada Bumi."
+
+#: data/quizzes.json
+msgid "Toward Earth"
+msgstr "Ke arah Bumi"
+
+#: data/quizzes.json
+msgid "Toward the Sun"
+msgstr "Ke arah Matahari"
 
 #: data/quizzes.json
 msgid "True-scale mode draws sizes and distances at 1 render unit per 1,000 km."
@@ -2003,6 +2207,10 @@ msgid "What fraction of the solar system's mass is in the Sun?"
 msgstr "Berapa bagian massa tata surya yang ada di Matahari?"
 
 #: data/quizzes.json
+msgid "What happens during a solar eclipse?"
+msgstr "Apa yang terjadi saat gerhana Matahari?"
+
+#: data/quizzes.json
 msgid "What is Saturn best known for?"
 msgstr "Saturnus paling terkenal karena apa?"
 
@@ -2027,6 +2235,10 @@ msgid "What is the one-way light time from the Moon to Earth?"
 msgstr "Berapa waktu tempuh cahaya satu arah dari Bulan ke Bumi?"
 
 #: data/quizzes.json
+msgid "What is the perihelion distance of Halley's Comet?"
+msgstr "Berapa jarak perihelion Komet Halley?"
+
+#: data/quizzes.json
 msgid "What is the surface pressure on Titan?"
 msgstr "Berapa tekanan permukaan di Titan?"
 
@@ -2043,12 +2255,28 @@ msgid "What sustains Io's tidal heating?"
 msgstr "Apa yang mempertahankan pemanasan pasang surut Io?"
 
 #: data/quizzes.json
+msgid "What turns the Moon red during a lunar eclipse?"
+msgstr "Apa yang membuat Bulan merah saat gerhana Bulan?"
+
+#: data/quizzes.json
+msgid "When a new or full moon falls near a node"
+msgstr "Saat bulan baru atau purnama jatuh di dekat simpul"
+
+#: data/quizzes.json
+msgid "When can an eclipse happen?"
+msgstr "Kapan gerhana bisa terjadi?"
+
+#: data/quizzes.json
 msgid "Where does the dwarf planet Ceres orbit?"
 msgstr "Di mana planet kerdil Ceres mengorbit?"
 
 #: data/quizzes.json
 msgid "Where is the Earth-Moon barycenter?"
 msgstr "Di mana letak barisenter Bumi-Bulan?"
+
+#: data/quizzes.json
+msgid "Which comet tail points straight away from the Sun?"
+msgstr "Ekor komet mana yang mengarah lurus menjauhi Matahari?"
 
 #: data/quizzes.json
 msgid "Which is the largest moon in the solar system?"
@@ -2079,8 +2307,16 @@ msgid "Which value is closest to the obliquity of Uranus?"
 msgstr "Nilai mana yang paling mendekati kemiringan sumbu Uranus?"
 
 #: data/quizzes.json
+msgid "Which way does a comet's tail point?"
+msgstr "Ke mana arah ekor komet?"
+
+#: data/quizzes.json
 msgid "Why do most solar system pictures squeeze distances?"
 msgstr "Mengapa kebanyakan gambar tata surya memadatkan jarak?"
+
+#: data/quizzes.json
+msgid "Why do the Sun and the Moon look almost the same size?"
+msgstr "Mengapa Matahari dan Bulan tampak hampir sama besar?"
 
 #: data/quizzes.json
 msgid "Why do we always see the same side of the Moon?"
@@ -2089,6 +2325,10 @@ msgstr "Mengapa kita selalu melihat sisi Bulan yang sama?"
 #: data/quizzes.json
 msgid "Why is Venus the hottest planet?"
 msgstr "Mengapa Venus menjadi planet terpanas?"
+
+#: data/quizzes.json
+msgid "Why is there no eclipse at every full moon?"
+msgstr "Mengapa tidak ada gerhana di setiap purnama?"
 
 #: data/sandbox_presets.json
 msgid "A half-solar-mass star sweeps past the outer planets about three years after loading"
@@ -2159,8 +2399,16 @@ msgid "A G2V star with a mean radius of 695,700 km and 99.86% of the solar syste
 msgstr "Bintang G2V dengan jari-jari rata-rata 695.700 km dan 99,86% massa tata surya. Orbit planet di sini dihitung dari elemen Kepler JPL."
 
 #: data/tours.json
+msgid "A comet's tail does not trail behind it. Heading away from the Sun, Halley's tails point ahead of it. On this day it passed closest to Earth."
+msgstr "Ekor komet tidak selalu berada di belakangnya. Saat menjauhi Matahari, ekor Halley justru mengarah ke depan. Pada hari ini komet itu berada paling dekat dengan Bumi."
+
+#: data/tours.json
 msgid "A planet and its Moon"
 msgstr "Planet dan Bulannya"
+
+#: data/tours.json
+msgid "A red Moon"
+msgstr "Bulan merah"
 
 #: data/tours.json
 msgid "A second away"
@@ -2169,6 +2417,10 @@ msgstr "Sejauh satu detik"
 #: data/tours.json
 msgid "Always the same face"
 msgstr "Selalu sisi yang sama"
+
+#: data/tours.json
+msgid "An eclipse needs a new or full moon close to a node of the lunar orbit. Eclipse seasons come about every 173 days, and the nodes circle the ecliptic every 18.6 years."
+msgstr "Gerhana membutuhkan bulan baru atau purnama yang dekat dengan simpul orbit Bulan. Musim gerhana datang sekitar setiap 173 hari, dan simpul-simpulnya mengelilingi ekliptika setiap 18,6 tahun."
 
 #: data/tours.json
 msgid "At 384,400 km the one-way light time is about 1.28 s. At 1 AU the light time is about 499 s."
@@ -2191,6 +2443,10 @@ msgid "Dawn found sodium carbonate faculae in Occator crater, deposited from bri
 msgstr "Wahana Dawn menemukan fakula natrium karbonat di kawah Occator, yang diendapkan oleh air asin yang naik ke permukaan dari bawah kerak."
 
 #: data/tours.json
+msgid "During a lunar eclipse the Moon slides into Earth's shadow. Sunlight bent through Earth's air still reaches it and turns it a deep red."
+msgstr "Saat gerhana Bulan, Bulan masuk ke dalam bayangan Bumi. Cahaya Matahari yang dibelokkan oleh udara Bumi tetap mencapainya dan membuatnya merah tua."
+
+#: data/tours.json
 msgid "Earth and Moon"
 msgstr "Bumi dan Bulan"
 
@@ -2203,6 +2459,10 @@ msgid "Earth is the third planet from the Sun and the only world known to host l
 msgstr "Bumi adalah planet ketiga dari Matahari dan satu-satunya dunia yang diketahui memiliki kehidupan. Perhatikan samudranya yang biru."
 
 #: data/tours.json
+msgid "Eclipses and Comets"
+msgstr "Gerhana dan Komet"
+
+#: data/tours.json
 msgid "Galileo measured an induced magnetic field that points to a conducting ocean beneath an ice shell roughly 15 to 25 km thick."
 msgstr "Wahana Galileo mengukur medan magnet induksi yang menandakan samudra penghantar listrik di bawah lapisan es setebal sekitar 15 sampai 25 km."
 
@@ -2213,6 +2473,14 @@ msgstr "Ganymede adalah bulan terbesar di tata surya, lebih lebar daripada plane
 #: data/tours.json
 msgid "Grand Tour"
 msgstr "Tur Besar"
+
+#: data/tours.json
+msgid "Halley's Comet spends most of its 76-year orbit in the cold far beyond Neptune. Near the Sun its ice turns to gas and two tails stream away."
+msgstr "Komet Halley menghabiskan sebagian besar orbit 76 tahunnya di wilayah dingin jauh di luar Neptunus. Di dekat Matahari, esnya berubah menjadi gas dan dua ekor mengalir menjauh."
+
+#: data/tours.json
+msgid "In a solar eclipse the Moon passes between the Sun and Earth. Its shadow races across our planet, here near Greenland, Iceland, and Spain."
+msgstr "Saat gerhana Matahari, Bulan lewat di antara Matahari dan Bumi. Bayangannya melesat melintasi planet kita, di sini dekat Greenland, Islandia, dan Spanyol."
 
 #: data/tours.json
 msgid "Io is the most volcanic world we know. Jupiter's gravity squeezes it on every orbit, and that heat feeds hundreds of active volcanoes."
@@ -2271,8 +2539,16 @@ msgid "Neptune orbits about 4.5 billion kilometers from the Sun. Sunlight needs 
 msgstr "Neptunus mengorbit sekitar 4,5 miliar kilometer dari Matahari. Cahaya Matahari butuh lebih dari empat jam untuk mencapainya."
 
 #: data/tours.json
+msgid "On 11 April 1986 the comet passed 0.42 AU from Earth on its way out. Sunlight and the solar wind push gas and dust outward, so the tails point away from the Sun whichever way the comet moves."
+msgstr "Pada 11 April 1986 komet itu melintas 0,42 AU dari Bumi dalam perjalanan keluar. Cahaya Matahari dan angin Matahari mendorong gas dan debu keluar, sehingga ekornya menjauhi Matahari ke mana pun komet bergerak."
+
+#: data/tours.json
 msgid "Our journey starts at the Sun, a star about 109 times wider than Earth. Everything in the solar system is held in orbit by its gravity."
 msgstr "Perjalanan kita dimulai di Matahari, bintang yang sekitar 109 kali lebih lebar daripada Bumi. Semua benda di tata surya tertahan di orbitnya oleh gravitasi Matahari."
+
+#: data/tours.json
+msgid "Perihelion at 0.575 AU in February 1986 and aphelion near 35 AU. The blue ion tail follows the solar wind straight away from the Sun, and the dust tail curves back along the orbit."
+msgstr "Perihelion pada 0,575 AU di bulan Februari 1986 dan aphelion sekitar 35 AU. Ekor ion yang biru mengikuti angin Matahari lurus menjauhi Matahari, sedangkan ekor debu melengkung ke belakang sepanjang orbit."
 
 #: data/tours.json
 msgid "Pluto lives far beyond Neptune and takes 248 years to circle the Sun. Its heart-shaped plain is a giant field of frozen nitrogen."
@@ -2335,6 +2611,10 @@ msgid "Sense of Scale"
 msgstr "Merasakan Skala"
 
 #: data/tours.json
+msgid "Tails point away from the Sun"
+msgstr "Ekor menjauhi Matahari"
+
+#: data/tours.json
 msgid "The Moon"
 msgstr "Bulan"
 
@@ -2351,6 +2631,14 @@ msgid "The Moon has about 1.2% of Earth's mass, so the two bodies orbit a common
 msgstr "Massa Bulan sekitar 1,2% massa Bumi, sehingga keduanya mengorbit barisenter bersama yang terletak di dalam Bumi, sekitar 4.600 km dari pusatnya."
 
 #: data/tours.json
+msgid "The Moon's orbit is tilted by about 5 degrees, so most full moons pass above or below Earth's shadow. This full Moon misses it completely."
+msgstr "Orbit Bulan miring sekitar 5 derajat, sehingga kebanyakan purnama lewat di atas atau di bawah bayangan Bumi. Purnama ini sama sekali tidak mengenainya."
+
+#: data/tours.json
+msgid "The Moon's shadow on Earth"
+msgstr "Bayangan Bulan di Bumi"
+
+#: data/tours.json
 msgid "The Sun"
 msgstr "Matahari"
 
@@ -2361,6 +2649,14 @@ msgstr "Matahari sekitar 109 kali lebih lebar daripada Bumi, dan sekitar 1,3 jut
 #: data/tours.json
 msgid "The mean Earth-Moon distance of 384,400 km is about 60 Earth radii, or 30 Earth diameters."
 msgstr "Jarak rata-rata Bumi-Bulan 384.400 km setara dengan sekitar 60 jari-jari Bumi, atau 30 diameter Bumi."
+
+#: data/tours.json
+msgid "The total lunar eclipse of 3 March 2026. At the Moon's distance Earth's umbra is about 2.7 Moon diameters wide, and sunlight refracted and reddened by Earth's atmosphere gives the copper color."
+msgstr "Gerhana Bulan total 3 Maret 2026. Pada jarak Bulan, umbra Bumi selebar sekitar 2,7 diameter Bulan, dan cahaya Matahari yang dibiaskan serta dimerahkan oleh atmosfer Bumi memberi warna tembaga."
+
+#: data/tours.json
+msgid "The total solar eclipse of 12 August 2026. The umbra is at most about 290 km wide. The Sun is about 400 times wider than the Moon and about 400 times farther away, so both look almost the same size."
+msgstr "Gerhana Matahari total 12 Agustus 2026. Lebar umbranya paling besar sekitar 290 km. Matahari sekitar 400 kali lebih lebar daripada Bulan dan sekitar 400 kali lebih jauh, sehingga keduanya tampak hampir sama besar."
 
 #: data/tours.json
 msgid "The true distance"
@@ -2397,6 +2693,14 @@ msgstr "Venus diselimuti awan tebal yang memerangkap panas, sehingga menjadi pla
 #: data/tours.json
 msgid "Visit the Sun and every planet, from Mercury to Neptune."
 msgstr "Kunjungi Matahari dan semua planet, dari Merkurius sampai Neptunus."
+
+#: data/tours.json
+msgid "Watch a red Moon and the Moon's shadow on Earth, then follow Halley's Comet around the Sun."
+msgstr "Saksikan Bulan merah dan bayangan Bulan di Bumi, lalu ikuti Komet Halley mengitari Matahari."
+
+#: data/tours.json
+msgid "Why not every month?"
+msgstr "Mengapa tidak setiap bulan?"
 
 #: data/tours.json
 msgid "With a radius of 2,634 km and a normalized moment of inertia near 0.31, Ganymede has an iron core whose dynamo creates a small magnetosphere."
@@ -2566,7 +2870,7 @@ msgstr "Tampilan"
 msgid "No eclipse found between %d and %d in that direction"
 msgstr "Tidak ada gerhana antara %d dan %d ke arah itu"
 
-#: modes/explore/explore_mode.gd:485
+#: modes/explore/explore_mode.gd:469
 msgid "%s, greatest at %s"
 msgstr "%s, puncak pada %s"
 

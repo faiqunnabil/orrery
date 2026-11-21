@@ -465,7 +465,7 @@ msgstr ""
 msgid "Ganymede"
 msgstr ""
 
-#: data/bodies.json
+#: data/bodies.json data/tours.json
 msgid "Halley's Comet"
 msgstr ""
 
@@ -1306,6 +1306,14 @@ msgid "0.006 bar"
 msgstr ""
 
 #: data/quizzes.json
+msgid "0.058 AU"
+msgstr ""
+
+#: data/quizzes.json
+msgid "0.575 AU"
+msgstr ""
+
+#: data/quizzes.json
 msgid "0.69 g/cm3"
 msgstr ""
 
@@ -1442,6 +1450,10 @@ msgid "333,000 times"
 msgstr ""
 
 #: data/quizzes.json
+msgid "35 AU"
+msgstr ""
+
+#: data/quizzes.json
 msgid "365 days"
 msgstr ""
 
@@ -1455,6 +1467,10 @@ msgstr ""
 
 #: data/quizzes.json
 msgid "5.51 g/cm3"
+msgstr ""
+
+#: data/quizzes.json
+msgid "5.75 AU"
 msgstr ""
 
 #: data/quizzes.json
@@ -1495,6 +1511,10 @@ msgstr ""
 
 #: data/quizzes.json
 msgid "98 degrees"
+msgstr ""
+
+#: data/quizzes.json
+msgid "A cloud covers the Sun"
 msgstr ""
 
 #: data/quizzes.json
@@ -1542,6 +1562,14 @@ msgid "About 1 second"
 msgstr ""
 
 #: data/quizzes.json
+msgid "About 10 Moon diameters"
+msgstr ""
+
+#: data/quizzes.json
+msgid "About 2.7 Moon diameters"
+msgstr ""
+
+#: data/quizzes.json
 msgid "About 50%"
 msgstr ""
 
@@ -1574,6 +1602,10 @@ msgid "About how many times wider than Earth is the Sun?"
 msgstr ""
 
 #: data/quizzes.json
+msgid "About how often does Halley's Comet come back?"
+msgstr ""
+
+#: data/quizzes.json
 msgid "An induced magnetic field measured by Galileo"
 msgstr ""
 
@@ -1586,6 +1618,10 @@ msgid "Around Jupiter"
 msgstr ""
 
 #: data/quizzes.json
+msgid "As wide as Earth"
+msgstr ""
+
+#: data/quizzes.json
 msgid "At Earth's center"
 msgstr ""
 
@@ -1594,7 +1630,15 @@ msgid "At about 0.69 g/cm3, Saturn is the least dense planet, less dense than wa
 msgstr ""
 
 #: data/quizzes.json
+msgid "At any new or full moon"
+msgstr ""
+
+#: data/quizzes.json
 msgid "At the Moon's center"
+msgstr ""
+
+#: data/quizzes.json
+msgid "At the Moon's distance, about how wide is Earth's umbra?"
 msgstr ""
 
 #: data/quizzes.json
@@ -1603,6 +1647,14 @@ msgstr ""
 
 #: data/quizzes.json
 msgid "At true scale, the planets would be tiny dots far apart. Try the true scale view to see it."
+msgstr ""
+
+#: data/quizzes.json
+msgid "Away from the Sun"
+msgstr ""
+
+#: data/quizzes.json
+msgid "Behind the comet"
 msgstr ""
 
 #: data/quizzes.json
@@ -1618,7 +1670,15 @@ msgid "Beyond Neptune"
 msgstr ""
 
 #: data/quizzes.json
+msgid "Both tails equally"
+msgstr ""
+
+#: data/quizzes.json
 msgid "Ceres is the largest object in the asteroid belt between Mars and Jupiter."
+msgstr ""
+
+#: data/quizzes.json
+msgid "Charged gas is carried by the solar wind straight outward, while dust grains drift on their own orbits and form a curved tail."
 msgstr ""
 
 #: data/quizzes.json
@@ -1630,6 +1690,10 @@ msgid "Day and night"
 msgstr ""
 
 #: data/quizzes.json
+msgid "Earth blocks the Sun from the Moon"
+msgstr ""
+
+#: data/quizzes.json
 msgid "Earth blocks the other side"
 msgstr ""
 
@@ -1638,7 +1702,35 @@ msgid "Earth is 12,742 km across."
 msgstr ""
 
 #: data/quizzes.json
+msgid "Earth's air magnifies the Moon"
+msgstr ""
+
+#: data/quizzes.json
+msgid "Earth's atmosphere bends and reddens sunlight into the shadow, so the eclipsed Moon glows red."
+msgstr ""
+
+#: data/quizzes.json
+msgid "Earth's shadow is too short"
+msgstr ""
+
+#: data/quizzes.json
 msgid "Earthquakes"
+msgstr ""
+
+#: data/quizzes.json
+msgid "Every 1,000 years"
+msgstr ""
+
+#: data/quizzes.json
+msgid "Every 10 years"
+msgstr ""
+
+#: data/quizzes.json
+msgid "Every 76 years"
+msgstr ""
+
+#: data/quizzes.json
+msgid "Every year"
 msgstr ""
 
 #: data/quizzes.json
@@ -1654,6 +1746,10 @@ msgid "Frozen methane"
 msgstr ""
 
 #: data/quizzes.json
+msgid "Full moons are too bright"
+msgstr ""
+
+#: data/quizzes.json
 msgid "Ganymede is even wider than the planet Mercury."
 msgstr ""
 
@@ -1662,7 +1758,19 @@ msgid "Ganymede's iron core drives a dynamo, giving it a small magnetosphere of 
 msgstr ""
 
 #: data/quizzes.json
+msgid "Half a Moon diameter"
+msgstr ""
+
+#: data/quizzes.json
 msgid "Halfway between Earth and the Moon"
+msgstr ""
+
+#: data/quizzes.json
+msgid "Halley comes within 0.575 AU of the Sun, inside the orbit of Venus. 35 AU is its aphelion."
+msgstr ""
+
+#: data/quizzes.json
+msgid "Halley's Comet returns about every 75 to 76 years. It last passed the Sun in 1986."
 msgstr ""
 
 #: data/quizzes.json
@@ -1754,6 +1862,10 @@ msgid "Lava"
 msgstr ""
 
 #: data/quizzes.json
+msgid "Light from Mars"
+msgstr ""
+
+#: data/quizzes.json
 msgid "Light needs just over one second. Sunlight needs about eight minutes."
 msgstr ""
 
@@ -1782,6 +1894,10 @@ msgid "Mercury rotates three times for every two orbits, so one solar day lasts 
 msgstr ""
 
 #: data/quizzes.json
+msgid "Neither tail"
+msgstr ""
+
+#: data/quizzes.json
 msgid "Neptune is about 30 times farther from the Sun than Earth, so sunlight needs over four hours."
 msgstr ""
 
@@ -1795,6 +1911,14 @@ msgstr ""
 
 #: data/quizzes.json
 msgid "Ocean tides"
+msgstr ""
+
+#: data/quizzes.json
+msgid "Only at the solstices"
+msgstr ""
+
+#: data/quizzes.json
+msgid "Only when the Moon is at perigee"
 msgstr ""
 
 #: data/quizzes.json
@@ -1834,6 +1958,10 @@ msgid "Real distances are too large to fit"
 msgstr ""
 
 #: data/quizzes.json
+msgid "Red rocks on the Moon"
+msgstr ""
+
+#: data/quizzes.json
 msgid "Refraction in Earth's atmosphere"
 msgstr ""
 
@@ -1866,6 +1994,14 @@ msgid "Sulfur"
 msgstr ""
 
 #: data/quizzes.json
+msgid "Sunlight and the solar wind push the gas and dust away from the Sun, whichever way the comet moves."
+msgstr ""
+
+#: data/quizzes.json
+msgid "Sunlight bent through Earth's air"
+msgstr ""
+
+#: data/quizzes.json
 msgid "Sustained winds on Neptune exceed about:"
 msgstr ""
 
@@ -1882,6 +2018,10 @@ msgid "The Moon does not spin"
 msgstr ""
 
 #: data/quizzes.json
+msgid "The Moon gets hot"
+msgstr ""
+
+#: data/quizzes.json
 msgid "The Moon has about 1.2% of Earth's mass, so the common center of mass lies inside Earth."
 msgstr ""
 
@@ -1894,11 +2034,39 @@ msgid "The Moon is about 384,400 km away, roughly 30 Earth-widths."
 msgstr ""
 
 #: data/quizzes.json
+msgid "The Moon is closer to the Sun"
+msgstr ""
+
+#: data/quizzes.json
+msgid "The Moon is too small"
+msgstr ""
+
+#: data/quizzes.json
+msgid "The Moon lines up between the Sun and Earth, and its shadow falls on a small part of Earth."
+msgstr ""
+
+#: data/quizzes.json
+msgid "The Moon must be close to where its tilted orbit crosses the ecliptic, which happens in eclipse seasons about every 173 days."
+msgstr ""
+
+#: data/quizzes.json
+msgid "The Moon passes between the Sun and Earth"
+msgstr ""
+
+#: data/quizzes.json
 msgid "The Moon spins exactly once per orbit. Its far side does get sunlight, it just never faces Earth."
 msgstr ""
 
 #: data/quizzes.json
 msgid "The Moon's mass relative to Earth is about:"
+msgstr ""
+
+#: data/quizzes.json
+msgid "The Moon's orbit is tilted"
+msgstr ""
+
+#: data/quizzes.json
+msgid "The Moon's orbit is tilted by about 5 degrees, so the Moon usually passes above or below Earth's shadow."
 msgstr ""
 
 #: data/quizzes.json
@@ -1914,7 +2082,15 @@ msgid "The Sun is about 109 Earths wide. 1.3 million is how many Earths fit insi
 msgstr ""
 
 #: data/quizzes.json
+msgid "The Sun is about 400 times wider and 400 times farther"
+msgstr ""
+
+#: data/quizzes.json
 msgid "The Sun is very small"
+msgstr ""
+
+#: data/quizzes.json
+msgid "The Sun switches off"
 msgstr ""
 
 #: data/quizzes.json
@@ -1926,11 +2102,19 @@ msgid "The bright spots in Ceres's Occator crater are mostly:"
 msgstr ""
 
 #: data/quizzes.json
+msgid "The dust tail"
+msgstr ""
+
+#: data/quizzes.json
 msgid "The far side is always dark"
 msgstr ""
 
 #: data/quizzes.json
 msgid "The induced field requires a conducting layer, best explained by a salty ocean."
+msgstr ""
+
+#: data/quizzes.json
+msgid "The ion tail"
 msgstr ""
 
 #: data/quizzes.json
@@ -1950,6 +2134,18 @@ msgid "The solar wind"
 msgstr ""
 
 #: data/quizzes.json
+msgid "The two ratios nearly cancel, which is why total and annular solar eclipses are both possible."
+msgstr ""
+
+#: data/quizzes.json
+msgid "The umbra narrows with distance, and at the Moon's orbit it is about 2.7 Moon diameters across."
+msgstr ""
+
+#: data/quizzes.json
+msgid "They are the same size"
+msgstr ""
+
+#: data/quizzes.json
 msgid "Tidal heating"
 msgstr ""
 
@@ -1959,6 +2155,14 @@ msgstr ""
 
 #: data/quizzes.json
 msgid "Titan's nitrogen atmosphere reaches about 1.5 bar, higher than Earth's."
+msgstr ""
+
+#: data/quizzes.json
+msgid "Toward Earth"
+msgstr ""
+
+#: data/quizzes.json
+msgid "Toward the Sun"
 msgstr ""
 
 #: data/quizzes.json
@@ -2002,6 +2206,10 @@ msgid "What fraction of the solar system's mass is in the Sun?"
 msgstr ""
 
 #: data/quizzes.json
+msgid "What happens during a solar eclipse?"
+msgstr ""
+
+#: data/quizzes.json
 msgid "What is Saturn best known for?"
 msgstr ""
 
@@ -2026,6 +2234,10 @@ msgid "What is the one-way light time from the Moon to Earth?"
 msgstr ""
 
 #: data/quizzes.json
+msgid "What is the perihelion distance of Halley's Comet?"
+msgstr ""
+
+#: data/quizzes.json
 msgid "What is the surface pressure on Titan?"
 msgstr ""
 
@@ -2042,11 +2254,27 @@ msgid "What sustains Io's tidal heating?"
 msgstr ""
 
 #: data/quizzes.json
+msgid "What turns the Moon red during a lunar eclipse?"
+msgstr ""
+
+#: data/quizzes.json
+msgid "When a new or full moon falls near a node"
+msgstr ""
+
+#: data/quizzes.json
+msgid "When can an eclipse happen?"
+msgstr ""
+
+#: data/quizzes.json
 msgid "Where does the dwarf planet Ceres orbit?"
 msgstr ""
 
 #: data/quizzes.json
 msgid "Where is the Earth-Moon barycenter?"
+msgstr ""
+
+#: data/quizzes.json
+msgid "Which comet tail points straight away from the Sun?"
 msgstr ""
 
 #: data/quizzes.json
@@ -2078,7 +2306,15 @@ msgid "Which value is closest to the obliquity of Uranus?"
 msgstr ""
 
 #: data/quizzes.json
+msgid "Which way does a comet's tail point?"
+msgstr ""
+
+#: data/quizzes.json
 msgid "Why do most solar system pictures squeeze distances?"
+msgstr ""
+
+#: data/quizzes.json
+msgid "Why do the Sun and the Moon look almost the same size?"
 msgstr ""
 
 #: data/quizzes.json
@@ -2087,6 +2323,10 @@ msgstr ""
 
 #: data/quizzes.json
 msgid "Why is Venus the hottest planet?"
+msgstr ""
+
+#: data/quizzes.json
+msgid "Why is there no eclipse at every full moon?"
 msgstr ""
 
 #: data/sandbox_presets.json
@@ -2158,7 +2398,15 @@ msgid "A G2V star with a mean radius of 695,700 km and 99.86% of the solar syste
 msgstr ""
 
 #: data/tours.json
+msgid "A comet's tail does not trail behind it. Heading away from the Sun, Halley's tails point ahead of it. On this day it passed closest to Earth."
+msgstr ""
+
+#: data/tours.json
 msgid "A planet and its Moon"
+msgstr ""
+
+#: data/tours.json
+msgid "A red Moon"
 msgstr ""
 
 #: data/tours.json
@@ -2167,6 +2415,10 @@ msgstr ""
 
 #: data/tours.json
 msgid "Always the same face"
+msgstr ""
+
+#: data/tours.json
+msgid "An eclipse needs a new or full moon close to a node of the lunar orbit. Eclipse seasons come about every 173 days, and the nodes circle the ecliptic every 18.6 years."
 msgstr ""
 
 #: data/tours.json
@@ -2190,6 +2442,10 @@ msgid "Dawn found sodium carbonate faculae in Occator crater, deposited from bri
 msgstr ""
 
 #: data/tours.json
+msgid "During a lunar eclipse the Moon slides into Earth's shadow. Sunlight bent through Earth's air still reaches it and turns it a deep red."
+msgstr ""
+
+#: data/tours.json
 msgid "Earth and Moon"
 msgstr ""
 
@@ -2202,6 +2458,10 @@ msgid "Earth is the third planet from the Sun and the only world known to host l
 msgstr ""
 
 #: data/tours.json
+msgid "Eclipses and Comets"
+msgstr ""
+
+#: data/tours.json
 msgid "Galileo measured an induced magnetic field that points to a conducting ocean beneath an ice shell roughly 15 to 25 km thick."
 msgstr ""
 
@@ -2211,6 +2471,14 @@ msgstr ""
 
 #: data/tours.json
 msgid "Grand Tour"
+msgstr ""
+
+#: data/tours.json
+msgid "Halley's Comet spends most of its 76-year orbit in the cold far beyond Neptune. Near the Sun its ice turns to gas and two tails stream away."
+msgstr ""
+
+#: data/tours.json
+msgid "In a solar eclipse the Moon passes between the Sun and Earth. Its shadow races across our planet, here near Greenland, Iceland, and Spain."
 msgstr ""
 
 #: data/tours.json
@@ -2270,7 +2538,15 @@ msgid "Neptune orbits about 4.5 billion kilometers from the Sun. Sunlight needs 
 msgstr ""
 
 #: data/tours.json
+msgid "On 11 April 1986 the comet passed 0.42 AU from Earth on its way out. Sunlight and the solar wind push gas and dust outward, so the tails point away from the Sun whichever way the comet moves."
+msgstr ""
+
+#: data/tours.json
 msgid "Our journey starts at the Sun, a star about 109 times wider than Earth. Everything in the solar system is held in orbit by its gravity."
+msgstr ""
+
+#: data/tours.json
+msgid "Perihelion at 0.575 AU in February 1986 and aphelion near 35 AU. The blue ion tail follows the solar wind straight away from the Sun, and the dust tail curves back along the orbit."
 msgstr ""
 
 #: data/tours.json
@@ -2334,6 +2610,10 @@ msgid "Sense of Scale"
 msgstr ""
 
 #: data/tours.json
+msgid "Tails point away from the Sun"
+msgstr ""
+
+#: data/tours.json
 msgid "The Moon"
 msgstr ""
 
@@ -2350,6 +2630,14 @@ msgid "The Moon has about 1.2% of Earth's mass, so the two bodies orbit a common
 msgstr ""
 
 #: data/tours.json
+msgid "The Moon's orbit is tilted by about 5 degrees, so most full moons pass above or below Earth's shadow. This full Moon misses it completely."
+msgstr ""
+
+#: data/tours.json
+msgid "The Moon's shadow on Earth"
+msgstr ""
+
+#: data/tours.json
 msgid "The Sun"
 msgstr ""
 
@@ -2359,6 +2647,14 @@ msgstr ""
 
 #: data/tours.json
 msgid "The mean Earth-Moon distance of 384,400 km is about 60 Earth radii, or 30 Earth diameters."
+msgstr ""
+
+#: data/tours.json
+msgid "The total lunar eclipse of 3 March 2026. At the Moon's distance Earth's umbra is about 2.7 Moon diameters wide, and sunlight refracted and reddened by Earth's atmosphere gives the copper color."
+msgstr ""
+
+#: data/tours.json
+msgid "The total solar eclipse of 12 August 2026. The umbra is at most about 290 km wide. The Sun is about 400 times wider than the Moon and about 400 times farther away, so both look almost the same size."
 msgstr ""
 
 #: data/tours.json
@@ -2395,6 +2691,14 @@ msgstr ""
 
 #: data/tours.json
 msgid "Visit the Sun and every planet, from Mercury to Neptune."
+msgstr ""
+
+#: data/tours.json
+msgid "Watch a red Moon and the Moon's shadow on Earth, then follow Halley's Comet around the Sun."
+msgstr ""
+
+#: data/tours.json
+msgid "Why not every month?"
 msgstr ""
 
 #: data/tours.json
@@ -2565,7 +2869,7 @@ msgstr ""
 msgid "No eclipse found between %d and %d in that direction"
 msgstr ""
 
-#: modes/explore/explore_mode.gd:485
+#: modes/explore/explore_mode.gd:469
 msgid "%s, greatest at %s"
 msgstr ""
 
