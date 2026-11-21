@@ -25,6 +25,7 @@ JSON_KEYS = {
     "data/bodies.json": {"name"},
     "data/sandbox_presets.json": {"name", "description"},
     "data/credits.json": {"title", "notice", "role", "name"},
+    "data/challenges.json": {"title", "goal", "hint", "name"},
 }
 CREDIT_ENTRY_KEYS = {"author", "license", "url", "text"}
 PLACEHOLDER = re.compile(r"%[0-9.]*[dsf]")
