@@ -33,6 +33,7 @@ var cloud_altitude := 0.0
 var cloud_opacity := 0.0
 var color: Color
 var tint := Color.WHITE
+var shape := Vector3.ONE
 var emissive: bool
 
 
@@ -74,6 +75,8 @@ static func from_dictionary(data: Dictionary) -> BodyDefinition:
 		body.cloud_opacity = clouds["opacity"]
 	body.color = Color.html(data["color"])
 	body.tint = Color.html(data.get("tint", "#FFFFFF"))
+	var axes: Array = data.get("shape", [1.0, 1.0, 1.0])
+	body.shape = Vector3(float(axes[0]), float(axes[1]), float(axes[2]))
 	body.emissive = data.get("emissive", false)
 	return body
 

@@ -38,7 +38,7 @@ varying vec3 world_binormal;
 varying vec3 world_position;
 
 void vertex() {
-	world_normal = normalize((MODEL_MATRIX * vec4(NORMAL, 0.0)).xyz);
+	world_normal = normalize(MODEL_NORMAL_MATRIX * NORMAL);
 	world_tangent = normalize((MODEL_MATRIX * vec4(TANGENT, 0.0)).xyz);
 	world_binormal = normalize((MODEL_MATRIX * vec4(BINORMAL, 0.0)).xyz);
 	world_position = (MODEL_MATRIX * vec4(VERTEX, 1.0)).xyz;

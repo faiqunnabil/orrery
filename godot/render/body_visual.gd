@@ -19,6 +19,7 @@ var _material := ShaderMaterial.new()
 var _sphere: SphereMesh
 var _max_segments := 0
 var _segments := 0
+var _shape := Vector3.ONE
 var _shells: Array[MeshInstance3D] = []
 var _lit_materials: Array[ShaderMaterial] = []
 var _detail_materials: Array[ShaderMaterial] = []
@@ -150,6 +151,10 @@ func set_tint(tint: Color) -> void:
 	_material.set_shader_parameter("tint", tint)
 
 
+func set_shape(axes: Vector3) -> void:
+	_shape = axes
+
+
 func place(
 	camera_relative_position: Vector3,
 	radius: float,
@@ -157,7 +162,7 @@ func place(
 	sun_direction: Vector3,
 	lit: bool = true
 ) -> void:
-	transform = Transform3D(orientation.scaled(Vector3.ONE * radius), camera_relative_position)
+	transform = Transform3D(orientation * Basis.from_scale(_shape * radius), camera_relative_position)
 	for material in _lit_materials:
 		material.set_shader_parameter("sun_direction", sun_direction)
 		material.set_shader_parameter("has_sun", lit)
