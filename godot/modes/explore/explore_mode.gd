@@ -462,28 +462,37 @@ func _go_to_eclipse(direction: int) -> void:
 		return
 	if _tour_player.active:
 		_tour_player.stop()
-	_set_scale_mode(ScaleMapper.Mode.TRUE_SCALE)
-	clock.seconds = eclipse["seconds"]
+	_set_time(eclipse["seconds"], ECLIPSE_SPEED_STEP)
+	var lunar: bool = eclipse["kind"] == EclipseSearch.Kind.LUNAR
+	_select("moon" if lunar else "earth")
+	_show_eclipse(lunar)
+	var when := Astro.format_date(eclipse["seconds"], hud.utc_offset_minutes())
+	hud.show_toast(tr("%s, greatest at %s") % [tr(EclipseSearch.describe(eclipse)), when], ECLIPSE_TOAST_SECONDS)
+
+
+func _set_time(seconds: float, speed_step: int) -> void:
+	clock.seconds = seconds
 	clock.reversed = false
-	clock.step_index = ECLIPSE_SPEED_STEP
+	clock.step_index = clampi(speed_step, 0, SimulationClock.SPEED_STEPS.size() - 1)
 	clock.changed.emit()
 	model.update(clock.seconds)
 	renderer.compute_positions()
-	var lunar: bool = eclipse["kind"] == EclipseSearch.Kind.LUNAR
+
+
+func _show_eclipse(lunar: bool) -> void:
+	_set_scale_mode(ScaleMapper.Mode.TRUE_SCALE)
+	model.update(clock.seconds)
+	renderer.compute_positions()
 	var target := "moon" if lunar else "earth"
-	_select(target)
 	var body := model.get_body(target)
-	var toward := _toward_sun(target) if lunar else _toward_moon_shadow()
 	camera.fly_to(
 		target,
 		renderer.render_position(target),
 		camera.world_position(_anchor_position()),
 		renderer.mapper.radius(body),
-		toward,
+		_toward_sun(target) if lunar else _toward_moon_shadow(),
 		LUNAR_ECLIPSE_VIEW_RADII if lunar else SOLAR_ECLIPSE_VIEW_RADII
 	)
-	var when := Astro.format_date(eclipse["seconds"], hud.utc_offset_minutes())
-	hud.show_toast(tr("%s, greatest at %s") % [tr(EclipseSearch.describe(eclipse)), when], ECLIPSE_TOAST_SECONDS)
 
 
 func _toward_moon_shadow() -> Vector3:
@@ -534,10 +543,16 @@ func _on_tour_step(tour_title: String, step: Dictionary, index: int, count: int)
 	hud.set_help_visible(false)
 	_info_panel.dismiss()
 	_tour_panel.show_step(tour_title, step, index, count)
+	if step.has("date"):
+		var unix := Time.get_unix_time_from_datetime_string(str(step["date"]))
+		_set_time(Astro.unix_to_simulation_seconds(unix), int(step.get("speed_step", clock.step_index)))
 	if step.has("scale"):
 		_set_scale_mode(ScaleMapper.Mode.TRUE_SCALE if step["scale"] == "true" else ScaleMapper.Mode.COMPRESSED)
 	_selected_id = step["target"]
-	_fly_to(step["target"], step.get("distance_radii", CameraRig.FOCUS_DISTANCE_RADII))
+	if step.has("eclipse"):
+		_show_eclipse(step["eclipse"] == "lunar")
+		return
+	_fly_to(step["target"], step.get("distance_radii", -1.0))
 
 
 func _on_tour_stopped() -> void:
