@@ -33,6 +33,12 @@ func period_seconds() -> float:
 	return Astro.SECONDS_PER_CENTURY * 360.0 / rates[MEAN_LONGITUDE]
 
 
+func mean_anomaly(centuries: float) -> float:
+	var mean_longitude := elements[MEAN_LONGITUDE] + rates[MEAN_LONGITUDE] * centuries
+	var periapsis_longitude := elements[LONGITUDE_OF_PERIAPSIS] + rates[LONGITUDE_OF_PERIAPSIS] * centuries
+	return deg_to_rad(wrapf(mean_longitude - periapsis_longitude, -180.0, 180.0))
+
+
 func position_km(centuries: float) -> DVec3:
 	if theory == LUNAR_THEORY:
 		return LunarTheory.position_km(centuries)

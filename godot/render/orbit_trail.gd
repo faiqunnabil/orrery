@@ -3,6 +3,7 @@ extends MeshInstance3D
 
 const EMPTY_SLOT := 9223372036854775807
 const HEAD_ALPHA := 0.95
+const HIGH_ECCENTRICITY := 0.5
 
 var definition: BodyDefinition
 var trail_color: Color
@@ -11,6 +12,7 @@ var _mesh := ImmediateMesh.new()
 var _material := StandardMaterial3D.new()
 var _point_count := 0
 var _step_seconds := 1.0
+var _length_fraction := 1.0
 var _shell := 1.0e9
 var _slot_indices := PackedInt64Array()
 var _slot_points := PackedFloat64Array()
@@ -29,6 +31,7 @@ func _init(body: BodyDefinition) -> void:
 
 func configure(point_count: int, length_fraction: float) -> void:
 	_point_count = point_count
+	_length_fraction = length_fraction
 	_step_seconds = definition.orbit.period_seconds() * length_fraction / float(point_count)
 	_slot_indices.resize(point_count)
 	_slot_indices.fill(EMPTY_SLOT)
@@ -48,6 +51,10 @@ func update(
 	_mesh.clear_surfaces()
 	_mesh.surface_begin(Mesh.PRIMITIVE_LINE_STRIP, _material)
 	_emit(Color(trail_color, HEAD_ALPHA), current.x, current.y, current.z, parent_camera_position, parent, mapper)
+	if definition.orbit.elements[OrbitModel.ECCENTRICITY] > HIGH_ECCENTRICITY:
+		_emit_by_anomaly(simulation_seconds, parent_camera_position, parent, mapper)
+		_mesh.surface_end()
+		return
 	for k in _point_count:
 		var index := head - k
 		var slot := posmod(index, _point_count)
@@ -68,6 +75,25 @@ func update(
 			mapper
 		)
 	_mesh.surface_end()
+
+
+func _emit_by_anomaly(
+	simulation_seconds: float, parent_camera_position: PackedFloat64Array, parent: BodyDefinition, mapper: ScaleMapper
+) -> void:
+	var orbit := definition.orbit
+	var eccentricity := orbit.elements[OrbitModel.ECCENTRICITY]
+	var period := orbit.period_seconds()
+	var span := period * _length_fraction
+	var eccentric_now := Kepler.eccentric_anomaly(orbit.mean_anomaly(simulation_seconds / Astro.SECONDS_PER_CENTURY), eccentricity)
+	var mean_now := eccentric_now - eccentricity * sin(eccentric_now)
+	var step := TAU / float(_point_count)
+	for k in range(1, _point_count + 1):
+		var eccentric := eccentric_now - step * float(k)
+		var age := (mean_now - (eccentric - eccentricity * sin(eccentric))) / TAU * period
+		if age > span:
+			break
+		var point := orbit.position_km((simulation_seconds - age) / Astro.SECONDS_PER_CENTURY)
+		_emit(Color(trail_color, HEAD_ALPHA * (1.0 - age / span)), point.x, point.y, point.z, parent_camera_position, parent, mapper)
 
 
 func _emit(
