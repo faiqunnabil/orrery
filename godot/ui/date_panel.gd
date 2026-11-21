@@ -10,6 +10,7 @@ const MIN_YEAR := 1800
 const MAX_YEAR := 2050
 const EVENTS := [
 	["Apollo 11 lands on the Moon", "1969-07-20T20:17:00"],
+	["Halley's Comet rounds the Sun", "1986-02-09T00:00:00"],
 	["Jupiter and Saturn meet in the sky", "2020-12-21T18:00:00"],
 	["Total solar eclipse over North Africa", "2027-08-02T10:07:00"],
 ]

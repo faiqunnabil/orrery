@@ -72,6 +72,8 @@ const ECLIPSE_SPEED_STEP := 1
 const LUNAR_ECLIPSE_VIEW_RADII := 5.0
 const SOLAR_ECLIPSE_VIEW_RADII := 3.2
 const ECLIPSE_TOAST_SECONDS := 6.0
+const COMET_SIDE_VIEW := 0.35
+const COMET_TAIL_FRAMING := 1.3
 const MODE_SWITCH_LABEL := "Sandbox"
 const MODE_SWITCH_TEXT := "Open Sandbox ({mode_sandbox})"
 const MODE_SWITCH_ICON := "atom"
@@ -291,7 +293,19 @@ func _focus_name() -> String:
 func _toward_sun(body_id: String) -> Vector3:
 	var position := renderer.render_position(body_id)
 	var sun_position := renderer.render_position(model.bodies[0].id)
-	return Vector3(sun_position[0] - position[0], sun_position[1] - position[1], sun_position[2] - position[2])
+	var toward := Vector3(sun_position[0] - position[0], sun_position[1] - position[1], sun_position[2] - position[2])
+	if model.get_body(body_id).kind != "comet" or toward == Vector3.ZERO:
+		return toward
+	var side := toward.cross(Vector3.UP).normalized()
+	return (toward.normalized() * COMET_SIDE_VIEW + side).normalized()
+
+
+func _focus_radii(body_id: String) -> float:
+	var tail := renderer.comet_tail(body_id)
+	if tail == null or tail.length <= 0.0:
+		return CameraRig.FOCUS_DISTANCE_RADII
+	var radius := renderer.mapper.radius(model.get_body(body_id))
+	return maxf(CameraRig.FOCUS_DISTANCE_RADII, tail.length * COMET_TAIL_FRAMING / radius)
 
 
 func _focus_body(body_id: String) -> void:
@@ -299,8 +313,10 @@ func _focus_body(body_id: String) -> void:
 	_fly_to(body_id)
 
 
-func _fly_to(body_id: String, radii: float = CameraRig.FOCUS_DISTANCE_RADII) -> void:
+func _fly_to(body_id: String, radii: float = -1.0) -> void:
 	var body := model.get_body(body_id)
+	if radii < 0.0:
+		radii = _focus_radii(body_id)
 	camera.fly_to(
 		body_id,
 		renderer.render_position(body_id),
