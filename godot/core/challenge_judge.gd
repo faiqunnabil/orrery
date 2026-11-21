@@ -7,6 +7,9 @@ enum State { WAITING, TRACKING, COMPLETE }
 
 const DATA_PATH := "res://data/challenges.json"
 const DEFAULT_DISTANCE_FACTOR := 3.0
+const DEFAULT_MIN_GAIN := 0.3
+const DEFAULT_ENCOUNTER_AU := 0.1
+const DEPARTURE_FACTOR := 2.0
 
 var challenge: Dictionary = {}
 var state := State.WAITING
@@ -19,6 +22,8 @@ var _known: Dictionary = {}
 var _angle := 0.0
 var _last_angle := 0.0
 var _start_distance := 0.0
+var _launch_energy := 0.0
+var _closest := INF
 
 
 static func load_challenges() -> Array[Dictionary]:
@@ -91,6 +96,9 @@ func update(world: SandboxWorld) -> void:
 	if challenge.get("type", "") == "escape":
 		_judge_escape(energy, distance)
 		return
+	if challenge.get("type", "") == "slingshot":
+		_judge_slingshot(world, target, energy)
+		return
 	if energy >= 0.0:
 		_wait("That body is escaping. Launch it slower.")
 		return
@@ -131,6 +139,30 @@ func _judge_escape(energy: float, distance: float) -> void:
 		_set_status("Escaping: %d%% of the way", [int(progress * 100.0)])
 
 
+func _judge_slingshot(world: SandboxWorld, target: int, energy: float) -> void:
+	var planet := world.index_of(str(challenge.get("planet", "")))
+	if planet < 0:
+		_wait("The central body is gone. Restart the challenge.")
+		return
+	if _launch_energy >= 0.0:
+		_wait("That body is escaping. Launch it slower.")
+		return
+	var simulation := world.simulation
+	var separation := simulation.position_of(target).minus(simulation.position_of(planet)).length()
+	_closest = minf(_closest, separation)
+	var encounter := float(challenge.get("encounter_au", DEFAULT_ENCOUNTER_AU)) * Astro.AU_KM
+	var minimum_gain := float(challenge.get("min_gain", DEFAULT_MIN_GAIN))
+	var gain := (energy - _launch_energy) / absf(_launch_energy)
+	progress = clampf(gain / minimum_gain, 0.0, 1.0)
+	if _closest < encounter and separation > encounter * DEPARTURE_FACTOR:
+		if gain >= minimum_gain:
+			_complete()
+		else:
+			_wait("The pass changed its energy by %d%%. Pass just behind the planet.", [int(round(gain * 100.0))])
+		return
+	_set_status("Closest pass so far: %s AU", [BodyFacts.format_number(_closest / Astro.AU_KM, 3)])
+
+
 func _track(world: SandboxWorld, id: String) -> void:
 	var center := world.index_of(str(challenge.get("center", "")))
 	var target := world.index_of(id)
@@ -143,6 +175,10 @@ func _track(world: SandboxWorld, id: String) -> void:
 	_angle = 0.0
 	_last_angle = atan2(offset.y, offset.x)
 	_start_distance = offset.length()
+	_closest = INF
+	var velocity := world.simulation.velocity_of(target).minus(world.simulation.velocity_of(center))
+	var mu: float = world.simulation.gm[center] + world.simulation.gm[target]
+	_launch_energy = 0.5 * (velocity.x * velocity.x + velocity.y * velocity.y + velocity.z * velocity.z) - mu / _start_distance
 	_set_status("Tracking the new body.")
 
 
