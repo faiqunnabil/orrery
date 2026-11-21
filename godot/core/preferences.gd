@@ -31,6 +31,7 @@ var trails_visible := true
 var rings_visible := true
 var constellations_visible := false
 var gravity_well_visible := false
+var completed_challenges := PackedStringArray()
 var view_panel_collapsed := false
 var onboarding_done := false
 var language := ""
@@ -154,6 +155,18 @@ func set_gravity_well_visible(value: bool) -> void:
 	changed.emit()
 
 
+func is_challenge_complete(id: String) -> bool:
+	return completed_challenges.has(id)
+
+
+func mark_challenge_complete(id: String) -> void:
+	if id == "" or completed_challenges.has(id):
+		return
+	completed_challenges.append(id)
+	_save()
+	changed.emit()
+
+
 func set_trail_length(value: TrailLength) -> void:
 	if value == trail_length:
 		return
@@ -173,6 +186,7 @@ func _load() -> void:
 	rings_visible = config.get_value(CONFIG_SECTION, "rings_visible", true)
 	constellations_visible = config.get_value(CONFIG_SECTION, "constellations_visible", false)
 	gravity_well_visible = config.get_value(CONFIG_SECTION, "gravity_well_visible", false)
+	completed_challenges = PackedStringArray(config.get_value(CONFIG_SECTION, "completed_challenges", PackedStringArray()))
 	view_panel_collapsed = config.get_value(CONFIG_SECTION, "view_panel_collapsed", false)
 	onboarding_done = config.get_value(CONFIG_SECTION, "onboarding_done", false)
 	language = config.get_value(CONFIG_SECTION, "language", "")
@@ -193,6 +207,7 @@ func _save() -> void:
 	config.set_value(CONFIG_SECTION, "rings_visible", rings_visible)
 	config.set_value(CONFIG_SECTION, "constellations_visible", constellations_visible)
 	config.set_value(CONFIG_SECTION, "gravity_well_visible", gravity_well_visible)
+	config.set_value(CONFIG_SECTION, "completed_challenges", completed_challenges)
 	config.set_value(CONFIG_SECTION, "view_panel_collapsed", view_panel_collapsed)
 	config.set_value(CONFIG_SECTION, "onboarding_done", onboarding_done)
 	config.set_value(CONFIG_SECTION, "language", language)
