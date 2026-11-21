@@ -75,6 +75,7 @@ const HELP_GROUPS := [
 const MODE_SWITCH_LABEL := "Explore"
 const MODE_SWITCH_TEXT := "Open Explore ({mode_explore})"
 const MODE_SWITCH_ICON := "telescope"
+const CHALLENGE_TOAST_SECONDS := 5.0
 
 var model: SolarSystemModel
 var world: SandboxWorld
@@ -99,11 +100,15 @@ var _integrator: NBodySimulation.Integrator = NBodySimulation.Integrator.VELOCIT
 var _fixed_step_seconds := 0.0
 var _energy_baseline := 0.0
 var _momentum_baseline := 0.0
+var _challenges: Array[Dictionary] = []
+var _challenge_index := -1
+var _judge := ChallengeJudge.new()
 
 
 func _build_world() -> void:
 	model = SolarSystemModel.new(BodyCatalog.load_bodies())
 	_presets = SandboxPresets.load_presets()
+	_challenges = ChallengeJudge.load_challenges()
 	add_child(renderer)
 	hud.add_overlay(_labels)
 	hud.left_column.add_child(panel)
@@ -132,6 +137,11 @@ func _build_world() -> void:
 	panel.selected_mass_changed.connect(_set_selected_mass)
 	panel.selected_radius_changed.connect(_set_selected_radius)
 	panel.selected_color_changed.connect(_set_selected_color)
+	panel.set_challenges(_challenges)
+	panel.challenge_start_requested.connect(_start_challenge)
+	panel.challenge_restart_requested.connect(func() -> void: _start_challenge(_challenge_index))
+	panel.challenge_leave_requested.connect(_leave_challenge)
+	_judge.completed.connect(_on_challenge_completed)
 	_install_world(SandboxWorld.from_solar_system(model, clock.seconds))
 
 
@@ -154,6 +164,7 @@ func _process(delta: float) -> void:
 		for index in world.bodies.size():
 			world.assign_parent(index)
 	renderer.compute_positions()
+	_judge.update(world)
 	camera.update(delta, renderer.nearest_surface_distance)
 	renderer.update(camera.world_position(_anchor_position()))
 	renderer.update_gravity_well(camera.world_position(_anchor_position()), _well_center())
@@ -164,6 +175,7 @@ func _process(delta: float) -> void:
 		_info_timer = 0.0
 		_refresh_readout()
 		_refresh_conservation()
+		_refresh_challenge()
 	hud.refresh(clock)
 	hud.set_status(_status_text())
 
@@ -345,9 +357,69 @@ func _body_limit_notice() -> String:
 	return tr("Body limit reached for the %s preset.") % tr(Quality.PRESET_NAMES[Quality.preset])
 
 
+func _start_challenge(index: int) -> void:
+	if index < 0 or index >= _challenges.size():
+		return
+	var challenge := _challenges[index]
+	var candidate := SandboxWorld.from_preset(challenge, model, clock.seconds)
+	if candidate.bodies.size() > Quality.profile()["max_bodies"]:
+		panel.set_notice(_body_limit_notice())
+		return
+	_replace_world(candidate)
+	_challenge_index = index
+	_judge.start(challenge, world)
+	clock.step_index = clampi(int(challenge.get("speed_step", SimulationClock.DEFAULT_STEP_INDEX)), 0, SimulationClock.SPEED_STEPS.size() - 1)
+	clock.reversed = false
+	clock.paused = false
+	clock.changed.emit()
+	panel.show_challenge(challenge)
+	_refresh_challenge()
+	_frame_challenge(challenge)
+
+
+func _frame_challenge(challenge: Dictionary) -> void:
+	var center_id := str(challenge.get("center", ""))
+	var index := world.index_of(center_id)
+	if index < 0:
+		return
+	var radius := maxf(world.simulation.radii[index] / SandboxRenderer.UNIT_KM, 1.0e-6)
+	var view_units := float(challenge.get("view_au", 1.0)) * Astro.AU_KM / SandboxRenderer.UNIT_KM
+	camera.fly_to(
+		center_id,
+		renderer.render_position(center_id),
+		camera.world_position(_anchor_position()),
+		radius,
+		_toward_light(index),
+		maxf(view_units / radius, CameraRig.FOCUS_DISTANCE_RADII)
+	)
+
+
+func _leave_challenge() -> void:
+	_judge.stop()
+	_challenge_index = -1
+	panel.hide_challenge()
+
+
+func _refresh_challenge() -> void:
+	if not _judge.is_active():
+		return
+	var status := tr(_judge.status)
+	if not _judge.status_args.is_empty():
+		status = status % _judge.status_args
+	panel.set_challenge_progress(_judge.progress, status, _judge.state == ChallengeJudge.State.COMPLETE)
+
+
+func _on_challenge_completed(challenge_id: String) -> void:
+	Preferences.mark_challenge_complete(challenge_id)
+	panel.set_challenges(_challenges)
+	hud.show_toast(tr("Challenge complete: %s") % tr(str(_judge.challenge.get("title", ""))), CHALLENGE_TOAST_SECONDS)
+	_refresh_challenge()
+
+
 func _load_preset(index: int) -> void:
 	if index < 0 or index >= _presets.size():
 		return
+	_leave_challenge()
 	_replace_world(SandboxWorld.from_preset(_presets[index], model, clock.seconds))
 
 
@@ -364,6 +436,7 @@ func _restore_snapshot() -> void:
 	if restored == null:
 		panel.set_notice("The saved snapshot could not be read.")
 		return
+	_leave_challenge()
 	_replace_world(restored)
 
 
