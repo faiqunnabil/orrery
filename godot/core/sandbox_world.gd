@@ -36,6 +36,8 @@ static func from_solar_system(model: SolarSystemModel, start_seconds: float) -> 
 		velocities[body.id] = later.minus(earlier[body.id]).scaled(0.5 / VELOCITY_SAMPLE_SECONDS)
 	_split_barycentric_systems(model, positions, velocities)
 	for body in model.bodies:
+		if body.kind == "comet":
+			continue
 		var velocity: DVec3 = velocities[body.id]
 		var sandbox_body := SandboxBody.new()
 		sandbox_body.id = body.id

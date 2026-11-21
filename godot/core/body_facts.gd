@@ -89,7 +89,8 @@ static func _scientist_rows(body: BodyDefinition, parent: BodyDefinition, distan
 		rows.append(["Orbital speed", "%s km/s" % format_number(speed_km_s, 2)])
 	var retrograde := Locale.t(" (retrograde)") if body.rotation_rate_deg_per_day < 0.0 else ""
 	rows.append(["Rotation period", _precise_rotation(body) + retrograde])
-	rows.append(["Axial tilt", "%s°" % format_number(body.obliquity_deg, 2)])
+	if body.kind != "comet":
+		rows.append(["Axial tilt", "%s°" % format_number(body.obliquity_deg, 2)])
 	return rows
 
 

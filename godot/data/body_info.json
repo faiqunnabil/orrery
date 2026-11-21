@@ -321,5 +321,24 @@
 				"Orbital period of 15.945 days at about 20 Saturn radii."
 			]
 		}
+	},
+	"halley": {
+		"type": "Comet",
+		"explorer": {
+			"summary": "Halley's Comet is a lump of ice and dust about 15 km long that comes back to the inner solar system every 75 to 76 years. Near the Sun its ice turns to gas and streams away in long glowing tails.",
+			"facts": [
+				"Its tails always point away from the Sun, pushed by sunlight and the solar wind.",
+				"It last passed the Sun in 1986 and will return in 2061.",
+				"Dust it left behind causes two meteor showers each year, the Eta Aquariids in May and the Orionids in October."
+			]
+		},
+		"scientist": {
+			"summary": "A Halley-type periodic comet on a retrograde orbit inclined 162 degrees, with an eccentricity of 0.968 and a perihelion distance of 0.575 AU. Its nucleus measures about 15 by 8 km and has a very dark surface with an albedo near 0.04.",
+			"facts": [
+				"The ion tail of charged gas points straight away from the Sun, while the broader dust tail curves back along the orbit.",
+				"The Giotto spacecraft passed about 600 km from the nucleus in March 1986.",
+				"The orbit is a fixed ellipse from JPL elements, so perihelion dates far from 1986 drift because planetary perturbations are ignored. The nucleus surface is a darkened stand-in map."
+			]
+		}
 	}
 }
