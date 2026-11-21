@@ -150,147 +150,151 @@ msgstr "Gerhana Matahari cincin"
 msgid "Partial solar eclipse"
 msgstr "Gerhana Matahari sebagian"
 
-#: core/input_bindings.gd:48
+#: core/input_bindings.gd:49
 msgid "Move forward"
 msgstr "Maju"
 
-#: core/input_bindings.gd:49
+#: core/input_bindings.gd:50
 msgid "Move back"
 msgstr "Mundur"
 
-#: core/input_bindings.gd:50
+#: core/input_bindings.gd:51
 msgid "Move left"
 msgstr "Geser ke kiri"
 
-#: core/input_bindings.gd:51
+#: core/input_bindings.gd:52
 msgid "Move right"
 msgstr "Geser ke kanan"
 
-#: core/input_bindings.gd:52
+#: core/input_bindings.gd:53
 msgid "Move up"
 msgstr "Naik"
 
-#: core/input_bindings.gd:53
+#: core/input_bindings.gd:54
 msgid "Move down"
 msgstr "Turun"
 
-#: core/input_bindings.gd:54
+#: core/input_bindings.gd:55
 msgid "Speed boost"
 msgstr "Percepat gerak"
 
-#: core/input_bindings.gd:55
+#: core/input_bindings.gd:56
 msgid "Pause time"
 msgstr "Jeda waktu"
 
-#: core/input_bindings.gd:56
+#: core/input_bindings.gd:57
 msgid "Reverse time"
 msgstr "Balikkan waktu"
 
-#: core/input_bindings.gd:57
+#: core/input_bindings.gd:58
 msgid "Faster time"
 msgstr "Percepat waktu"
 
-#: core/input_bindings.gd:58
+#: core/input_bindings.gd:59
 msgid "Slower time"
 msgstr "Perlambat waktu"
 
-#: core/input_bindings.gd:59
+#: core/input_bindings.gd:60
 msgid "Jump to now"
 msgstr "Lompat ke saat ini"
 
-#: core/input_bindings.gd:60
+#: core/input_bindings.gd:61
 msgid "Toggle scale"
 msgstr "Ganti skala"
 
-#: core/input_bindings.gd:61
+#: core/input_bindings.gd:62
 msgid "Focus next body"
 msgstr "Fokus ke benda berikutnya"
 
-#: core/input_bindings.gd:62 modes/explore/explore_mode.gd:287 modes/explore/explore_mode.gd:30
+#: core/input_bindings.gd:63 modes/explore/explore_mode.gd:287 modes/explore/explore_mode.gd:30
 msgid "Free flight"
 msgstr "Terbang bebas"
 
-#: core/input_bindings.gd:63 modes/explore/explore_mode.gd:63 modes/sandbox/sandbox_mode.gd:67
+#: core/input_bindings.gd:64 modes/explore/explore_mode.gd:63 modes/sandbox/sandbox_mode.gd:68
 msgid "Hide interface"
 msgstr "Sembunyikan antarmuka"
 
-#: core/input_bindings.gd:64
+#: core/input_bindings.gd:65
 msgid "Controls help"
 msgstr "Bantuan kontrol"
 
-#: core/input_bindings.gd:65 modes/explore/explore_mode.gd:31 modes/sandbox/sandbox_mode.gd:33
+#: core/input_bindings.gd:66 modes/explore/explore_mode.gd:31 modes/sandbox/sandbox_mode.gd:33
 msgid "Find a body"
 msgstr "Cari benda langit"
 
-#: core/input_bindings.gd:66 modes/explore/explore_mode.gd:42 ui/date_panel.gd:31
+#: core/input_bindings.gd:67 modes/explore/explore_mode.gd:42 ui/date_panel.gd:31
 msgid "Go to a date"
 msgstr "Pergi ke tanggal"
 
-#: core/input_bindings.gd:67 modes/explore/explore_mode.gd:61 modes/sandbox/sandbox_mode.gd:65
+#: core/input_bindings.gd:68 modes/explore/explore_mode.gd:61 modes/sandbox/sandbox_mode.gd:66
 msgid "Keyboard navigation"
 msgstr "Navigasi keyboard"
 
-#: core/input_bindings.gd:68
+#: core/input_bindings.gd:69
 msgid "Performance overlay"
 msgstr "Panel performa"
 
-#: core/input_bindings.gd:69
+#: core/input_bindings.gd:70
 msgid "Cinematic auto-orbit"
 msgstr "Orbit otomatis sinematik"
 
-#: core/input_bindings.gd:70
+#: core/input_bindings.gd:71
 msgid "Toggle fullscreen"
 msgstr "Layar penuh"
 
-#: core/input_bindings.gd:71
+#: core/input_bindings.gd:72
 msgid "Take screenshot"
 msgstr "Ambil tangkapan layar"
 
-#: core/input_bindings.gd:72 modes/explore/explore_mode.gd:51 modes/sandbox/sandbox_mode.gd:55
+#: core/input_bindings.gd:73 modes/explore/explore_mode.gd:51 modes/sandbox/sandbox_mode.gd:55
 msgid "Distance rings"
 msgstr "Cincin jarak"
 
-#: core/input_bindings.gd:73 modes/explore/explore_mode.gd:49 modes/sandbox/sandbox_mode.gd:53
+#: core/input_bindings.gd:74 modes/explore/explore_mode.gd:49 modes/sandbox/sandbox_mode.gd:53
 msgid "Labels"
 msgstr "Label"
 
-#: core/input_bindings.gd:74 modes/explore/explore_mode.gd:50 modes/sandbox/sandbox_mode.gd:54
+#: core/input_bindings.gd:75 modes/explore/explore_mode.gd:50 modes/sandbox/sandbox_mode.gd:54
 msgid "Orbit lines"
 msgstr "Garis orbit"
 
-#: core/input_bindings.gd:75 modes/explore/explore_mode.gd:52 modes/sandbox/sandbox_mode.gd:56
+#: core/input_bindings.gd:76 modes/explore/explore_mode.gd:52 modes/sandbox/sandbox_mode.gd:56
 msgid "Constellations"
 msgstr "Rasi bintang"
 
-#: core/input_bindings.gd:76
+#: core/input_bindings.gd:77 modes/sandbox/sandbox_mode.gd:57 ui/sandbox_panel.gd:358
+msgid "Gravity well"
+msgstr "Sumur gravitasi"
+
+#: core/input_bindings.gd:78
 msgid "Information depth"
 msgstr "Tingkat informasi"
 
-#: core/input_bindings.gd:77
+#: core/input_bindings.gd:79
 msgid "Next tour stop"
 msgstr "Pemberhentian tur berikutnya"
 
-#: core/input_bindings.gd:78
+#: core/input_bindings.gd:80
 msgid "Previous tour stop"
 msgstr "Pemberhentian tur sebelumnya"
 
-#: core/input_bindings.gd:79
+#: core/input_bindings.gd:81
 msgid "Open Explore"
 msgstr "Buka Jelajah"
 
-#: core/input_bindings.gd:80
+#: core/input_bindings.gd:82
 msgid "Open Sandbox"
 msgstr "Buka Sandbox"
 
-#: core/input_bindings.gd:81
+#: core/input_bindings.gd:83
 msgid "Remove body"
 msgstr "Hapus benda"
 
-#: core/input_bindings.gd:85
+#: core/input_bindings.gd:87
 msgid "Cancel and menu"
 msgstr "Batal dan menu"
 
-#: core/input_bindings.gd:86 modes/explore/explore_mode.gd:28 modes/sandbox/sandbox_mode.gd:32
+#: core/input_bindings.gd:88 modes/explore/explore_mode.gd:28 modes/sandbox/sandbox_mode.gd:32
 msgid "Focus a body"
 msgstr "Fokus ke benda"
 
@@ -426,7 +430,7 @@ msgstr "Mars"
 msgid "Mercury"
 msgstr "Merkurius"
 
-#: data/bodies.json data/body_info.json modes/sandbox/sandbox_mode.gd:216
+#: data/bodies.json data/body_info.json modes/sandbox/sandbox_mode.gd:220
 msgid "Moon"
 msgstr "Bulan"
 
@@ -570,7 +574,7 @@ msgstr "Ceres adalah objek terbesar di sabuk asteroid antara Mars dan Jupiter. B
 msgid "Daytime surface temperatures reach about 430 degrees C, while nights drop to about -180 degrees C."
 msgstr "Suhu permukaan siang hari mencapai sekitar 430 derajat C, sedangkan malam hari turun hingga sekitar -180 derajat C."
 
-#: data/body_info.json modes/sandbox/sandbox_mode.gd:218
+#: data/body_info.json modes/sandbox/sandbox_mode.gd:222
 msgid "Dwarf planet"
 msgstr "Planet kerdil"
 
@@ -610,7 +614,7 @@ msgstr "Sedikitnya kawah tumbukan menandakan permukaan yang muda, berusia sekita
 msgid "Ganymede is the largest moon in the solar system. It is even wider than the planet Mercury."
 msgstr "Ganymede adalah bulan terbesar di tata surya. Ukurannya bahkan lebih lebar daripada planet Merkurius."
 
-#: data/body_info.json ui/sandbox_panel.gd:57
+#: data/body_info.json ui/sandbox_panel.gd:58
 msgid "Gas giant"
 msgstr "Raksasa gas"
 
@@ -886,7 +890,7 @@ msgstr "Periode rotasi sideris sekitar 9,9 jam."
 msgid "Sputnik Planitia is a convecting nitrogen-ice glacier about 1,000 km across."
 msgstr "Sputnik Planitia adalah gletser es nitrogen yang berkonveksi dengan lebar sekitar 1.000 km."
 
-#: data/body_info.json modes/sandbox/sandbox_mode.gd:202 modes/sandbox/sandbox_mode.gd:212
+#: data/body_info.json modes/sandbox/sandbox_mode.gd:206 modes/sandbox/sandbox_mode.gd:216
 msgid "Star"
 msgstr "Bintang"
 
@@ -1166,7 +1170,7 @@ msgstr "1 jari-jari Bumi"
 msgid "1 bar"
 msgstr "1 bar"
 
-#: data/quizzes.json ui/sandbox_panel.gd:31
+#: data/quizzes.json ui/sandbox_panel.gd:32
 msgid "1 day"
 msgstr "1 hari"
 
@@ -2254,7 +2258,7 @@ msgstr "Turun / naik"
 msgid "Boost"
 msgstr "Percepat"
 
-#: modes/explore/explore_mode.gd:165 modes/sandbox/sandbox_mode.gd:280
+#: modes/explore/explore_mode.gd:165 modes/sandbox/sandbox_mode.gd:291
 msgid "Focus: %s"
 msgstr "Fokus: %s"
 
@@ -2302,7 +2306,7 @@ msgstr "Pilih"
 msgid "Double-click"
 msgstr "Klik ganda"
 
-#: modes/explore/explore_mode.gd:27 ui/info_panel.gd:42 ui/sandbox_panel.gd:312
+#: modes/explore/explore_mode.gd:27 ui/info_panel.gd:42 ui/sandbox_panel.gd:314
 msgid "Focus"
 msgstr "Fokus"
 
@@ -2398,11 +2402,11 @@ msgstr "Tampilan"
 msgid "%s, greatest at %s"
 msgstr "%s, puncak pada %s"
 
-#: modes/explore/explore_mode.gd:53 modes/sandbox/sandbox_mode.gd:57
+#: modes/explore/explore_mode.gd:53 modes/sandbox/sandbox_mode.gd:58
 msgid "Depth level"
 msgstr "Tingkat informasi"
 
-#: modes/explore/explore_mode.gd:57 modes/sandbox/sandbox_mode.gd:61
+#: modes/explore/explore_mode.gd:57 modes/sandbox/sandbox_mode.gd:62
 msgid "App"
 msgstr "Aplikasi"
 
@@ -2410,27 +2414,27 @@ msgstr "Aplikasi"
 msgid "Sandbox"
 msgstr "Sandbox"
 
-#: modes/explore/explore_mode.gd:60 modes/sandbox/sandbox_mode.gd:64 ui/hud.gd:595
+#: modes/explore/explore_mode.gd:60 modes/sandbox/sandbox_mode.gd:65 ui/hud.gd:595
 msgid "Controls"
 msgstr "Kontrol"
 
-#: modes/explore/explore_mode.gd:62 modes/sandbox/sandbox_mode.gd:66 ui/hud.gd:521
+#: modes/explore/explore_mode.gd:62 modes/sandbox/sandbox_mode.gd:67 ui/hud.gd:521
 msgid "Performance"
 msgstr "Performa"
 
-#: modes/explore/explore_mode.gd:64 modes/sandbox/sandbox_mode.gd:68 ui/settings_panel.gd:13
+#: modes/explore/explore_mode.gd:64 modes/sandbox/sandbox_mode.gd:69 ui/settings_panel.gd:13
 msgid "Fullscreen"
 msgstr "Layar penuh"
 
-#: modes/explore/explore_mode.gd:65 modes/sandbox/sandbox_mode.gd:69
+#: modes/explore/explore_mode.gd:65 modes/sandbox/sandbox_mode.gd:70
 msgid "Screenshot"
 msgstr "Tangkapan layar"
 
-#: modes/explore/explore_mode.gd:66 modes/sandbox/sandbox_mode.gd:44 modes/sandbox/sandbox_mode.gd:70
+#: modes/explore/explore_mode.gd:66 modes/sandbox/sandbox_mode.gd:44 modes/sandbox/sandbox_mode.gd:71
 msgid "Esc"
 msgstr "Esc"
 
-#: modes/explore/explore_mode.gd:66 modes/sandbox/sandbox_mode.gd:70 ui/hud.gd:495
+#: modes/explore/explore_mode.gd:66 modes/sandbox/sandbox_mode.gd:71 ui/hud.gd:495
 msgid "Menu"
 msgstr "Menu"
 
@@ -2450,7 +2454,7 @@ msgstr "Skala jarak dan ukuran (T)"
 msgid "Orrery"
 msgstr "Orrery"
 
-#: modes/menu/main_menu.gd:43 modes/sandbox/sandbox_mode.gd:63 modes/sandbox/sandbox_mode.gd:74
+#: modes/menu/main_menu.gd:43 modes/sandbox/sandbox_mode.gd:64 modes/sandbox/sandbox_mode.gd:75
 msgid "Explore"
 msgstr "Jelajah"
 
@@ -2470,39 +2474,39 @@ msgstr "Keluar"
 msgid "An interactive 3D solar system for exploration and gravity experiments."
 msgstr "Tata surya 3D interaktif untuk menjelajah dan bereksperimen dengan gravitasi."
 
-#: modes/sandbox/sandbox_mode.gd:202 modes/sandbox/sandbox_mode.gd:219
+#: modes/sandbox/sandbox_mode.gd:206 modes/sandbox/sandbox_mode.gd:223
 msgid "Body"
 msgstr "Benda"
 
-#: modes/sandbox/sandbox_mode.gd:214
+#: modes/sandbox/sandbox_mode.gd:218
 msgid "Planet"
 msgstr "Planet"
 
-#: modes/sandbox/sandbox_mode.gd:233
+#: modes/sandbox/sandbox_mode.gd:237
 msgid "%d/%d bodies, %s"
 msgstr "%d/%d benda, %s"
 
-#: modes/sandbox/sandbox_mode.gd:284
+#: modes/sandbox/sandbox_mode.gd:295
 msgid "Placing a body"
 msgstr "Sedang menempatkan benda"
 
-#: modes/sandbox/sandbox_mode.gd:286
+#: modes/sandbox/sandbox_mode.gd:297
 msgid "Simulation speed limited by performance"
 msgstr "Kecepatan simulasi dibatasi oleh performa"
 
-#: modes/sandbox/sandbox_mode.gd:334
-msgid "Body limit reached for the %s preset."
-msgstr "Batas jumlah benda untuk preset %s sudah tercapai."
-
-#: modes/sandbox/sandbox_mode.gd:34 ui/sandbox_panel.gd:314
+#: modes/sandbox/sandbox_mode.gd:34 ui/sandbox_panel.gd:316
 msgid "Remove"
 msgstr "Hapus"
 
-#: modes/sandbox/sandbox_mode.gd:348
+#: modes/sandbox/sandbox_mode.gd:345
+msgid "Body limit reached for the %s preset."
+msgstr "Batas jumlah benda untuk preset %s sudah tercapai."
+
+#: modes/sandbox/sandbox_mode.gd:359
 msgid "The snapshot could not be saved."
 msgstr "Snapshot tidak dapat disimpan."
 
-#: modes/sandbox/sandbox_mode.gd:354
+#: modes/sandbox/sandbox_mode.gd:365
 msgid "The saved snapshot could not be read."
 msgstr "Snapshot yang tersimpan tidak dapat dibaca."
 
@@ -2534,11 +2538,11 @@ msgstr "Lepas"
 msgid "Cancel"
 msgstr "Batal"
 
-#: modes/sandbox/sandbox_mode.gd:441
+#: modes/sandbox/sandbox_mode.gd:452
 msgid "Speed: %.2f km/s"
 msgstr "Kecepatan: %.2f km/dtk"
 
-#: modes/sandbox/sandbox_mode.gd:446
+#: modes/sandbox/sandbox_mode.gd:457
 msgid "Speed: %.2f km/s\nDistance to %s: %s"
 msgstr "Kecepatan: %.2f km/dtk\nJarak ke %s: %s"
 
@@ -2546,19 +2550,19 @@ msgstr "Kecepatan: %.2f km/dtk\nJarak ke %s: %s"
 msgid "Time and view"
 msgstr "Waktu dan tampilan"
 
-#: modes/sandbox/sandbox_mode.gd:547
+#: modes/sandbox/sandbox_mode.gd:558
 msgid "No body to orbit nearby"
 msgstr "Tidak ada benda di dekat sini untuk diorbit"
 
-#: modes/sandbox/sandbox_mode.gd:548
+#: modes/sandbox/sandbox_mode.gd:559
 msgid "No body to orbit. Add or keep a massive body nearby."
 msgstr "Tidak ada benda untuk diorbit. Tambahkan atau pertahankan benda bermassa besar di dekatnya."
 
-#: modes/sandbox/sandbox_mode.gd:550
+#: modes/sandbox/sandbox_mode.gd:561
 msgid "Launch %.2f km/s relative to %s (%.2f x circular)"
 msgstr "Luncur %.2f km/dtk relatif terhadap %s (%.2f x orbit lingkaran)"
 
-#: modes/sandbox/sandbox_mode.gd:552
+#: modes/sandbox/sandbox_mode.gd:563
 msgid "Launch speed relative to %s: %.2f km/s (%.2f x circular orbit speed)"
 msgstr "Kecepatan luncur relatif terhadap %s: %.2f km/dtk (%.2f x kecepatan orbit lingkaran)"
 
@@ -2774,7 +2778,7 @@ msgstr "Sembunyikan pilihan tampilan agar informasi benda lebih lega"
 msgid "Show view options"
 msgstr "Tampilkan pilihan tampilan"
 
-#: ui/info_panel.gd:42 ui/sandbox_panel.gd:312
+#: ui/info_panel.gd:42 ui/sandbox_panel.gd:314
 msgid "Fly to this body"
 msgstr "Terbang ke benda ini"
 
@@ -2906,23 +2910,23 @@ msgstr "Nanti saja"
 msgid "Start quiz"
 msgstr "Mulai kuis"
 
-#: ui/sandbox_panel.gd:100
+#: ui/sandbox_panel.gd:101
 msgid "Numerical method used to advance the bodies"
 msgstr "Metode numerik untuk menggerakkan benda"
 
-#: ui/sandbox_panel.gd:101
+#: ui/sandbox_panel.gd:102
 msgid "Adaptive shortens steps during close encounters; fixed steps show how step size affects accuracy"
 msgstr "Adaptif memperpendek langkah saat benda saling mendekat; langkah tetap menunjukkan pengaruh ukuran langkah terhadap akurasi"
 
-#: ui/sandbox_panel.gd:194
+#: ui/sandbox_panel.gd:196
 msgid "%d / %d bodies"
 msgstr "%d / %d benda"
 
-#: ui/sandbox_panel.gd:199 ui/sandbox_panel.gd:263
+#: ui/sandbox_panel.gd:201 ui/sandbox_panel.gd:265
 msgid "Place body"
 msgstr "Tempatkan benda"
 
-#: ui/sandbox_panel.gd:199
+#: ui/sandbox_panel.gd:201
 msgid "Placing... (Esc to stop)"
 msgstr "Menempatkan... (Esc untuk berhenti)"
 
@@ -2934,151 +2938,163 @@ msgstr "Fisika"
 msgid "World"
 msgstr "Dunia"
 
-#: ui/sandbox_panel.gd:247
+#: ui/sandbox_panel.gd:249
 msgid "New body"
 msgstr "Benda baru"
 
 #: ui/sandbox_panel.gd:25
+msgid "Heavier bodies dig deeper wells. Depth is compressed so small worlds stay visible next to stars."
+msgstr "Benda yang lebih berat membentuk sumur yang lebih dalam. Kedalamannya dipadatkan agar dunia kecil tetap terlihat di samping bintang."
+
+#: ui/sandbox_panel.gd:26
 msgid "Click the orbital plane to place a body, then drag to set its launch velocity."
 msgstr "Klik bidang orbit untuk menempatkan benda, lalu seret untuk mengatur kecepatan luncurnya."
 
-#: ui/sandbox_panel.gd:262 ui/sandbox_panel.gd:302
+#: ui/sandbox_panel.gd:264 ui/sandbox_panel.gd:304
 msgid "Color"
 msgstr "Warna"
 
-#: ui/sandbox_panel.gd:268
+#: ui/sandbox_panel.gd:270
 msgid "Click and drag on the orbital plane to launch a body"
 msgstr "Klik dan seret di bidang orbit untuk meluncurkan benda"
 
-#: ui/sandbox_panel.gd:282
+#: ui/sandbox_panel.gd:284
 msgid "Selected body"
 msgstr "Benda terpilih"
 
-#: ui/sandbox_panel.gd:30
-msgid "Velocity Verlet"
-msgstr "Velocity Verlet"
-
-#: ui/sandbox_panel.gd:304
+#: ui/sandbox_panel.gd:306
 msgid "Freeze in place"
 msgstr "Bekukan di tempat"
 
-#: ui/sandbox_panel.gd:308
+#: ui/sandbox_panel.gd:31
+msgid "Velocity Verlet"
+msgstr "Velocity Verlet"
+
+#: ui/sandbox_panel.gd:310
 msgid "Hold this body still while it keeps pulling on others"
 msgstr "Tahan benda ini diam sementara gravitasinya tetap menarik benda lain"
 
-#: ui/sandbox_panel.gd:31
-msgid "1 hour"
-msgstr "1 jam"
-
-#: ui/sandbox_panel.gd:31
-msgid "6 hours"
-msgstr "6 jam"
-
-#: ui/sandbox_panel.gd:31
-msgid "Adaptive"
-msgstr "Adaptif"
-
-#: ui/sandbox_panel.gd:314
+#: ui/sandbox_panel.gd:316
 msgid "Delete this body (Del)"
 msgstr "Hapus benda ini (Del)"
 
-#: ui/sandbox_panel.gd:324
+#: ui/sandbox_panel.gd:32
+msgid "1 hour"
+msgstr "1 jam"
+
+#: ui/sandbox_panel.gd:32
+msgid "6 hours"
+msgstr "6 jam"
+
+#: ui/sandbox_panel.gd:32
+msgid "Adaptive"
+msgstr "Adaptif"
+
+#: ui/sandbox_panel.gd:326
 msgid "Presets"
 msgstr "Preset"
 
-#: ui/sandbox_panel.gd:334
+#: ui/sandbox_panel.gd:336
 msgid "Load"
 msgstr "Muat"
 
-#: ui/sandbox_panel.gd:336
+#: ui/sandbox_panel.gd:338
 msgid "Replace all bodies with this preset at the current simulation date"
 msgstr "Ganti semua benda dengan preset ini pada tanggal simulasi saat ini"
 
-#: ui/sandbox_panel.gd:34
-msgid "An exact solution keeps both values constant. Drift since the baseline shows the integrator's numerical error. Merges, edits, and new bodies reset the baseline."
-msgstr "Solusi eksak menjaga kedua nilai tetap. Penyimpangan sejak titik acuan menunjukkan galat numerik integrator. Penggabungan, perubahan, dan benda baru mengatur ulang titik acuan."
-
-#: ui/sandbox_panel.gd:342
+#: ui/sandbox_panel.gd:344
 msgid "Snapshot"
 msgstr "Snapshot"
 
-#: ui/sandbox_panel.gd:343
+#: ui/sandbox_panel.gd:345
 msgid "Save every body as it is now and come back to it later."
 msgstr "Simpan semua benda seperti saat ini dan kembali lagi nanti."
 
-#: ui/sandbox_panel.gd:346
+#: ui/sandbox_panel.gd:348
 msgid "Save snapshot"
 msgstr "Simpan snapshot"
 
-#: ui/sandbox_panel.gd:346
+#: ui/sandbox_panel.gd:348
 msgid "Store every body as it is now"
 msgstr "Simpan semua benda seperti saat ini"
 
-#: ui/sandbox_panel.gd:350
+#: ui/sandbox_panel.gd:35
+msgid "An exact solution keeps both values constant. Drift since the baseline shows the integrator's numerical error. Merges, edits, and new bodies reset the baseline."
+msgstr "Solusi eksak menjaga kedua nilai tetap. Penyimpangan sejak titik acuan menunjukkan galat numerik integrator. Penggabungan, perubahan, dan benda baru mengatur ulang titik acuan."
+
+#: ui/sandbox_panel.gd:352
 msgid "Restore snapshot"
 msgstr "Pulihkan snapshot"
 
-#: ui/sandbox_panel.gd:350
+#: ui/sandbox_panel.gd:352
 msgid "Return to the last saved snapshot"
 msgstr "Kembali ke snapshot terakhir"
 
-#: ui/sandbox_panel.gd:358
+#: ui/sandbox_panel.gd:361
+msgid "Bend a grid by each body's gravitational potential (V)"
+msgstr "Lengkungkan grid sesuai potensial gravitasi tiap benda (V)"
+
+#: ui/sandbox_panel.gd:361
+msgid "Show gravity well"
+msgstr "Tampilkan sumur gravitasi"
+
+#: ui/sandbox_panel.gd:367
 msgid "Integrator"
 msgstr "Integrator"
 
-#: ui/sandbox_panel.gd:36
+#: ui/sandbox_panel.gd:37
 msgid "Frozen bodies are held by an outside force, so energy and angular momentum are not conserved."
 msgstr "Benda yang dibekukan ditahan oleh gaya luar, sehingga energi dan momentum sudut tidak kekal."
 
-#: ui/sandbox_panel.gd:362
+#: ui/sandbox_panel.gd:371
 msgid "Time step"
 msgstr "Langkah waktu"
 
-#: ui/sandbox_panel.gd:367
+#: ui/sandbox_panel.gd:376
 msgid "Conservation"
 msgstr "Kekekalan"
 
-#: ui/sandbox_panel.gd:371
+#: ui/sandbox_panel.gd:380
 msgid "Angular momentum"
 msgstr "Momentum sudut"
 
-#: ui/sandbox_panel.gd:371
+#: ui/sandbox_panel.gd:380
 msgid "Energy drift"
 msgstr "Penyimpangan energi"
 
-#: ui/sandbox_panel.gd:371
+#: ui/sandbox_panel.gd:380
 msgid "Momentum drift"
 msgstr "Penyimpangan momentum"
 
-#: ui/sandbox_panel.gd:371
+#: ui/sandbox_panel.gd:380
 msgid "Total energy"
 msgstr "Energi total"
 
-#: ui/sandbox_panel.gd:382
+#: ui/sandbox_panel.gd:391
 msgid "Measure drift from now on"
 msgstr "Ukur penyimpangan mulai sekarang"
 
-#: ui/sandbox_panel.gd:382
+#: ui/sandbox_panel.gd:391
 msgid "Reset baseline"
 msgstr "Atur ulang acuan"
 
-#: ui/sandbox_panel.gd:39
+#: ui/sandbox_panel.gd:40
 msgid "Asteroid"
 msgstr "Asteroid"
 
-#: ui/sandbox_panel.gd:454
+#: ui/sandbox_panel.gd:464
 msgid "Mass   %s Earths  (%s kg)"
 msgstr "Massa   %s Bumi  (%s kg)"
 
-#: ui/sandbox_panel.gd:458
+#: ui/sandbox_panel.gd:468
 msgid "Radius   %s km"
 msgstr "Jari-jari   %s km"
 
-#: ui/sandbox_panel.gd:48
+#: ui/sandbox_panel.gd:49
 msgid "Rocky planet"
 msgstr "Planet berbatu"
 
-#: ui/sandbox_panel.gd:77
+#: ui/sandbox_panel.gd:78
 msgid "Sandbox sections"
 msgstr "Bagian Sandbox"
 
