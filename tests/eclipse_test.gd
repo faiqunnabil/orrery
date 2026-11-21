@@ -57,6 +57,14 @@ func _click_button(text: String) -> bool:
 	return false
 
 
+func _narrated(tour_id: String, steps: int) -> bool:
+	for index in steps:
+		for level in ["explorer", "scientist"]:
+			if not ResourceLoader.exists("res://assets/audio/narration/%s_%02d_%s.ogg" % [tour_id, index + 1, level]):
+				return false
+	return true
+
+
 func _run_step() -> void:
 	var scene := current_scene
 	var visual = scene.renderer._visuals
@@ -103,5 +111,36 @@ func _run_step() -> void:
 			_check("Earth's shadow falls on the Moon", visual["moon"]._eclipse_count == 1)
 			_shot("eclipse_lunar")
 			scene._set_scale_mode(ScaleMapper.Mode.COMPRESSED)
+			scene._start_tour("eclipses_comets")
+			wait = 240
+		5:
+			_check("the eclipse tour opens on the March 2026 lunar eclipse", absf(scene.clock.seconds - _seconds("2026-03-03T11:33:00")) < TOLERANCE_SECONDS)
+			_check("the tour shows the red Moon at true scale", scene.camera.anchor_id == "moon" and scene.renderer.mapper.mode == ScaleMapper.Mode.TRUE_SCALE)
+			_check("the tour step has its narration", _narrated("eclipses_comets", 5))
+			scene._tour_player.next()
+			wait = 240
+		6:
+			_check("the second stop frames the Moon's shadow on Earth", scene.camera.anchor_id == "earth" and visual["earth"]._eclipse_count >= 1)
+			scene._tour_player.next()
+			wait = 240
+		7:
+			_check("the third stop shows a full moon outside Earth's shadow", scene.camera.anchor_id == "moon" and visual["moon"]._eclipse_count == 0)
+			scene._tour_player.next()
+			wait = 240
+		8:
+			var tail = scene.renderer.comet_tail("halley")
+			_check("the fourth stop visits Halley's Comet in 1986 with its tails", scene.camera.anchor_id == "halley" and tail.visible)
+			var offset: PackedFloat64Array = scene.camera.offset
+			_check("the tour frames the whole comet tail", Vector3(offset[0], offset[1], offset[2]).length() > tail.length)
+			_check("comets switch the tour back to the compressed scale", scene.renderer.mapper.mode == ScaleMapper.Mode.COMPRESSED)
+			_shot("tour_comet")
+			scene._tour_player.next()
+			wait = 60
+		9:
+			scene._tour_player.next()
+			wait = 30
+		10:
+			_check("finishing the tour offers its quiz", scene._quiz_panel.visible)
+			_check("the quiz has five questions at each level", scene._quiz_catalog.questions("eclipses_comets", false).size() == 5 and scene._quiz_catalog.questions("eclipses_comets", true).size() == 5)
 			print("FAILURES: ", failures)
 			quit()
