@@ -66,6 +66,20 @@
 					"license": "Reference values",
 					"url": "",
 					"text": ""
+				},
+				{
+					"name": "Star positions, brightness, and colors",
+					"author": "David Nash, HYG Database",
+					"license": "CC BY-SA 4.0",
+					"url": "https://github.com/astronexus/HYG-Database",
+					"text": "HYG Database v4.1 by David Nash, licensed under Creative Commons Attribution-ShareAlike 4.0 International (https://creativecommons.org/licenses/by-sa/4.0/). The 8,920 stars brighter than visual magnitude 6.5 were extracted into data/stars.json by tools/stars, and that file is shared under the same license."
+				},
+				{
+					"name": "Constellation figures",
+					"author": "Stellarium contributors",
+					"license": "CC BY-SA 4.0",
+					"url": "https://github.com/Stellarium/stellarium/tree/master/skycultures/modern",
+					"text": "Constellation lines of the modern sky culture from Stellarium, licensed under Creative Commons Attribution-ShareAlike 4.0 International. Converted from Hipparcos numbers to coordinates in data/stars.json by tools/stars."
 				}
 			]
 		},
