@@ -49,3 +49,13 @@ On Windows without a local Python, run it inside WSL or Linux with `UV_LINK_MODE
 | Titan | `Titan_ISS_P19658_Mosaic_Global_4km.tif` |
 | Ceres | `Ceres_Dawn_FC_DLR_global_20ppd_Oct2015.tif` |
 | Pluto | `Pluto_NewHorizons_Global_Mosaic_300m_Jul2017_8bit.tif` |
+
+## Comet nucleus
+
+No global map of the nucleus of Halley's Comet exists, so its surface is generated:
+
+```
+uv run generate_nucleus.py
+```
+
+Fractal value noise is sampled on the sphere, so the map has no seam and no pinching at the poles. Pits with raised rims and a few bright vents are added on top, and the result is written to `godot/assets/textures/bodies/halley_nucleus.jpg` with a fixed seed. The game stretches the sphere to the nucleus's 15 by 8 km shape.
