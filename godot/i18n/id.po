@@ -130,6 +130,50 @@ msgstr "Periode rotasi"
 msgid "Axial tilt"
 msgstr "Kemiringan sumbu"
 
+#: core/challenge_judge.gd:104
+msgid "Eccentricity %s. Aim for %s to %s."
+msgstr "Eksentrisitas %s. Targetnya %s sampai %s."
+
+#: core/challenge_judge.gd:119
+msgid "Orbit progress: %d%%"
+msgstr "Kemajuan orbit: %d%%"
+
+#: core/challenge_judge.gd:124
+msgid "That body is still bound to the star. Launch it faster."
+msgstr "Benda itu masih terikat pada bintang. Luncurkan lebih cepat."
+
+#: core/challenge_judge.gd:131
+msgid "Escaping: %d%% of the way"
+msgstr "Melepaskan diri: %d%% perjalanan"
+
+#: core/challenge_judge.gd:146
+msgid "Tracking the new body."
+msgstr "Mengikuti benda yang baru."
+
+#: core/challenge_judge.gd:168
+msgid "Challenge complete!"
+msgstr "Tantangan selesai!"
+
+#: core/challenge_judge.gd:58
+msgid "Launch a body to begin."
+msgstr "Luncurkan sebuah benda untuk memulai."
+
+#: core/challenge_judge.gd:80
+msgid "The central body is gone. Restart the challenge."
+msgstr "Benda pusatnya sudah hilang. Ulangi tantangan ini."
+
+#: core/challenge_judge.gd:84
+msgid "That body crashed. Launch another one."
+msgstr "Benda itu menabrak. Luncurkan benda lain."
+
+#: core/challenge_judge.gd:95
+msgid "That body is escaping. Launch it slower."
+msgstr "Benda itu lepas dari orbit. Luncurkan lebih lambat."
+
+#: core/challenge_judge.gd:98
+msgid "That body is outside the planet's pull. Launch it closer and slower."
+msgstr "Benda itu berada di luar tarikan planet. Luncurkan lebih dekat dan lebih lambat."
+
 #: core/eclipse_search.gd:35
 msgid "Partial lunar eclipse"
 msgstr "Gerhana Bulan sebagian"
@@ -262,7 +306,7 @@ msgstr "Garis orbit"
 msgid "Constellations"
 msgstr "Rasi bintang"
 
-#: core/input_bindings.gd:77 modes/sandbox/sandbox_mode.gd:57 ui/sandbox_panel.gd:358
+#: core/input_bindings.gd:77 modes/sandbox/sandbox_mode.gd:57 ui/sandbox_panel.gd:376
 msgid "Gravity well"
 msgstr "Sumur gravitasi"
 
@@ -434,7 +478,7 @@ msgstr "Mars"
 msgid "Mercury"
 msgstr "Merkurius"
 
-#: data/bodies.json data/body_info.json modes/sandbox/sandbox_mode.gd:220
+#: data/bodies.json data/body_info.json modes/sandbox/sandbox_mode.gd:232
 msgid "Moon"
 msgstr "Bulan"
 
@@ -590,7 +634,7 @@ msgstr "Suhu permukaan siang hari mencapai sekitar 430 derajat C, sedangkan mala
 msgid "Dust it left behind causes two meteor showers each year, the Eta Aquariids in May and the Orionids in October."
 msgstr "Debu yang ditinggalkannya menimbulkan dua hujan meteor setiap tahun, yaitu Eta Aquariid pada Mei dan Orionid pada Oktober."
 
-#: data/body_info.json modes/sandbox/sandbox_mode.gd:222
+#: data/body_info.json modes/sandbox/sandbox_mode.gd:234
 msgid "Dwarf planet"
 msgstr "Planet kerdil"
 
@@ -630,7 +674,7 @@ msgstr "Sedikitnya kawah tumbukan menandakan permukaan yang muda, berusia sekita
 msgid "Ganymede is the largest moon in the solar system. It is even wider than the planet Mercury."
 msgstr "Ganymede adalah bulan terbesar di tata surya. Ukurannya bahkan lebih lebar daripada planet Merkurius."
 
-#: data/body_info.json ui/sandbox_panel.gd:58
+#: data/body_info.json ui/sandbox_panel.gd:63
 msgid "Gas giant"
 msgstr "Raksasa gas"
 
@@ -918,7 +962,7 @@ msgstr "Periode rotasi sideris sekitar 9,9 jam."
 msgid "Sputnik Planitia is a convecting nitrogen-ice glacier about 1,000 km across."
 msgstr "Sputnik Planitia adalah gletser es nitrogen yang berkonveksi dengan lebar sekitar 1.000 km."
 
-#: data/body_info.json modes/sandbox/sandbox_mode.gd:206 modes/sandbox/sandbox_mode.gd:216
+#: data/body_info.json data/challenges.json modes/sandbox/sandbox_mode.gd:218
 msgid "Star"
 msgstr "Bintang"
 
@@ -1074,6 +1118,58 @@ msgstr "Gas vulkanik mengisi torus plasma Io yang mengelilingi Jupiter di sepanj
 msgid "Winds on Neptune can blow faster than 2,000 kilometers per hour."
 msgstr "Angin di Neptunus bisa bertiup lebih cepat dari 2.000 kilometer per jam."
 
+#: data/challenges.json
+msgid "A body escapes when it moves faster than about 1.41 x circular orbit speed."
+msgstr "Benda lepas dari orbit jika bergerak lebih cepat dari sekitar 1,41 x kecepatan orbit lingkaran."
+
+#: data/challenges.json
+msgid "Break free"
+msgstr "Lepas bebas"
+
+#: data/challenges.json
+msgid "Drag sideways, at a right angle to the line toward the star. About 1.0 x circular orbit speed makes a near circle."
+msgstr "Seret ke samping, tegak lurus terhadap garis ke arah bintang. Sekitar 1,0 x kecepatan orbit lingkaran menghasilkan orbit yang hampir melingkar."
+
+#: data/challenges.json
+msgid "Giant planet"
+msgstr "Planet raksasa"
+
+#: data/challenges.json
+msgid "Launch a body fast enough to escape the star and reach three times its starting distance."
+msgstr "Luncurkan benda cukup cepat untuk lepas dari bintang dan mencapai tiga kali jarak awalnya."
+
+#: data/challenges.json
+msgid "Launch a planet on an orbit with an eccentricity between 0.5 and 0.8 and let it go around once."
+msgstr "Luncurkan planet pada orbit dengan eksentrisitas antara 0,5 dan 0,8, lalu biarkan mengelilingi bintang satu kali."
+
+#: data/challenges.json
+msgid "Launch a planet that goes all the way around the star once."
+msgstr "Luncurkan planet yang mengelilingi bintang satu putaran penuh."
+
+#: data/challenges.json
+msgid "Launch slower or faster than a circle needs. About 0.6 x or 1.3 x circular orbit speed gives a long ellipse."
+msgstr "Luncurkan lebih lambat atau lebih cepat daripada yang dibutuhkan orbit lingkaran. Sekitar 0,6 x atau 1,3 x kecepatan orbit lingkaran menghasilkan elips yang panjang."
+
+#: data/challenges.json
+msgid "Make a moon"
+msgstr "Buat sebuah bulan"
+
+#: data/challenges.json
+msgid "Place the moon close to the planet and launch it sideways. The launch speed is measured relative to the planet when you place it nearby."
+msgstr "Tempatkan bulan di dekat planet lalu luncurkan ke samping. Kecepatan luncur diukur relatif terhadap planet jika kamu menempatkannya di dekatnya."
+
+#: data/challenges.json
+msgid "Put a moon in orbit around the giant planet and let it go around the planet once."
+msgstr "Tempatkan sebuah bulan di orbit planet raksasa, lalu biarkan mengelilingi planet itu satu kali."
+
+#: data/challenges.json
+msgid "Round trip"
+msgstr "Satu putaran"
+
+#: data/challenges.json
+msgid "Stretched orbit"
+msgstr "Orbit lonjong"
+
 #: data/credits.json
 msgid "Alexander William Sinjaya"
 msgstr "Alexander William Sinjaya"
@@ -1210,7 +1306,7 @@ msgstr "1 jari-jari Bumi"
 msgid "1 bar"
 msgstr "1 bar"
 
-#: data/quizzes.json ui/sandbox_panel.gd:32
+#: data/quizzes.json ui/sandbox_panel.gd:37
 msgid "1 day"
 msgstr "1 hari"
 
@@ -2298,7 +2394,7 @@ msgstr "Turun / naik"
 msgid "Boost"
 msgstr "Percepat"
 
-#: modes/explore/explore_mode.gd:167 modes/sandbox/sandbox_mode.gd:291
+#: modes/explore/explore_mode.gd:167 modes/sandbox/sandbox_mode.gd:303
 msgid "Focus: %s"
 msgstr "Fokus: %s"
 
@@ -2330,7 +2426,7 @@ msgstr "Seret kanan"
 msgid "%d bodies, %s rocks"
 msgstr "%d benda, %s batuan"
 
-#: modes/explore/explore_mode.gd:24 modes/sandbox/sandbox_mode.gd:29 ui/sandbox_panel.gd:24
+#: modes/explore/explore_mode.gd:24 modes/sandbox/sandbox_mode.gd:29 ui/sandbox_panel.gd:27
 msgid "Bodies"
 msgstr "Benda langit"
 
@@ -2346,7 +2442,7 @@ msgstr "Pilih"
 msgid "Double-click"
 msgstr "Klik ganda"
 
-#: modes/explore/explore_mode.gd:27 ui/info_panel.gd:42 ui/sandbox_panel.gd:314
+#: modes/explore/explore_mode.gd:27 ui/info_panel.gd:42 ui/sandbox_panel.gd:332
 msgid "Focus"
 msgstr "Fokus"
 
@@ -2514,41 +2610,33 @@ msgstr "Keluar"
 msgid "An interactive 3D solar system for exploration and gravity experiments."
 msgstr "Tata surya 3D interaktif untuk menjelajah dan bereksperimen dengan gravitasi."
 
-#: modes/sandbox/sandbox_mode.gd:206 modes/sandbox/sandbox_mode.gd:223
+#: modes/sandbox/sandbox_mode.gd:218 modes/sandbox/sandbox_mode.gd:235
 msgid "Body"
 msgstr "Benda"
 
-#: modes/sandbox/sandbox_mode.gd:218
+#: modes/sandbox/sandbox_mode.gd:230
 msgid "Planet"
 msgstr "Planet"
 
-#: modes/sandbox/sandbox_mode.gd:237
+#: modes/sandbox/sandbox_mode.gd:249
 msgid "%d/%d bodies, %s"
 msgstr "%d/%d benda, %s"
 
-#: modes/sandbox/sandbox_mode.gd:295
+#: modes/sandbox/sandbox_mode.gd:307
 msgid "Placing a body"
 msgstr "Sedang menempatkan benda"
 
-#: modes/sandbox/sandbox_mode.gd:297
+#: modes/sandbox/sandbox_mode.gd:309
 msgid "Simulation speed limited by performance"
 msgstr "Kecepatan simulasi dibatasi oleh performa"
 
-#: modes/sandbox/sandbox_mode.gd:34 ui/sandbox_panel.gd:316
+#: modes/sandbox/sandbox_mode.gd:34 ui/sandbox_panel.gd:334
 msgid "Remove"
 msgstr "Hapus"
 
-#: modes/sandbox/sandbox_mode.gd:345
+#: modes/sandbox/sandbox_mode.gd:357
 msgid "Body limit reached for the %s preset."
 msgstr "Batas jumlah benda untuk preset %s sudah tercapai."
-
-#: modes/sandbox/sandbox_mode.gd:359
-msgid "The snapshot could not be saved."
-msgstr "Snapshot tidak dapat disimpan."
-
-#: modes/sandbox/sandbox_mode.gd:365
-msgid "The saved snapshot could not be read."
-msgstr "Snapshot yang tersimpan tidak dapat dibaca."
 
 #: modes/sandbox/sandbox_mode.gd:39
 msgid "Place a body"
@@ -2557,6 +2645,10 @@ msgstr "Menempatkan benda"
 #: modes/sandbox/sandbox_mode.gd:41
 msgid "Place on the plane"
 msgstr "Tempatkan di bidang orbit"
+
+#: modes/sandbox/sandbox_mode.gd:415
+msgid "Challenge complete: %s"
+msgstr "Tantangan selesai: %s"
 
 #: modes/sandbox/sandbox_mode.gd:42
 msgid "Drag"
@@ -2574,35 +2666,43 @@ msgstr "Luncurkan"
 msgid "Release"
 msgstr "Lepas"
 
+#: modes/sandbox/sandbox_mode.gd:431
+msgid "The snapshot could not be saved."
+msgstr "Snapshot tidak dapat disimpan."
+
+#: modes/sandbox/sandbox_mode.gd:437
+msgid "The saved snapshot could not be read."
+msgstr "Snapshot yang tersimpan tidak dapat dibaca."
+
 #: modes/sandbox/sandbox_mode.gd:44
 msgid "Cancel"
 msgstr "Batal"
-
-#: modes/sandbox/sandbox_mode.gd:452
-msgid "Speed: %.2f km/s"
-msgstr "Kecepatan: %.2f km/dtk"
-
-#: modes/sandbox/sandbox_mode.gd:457
-msgid "Speed: %.2f km/s\nDistance to %s: %s"
-msgstr "Kecepatan: %.2f km/dtk\nJarak ke %s: %s"
 
 #: modes/sandbox/sandbox_mode.gd:48
 msgid "Time and view"
 msgstr "Waktu dan tampilan"
 
-#: modes/sandbox/sandbox_mode.gd:558
+#: modes/sandbox/sandbox_mode.gd:525
+msgid "Speed: %.2f km/s"
+msgstr "Kecepatan: %.2f km/dtk"
+
+#: modes/sandbox/sandbox_mode.gd:530
+msgid "Speed: %.2f km/s\nDistance to %s: %s"
+msgstr "Kecepatan: %.2f km/dtk\nJarak ke %s: %s"
+
+#: modes/sandbox/sandbox_mode.gd:631
 msgid "No body to orbit nearby"
 msgstr "Tidak ada benda di dekat sini untuk diorbit"
 
-#: modes/sandbox/sandbox_mode.gd:559
+#: modes/sandbox/sandbox_mode.gd:632
 msgid "No body to orbit. Add or keep a massive body nearby."
 msgstr "Tidak ada benda untuk diorbit. Tambahkan atau pertahankan benda bermassa besar di dekatnya."
 
-#: modes/sandbox/sandbox_mode.gd:561
+#: modes/sandbox/sandbox_mode.gd:634
 msgid "Launch %.2f km/s relative to %s (%.2f x circular)"
 msgstr "Luncur %.2f km/dtk relatif terhadap %s (%.2f x orbit lingkaran)"
 
-#: modes/sandbox/sandbox_mode.gd:563
+#: modes/sandbox/sandbox_mode.gd:636
 msgid "Launch speed relative to %s: %.2f km/s (%.2f x circular orbit speed)"
 msgstr "Kecepatan luncur relatif terhadap %s: %.2f km/dtk (%.2f x kecepatan orbit lingkaran)"
 
@@ -2822,7 +2922,7 @@ msgstr "Sembunyikan pilihan tampilan agar informasi benda lebih lega"
 msgid "Show view options"
 msgstr "Tampilkan pilihan tampilan"
 
-#: ui/info_panel.gd:42 ui/sandbox_panel.gd:314
+#: ui/info_panel.gd:42 ui/sandbox_panel.gd:332
 msgid "Fly to this body"
 msgstr "Terbang ke benda ini"
 
@@ -2954,191 +3054,227 @@ msgstr "Nanti saja"
 msgid "Start quiz"
 msgstr "Mulai kuis"
 
-#: ui/sandbox_panel.gd:101
+#: ui/sandbox_panel.gd:106
 msgid "Numerical method used to advance the bodies"
 msgstr "Metode numerik untuk menggerakkan benda"
 
-#: ui/sandbox_panel.gd:102
+#: ui/sandbox_panel.gd:107
 msgid "Adaptive shortens steps during close encounters; fixed steps show how step size affects accuracy"
 msgstr "Adaptif memperpendek langkah saat benda saling mendekat; langkah tetap menunjukkan pengaruh ukuran langkah terhadap akurasi"
 
-#: ui/sandbox_panel.gd:196
+#: ui/sandbox_panel.gd:212
 msgid "%d / %d bodies"
 msgstr "%d / %d benda"
 
-#: ui/sandbox_panel.gd:201 ui/sandbox_panel.gd:265
+#: ui/sandbox_panel.gd:218 ui/sandbox_panel.gd:283 ui/sandbox_panel.gd:458
 msgid "Place body"
 msgstr "Tempatkan benda"
 
-#: ui/sandbox_panel.gd:201
+#: ui/sandbox_panel.gd:218
 msgid "Placing... (Esc to stop)"
 msgstr "Menempatkan... (Esc untuk berhenti)"
 
-#: ui/sandbox_panel.gd:24
-msgid "Physics"
-msgstr "Fisika"
-
-#: ui/sandbox_panel.gd:24
-msgid "World"
-msgstr "Dunia"
-
-#: ui/sandbox_panel.gd:249
+#: ui/sandbox_panel.gd:267
 msgid "New body"
 msgstr "Benda baru"
 
-#: ui/sandbox_panel.gd:25
-msgid "Heavier bodies dig deeper wells. Depth is compressed so small worlds stay visible next to stars."
-msgstr "Benda yang lebih berat membentuk sumur yang lebih dalam. Kedalamannya dipadatkan agar dunia kecil tetap terlihat di samping bintang."
+#: ui/sandbox_panel.gd:27
+msgid "Challenges"
+msgstr "Tantangan"
 
-#: ui/sandbox_panel.gd:26
-msgid "Click the orbital plane to place a body, then drag to set its launch velocity."
-msgstr "Klik bidang orbit untuk menempatkan benda, lalu seret untuk mengatur kecepatan luncurnya."
+#: ui/sandbox_panel.gd:27
+msgid "Physics"
+msgstr "Fisika"
 
-#: ui/sandbox_panel.gd:264 ui/sandbox_panel.gd:304
+#: ui/sandbox_panel.gd:27
+msgid "World"
+msgstr "Dunia"
+
+#: ui/sandbox_panel.gd:282 ui/sandbox_panel.gd:322
 msgid "Color"
 msgstr "Warna"
 
-#: ui/sandbox_panel.gd:270
+#: ui/sandbox_panel.gd:288 ui/sandbox_panel.gd:463
 msgid "Click and drag on the orbital plane to launch a body"
 msgstr "Klik dan seret di bidang orbit untuk meluncurkan benda"
 
-#: ui/sandbox_panel.gd:284
+#: ui/sandbox_panel.gd:29
+msgid "Short missions with an automatic check. Starting one replaces the bodies in the Sandbox."
+msgstr "Misi singkat dengan pemeriksaan otomatis. Memulai tantangan akan mengganti benda di Sandbox."
+
+#: ui/sandbox_panel.gd:30
+msgid "Heavier bodies dig deeper wells. Depth is compressed so small worlds stay visible next to stars."
+msgstr "Benda yang lebih berat membentuk sumur yang lebih dalam. Kedalamannya dipadatkan agar dunia kecil tetap terlihat di samping bintang."
+
+#: ui/sandbox_panel.gd:302
 msgid "Selected body"
 msgstr "Benda terpilih"
 
-#: ui/sandbox_panel.gd:306
+#: ui/sandbox_panel.gd:31
+msgid "Click the orbital plane to place a body, then drag to set its launch velocity."
+msgstr "Klik bidang orbit untuk menempatkan benda, lalu seret untuk mengatur kecepatan luncurnya."
+
+#: ui/sandbox_panel.gd:324
 msgid "Freeze in place"
 msgstr "Bekukan di tempat"
 
-#: ui/sandbox_panel.gd:31
-msgid "Velocity Verlet"
-msgstr "Velocity Verlet"
-
-#: ui/sandbox_panel.gd:310
+#: ui/sandbox_panel.gd:328
 msgid "Hold this body still while it keeps pulling on others"
 msgstr "Tahan benda ini diam sementara gravitasinya tetap menarik benda lain"
 
-#: ui/sandbox_panel.gd:316
+#: ui/sandbox_panel.gd:334
 msgid "Delete this body (Del)"
 msgstr "Hapus benda ini (Del)"
 
-#: ui/sandbox_panel.gd:32
-msgid "1 hour"
-msgstr "1 jam"
-
-#: ui/sandbox_panel.gd:32
-msgid "6 hours"
-msgstr "6 jam"
-
-#: ui/sandbox_panel.gd:32
-msgid "Adaptive"
-msgstr "Adaptif"
-
-#: ui/sandbox_panel.gd:326
+#: ui/sandbox_panel.gd:344
 msgid "Presets"
 msgstr "Preset"
 
-#: ui/sandbox_panel.gd:336
+#: ui/sandbox_panel.gd:354
 msgid "Load"
 msgstr "Muat"
 
-#: ui/sandbox_panel.gd:338
+#: ui/sandbox_panel.gd:356
 msgid "Replace all bodies with this preset at the current simulation date"
 msgstr "Ganti semua benda dengan preset ini pada tanggal simulasi saat ini"
 
-#: ui/sandbox_panel.gd:344
+#: ui/sandbox_panel.gd:36
+msgid "Velocity Verlet"
+msgstr "Velocity Verlet"
+
+#: ui/sandbox_panel.gd:362
 msgid "Snapshot"
 msgstr "Snapshot"
 
-#: ui/sandbox_panel.gd:345
+#: ui/sandbox_panel.gd:363
 msgid "Save every body as it is now and come back to it later."
 msgstr "Simpan semua benda seperti saat ini dan kembali lagi nanti."
 
-#: ui/sandbox_panel.gd:348
+#: ui/sandbox_panel.gd:366
 msgid "Save snapshot"
 msgstr "Simpan snapshot"
 
-#: ui/sandbox_panel.gd:348
+#: ui/sandbox_panel.gd:366
 msgid "Store every body as it is now"
 msgstr "Simpan semua benda seperti saat ini"
 
-#: ui/sandbox_panel.gd:35
-msgid "An exact solution keeps both values constant. Drift since the baseline shows the integrator's numerical error. Merges, edits, and new bodies reset the baseline."
-msgstr "Solusi eksak menjaga kedua nilai tetap. Penyimpangan sejak titik acuan menunjukkan galat numerik integrator. Penggabungan, perubahan, dan benda baru mengatur ulang titik acuan."
+#: ui/sandbox_panel.gd:37
+msgid "1 hour"
+msgstr "1 jam"
 
-#: ui/sandbox_panel.gd:352
+#: ui/sandbox_panel.gd:37
+msgid "6 hours"
+msgstr "6 jam"
+
+#: ui/sandbox_panel.gd:37
+msgid "Adaptive"
+msgstr "Adaptif"
+
+#: ui/sandbox_panel.gd:370
 msgid "Restore snapshot"
 msgstr "Pulihkan snapshot"
 
-#: ui/sandbox_panel.gd:352
+#: ui/sandbox_panel.gd:370
 msgid "Return to the last saved snapshot"
 msgstr "Kembali ke snapshot terakhir"
 
-#: ui/sandbox_panel.gd:361
+#: ui/sandbox_panel.gd:379
 msgid "Bend a grid by each body's gravitational potential (V)"
 msgstr "Lengkungkan grid sesuai potensial gravitasi tiap benda (V)"
 
-#: ui/sandbox_panel.gd:361
+#: ui/sandbox_panel.gd:379
 msgid "Show gravity well"
 msgstr "Tampilkan sumur gravitasi"
 
-#: ui/sandbox_panel.gd:367
-msgid "Integrator"
-msgstr "Integrator"
+#: ui/sandbox_panel.gd:40
+msgid "An exact solution keeps both values constant. Drift since the baseline shows the integrator's numerical error. Merges, edits, and new bodies reset the baseline."
+msgstr "Solusi eksak menjaga kedua nilai tetap. Penyimpangan sejak titik acuan menunjukkan galat numerik integrator. Penggabungan, perubahan, dan benda baru mengatur ulang titik acuan."
 
-#: ui/sandbox_panel.gd:37
+#: ui/sandbox_panel.gd:400
+msgid "Completed"
+msgstr "Selesai"
+
+#: ui/sandbox_panel.gd:401
+msgid "Start"
+msgstr "Mulai"
+
+#: ui/sandbox_panel.gd:401
+msgid "Start this challenge"
+msgstr "Mulai tantangan ini"
+
+#: ui/sandbox_panel.gd:42
 msgid "Frozen bodies are held by an outside force, so energy and angular momentum are not conserved."
 msgstr "Benda yang dibekukan ditahan oleh gaya luar, sehingga energi dan momentum sudut tidak kekal."
 
-#: ui/sandbox_panel.gd:371
-msgid "Time step"
-msgstr "Langkah waktu"
-
-#: ui/sandbox_panel.gd:376
-msgid "Conservation"
-msgstr "Kekekalan"
-
-#: ui/sandbox_panel.gd:380
-msgid "Angular momentum"
-msgstr "Momentum sudut"
-
-#: ui/sandbox_panel.gd:380
-msgid "Energy drift"
-msgstr "Penyimpangan energi"
-
-#: ui/sandbox_panel.gd:380
-msgid "Momentum drift"
-msgstr "Penyimpangan momentum"
-
-#: ui/sandbox_panel.gd:380
-msgid "Total energy"
-msgstr "Energi total"
-
-#: ui/sandbox_panel.gd:391
-msgid "Measure drift from now on"
-msgstr "Ukur penyimpangan mulai sekarang"
-
-#: ui/sandbox_panel.gd:391
-msgid "Reset baseline"
-msgstr "Atur ulang acuan"
-
-#: ui/sandbox_panel.gd:40
+#: ui/sandbox_panel.gd:45
 msgid "Asteroid"
 msgstr "Asteroid"
 
-#: ui/sandbox_panel.gd:464
-msgid "Mass   %s Earths  (%s kg)"
-msgstr "Massa   %s Bumi  (%s kg)"
+#: ui/sandbox_panel.gd:474
+msgid "Restart"
+msgstr "Ulangi"
 
-#: ui/sandbox_panel.gd:468
-msgid "Radius   %s km"
-msgstr "Jari-jari   %s km"
+#: ui/sandbox_panel.gd:474
+msgid "Set the challenge up again"
+msgstr "Siapkan tantangan dari awal"
 
-#: ui/sandbox_panel.gd:49
+#: ui/sandbox_panel.gd:475
+msgid "Leave"
+msgstr "Keluar"
+
+#: ui/sandbox_panel.gd:475
+msgid "Stop the challenge and keep the bodies"
+msgstr "Hentikan tantangan dan biarkan benda tetap ada"
+
+#: ui/sandbox_panel.gd:482
+msgid "Integrator"
+msgstr "Integrator"
+
+#: ui/sandbox_panel.gd:486
+msgid "Time step"
+msgstr "Langkah waktu"
+
+#: ui/sandbox_panel.gd:491
+msgid "Conservation"
+msgstr "Kekekalan"
+
+#: ui/sandbox_panel.gd:495
+msgid "Angular momentum"
+msgstr "Momentum sudut"
+
+#: ui/sandbox_panel.gd:495
+msgid "Energy drift"
+msgstr "Penyimpangan energi"
+
+#: ui/sandbox_panel.gd:495
+msgid "Momentum drift"
+msgstr "Penyimpangan momentum"
+
+#: ui/sandbox_panel.gd:495
+msgid "Total energy"
+msgstr "Energi total"
+
+#: ui/sandbox_panel.gd:506
+msgid "Measure drift from now on"
+msgstr "Ukur penyimpangan mulai sekarang"
+
+#: ui/sandbox_panel.gd:506
+msgid "Reset baseline"
+msgstr "Atur ulang acuan"
+
+#: ui/sandbox_panel.gd:54
 msgid "Rocky planet"
 msgstr "Planet berbatu"
 
-#: ui/sandbox_panel.gd:78
+#: ui/sandbox_panel.gd:579
+msgid "Mass   %s Earths  (%s kg)"
+msgstr "Massa   %s Bumi  (%s kg)"
+
+#: ui/sandbox_panel.gd:583
+msgid "Radius   %s km"
+msgstr "Jari-jari   %s km"
+
+#: ui/sandbox_panel.gd:83
 msgid "Sandbox sections"
 msgstr "Bagian Sandbox"
 

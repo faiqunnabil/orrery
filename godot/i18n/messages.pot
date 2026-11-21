@@ -129,6 +129,50 @@ msgstr ""
 msgid "Axial tilt"
 msgstr ""
 
+#: core/challenge_judge.gd:104
+msgid "Eccentricity %s. Aim for %s to %s."
+msgstr ""
+
+#: core/challenge_judge.gd:119
+msgid "Orbit progress: %d%%"
+msgstr ""
+
+#: core/challenge_judge.gd:124
+msgid "That body is still bound to the star. Launch it faster."
+msgstr ""
+
+#: core/challenge_judge.gd:131
+msgid "Escaping: %d%% of the way"
+msgstr ""
+
+#: core/challenge_judge.gd:146
+msgid "Tracking the new body."
+msgstr ""
+
+#: core/challenge_judge.gd:168
+msgid "Challenge complete!"
+msgstr ""
+
+#: core/challenge_judge.gd:58
+msgid "Launch a body to begin."
+msgstr ""
+
+#: core/challenge_judge.gd:80
+msgid "The central body is gone. Restart the challenge."
+msgstr ""
+
+#: core/challenge_judge.gd:84
+msgid "That body crashed. Launch another one."
+msgstr ""
+
+#: core/challenge_judge.gd:95
+msgid "That body is escaping. Launch it slower."
+msgstr ""
+
+#: core/challenge_judge.gd:98
+msgid "That body is outside the planet's pull. Launch it closer and slower."
+msgstr ""
+
 #: core/eclipse_search.gd:35
 msgid "Partial lunar eclipse"
 msgstr ""
@@ -261,7 +305,7 @@ msgstr ""
 msgid "Constellations"
 msgstr ""
 
-#: core/input_bindings.gd:77 modes/sandbox/sandbox_mode.gd:57 ui/sandbox_panel.gd:358
+#: core/input_bindings.gd:77 modes/sandbox/sandbox_mode.gd:57 ui/sandbox_panel.gd:376
 msgid "Gravity well"
 msgstr ""
 
@@ -433,7 +477,7 @@ msgstr ""
 msgid "Mercury"
 msgstr ""
 
-#: data/bodies.json data/body_info.json modes/sandbox/sandbox_mode.gd:220
+#: data/bodies.json data/body_info.json modes/sandbox/sandbox_mode.gd:232
 msgid "Moon"
 msgstr ""
 
@@ -589,7 +633,7 @@ msgstr ""
 msgid "Dust it left behind causes two meteor showers each year, the Eta Aquariids in May and the Orionids in October."
 msgstr ""
 
-#: data/body_info.json modes/sandbox/sandbox_mode.gd:222
+#: data/body_info.json modes/sandbox/sandbox_mode.gd:234
 msgid "Dwarf planet"
 msgstr ""
 
@@ -629,7 +673,7 @@ msgstr ""
 msgid "Ganymede is the largest moon in the solar system. It is even wider than the planet Mercury."
 msgstr ""
 
-#: data/body_info.json ui/sandbox_panel.gd:58
+#: data/body_info.json ui/sandbox_panel.gd:63
 msgid "Gas giant"
 msgstr ""
 
@@ -917,7 +961,7 @@ msgstr ""
 msgid "Sputnik Planitia is a convecting nitrogen-ice glacier about 1,000 km across."
 msgstr ""
 
-#: data/body_info.json modes/sandbox/sandbox_mode.gd:206 modes/sandbox/sandbox_mode.gd:216
+#: data/body_info.json data/challenges.json modes/sandbox/sandbox_mode.gd:218
 msgid "Star"
 msgstr ""
 
@@ -1073,6 +1117,58 @@ msgstr ""
 msgid "Winds on Neptune can blow faster than 2,000 kilometers per hour."
 msgstr ""
 
+#: data/challenges.json
+msgid "A body escapes when it moves faster than about 1.41 x circular orbit speed."
+msgstr ""
+
+#: data/challenges.json
+msgid "Break free"
+msgstr ""
+
+#: data/challenges.json
+msgid "Drag sideways, at a right angle to the line toward the star. About 1.0 x circular orbit speed makes a near circle."
+msgstr ""
+
+#: data/challenges.json
+msgid "Giant planet"
+msgstr ""
+
+#: data/challenges.json
+msgid "Launch a body fast enough to escape the star and reach three times its starting distance."
+msgstr ""
+
+#: data/challenges.json
+msgid "Launch a planet on an orbit with an eccentricity between 0.5 and 0.8 and let it go around once."
+msgstr ""
+
+#: data/challenges.json
+msgid "Launch a planet that goes all the way around the star once."
+msgstr ""
+
+#: data/challenges.json
+msgid "Launch slower or faster than a circle needs. About 0.6 x or 1.3 x circular orbit speed gives a long ellipse."
+msgstr ""
+
+#: data/challenges.json
+msgid "Make a moon"
+msgstr ""
+
+#: data/challenges.json
+msgid "Place the moon close to the planet and launch it sideways. The launch speed is measured relative to the planet when you place it nearby."
+msgstr ""
+
+#: data/challenges.json
+msgid "Put a moon in orbit around the giant planet and let it go around the planet once."
+msgstr ""
+
+#: data/challenges.json
+msgid "Round trip"
+msgstr ""
+
+#: data/challenges.json
+msgid "Stretched orbit"
+msgstr ""
+
 #: data/credits.json
 msgid "Alexander William Sinjaya"
 msgstr ""
@@ -1209,7 +1305,7 @@ msgstr ""
 msgid "1 bar"
 msgstr ""
 
-#: data/quizzes.json ui/sandbox_panel.gd:32
+#: data/quizzes.json ui/sandbox_panel.gd:37
 msgid "1 day"
 msgstr ""
 
@@ -2297,7 +2393,7 @@ msgstr ""
 msgid "Boost"
 msgstr ""
 
-#: modes/explore/explore_mode.gd:167 modes/sandbox/sandbox_mode.gd:291
+#: modes/explore/explore_mode.gd:167 modes/sandbox/sandbox_mode.gd:303
 msgid "Focus: %s"
 msgstr ""
 
@@ -2329,7 +2425,7 @@ msgstr ""
 msgid "%d bodies, %s rocks"
 msgstr ""
 
-#: modes/explore/explore_mode.gd:24 modes/sandbox/sandbox_mode.gd:29 ui/sandbox_panel.gd:24
+#: modes/explore/explore_mode.gd:24 modes/sandbox/sandbox_mode.gd:29 ui/sandbox_panel.gd:27
 msgid "Bodies"
 msgstr ""
 
@@ -2345,7 +2441,7 @@ msgstr ""
 msgid "Double-click"
 msgstr ""
 
-#: modes/explore/explore_mode.gd:27 ui/info_panel.gd:42 ui/sandbox_panel.gd:314
+#: modes/explore/explore_mode.gd:27 ui/info_panel.gd:42 ui/sandbox_panel.gd:332
 msgid "Focus"
 msgstr ""
 
@@ -2513,40 +2609,32 @@ msgstr ""
 msgid "An interactive 3D solar system for exploration and gravity experiments."
 msgstr ""
 
-#: modes/sandbox/sandbox_mode.gd:206 modes/sandbox/sandbox_mode.gd:223
+#: modes/sandbox/sandbox_mode.gd:218 modes/sandbox/sandbox_mode.gd:235
 msgid "Body"
 msgstr ""
 
-#: modes/sandbox/sandbox_mode.gd:218
+#: modes/sandbox/sandbox_mode.gd:230
 msgid "Planet"
 msgstr ""
 
-#: modes/sandbox/sandbox_mode.gd:237
+#: modes/sandbox/sandbox_mode.gd:249
 msgid "%d/%d bodies, %s"
 msgstr ""
 
-#: modes/sandbox/sandbox_mode.gd:295
+#: modes/sandbox/sandbox_mode.gd:307
 msgid "Placing a body"
 msgstr ""
 
-#: modes/sandbox/sandbox_mode.gd:297
+#: modes/sandbox/sandbox_mode.gd:309
 msgid "Simulation speed limited by performance"
 msgstr ""
 
-#: modes/sandbox/sandbox_mode.gd:34 ui/sandbox_panel.gd:316
+#: modes/sandbox/sandbox_mode.gd:34 ui/sandbox_panel.gd:334
 msgid "Remove"
 msgstr ""
 
-#: modes/sandbox/sandbox_mode.gd:345
+#: modes/sandbox/sandbox_mode.gd:357
 msgid "Body limit reached for the %s preset."
-msgstr ""
-
-#: modes/sandbox/sandbox_mode.gd:359
-msgid "The snapshot could not be saved."
-msgstr ""
-
-#: modes/sandbox/sandbox_mode.gd:365
-msgid "The saved snapshot could not be read."
 msgstr ""
 
 #: modes/sandbox/sandbox_mode.gd:39
@@ -2555,6 +2643,10 @@ msgstr ""
 
 #: modes/sandbox/sandbox_mode.gd:41
 msgid "Place on the plane"
+msgstr ""
+
+#: modes/sandbox/sandbox_mode.gd:415
+msgid "Challenge complete: %s"
 msgstr ""
 
 #: modes/sandbox/sandbox_mode.gd:42
@@ -2573,35 +2665,43 @@ msgstr ""
 msgid "Release"
 msgstr ""
 
+#: modes/sandbox/sandbox_mode.gd:431
+msgid "The snapshot could not be saved."
+msgstr ""
+
+#: modes/sandbox/sandbox_mode.gd:437
+msgid "The saved snapshot could not be read."
+msgstr ""
+
 #: modes/sandbox/sandbox_mode.gd:44
 msgid "Cancel"
-msgstr ""
-
-#: modes/sandbox/sandbox_mode.gd:452
-msgid "Speed: %.2f km/s"
-msgstr ""
-
-#: modes/sandbox/sandbox_mode.gd:457
-msgid "Speed: %.2f km/s\nDistance to %s: %s"
 msgstr ""
 
 #: modes/sandbox/sandbox_mode.gd:48
 msgid "Time and view"
 msgstr ""
 
-#: modes/sandbox/sandbox_mode.gd:558
+#: modes/sandbox/sandbox_mode.gd:525
+msgid "Speed: %.2f km/s"
+msgstr ""
+
+#: modes/sandbox/sandbox_mode.gd:530
+msgid "Speed: %.2f km/s\nDistance to %s: %s"
+msgstr ""
+
+#: modes/sandbox/sandbox_mode.gd:631
 msgid "No body to orbit nearby"
 msgstr ""
 
-#: modes/sandbox/sandbox_mode.gd:559
+#: modes/sandbox/sandbox_mode.gd:632
 msgid "No body to orbit. Add or keep a massive body nearby."
 msgstr ""
 
-#: modes/sandbox/sandbox_mode.gd:561
+#: modes/sandbox/sandbox_mode.gd:634
 msgid "Launch %.2f km/s relative to %s (%.2f x circular)"
 msgstr ""
 
-#: modes/sandbox/sandbox_mode.gd:563
+#: modes/sandbox/sandbox_mode.gd:636
 msgid "Launch speed relative to %s: %.2f km/s (%.2f x circular orbit speed)"
 msgstr ""
 
@@ -2821,7 +2921,7 @@ msgstr ""
 msgid "Show view options"
 msgstr ""
 
-#: ui/info_panel.gd:42 ui/sandbox_panel.gd:314
+#: ui/info_panel.gd:42 ui/sandbox_panel.gd:332
 msgid "Fly to this body"
 msgstr ""
 
@@ -2953,191 +3053,227 @@ msgstr ""
 msgid "Start quiz"
 msgstr ""
 
-#: ui/sandbox_panel.gd:101
+#: ui/sandbox_panel.gd:106
 msgid "Numerical method used to advance the bodies"
 msgstr ""
 
-#: ui/sandbox_panel.gd:102
+#: ui/sandbox_panel.gd:107
 msgid "Adaptive shortens steps during close encounters; fixed steps show how step size affects accuracy"
 msgstr ""
 
-#: ui/sandbox_panel.gd:196
+#: ui/sandbox_panel.gd:212
 msgid "%d / %d bodies"
 msgstr ""
 
-#: ui/sandbox_panel.gd:201 ui/sandbox_panel.gd:265
+#: ui/sandbox_panel.gd:218 ui/sandbox_panel.gd:283 ui/sandbox_panel.gd:458
 msgid "Place body"
 msgstr ""
 
-#: ui/sandbox_panel.gd:201
+#: ui/sandbox_panel.gd:218
 msgid "Placing... (Esc to stop)"
 msgstr ""
 
-#: ui/sandbox_panel.gd:24
-msgid "Physics"
-msgstr ""
-
-#: ui/sandbox_panel.gd:24
-msgid "World"
-msgstr ""
-
-#: ui/sandbox_panel.gd:249
+#: ui/sandbox_panel.gd:267
 msgid "New body"
 msgstr ""
 
-#: ui/sandbox_panel.gd:25
-msgid "Heavier bodies dig deeper wells. Depth is compressed so small worlds stay visible next to stars."
+#: ui/sandbox_panel.gd:27
+msgid "Challenges"
 msgstr ""
 
-#: ui/sandbox_panel.gd:26
-msgid "Click the orbital plane to place a body, then drag to set its launch velocity."
+#: ui/sandbox_panel.gd:27
+msgid "Physics"
 msgstr ""
 
-#: ui/sandbox_panel.gd:264 ui/sandbox_panel.gd:304
+#: ui/sandbox_panel.gd:27
+msgid "World"
+msgstr ""
+
+#: ui/sandbox_panel.gd:282 ui/sandbox_panel.gd:322
 msgid "Color"
 msgstr ""
 
-#: ui/sandbox_panel.gd:270
+#: ui/sandbox_panel.gd:288 ui/sandbox_panel.gd:463
 msgid "Click and drag on the orbital plane to launch a body"
 msgstr ""
 
-#: ui/sandbox_panel.gd:284
+#: ui/sandbox_panel.gd:29
+msgid "Short missions with an automatic check. Starting one replaces the bodies in the Sandbox."
+msgstr ""
+
+#: ui/sandbox_panel.gd:30
+msgid "Heavier bodies dig deeper wells. Depth is compressed so small worlds stay visible next to stars."
+msgstr ""
+
+#: ui/sandbox_panel.gd:302
 msgid "Selected body"
 msgstr ""
 
-#: ui/sandbox_panel.gd:306
+#: ui/sandbox_panel.gd:31
+msgid "Click the orbital plane to place a body, then drag to set its launch velocity."
+msgstr ""
+
+#: ui/sandbox_panel.gd:324
 msgid "Freeze in place"
 msgstr ""
 
-#: ui/sandbox_panel.gd:31
-msgid "Velocity Verlet"
-msgstr ""
-
-#: ui/sandbox_panel.gd:310
+#: ui/sandbox_panel.gd:328
 msgid "Hold this body still while it keeps pulling on others"
 msgstr ""
 
-#: ui/sandbox_panel.gd:316
+#: ui/sandbox_panel.gd:334
 msgid "Delete this body (Del)"
 msgstr ""
 
-#: ui/sandbox_panel.gd:32
-msgid "1 hour"
-msgstr ""
-
-#: ui/sandbox_panel.gd:32
-msgid "6 hours"
-msgstr ""
-
-#: ui/sandbox_panel.gd:32
-msgid "Adaptive"
-msgstr ""
-
-#: ui/sandbox_panel.gd:326
+#: ui/sandbox_panel.gd:344
 msgid "Presets"
 msgstr ""
 
-#: ui/sandbox_panel.gd:336
+#: ui/sandbox_panel.gd:354
 msgid "Load"
 msgstr ""
 
-#: ui/sandbox_panel.gd:338
+#: ui/sandbox_panel.gd:356
 msgid "Replace all bodies with this preset at the current simulation date"
 msgstr ""
 
-#: ui/sandbox_panel.gd:344
+#: ui/sandbox_panel.gd:36
+msgid "Velocity Verlet"
+msgstr ""
+
+#: ui/sandbox_panel.gd:362
 msgid "Snapshot"
 msgstr ""
 
-#: ui/sandbox_panel.gd:345
+#: ui/sandbox_panel.gd:363
 msgid "Save every body as it is now and come back to it later."
 msgstr ""
 
-#: ui/sandbox_panel.gd:348
+#: ui/sandbox_panel.gd:366
 msgid "Save snapshot"
 msgstr ""
 
-#: ui/sandbox_panel.gd:348
+#: ui/sandbox_panel.gd:366
 msgid "Store every body as it is now"
 msgstr ""
 
-#: ui/sandbox_panel.gd:35
-msgid "An exact solution keeps both values constant. Drift since the baseline shows the integrator's numerical error. Merges, edits, and new bodies reset the baseline."
-msgstr ""
-
-#: ui/sandbox_panel.gd:352
-msgid "Restore snapshot"
-msgstr ""
-
-#: ui/sandbox_panel.gd:352
-msgid "Return to the last saved snapshot"
-msgstr ""
-
-#: ui/sandbox_panel.gd:361
-msgid "Bend a grid by each body's gravitational potential (V)"
-msgstr ""
-
-#: ui/sandbox_panel.gd:361
-msgid "Show gravity well"
-msgstr ""
-
-#: ui/sandbox_panel.gd:367
-msgid "Integrator"
+#: ui/sandbox_panel.gd:37
+msgid "1 hour"
 msgstr ""
 
 #: ui/sandbox_panel.gd:37
-msgid "Frozen bodies are held by an outside force, so energy and angular momentum are not conserved."
+msgid "6 hours"
 msgstr ""
 
-#: ui/sandbox_panel.gd:371
-msgid "Time step"
+#: ui/sandbox_panel.gd:37
+msgid "Adaptive"
 msgstr ""
 
-#: ui/sandbox_panel.gd:376
-msgid "Conservation"
+#: ui/sandbox_panel.gd:370
+msgid "Restore snapshot"
 msgstr ""
 
-#: ui/sandbox_panel.gd:380
-msgid "Angular momentum"
+#: ui/sandbox_panel.gd:370
+msgid "Return to the last saved snapshot"
 msgstr ""
 
-#: ui/sandbox_panel.gd:380
-msgid "Energy drift"
+#: ui/sandbox_panel.gd:379
+msgid "Bend a grid by each body's gravitational potential (V)"
 msgstr ""
 
-#: ui/sandbox_panel.gd:380
-msgid "Momentum drift"
-msgstr ""
-
-#: ui/sandbox_panel.gd:380
-msgid "Total energy"
-msgstr ""
-
-#: ui/sandbox_panel.gd:391
-msgid "Measure drift from now on"
-msgstr ""
-
-#: ui/sandbox_panel.gd:391
-msgid "Reset baseline"
+#: ui/sandbox_panel.gd:379
+msgid "Show gravity well"
 msgstr ""
 
 #: ui/sandbox_panel.gd:40
+msgid "An exact solution keeps both values constant. Drift since the baseline shows the integrator's numerical error. Merges, edits, and new bodies reset the baseline."
+msgstr ""
+
+#: ui/sandbox_panel.gd:400
+msgid "Completed"
+msgstr ""
+
+#: ui/sandbox_panel.gd:401
+msgid "Start"
+msgstr ""
+
+#: ui/sandbox_panel.gd:401
+msgid "Start this challenge"
+msgstr ""
+
+#: ui/sandbox_panel.gd:42
+msgid "Frozen bodies are held by an outside force, so energy and angular momentum are not conserved."
+msgstr ""
+
+#: ui/sandbox_panel.gd:45
 msgid "Asteroid"
 msgstr ""
 
-#: ui/sandbox_panel.gd:464
-msgid "Mass   %s Earths  (%s kg)"
+#: ui/sandbox_panel.gd:474
+msgid "Restart"
 msgstr ""
 
-#: ui/sandbox_panel.gd:468
-msgid "Radius   %s km"
+#: ui/sandbox_panel.gd:474
+msgid "Set the challenge up again"
 msgstr ""
 
-#: ui/sandbox_panel.gd:49
+#: ui/sandbox_panel.gd:475
+msgid "Leave"
+msgstr ""
+
+#: ui/sandbox_panel.gd:475
+msgid "Stop the challenge and keep the bodies"
+msgstr ""
+
+#: ui/sandbox_panel.gd:482
+msgid "Integrator"
+msgstr ""
+
+#: ui/sandbox_panel.gd:486
+msgid "Time step"
+msgstr ""
+
+#: ui/sandbox_panel.gd:491
+msgid "Conservation"
+msgstr ""
+
+#: ui/sandbox_panel.gd:495
+msgid "Angular momentum"
+msgstr ""
+
+#: ui/sandbox_panel.gd:495
+msgid "Energy drift"
+msgstr ""
+
+#: ui/sandbox_panel.gd:495
+msgid "Momentum drift"
+msgstr ""
+
+#: ui/sandbox_panel.gd:495
+msgid "Total energy"
+msgstr ""
+
+#: ui/sandbox_panel.gd:506
+msgid "Measure drift from now on"
+msgstr ""
+
+#: ui/sandbox_panel.gd:506
+msgid "Reset baseline"
+msgstr ""
+
+#: ui/sandbox_panel.gd:54
 msgid "Rocky planet"
 msgstr ""
 
-#: ui/sandbox_panel.gd:78
+#: ui/sandbox_panel.gd:579
+msgid "Mass   %s Earths  (%s kg)"
+msgstr ""
+
+#: ui/sandbox_panel.gd:583
+msgid "Radius   %s km"
+msgstr ""
+
+#: ui/sandbox_panel.gd:83
 msgid "Sandbox sections"
 msgstr ""
 
