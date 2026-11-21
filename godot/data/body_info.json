@@ -337,7 +337,7 @@
 			"facts": [
 				"The ion tail of charged gas points straight away from the Sun, while the broader dust tail curves back along the orbit.",
 				"The Giotto spacecraft passed about 600 km from the nucleus in March 1986.",
-				"The orbit is a fixed ellipse from JPL elements, so perihelion dates far from 1986 drift because planetary perturbations are ignored. The nucleus surface is a darkened stand-in map."
+				"The orbit switches between the JPL solutions for the 1835, 1910, and 1986 returns, so each perihelion falls on its real date. The nucleus shape follows its 15 by 8 km size, while the surface map is an illustration."
 			]
 		}
 	}
