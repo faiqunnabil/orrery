@@ -424,7 +424,7 @@ func _onboarding_steps() -> Array[Dictionary]:
 		},
 		{
 			"title": "Control time",
-			"text": "Play, pause, reverse, or speed up time here. The calendar jumps to any date between 1800 and 2050.",
+			"text": "Play, pause, reverse, or speed up time here. The calendar jumps to any date between 1800 and 2050, or straight to the next eclipse.",
 			"target": hud.time_panel,
 		},
 		{
@@ -434,8 +434,13 @@ func _onboarding_steps() -> Array[Dictionary]:
 		},
 		{
 			"title": "Choose what you see",
-			"text": "Explorer keeps the facts simple and Scientist shows full data. Labels, orbits, rings, and the scale can be switched here.",
+			"text": "Explorer keeps the facts simple and Scientist shows full data. Labels, orbits, rings, constellations, and the scale can be switched here.",
 			"target": hud.view_panel,
+		},
+		{
+			"title": "Try the Sandbox",
+			"text": "In the Sandbox you launch your own planets, watch them bend a gravity well, and take on five challenges.",
+			"target": hud.mode_button,
 		},
 		{
 			"title": "You are ready",
