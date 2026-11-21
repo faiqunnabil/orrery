@@ -17,43 +17,43 @@ msgstr ""
 msgid "Narration"
 msgstr ""
 
-#: core/body_facts.gd:104
+#: core/body_facts.gd:105
 msgid "Distance from %s"
 msgstr ""
 
-#: core/body_facts.gd:109
+#: core/body_facts.gd:110
 msgid "%s million km"
 msgstr ""
 
-#: core/body_facts.gd:121
+#: core/body_facts.gd:122
 msgid "%s days around %s"
 msgstr ""
 
-#: core/body_facts.gd:123 core/body_facts.gd:133
+#: core/body_facts.gd:124 core/body_facts.gd:134
 msgid "%s Earth days"
 msgstr ""
 
-#: core/body_facts.gd:124
+#: core/body_facts.gd:125
 msgid "%s Earth years"
 msgstr ""
 
-#: core/body_facts.gd:131
+#: core/body_facts.gd:132
 msgid "%s hours"
 msgstr ""
 
-#: core/body_facts.gd:135
+#: core/body_facts.gd:136
 msgid ", spins backwards"
 msgstr ""
 
-#: core/body_facts.gd:150
+#: core/body_facts.gd:151
 msgid "Inclination to Laplace plane"
 msgstr ""
 
-#: core/body_facts.gd:152
+#: core/body_facts.gd:153
 msgid "Inclination to %s's equator"
 msgstr ""
 
-#: core/body_facts.gd:153
+#: core/body_facts.gd:154
 msgid "Inclination"
 msgstr ""
 
@@ -125,7 +125,7 @@ msgstr ""
 msgid "Rotation period"
 msgstr ""
 
-#: core/body_facts.gd:92
+#: core/body_facts.gd:93
 msgid "Axial tilt"
 msgstr ""
 
@@ -205,7 +205,7 @@ msgstr ""
 msgid "Focus next body"
 msgstr ""
 
-#: core/input_bindings.gd:63 modes/explore/explore_mode.gd:287 modes/explore/explore_mode.gd:30
+#: core/input_bindings.gd:63 modes/explore/explore_mode.gd:289 modes/explore/explore_mode.gd:30
 msgid "Free flight"
 msgstr ""
 
@@ -221,7 +221,7 @@ msgstr ""
 msgid "Find a body"
 msgstr ""
 
-#: core/input_bindings.gd:67 modes/explore/explore_mode.gd:42 ui/date_panel.gd:31
+#: core/input_bindings.gd:67 modes/explore/explore_mode.gd:42 ui/date_panel.gd:32
 msgid "Go to a date"
 msgstr ""
 
@@ -413,6 +413,10 @@ msgstr ""
 msgid "Ganymede"
 msgstr ""
 
+#: data/bodies.json
+msgid "Halley's Comet"
+msgstr ""
+
 #: data/bodies.json data/quizzes.json data/tours.json
 msgid "Io"
 msgstr ""
@@ -463,6 +467,10 @@ msgstr ""
 
 #: data/body_info.json
 msgid "A G-type main-sequence star (G2V) fusing hydrogen into helium in its core at roughly 15 million K. Its effective surface temperature is about 5,772 K and its age is about 4.6 billion years."
+msgstr ""
+
+#: data/body_info.json
+msgid "A Halley-type periodic comet on a retrograde orbit inclined 162 degrees, with an eccentricity of 0.968 and a perihelion distance of 0.575 AU. Its nucleus measures about 15 by 8 km and has a very dark surface with an albedo near 0.04."
 msgstr ""
 
 #: data/body_info.json
@@ -570,7 +578,15 @@ msgid "Ceres is the largest object in the asteroid belt between Mars and Jupiter
 msgstr ""
 
 #: data/body_info.json
+msgid "Comet"
+msgstr ""
+
+#: data/body_info.json
 msgid "Daytime surface temperatures reach about 430 degrees C, while nights drop to about -180 degrees C."
+msgstr ""
+
+#: data/body_info.json
+msgid "Dust it left behind causes two meteor showers each year, the Eta Aquariids in May and the Orionids in October."
 msgstr ""
 
 #: data/body_info.json modes/sandbox/sandbox_mode.gd:222
@@ -622,6 +638,10 @@ msgid "Global heat flow of about 2 W/m2, more than twenty times Earth's average.
 msgstr ""
 
 #: data/body_info.json
+msgid "Halley's Comet is a lump of ice and dust about 15 km long that comes back to the inner solar system every 75 to 76 years. Near the Sun its ice turns to gas and streams away in long glowing tails."
+msgstr ""
+
+#: data/body_info.json
 msgid "Holds 99.86% of the total mass of the solar system."
 msgstr ""
 
@@ -663,6 +683,10 @@ msgstr ""
 
 #: data/body_info.json
 msgid "It is the only moon known to make its own magnetic field."
+msgstr ""
+
+#: data/body_info.json
+msgid "It last passed the Sun in 1986 and will return in 2061."
 msgstr ""
 
 #: data/body_info.json
@@ -715,6 +739,10 @@ msgstr ""
 
 #: data/body_info.json
 msgid "Its surface is covered in craters, much like our Moon."
+msgstr ""
+
+#: data/body_info.json
+msgid "Its tails always point away from the Sun, pushed by sunlight and the solar wind."
 msgstr ""
 
 #: data/body_info.json
@@ -910,6 +938,10 @@ msgid "Terrestrial planet"
 msgstr ""
 
 #: data/body_info.json
+msgid "The Giotto spacecraft passed about 600 km from the nucleus in March 1986."
+msgstr ""
+
+#: data/body_info.json
 msgid "The Great Red Spot is a storm wider than Earth that has lasted for centuries."
 msgstr ""
 
@@ -958,11 +990,19 @@ msgid "The innermost Galilean moon, with a mean radius of 1,821.6 km and a densi
 msgstr ""
 
 #: data/body_info.json
+msgid "The ion tail of charged gas points straight away from the Sun, while the broader dust tail curves back along the orbit."
+msgstr ""
+
+#: data/body_info.json
 msgid "The largest moon, with a mean radius of 2,634.1 km and a density of 1.94 g/cm3. It is strongly differentiated, with an iron core that generates an intrinsic magnetic field and a magnetosphere embedded in Jupiter's."
 msgstr ""
 
 #: data/body_info.json
 msgid "The only dwarf planet in the inner solar system, with a mean radius of about 470 km and a bulk density of 2.16 g/cm3. It is partly differentiated, with a rocky interior under a crust rich in ice, salts, and hydrated minerals."
+msgstr ""
+
+#: data/body_info.json
+msgid "The orbit is a fixed ellipse from JPL elements, so perihelion dates far from 1986 drift because planetary perturbations are ignored. The nucleus surface is a darkened stand-in map."
 msgstr ""
 
 #: data/body_info.json
@@ -2233,20 +2273,20 @@ msgstr ""
 msgid "With a radius of 2,634 km and a normalized moment of inertia near 0.31, Ganymede has an iron core whose dynamo creates a small magnetosphere."
 msgstr ""
 
-#: modes/explore/explore_mode.gd:116 modes/explore/explore_mode.gd:48
+#: modes/explore/explore_mode.gd:118 modes/explore/explore_mode.gd:48
 msgid "Scale"
-msgstr ""
-
-#: modes/explore/explore_mode.gd:119
-msgid "Choose a guided tour"
-msgstr ""
-
-#: modes/explore/explore_mode.gd:119 ui/tour_menu.gd:32
-msgid "Guided tours"
 msgstr ""
 
 #: modes/explore/explore_mode.gd:12 modes/sandbox/sandbox_mode.gd:17
 msgid "Camera"
+msgstr ""
+
+#: modes/explore/explore_mode.gd:121
+msgid "Choose a guided tour"
+msgstr ""
+
+#: modes/explore/explore_mode.gd:121 ui/tour_menu.gd:32
+msgid "Guided tours"
 msgstr ""
 
 #: modes/explore/explore_mode.gd:15 modes/sandbox/sandbox_mode.gd:20
@@ -2257,7 +2297,7 @@ msgstr ""
 msgid "Boost"
 msgstr ""
 
-#: modes/explore/explore_mode.gd:165 modes/sandbox/sandbox_mode.gd:291
+#: modes/explore/explore_mode.gd:167 modes/sandbox/sandbox_mode.gd:291
 msgid "Focus: %s"
 msgstr ""
 
@@ -2277,7 +2317,7 @@ msgstr ""
 msgid "Shift+Scroll"
 msgstr ""
 
-#: modes/explore/explore_mode.gd:20 modes/explore/explore_mode.gd:399 modes/sandbox/sandbox_mode.gd:25
+#: modes/explore/explore_mode.gd:20 modes/explore/explore_mode.gd:415 modes/sandbox/sandbox_mode.gd:25
 msgid "Look around"
 msgstr ""
 
@@ -2285,7 +2325,7 @@ msgstr ""
 msgid "Right drag"
 msgstr ""
 
-#: modes/explore/explore_mode.gd:212
+#: modes/explore/explore_mode.gd:214
 msgid "%d bodies, %s rocks"
 msgstr ""
 
@@ -2329,67 +2369,67 @@ msgstr ""
 msgid "Reverse"
 msgstr ""
 
-#: modes/explore/explore_mode.gd:395
-msgid "Welcome to Orrery"
-msgstr ""
-
-#: modes/explore/explore_mode.gd:396
-msgid "Here is a quick look at the controls. It takes about a minute, and you can skip it at any time."
-msgstr ""
-
 #: modes/explore/explore_mode.gd:40 modes/sandbox/sandbox_mode.gd:52
 msgid "Slower / faster"
-msgstr ""
-
-#: modes/explore/explore_mode.gd:400
-msgid "Drag with the mouse, or swipe with two fingers, to orbit the body in view. Scroll or pinch to zoom, and move freely with W, A, S, and D."
-msgstr ""
-
-#: modes/explore/explore_mode.gd:403
-msgid "Meet the bodies"
-msgstr ""
-
-#: modes/explore/explore_mode.gd:404
-msgid "Click a planet or moon to read about it, and double-click to fly to it. This button finds any body by name."
-msgstr ""
-
-#: modes/explore/explore_mode.gd:408
-msgid "Control time"
-msgstr ""
-
-#: modes/explore/explore_mode.gd:409
-msgid "Play, pause, reverse, or speed up time here. The calendar jumps to any date between 1800 and 2050."
 msgstr ""
 
 #: modes/explore/explore_mode.gd:41 ui/hud.gd:424
 msgid "Now"
 msgstr ""
 
-#: modes/explore/explore_mode.gd:413
-msgid "Take a guided tour"
+#: modes/explore/explore_mode.gd:411
+msgid "Welcome to Orrery"
 msgstr ""
 
-#: modes/explore/explore_mode.gd:414
-msgid "Tours show the highlights with narration, and each one ends with a short quiz."
+#: modes/explore/explore_mode.gd:412
+msgid "Here is a quick look at the controls. It takes about a minute, and you can skip it at any time."
 msgstr ""
 
-#: modes/explore/explore_mode.gd:418
-msgid "Choose what you see"
+#: modes/explore/explore_mode.gd:416
+msgid "Drag with the mouse, or swipe with two fingers, to orbit the body in view. Scroll or pinch to zoom, and move freely with W, A, S, and D."
 msgstr ""
 
 #: modes/explore/explore_mode.gd:419
-msgid "Explorer keeps the facts simple and Scientist shows full data. Labels, orbits, rings, and the scale can be switched here."
+msgid "Meet the bodies"
 msgstr ""
 
-#: modes/explore/explore_mode.gd:423
-msgid "You are ready"
+#: modes/explore/explore_mode.gd:420
+msgid "Click a planet or moon to read about it, and double-click to fly to it. This button finds any body by name."
 msgstr ""
 
 #: modes/explore/explore_mode.gd:424
+msgid "Control time"
+msgstr ""
+
+#: modes/explore/explore_mode.gd:425
+msgid "Play, pause, reverse, or speed up time here. The calendar jumps to any date between 1800 and 2050."
+msgstr ""
+
+#: modes/explore/explore_mode.gd:429
+msgid "Take a guided tour"
+msgstr ""
+
+#: modes/explore/explore_mode.gd:430
+msgid "Tours show the highlights with narration, and each one ends with a short quiz."
+msgstr ""
+
+#: modes/explore/explore_mode.gd:434
+msgid "Choose what you see"
+msgstr ""
+
+#: modes/explore/explore_mode.gd:435
+msgid "Explorer keeps the facts simple and Scientist shows full data. Labels, orbits, rings, and the scale can be switched here."
+msgstr ""
+
+#: modes/explore/explore_mode.gd:439
+msgid "You are ready"
+msgstr ""
+
+#: modes/explore/explore_mode.gd:440
 msgid "Press F3 at any time to see every control. Enjoy the solar system."
 msgstr ""
 
-#: modes/explore/explore_mode.gd:443
+#: modes/explore/explore_mode.gd:459
 msgid "No eclipse found between %d and %d in that direction"
 msgstr ""
 
@@ -2397,7 +2437,7 @@ msgstr ""
 msgid "View"
 msgstr ""
 
-#: modes/explore/explore_mode.gd:468
+#: modes/explore/explore_mode.gd:484
 msgid "%s, greatest at %s"
 msgstr ""
 
@@ -2409,7 +2449,7 @@ msgstr ""
 msgid "App"
 msgstr ""
 
-#: modes/explore/explore_mode.gd:59 modes/explore/explore_mode.gd:75 modes/menu/main_menu.gd:44
+#: modes/explore/explore_mode.gd:59 modes/explore/explore_mode.gd:77 modes/menu/main_menu.gd:44
 msgid "Sandbox"
 msgstr ""
 
@@ -2445,7 +2485,7 @@ msgstr ""
 msgid "True scale"
 msgstr ""
 
-#: modes/explore/explore_mode.gd:91
+#: modes/explore/explore_mode.gd:93
 msgid "Distance and size scale (T)"
 msgstr ""
 
@@ -2606,58 +2646,62 @@ msgid "Apollo 11 lands on the Moon"
 msgstr ""
 
 #: ui/date_panel.gd:13
-msgid "Jupiter and Saturn meet in the sky"
+msgid "Halley's Comet rounds the Sun"
 msgstr ""
 
-#: ui/date_panel.gd:136
+#: ui/date_panel.gd:137
 msgid "Write the date as YYYY-MM-DD, optionally followed by HH:MM."
 msgstr ""
 
 #: ui/date_panel.gd:14
-msgid "Total solar eclipse over North Africa"
+msgid "Jupiter and Saturn meet in the sky"
 msgstr ""
 
-#: ui/date_panel.gd:140
+#: ui/date_panel.gd:141
 msgid "The orbits are accurate from %d to %d. Choose a date in that range."
 msgstr ""
 
-#: ui/date_panel.gd:43
+#: ui/date_panel.gd:15
+msgid "Total solar eclipse over North Africa"
+msgstr ""
+
+#: ui/date_panel.gd:44
 msgid "Go"
 msgstr ""
 
-#: ui/date_panel.gd:43
+#: ui/date_panel.gd:44
 msgid "Jump to this date (Enter)"
 msgstr ""
 
-#: ui/date_panel.gd:48
+#: ui/date_panel.gd:49
 msgid "Dates from %d to %d, in this computer's time zone."
 msgstr ""
 
-#: ui/date_panel.gd:52
+#: ui/date_panel.gd:53
 msgid "Moments to visit"
 msgstr ""
 
-#: ui/date_panel.gd:60
+#: ui/date_panel.gd:61
 msgid "Eclipses"
 msgstr ""
 
-#: ui/date_panel.gd:64
+#: ui/date_panel.gd:65
 msgid "Go to the previous solar or lunar eclipse"
 msgstr ""
 
-#: ui/date_panel.gd:64
+#: ui/date_panel.gd:65
 msgid "Previous"
 msgstr ""
 
-#: ui/date_panel.gd:65
+#: ui/date_panel.gd:66
 msgid "Go to the next solar or lunar eclipse"
 msgstr ""
 
-#: ui/date_panel.gd:65 ui/onboarding.gd:48 ui/onboarding.gd:91
+#: ui/date_panel.gd:66 ui/onboarding.gd:48 ui/onboarding.gd:91
 msgid "Next"
 msgstr ""
 
-#: ui/date_panel.gd:70
+#: ui/date_panel.gd:71
 msgid "Shows the moment of greatest eclipse at true scale."
 msgstr ""
 

@@ -18,43 +18,43 @@ msgstr "Efek"
 msgid "Narration"
 msgstr "Narasi"
 
-#: core/body_facts.gd:104
+#: core/body_facts.gd:105
 msgid "Distance from %s"
 msgstr "Jarak dari %s"
 
-#: core/body_facts.gd:109
+#: core/body_facts.gd:110
 msgid "%s million km"
 msgstr "%s juta km"
 
-#: core/body_facts.gd:121
+#: core/body_facts.gd:122
 msgid "%s days around %s"
 msgstr "%s hari mengelilingi %s"
 
-#: core/body_facts.gd:123 core/body_facts.gd:133
+#: core/body_facts.gd:124 core/body_facts.gd:134
 msgid "%s Earth days"
 msgstr "%s hari Bumi"
 
-#: core/body_facts.gd:124
+#: core/body_facts.gd:125
 msgid "%s Earth years"
 msgstr "%s tahun Bumi"
 
-#: core/body_facts.gd:131
+#: core/body_facts.gd:132
 msgid "%s hours"
 msgstr "%s jam"
 
-#: core/body_facts.gd:135
+#: core/body_facts.gd:136
 msgid ", spins backwards"
 msgstr ", berputar terbalik"
 
-#: core/body_facts.gd:150
+#: core/body_facts.gd:151
 msgid "Inclination to Laplace plane"
 msgstr "Inklinasi terhadap bidang Laplace"
 
-#: core/body_facts.gd:152
+#: core/body_facts.gd:153
 msgid "Inclination to %s's equator"
 msgstr "Inklinasi terhadap ekuator %s"
 
-#: core/body_facts.gd:153
+#: core/body_facts.gd:154
 msgid "Inclination"
 msgstr "Inklinasi"
 
@@ -126,7 +126,7 @@ msgstr " (retrograd)"
 msgid "Rotation period"
 msgstr "Periode rotasi"
 
-#: core/body_facts.gd:92
+#: core/body_facts.gd:93
 msgid "Axial tilt"
 msgstr "Kemiringan sumbu"
 
@@ -206,7 +206,7 @@ msgstr "Ganti skala"
 msgid "Focus next body"
 msgstr "Fokus ke benda berikutnya"
 
-#: core/input_bindings.gd:63 modes/explore/explore_mode.gd:287 modes/explore/explore_mode.gd:30
+#: core/input_bindings.gd:63 modes/explore/explore_mode.gd:289 modes/explore/explore_mode.gd:30
 msgid "Free flight"
 msgstr "Terbang bebas"
 
@@ -222,7 +222,7 @@ msgstr "Bantuan kontrol"
 msgid "Find a body"
 msgstr "Cari benda langit"
 
-#: core/input_bindings.gd:67 modes/explore/explore_mode.gd:42 ui/date_panel.gd:31
+#: core/input_bindings.gd:67 modes/explore/explore_mode.gd:42 ui/date_panel.gd:32
 msgid "Go to a date"
 msgstr "Pergi ke tanggal"
 
@@ -414,6 +414,10 @@ msgstr "Europa"
 msgid "Ganymede"
 msgstr "Ganymede"
 
+#: data/bodies.json
+msgid "Halley's Comet"
+msgstr "Komet Halley"
+
 #: data/bodies.json data/quizzes.json data/tours.json
 msgid "Io"
 msgstr "Io"
@@ -465,6 +469,10 @@ msgstr "Venus"
 #: data/body_info.json
 msgid "A G-type main-sequence star (G2V) fusing hydrogen into helium in its core at roughly 15 million K. Its effective surface temperature is about 5,772 K and its age is about 4.6 billion years."
 msgstr "Bintang deret utama kelas G (G2V) yang memfusikan hidrogen menjadi helium di intinya pada suhu sekitar 15 juta K. Suhu efektif permukaannya sekitar 5.772 K dan usianya sekitar 4,6 miliar tahun."
+
+#: data/body_info.json
+msgid "A Halley-type periodic comet on a retrograde orbit inclined 162 degrees, with an eccentricity of 0.968 and a perihelion distance of 0.575 AU. Its nucleus measures about 15 by 8 km and has a very dark surface with an albedo near 0.04."
+msgstr "Komet periodik tipe Halley pada orbit retrograd dengan inklinasi 162 derajat, eksentrisitas 0,968, dan jarak perihelion 0,575 AU. Intinya berukuran sekitar 15 kali 8 km dengan permukaan sangat gelap yang albedonya mendekati 0,04."
 
 #: data/body_info.json
 msgid "A Kuiper belt dwarf planet with a mean radius of 1,188 km, a bulk density of 1.85 g/cm3, and a thin nitrogen atmosphere with layered haze. It is locked in a 3:2 orbital resonance with Neptune."
@@ -571,8 +579,16 @@ msgid "Ceres is the largest object in the asteroid belt between Mars and Jupiter
 msgstr "Ceres adalah objek terbesar di sabuk asteroid antara Mars dan Jupiter. Bentuknya bulat seperti planet, tetapi cukup kecil untuk muat di dalam negara bagian Texas."
 
 #: data/body_info.json
+msgid "Comet"
+msgstr "Komet"
+
+#: data/body_info.json
 msgid "Daytime surface temperatures reach about 430 degrees C, while nights drop to about -180 degrees C."
 msgstr "Suhu permukaan siang hari mencapai sekitar 430 derajat C, sedangkan malam hari turun hingga sekitar -180 derajat C."
+
+#: data/body_info.json
+msgid "Dust it left behind causes two meteor showers each year, the Eta Aquariids in May and the Orionids in October."
+msgstr "Debu yang ditinggalkannya menimbulkan dua hujan meteor setiap tahun, yaitu Eta Aquariid pada Mei dan Orionid pada Oktober."
 
 #: data/body_info.json modes/sandbox/sandbox_mode.gd:222
 msgid "Dwarf planet"
@@ -623,6 +639,10 @@ msgid "Global heat flow of about 2 W/m2, more than twenty times Earth's average.
 msgstr "Aliran panas global sekitar 2 W/m2, lebih dari dua puluh kali rata-rata Bumi."
 
 #: data/body_info.json
+msgid "Halley's Comet is a lump of ice and dust about 15 km long that comes back to the inner solar system every 75 to 76 years. Near the Sun its ice turns to gas and streams away in long glowing tails."
+msgstr "Komet Halley adalah gumpalan es dan debu sepanjang sekitar 15 km yang kembali ke tata surya bagian dalam setiap 75 sampai 76 tahun. Di dekat Matahari, esnya berubah menjadi gas dan mengalir menjauh membentuk ekor panjang yang bercahaya."
+
+#: data/body_info.json
 msgid "Holds 99.86% of the total mass of the solar system."
 msgstr "Memuat 99,86% dari total massa tata surya."
 
@@ -665,6 +685,10 @@ msgstr "Callisto satu-satunya bulan Galilean di luar resonansi Laplace."
 #: data/body_info.json
 msgid "It is the only moon known to make its own magnetic field."
 msgstr "Ganymede satu-satunya bulan yang diketahui menghasilkan medan magnetnya sendiri."
+
+#: data/body_info.json
+msgid "It last passed the Sun in 1986 and will return in 2061."
+msgstr "Komet ini terakhir melewati Matahari pada 1986 dan akan kembali pada 2061."
 
 #: data/body_info.json
 msgid "It orbits farther from Jupiter's radiation, so it could be a base for future explorers."
@@ -717,6 +741,10 @@ msgstr "Momen inersia ternormalisasinya sekitar 0,31, termasuk yang terendah di 
 #: data/body_info.json
 msgid "Its surface is covered in craters, much like our Moon."
 msgstr "Permukaannya dipenuhi kawah, mirip Bulan kita."
+
+#: data/body_info.json
+msgid "Its tails always point away from the Sun, pushed by sunlight and the solar wind."
+msgstr "Ekornya selalu mengarah menjauhi Matahari, didorong oleh cahaya Matahari dan angin Matahari."
 
 #: data/body_info.json
 msgid "Jupiter is more than twice as massive as all the other planets combined."
@@ -911,6 +939,10 @@ msgid "Terrestrial planet"
 msgstr "Planet kebumian"
 
 #: data/body_info.json
+msgid "The Giotto spacecraft passed about 600 km from the nucleus in March 1986."
+msgstr "Wahana Giotto melintas sekitar 600 km dari inti komet pada Maret 1986."
+
+#: data/body_info.json
 msgid "The Great Red Spot is a storm wider than Earth that has lasted for centuries."
 msgstr "Bintik Merah Raksasa adalah badai yang lebih lebar dari Bumi dan sudah berlangsung berabad-abad."
 
@@ -959,12 +991,20 @@ msgid "The innermost Galilean moon, with a mean radius of 1,821.6 km and a densi
 msgstr "Bulan Galilean terdalam, dengan jari-jari rata-rata 1.821,6 km dan massa jenis 3,53 g/cm3. Pemanasan pasang surut dari orbitnya yang eksentrik, yang dipaksa oleh resonansi Laplace 1:2:4 dengan Europa dan Ganymede, memicu vulkanisme silikat yang hebat."
 
 #: data/body_info.json
+msgid "The ion tail of charged gas points straight away from the Sun, while the broader dust tail curves back along the orbit."
+msgstr "Ekor ion dari gas bermuatan mengarah lurus menjauhi Matahari, sedangkan ekor debu yang lebih lebar melengkung ke belakang sepanjang orbit."
+
+#: data/body_info.json
 msgid "The largest moon, with a mean radius of 2,634.1 km and a density of 1.94 g/cm3. It is strongly differentiated, with an iron core that generates an intrinsic magnetic field and a magnetosphere embedded in Jupiter's."
 msgstr "Bulan terbesar, dengan jari-jari rata-rata 2.634,1 km dan massa jenis 1,94 g/cm3. Ganymede sangat terdiferensiasi, dengan inti besi yang membangkitkan medan magnet intrinsik dan magnetosfer yang tertanam di dalam magnetosfer Jupiter."
 
 #: data/body_info.json
 msgid "The only dwarf planet in the inner solar system, with a mean radius of about 470 km and a bulk density of 2.16 g/cm3. It is partly differentiated, with a rocky interior under a crust rich in ice, salts, and hydrated minerals."
 msgstr "Satu-satunya planet kerdil di tata surya bagian dalam, dengan jari-jari rata-rata sekitar 470 km dan massa jenis 2,16 g/cm3. Ceres terdiferensiasi sebagian, dengan bagian dalam berbatu di bawah kerak yang kaya es, garam, dan mineral terhidrasi."
+
+#: data/body_info.json
+msgid "The orbit is a fixed ellipse from JPL elements, so perihelion dates far from 1986 drift because planetary perturbations are ignored. The nucleus surface is a darkened stand-in map."
+msgstr "Orbitnya berupa elips tetap dari elemen JPL, sehingga tanggal perihelion yang jauh dari 1986 bergeser karena gangguan planet diabaikan. Permukaan intinya memakai peta pengganti yang digelapkan."
 
 #: data/body_info.json
 msgid "The orbit's line of nodes regresses with a period of about 18.6 years."
@@ -2234,21 +2274,21 @@ msgstr "Kunjungi Matahari dan semua planet, dari Merkurius sampai Neptunus."
 msgid "With a radius of 2,634 km and a normalized moment of inertia near 0.31, Ganymede has an iron core whose dynamo creates a small magnetosphere."
 msgstr "Dengan jari-jari 2.634 km dan momen inersia ternormalisasi mendekati 0,31, Ganymede punya inti besi yang dinamonya menciptakan magnetosfer kecil."
 
-#: modes/explore/explore_mode.gd:116 modes/explore/explore_mode.gd:48
+#: modes/explore/explore_mode.gd:118 modes/explore/explore_mode.gd:48
 msgid "Scale"
 msgstr "Skala"
-
-#: modes/explore/explore_mode.gd:119
-msgid "Choose a guided tour"
-msgstr "Pilih tur berpemandu"
-
-#: modes/explore/explore_mode.gd:119 ui/tour_menu.gd:32
-msgid "Guided tours"
-msgstr "Tur berpemandu"
 
 #: modes/explore/explore_mode.gd:12 modes/sandbox/sandbox_mode.gd:17
 msgid "Camera"
 msgstr "Kamera"
+
+#: modes/explore/explore_mode.gd:121
+msgid "Choose a guided tour"
+msgstr "Pilih tur berpemandu"
+
+#: modes/explore/explore_mode.gd:121 ui/tour_menu.gd:32
+msgid "Guided tours"
+msgstr "Tur berpemandu"
 
 #: modes/explore/explore_mode.gd:15 modes/sandbox/sandbox_mode.gd:20
 msgid "Down / up"
@@ -2258,7 +2298,7 @@ msgstr "Turun / naik"
 msgid "Boost"
 msgstr "Percepat"
 
-#: modes/explore/explore_mode.gd:165 modes/sandbox/sandbox_mode.gd:291
+#: modes/explore/explore_mode.gd:167 modes/sandbox/sandbox_mode.gd:291
 msgid "Focus: %s"
 msgstr "Fokus: %s"
 
@@ -2278,7 +2318,7 @@ msgstr "Kecepatan terbang"
 msgid "Shift+Scroll"
 msgstr "Shift+Gulir"
 
-#: modes/explore/explore_mode.gd:20 modes/explore/explore_mode.gd:399 modes/sandbox/sandbox_mode.gd:25
+#: modes/explore/explore_mode.gd:20 modes/explore/explore_mode.gd:415 modes/sandbox/sandbox_mode.gd:25
 msgid "Look around"
 msgstr "Lihat sekeliling"
 
@@ -2286,7 +2326,7 @@ msgstr "Lihat sekeliling"
 msgid "Right drag"
 msgstr "Seret kanan"
 
-#: modes/explore/explore_mode.gd:212
+#: modes/explore/explore_mode.gd:214
 msgid "%d bodies, %s rocks"
 msgstr "%d benda, %s batuan"
 
@@ -2330,67 +2370,67 @@ msgstr "Jeda"
 msgid "Reverse"
 msgstr "Mundur"
 
-#: modes/explore/explore_mode.gd:395
-msgid "Welcome to Orrery"
-msgstr "Selamat datang di Orrery"
-
-#: modes/explore/explore_mode.gd:396
-msgid "Here is a quick look at the controls. It takes about a minute, and you can skip it at any time."
-msgstr "Berikut pengenalan singkat cara mengendalikan Orrery. Hanya sekitar satu menit, dan kamu bisa melewatinya kapan saja."
-
 #: modes/explore/explore_mode.gd:40 modes/sandbox/sandbox_mode.gd:52
 msgid "Slower / faster"
 msgstr "Lebih lambat / cepat"
-
-#: modes/explore/explore_mode.gd:400
-msgid "Drag with the mouse, or swipe with two fingers, to orbit the body in view. Scroll or pinch to zoom, and move freely with W, A, S, and D."
-msgstr "Seret dengan mouse, atau usap dengan dua jari, untuk mengitari benda yang terlihat. Gulir atau cubit untuk memperbesar, dan bergerak bebas dengan W, A, S, dan D."
-
-#: modes/explore/explore_mode.gd:403
-msgid "Meet the bodies"
-msgstr "Kenali benda langit"
-
-#: modes/explore/explore_mode.gd:404
-msgid "Click a planet or moon to read about it, and double-click to fly to it. This button finds any body by name."
-msgstr "Klik planet atau bulan untuk membaca tentangnya, lalu klik ganda untuk terbang ke sana. Tombol ini mencari benda apa pun berdasarkan namanya."
-
-#: modes/explore/explore_mode.gd:408
-msgid "Control time"
-msgstr "Kendalikan waktu"
-
-#: modes/explore/explore_mode.gd:409
-msgid "Play, pause, reverse, or speed up time here. The calendar jumps to any date between 1800 and 2050."
-msgstr "Jalankan, jeda, balikkan, atau percepat waktu di sini. Kalender bisa melompat ke tanggal mana pun antara 1800 dan 2050."
 
 #: modes/explore/explore_mode.gd:41 ui/hud.gd:424
 msgid "Now"
 msgstr "Sekarang"
 
-#: modes/explore/explore_mode.gd:413
+#: modes/explore/explore_mode.gd:411
+msgid "Welcome to Orrery"
+msgstr "Selamat datang di Orrery"
+
+#: modes/explore/explore_mode.gd:412
+msgid "Here is a quick look at the controls. It takes about a minute, and you can skip it at any time."
+msgstr "Berikut pengenalan singkat cara mengendalikan Orrery. Hanya sekitar satu menit, dan kamu bisa melewatinya kapan saja."
+
+#: modes/explore/explore_mode.gd:416
+msgid "Drag with the mouse, or swipe with two fingers, to orbit the body in view. Scroll or pinch to zoom, and move freely with W, A, S, and D."
+msgstr "Seret dengan mouse, atau usap dengan dua jari, untuk mengitari benda yang terlihat. Gulir atau cubit untuk memperbesar, dan bergerak bebas dengan W, A, S, dan D."
+
+#: modes/explore/explore_mode.gd:419
+msgid "Meet the bodies"
+msgstr "Kenali benda langit"
+
+#: modes/explore/explore_mode.gd:420
+msgid "Click a planet or moon to read about it, and double-click to fly to it. This button finds any body by name."
+msgstr "Klik planet atau bulan untuk membaca tentangnya, lalu klik ganda untuk terbang ke sana. Tombol ini mencari benda apa pun berdasarkan namanya."
+
+#: modes/explore/explore_mode.gd:424
+msgid "Control time"
+msgstr "Kendalikan waktu"
+
+#: modes/explore/explore_mode.gd:425
+msgid "Play, pause, reverse, or speed up time here. The calendar jumps to any date between 1800 and 2050."
+msgstr "Jalankan, jeda, balikkan, atau percepat waktu di sini. Kalender bisa melompat ke tanggal mana pun antara 1800 dan 2050."
+
+#: modes/explore/explore_mode.gd:429
 msgid "Take a guided tour"
 msgstr "Ikuti tur berpemandu"
 
-#: modes/explore/explore_mode.gd:414
+#: modes/explore/explore_mode.gd:430
 msgid "Tours show the highlights with narration, and each one ends with a short quiz."
 msgstr "Tur menampilkan hal-hal menarik dengan narasi, dan setiap tur diakhiri kuis singkat."
 
-#: modes/explore/explore_mode.gd:418
+#: modes/explore/explore_mode.gd:434
 msgid "Choose what you see"
 msgstr "Atur yang kamu lihat"
 
-#: modes/explore/explore_mode.gd:419
+#: modes/explore/explore_mode.gd:435
 msgid "Explorer keeps the facts simple and Scientist shows full data. Labels, orbits, rings, and the scale can be switched here."
 msgstr "Penjelajah menyajikan fakta sederhana, sedangkan Ilmuwan menampilkan data lengkap. Label, orbit, cincin, dan skala bisa diubah di sini."
 
-#: modes/explore/explore_mode.gd:423
+#: modes/explore/explore_mode.gd:439
 msgid "You are ready"
 msgstr "Kamu siap"
 
-#: modes/explore/explore_mode.gd:424
+#: modes/explore/explore_mode.gd:440
 msgid "Press F3 at any time to see every control. Enjoy the solar system."
 msgstr "Tekan F3 kapan saja untuk melihat semua kontrol. Selamat menjelajahi tata surya."
 
-#: modes/explore/explore_mode.gd:443
+#: modes/explore/explore_mode.gd:459
 msgid "No eclipse found between %d and %d in that direction"
 msgstr "Tidak ada gerhana antara %d dan %d ke arah itu"
 
@@ -2398,7 +2438,7 @@ msgstr "Tidak ada gerhana antara %d dan %d ke arah itu"
 msgid "View"
 msgstr "Tampilan"
 
-#: modes/explore/explore_mode.gd:468
+#: modes/explore/explore_mode.gd:484
 msgid "%s, greatest at %s"
 msgstr "%s, puncak pada %s"
 
@@ -2410,7 +2450,7 @@ msgstr "Tingkat informasi"
 msgid "App"
 msgstr "Aplikasi"
 
-#: modes/explore/explore_mode.gd:59 modes/explore/explore_mode.gd:75 modes/menu/main_menu.gd:44
+#: modes/explore/explore_mode.gd:59 modes/explore/explore_mode.gd:77 modes/menu/main_menu.gd:44
 msgid "Sandbox"
 msgstr "Sandbox"
 
@@ -2446,7 +2486,7 @@ msgstr "Dipadatkan"
 msgid "True scale"
 msgstr "Skala nyata"
 
-#: modes/explore/explore_mode.gd:91
+#: modes/explore/explore_mode.gd:93
 msgid "Distance and size scale (T)"
 msgstr "Skala jarak dan ukuran (T)"
 
@@ -2607,58 +2647,62 @@ msgid "Apollo 11 lands on the Moon"
 msgstr "Apollo 11 mendarat di Bulan"
 
 #: ui/date_panel.gd:13
-msgid "Jupiter and Saturn meet in the sky"
-msgstr "Jupiter dan Saturnus bertemu di langit"
+msgid "Halley's Comet rounds the Sun"
+msgstr "Komet Halley mengitari Matahari"
 
-#: ui/date_panel.gd:136
+#: ui/date_panel.gd:137
 msgid "Write the date as YYYY-MM-DD, optionally followed by HH:MM."
 msgstr "Tulis tanggal sebagai YYYY-MM-DD, boleh diikuti HH:MM."
 
 #: ui/date_panel.gd:14
-msgid "Total solar eclipse over North Africa"
-msgstr "Gerhana Matahari total di atas Afrika Utara"
+msgid "Jupiter and Saturn meet in the sky"
+msgstr "Jupiter dan Saturnus bertemu di langit"
 
-#: ui/date_panel.gd:140
+#: ui/date_panel.gd:141
 msgid "The orbits are accurate from %d to %d. Choose a date in that range."
 msgstr "Orbit akurat dari tahun %d sampai %d. Pilih tanggal dalam rentang itu."
 
-#: ui/date_panel.gd:43
+#: ui/date_panel.gd:15
+msgid "Total solar eclipse over North Africa"
+msgstr "Gerhana Matahari total di atas Afrika Utara"
+
+#: ui/date_panel.gd:44
 msgid "Go"
 msgstr "Pergi"
 
-#: ui/date_panel.gd:43
+#: ui/date_panel.gd:44
 msgid "Jump to this date (Enter)"
 msgstr "Lompat ke tanggal ini (Enter)"
 
-#: ui/date_panel.gd:48
+#: ui/date_panel.gd:49
 msgid "Dates from %d to %d, in this computer's time zone."
 msgstr "Tanggal dari %d sampai %d, dalam zona waktu komputer ini."
 
-#: ui/date_panel.gd:52
+#: ui/date_panel.gd:53
 msgid "Moments to visit"
 msgstr "Momen untuk dikunjungi"
 
-#: ui/date_panel.gd:60
+#: ui/date_panel.gd:61
 msgid "Eclipses"
 msgstr "Gerhana"
 
-#: ui/date_panel.gd:64
+#: ui/date_panel.gd:65
 msgid "Go to the previous solar or lunar eclipse"
 msgstr "Pergi ke gerhana Matahari atau Bulan sebelumnya"
 
-#: ui/date_panel.gd:64
+#: ui/date_panel.gd:65
 msgid "Previous"
 msgstr "Sebelumnya"
 
-#: ui/date_panel.gd:65
+#: ui/date_panel.gd:66
 msgid "Go to the next solar or lunar eclipse"
 msgstr "Pergi ke gerhana Matahari atau Bulan berikutnya"
 
-#: ui/date_panel.gd:65 ui/onboarding.gd:48 ui/onboarding.gd:91
+#: ui/date_panel.gd:66 ui/onboarding.gd:48 ui/onboarding.gd:91
 msgid "Next"
 msgstr "Lanjut"
 
-#: ui/date_panel.gd:70
+#: ui/date_panel.gd:71
 msgid "Shows the moment of greatest eclipse at true scale."
 msgstr "Menampilkan saat puncak gerhana dalam skala nyata."
 
