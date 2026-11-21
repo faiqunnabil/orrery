@@ -35,8 +35,8 @@ It is aimed at learners from elementary school to university. Every panel switch
 ### Explore
 
 - **Bodies.** The Sun, 8 planets, 6 moons, 2 dwarf planets, Halley's Comet, and an instanced asteroid belt of up to 10,000 rocks.
-- **Comet tails.** Near the Sun, Halley's Comet grows a blue ion tail that points straight away from the Sun and a broader dust tail that curves back along its orbit, both drawn with GPU particles.
-- **Real night sky.** 8,920 naked-eye stars from the HYG catalog, sized by brightness and colored by temperature, with optional constellation figures. The Milky Way panorama is aligned to the real sky.
+- **Comet tails.** Near the Sun, Halley's Comet grows a blue ion tail that points straight away from the Sun and a broader dust tail that curves back along its orbit, both drawn with GPU particles. Its orbit uses the JPL solution for each return, so the 1835, 1910, and 1986 perihelia fall on their real dates, and its nucleus is stretched to its 15 by 8 km shape.
+- **Real night sky.** 8,920 naked-eye stars from the HYG catalog, sized by brightness and colored by temperature, with optional constellation figures and names. The Milky Way panorama is aligned to the real sky.
 - **Accurate orbits.**
   - Planets use JPL Keplerian elements.
   - The Moon uses the main terms of Meeus' lunar theory, so eclipses happen within 2 minutes of their real times.
@@ -50,9 +50,9 @@ It is aimed at learners from elementary school to university. Every panel switch
 - **Two scales.** A compressed view keeps every world visible. True scale shows real sizes and distances.
 - **Eclipses.** Moons cast shadows on their planets and planets on their moons, such as Io's shadow crossing Jupiter or the red Moon of a lunar eclipse, with a soft penumbra from the size of the Sun's disk.
 - **Body information.** Click any body for a summary, facts, and live orbital data at either depth level.
-- **Guided tours.** Four tours: Grand Tour, Earth and Moon, Sense of Scale, and Moons and Dwarf Planets. Each has captions and synthesized voice-over for both levels.
+- **Guided tours.** Five tours: Grand Tour, Earth and Moon, Sense of Scale, Moons and Dwarf Planets, and Eclipses and Comets. Each has captions and synthesized voice-over for both levels, and tour stops can jump to a date, such as an eclipse or Halley's 1986 return.
 - **Quizzes.** Every tour has a short quiz for each level, with an explanation after each answer. The quiz is offered when a tour ends and can be opened from the tour menu.
-- **Introduction.** The first visit shows seven short tips that point out each part of the interface. They can be shown again from Settings.
+- **Introduction.** The first visit shows eight short tips that point out each part of the interface, including the eclipse finder and the Sandbox. They can be shown again from Settings.
 
 ### Sandbox
 
@@ -61,9 +61,9 @@ It is aimed at learners from elementary school to university. Every panel switch
   - Place a body and drag to launch it.
   - Edit a body's mass, radius, and color, freeze it, or remove it.
 - **Collisions.** Bodies that touch merge with conserved mass and momentum. A swept contact test stops fast bodies from passing through each other.
-- **Presets.** Solar system, binary star, extra planet, and rogue star flyby. Snapshots save the current state and restore it later.
+- **Presets.** Solar system, binary star, extra planet, rogue star flyby, and the figure-eight orbit of three equal stars. Stars without a parent draw their trails around the system's barycenter. Snapshots save the current state and restore it later.
 - **Gravity well.** A grid under the bodies bends by their gravitational potential, so heavier bodies dig deeper wells.
-- **Challenges.** Four missions with automatic checks: put a planet in orbit, stretch the orbit into an ellipse, escape the star, and give a giant planet a moon.
+- **Challenges.** Five missions with automatic checks: put a planet in orbit, stretch the orbit into an ellipse, escape the star, give a giant planet a moon, and gain energy from a gravity assist.
 - **Conservation readouts.** At the Scientist level, total energy and angular momentum are shown with their drift, to illustrate the numerical error of each integrator.
 
 ### Application
@@ -202,7 +202,7 @@ orrery/
 
 ## Tests
 
-The `tests/` folder holds 256 automated checks for input, camera controls, menus, the sandbox panel, quizzes, key bindings, accessibility, sandbox accuracy and speed, eclipses and the eclipse finder, the star field, the gravity well, the comet, the challenges, level of detail, texture tiers, the time zone display, search, date jumps, the introduction, keyboard navigation, and the Indonesian interface. They drive the real application, so they need a display and open a window. From the repository root:
+The `tests/` folder holds 277 automated checks for input, camera controls, menus, the sandbox panel, quizzes, key bindings, accessibility, sandbox accuracy and speed, eclipses and the eclipse finder, the star field, the gravity well, the comet, the challenges, level of detail, texture tiers, the time zone display, search, date jumps, the introduction, keyboard navigation, and the Indonesian interface. They drive the real application, so they need a display and open a window. From the repository root:
 
 ```
 GODOT=/path/to/godot tests/run_tests.sh              # every test
@@ -242,6 +242,7 @@ All generated assets are committed, so these tools are only needed to regenerate
 | [`tools/audio`](tools/audio) | Procedural background music and sound effects with fixed seeds |
 | [`tools/textures`](tools/textures) | Moon and dwarf planet textures from USGS global mosaics, and the 4K High preset textures |
 | [`tools/branding`](tools/branding) | Application icon and boot splash from the Orrery emblem |
+| [`tools/media`](tools/media) | The README screenshots of the newer features, captured from the running application |
 | [`tools/stars`](tools/stars) | Naked-eye star catalog and constellation figures from HYG and Stellarium |
 
 ## Credits
