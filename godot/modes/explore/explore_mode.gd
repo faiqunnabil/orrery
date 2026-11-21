@@ -301,11 +301,12 @@ func _toward_sun(body_id: String) -> Vector3:
 
 
 func _focus_radii(body_id: String) -> float:
-	var tail := renderer.comet_tail(body_id)
-	if tail == null or tail.length <= 0.0:
+	if renderer.comet_tail(body_id) == null:
 		return CameraRig.FOCUS_DISTANCE_RADII
+	var distance_km: float = model.relative_km[body_id].length()
+	var length := CometTail.length_at(distance_km / Astro.AU_KM, renderer.mapper.heliocentric_scale(distance_km))
 	var radius := renderer.mapper.radius(model.get_body(body_id))
-	return maxf(CameraRig.FOCUS_DISTANCE_RADII, tail.length * COMET_TAIL_FRAMING / radius)
+	return maxf(CameraRig.FOCUS_DISTANCE_RADII, length * COMET_TAIL_FRAMING / radius)
 
 
 func _focus_body(body_id: String) -> void:

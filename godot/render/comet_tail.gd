@@ -63,6 +63,10 @@ static func activity_at(distance_au: float) -> float:
 	return clampf((ACTIVE_DISTANCE_AU - distance_au) / (ACTIVE_DISTANCE_AU - PEAK_DISTANCE_AU), 0.0, 1.0)
 
 
+static func length_at(distance_au: float, units_per_km: float) -> float:
+	return ION_LENGTH_AU * Astro.AU_KM * units_per_km * activity_at(distance_au)
+
+
 func update(
 	nucleus: Vector3, away_from_sun: Vector3, velocity: Vector3, distance_au: float, units_per_km: float, nucleus_radius: float
 ) -> void:
@@ -75,7 +79,7 @@ func update(
 		length = 0.0
 		return
 	var away := away_from_sun.normalized()
-	length = ION_LENGTH_AU * Astro.AU_KM * units_per_km * activity
+	length = length_at(distance_au, units_per_km)
 	_ion.transform = Transform3D(_facing(away).scaled(Vector3.ONE * length), nucleus)
 	var trailing := (away - velocity.normalized() * DUST_LAG).normalized() if velocity != Vector3.ZERO else away
 	_dust.transform = Transform3D(_facing(trailing).scaled(Vector3.ONE * length * DUST_LENGTH_FRACTION), nucleus)
