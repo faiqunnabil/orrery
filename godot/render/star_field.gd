@@ -23,6 +23,7 @@ static var _data: Dictionary = {}
 
 var star_count := 0
 var segment_count := 0
+var labels: Array = []
 
 var _stars := MeshInstance3D.new()
 var _lines := MeshInstance3D.new()
@@ -142,6 +143,14 @@ func _build_lines(constellations: Array) -> ArrayMesh:
 				vertices.append(direction(line[index - 1][0], line[index - 1][1]))
 				vertices.append(direction(line[index][0], line[index][1]))
 	segment_count = vertices.size() / 2
+	labels.clear()
+	for constellation: Dictionary in constellations:
+		var sum := Vector3.ZERO
+		for line: Array in constellation["lines"]:
+			for point: Array in line:
+				sum += direction(point[0], point[1])
+		if sum != Vector3.ZERO:
+			labels.append({"name": str(constellation.get("name", "")), "direction": sum.normalized()})
 	var arrays := []
 	arrays.resize(Mesh.ARRAY_MAX)
 	arrays[Mesh.ARRAY_VERTEX] = vertices
