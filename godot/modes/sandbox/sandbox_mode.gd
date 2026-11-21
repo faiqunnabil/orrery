@@ -370,7 +370,7 @@ func _start_challenge(index: int) -> void:
 	_judge.start(challenge, world)
 	clock.step_index = clampi(int(challenge.get("speed_step", SimulationClock.DEFAULT_STEP_INDEX)), 0, SimulationClock.SPEED_STEPS.size() - 1)
 	clock.reversed = false
-	clock.paused = false
+	clock.paused = bool(challenge.get("start_paused", false))
 	clock.changed.emit()
 	panel.show_challenge(challenge)
 	_refresh_challenge()
