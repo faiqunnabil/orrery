@@ -2749,7 +2749,7 @@ msgstr ""
 msgid "Shift+Scroll"
 msgstr ""
 
-#: modes/explore/explore_mode.gd:20 modes/explore/explore_mode.gd:416 modes/sandbox/sandbox_mode.gd:25
+#: modes/explore/explore_mode.gd:20 modes/explore/explore_mode.gd:417 modes/sandbox/sandbox_mode.gd:25
 msgid "Look around"
 msgstr ""
 
@@ -2805,71 +2805,79 @@ msgstr ""
 msgid "Slower / faster"
 msgstr ""
 
-#: modes/explore/explore_mode.gd:41 ui/hud.gd:424
+#: modes/explore/explore_mode.gd:41 ui/hud.gd:428
 msgid "Now"
 msgstr ""
 
-#: modes/explore/explore_mode.gd:412
+#: modes/explore/explore_mode.gd:413
 msgid "Welcome to Orrery"
 msgstr ""
 
-#: modes/explore/explore_mode.gd:413
+#: modes/explore/explore_mode.gd:414
 msgid "Here is a quick look at the controls. It takes about a minute, and you can skip it at any time."
 msgstr ""
 
-#: modes/explore/explore_mode.gd:417
+#: modes/explore/explore_mode.gd:418
 msgid "Drag with the mouse, or swipe with two fingers, to orbit the body in view. Scroll or pinch to zoom, and move freely with W, A, S, and D."
 msgstr ""
 
-#: modes/explore/explore_mode.gd:420
+#: modes/explore/explore_mode.gd:421
 msgid "Meet the bodies"
 msgstr ""
 
-#: modes/explore/explore_mode.gd:421
+#: modes/explore/explore_mode.gd:422
 msgid "Click a planet or moon to read about it, and double-click to fly to it. This button finds any body by name."
 msgstr ""
 
-#: modes/explore/explore_mode.gd:425
+#: modes/explore/explore_mode.gd:426
 msgid "Control time"
 msgstr ""
 
-#: modes/explore/explore_mode.gd:426
-msgid "Play, pause, reverse, or speed up time here. The calendar jumps to any date between 1800 and 2050."
-msgstr ""
-
-#: modes/explore/explore_mode.gd:430
-msgid "Take a guided tour"
+#: modes/explore/explore_mode.gd:427
+msgid "Play, pause, reverse, or speed up time here. The calendar jumps to any date between 1800 and 2050, or straight to the next eclipse."
 msgstr ""
 
 #: modes/explore/explore_mode.gd:431
+msgid "Take a guided tour"
+msgstr ""
+
+#: modes/explore/explore_mode.gd:432
 msgid "Tours show the highlights with narration, and each one ends with a short quiz."
 msgstr ""
 
-#: modes/explore/explore_mode.gd:435
+#: modes/explore/explore_mode.gd:436
 msgid "Choose what you see"
 msgstr ""
 
-#: modes/explore/explore_mode.gd:436
-msgid "Explorer keeps the facts simple and Scientist shows full data. Labels, orbits, rings, and the scale can be switched here."
-msgstr ""
-
-#: modes/explore/explore_mode.gd:440
-msgid "You are ready"
+#: modes/explore/explore_mode.gd:437
+msgid "Explorer keeps the facts simple and Scientist shows full data. Labels, orbits, rings, constellations, and the scale can be switched here."
 msgstr ""
 
 #: modes/explore/explore_mode.gd:441
+msgid "Try the Sandbox"
+msgstr ""
+
+#: modes/explore/explore_mode.gd:442
+msgid "In the Sandbox you launch your own planets, watch them bend a gravity well, and take on five challenges."
+msgstr ""
+
+#: modes/explore/explore_mode.gd:446
+msgid "You are ready"
+msgstr ""
+
+#: modes/explore/explore_mode.gd:447
 msgid "Press F3 at any time to see every control. Enjoy the solar system."
 msgstr ""
 
-#: modes/explore/explore_mode.gd:46 ui/hud.gd:451
+#: modes/explore/explore_mode.gd:46 ui/hud.gd:455
 msgid "View"
 msgstr ""
 
-#: modes/explore/explore_mode.gd:460
+#: modes/explore/explore_mode.gd:466
 msgid "No eclipse found between %d and %d in that direction"
 msgstr ""
 
-#: modes/explore/explore_mode.gd:469
+#: modes/explore/explore_mode.gd:475
 msgid "%s, greatest at %s"
 msgstr ""
 
@@ -2885,11 +2893,11 @@ msgstr ""
 msgid "Sandbox"
 msgstr ""
 
-#: modes/explore/explore_mode.gd:60 modes/sandbox/sandbox_mode.gd:65 ui/hud.gd:595
+#: modes/explore/explore_mode.gd:60 modes/sandbox/sandbox_mode.gd:65 ui/hud.gd:599
 msgid "Controls"
 msgstr ""
 
-#: modes/explore/explore_mode.gd:62 modes/sandbox/sandbox_mode.gd:67 ui/hud.gd:521
+#: modes/explore/explore_mode.gd:62 modes/sandbox/sandbox_mode.gd:67 ui/hud.gd:525
 msgid "Performance"
 msgstr ""
 
@@ -2905,7 +2913,7 @@ msgstr ""
 msgid "Esc"
 msgstr ""
 
-#: modes/explore/explore_mode.gd:66 modes/sandbox/sandbox_mode.gd:71 ui/hud.gd:495
+#: modes/explore/explore_mode.gd:66 modes/sandbox/sandbox_mode.gd:71 ui/hud.gd:499
 msgid "Menu"
 msgstr ""
 
@@ -3153,107 +3161,107 @@ msgstr ""
 msgid "   |   Auto-orbit"
 msgstr ""
 
-#: ui/hud.gd:363 ui/hud.gd:413
+#: ui/hud.gd:367 ui/hud.gd:417
 msgid "Pause time (Space)"
 msgstr ""
 
-#: ui/hud.gd:363
+#: ui/hud.gd:367
 msgid "Resume time (Space)"
 msgstr ""
 
-#: ui/hud.gd:393
+#: ui/hud.gd:397
 msgid "Times are shown in this computer's time zone"
 msgstr ""
 
-#: ui/hud.gd:405
+#: ui/hud.gd:409
 msgid "Run time backwards (R)"
 msgstr ""
 
-#: ui/hud.gd:417
+#: ui/hud.gd:421
 msgid "Slower ([)"
 msgstr ""
 
-#: ui/hud.gd:422
+#: ui/hud.gd:426
 msgid "Faster (])"
 msgstr ""
 
-#: ui/hud.gd:424
+#: ui/hud.gd:428
 msgid "Jump to the current date (N)"
 msgstr ""
 
-#: ui/hud.gd:441
+#: ui/hud.gd:445
 msgid "Find a body (%s)"
 msgstr ""
 
-#: ui/hud.gd:442
+#: ui/hud.gd:446
 msgid "Go to a date (%s)"
 msgstr ""
 
-#: ui/hud.gd:468
+#: ui/hud.gd:472
 msgid "Show body names (L)"
 msgstr ""
 
-#: ui/hud.gd:469 ui/settings_panel.gd:176
+#: ui/hud.gd:473 ui/settings_panel.gd:176
 msgid "Orbits"
 msgstr ""
 
-#: ui/hud.gd:469
+#: ui/hud.gd:473
 msgid "Show orbit lines (O)"
 msgstr ""
 
-#: ui/hud.gd:470
+#: ui/hud.gd:474
 msgid "Rings"
 msgstr ""
 
-#: ui/hud.gd:470
+#: ui/hud.gd:474
 msgid "Show distance rings around the Sun (G)"
 msgstr ""
 
-#: ui/hud.gd:475
+#: ui/hud.gd:479
 msgid "Show constellation figures (C)"
 msgstr ""
 
-#: ui/hud.gd:486
+#: ui/hud.gd:490
 msgid "Graphics quality. Lower quality runs faster on older devices"
 msgstr ""
 
-#: ui/hud.gd:495
+#: ui/hud.gd:499
 msgid "Pause menu, settings and credits (Esc)"
 msgstr ""
 
-#: ui/hud.gd:528
+#: ui/hud.gd:532
 msgid "Frame / CPU"
 msgstr ""
 
-#: ui/hud.gd:529
+#: ui/hud.gd:533
 msgid "Draw calls"
 msgstr ""
 
-#: ui/hud.gd:530
+#: ui/hud.gd:534
 msgid "Primitives"
 msgstr ""
 
-#: ui/hud.gd:532
+#: ui/hud.gd:536
 msgid "Scene"
 msgstr ""
 
-#: ui/hud.gd:533
+#: ui/hud.gd:537
 msgid "Focus mesh"
-msgstr ""
-
-#: ui/hud.gd:598
-msgid "Close (%s)"
 msgstr ""
 
 #: ui/hud.gd:60
 msgid "Information depth (M)"
 msgstr ""
 
-#: ui/hud.gd:613
+#: ui/hud.gd:602
+msgid "Close (%s)"
+msgstr ""
+
+#: ui/hud.gd:617
 msgid "Hide view options to make room for body information"
 msgstr ""
 
-#: ui/hud.gd:613
+#: ui/hud.gd:617
 msgid "Show view options"
 msgstr ""
 
