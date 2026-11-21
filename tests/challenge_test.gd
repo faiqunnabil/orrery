@@ -3,6 +3,11 @@ extends SceneTree
 const AU_KM := 149597870.7
 const FAST_STEP := 6
 const MOON_DISTANCE_KM := 1.5e6
+const SLINGSHOT_DISTANCE_AU := 0.6
+const SLINGSHOT_ANGLE_DEG := -44.0
+const SLINGSHOT_SPEED_RATIO := 1.26
+const FIGURE_EIGHT_PRESET := 4
+const FIGURE_EIGHT_PERIOD_DAYS := 367.735
 
 var frame := 0
 var step := 0
@@ -10,6 +15,7 @@ var wait := 90
 var failures := 0
 var out_dir := ""
 var deadline := 0
+var saved := {}
 
 
 func _initialize() -> void:
@@ -62,6 +68,25 @@ func _launch(center_id: String, distance_km: float, speed_ratio: float) -> void:
 	world.add_custom_body("Probe", "planet", Color.WHITE, "res://assets/textures/bodies/mars.jpg", false, position, velocity, 5.9722e24, 6371.0)
 
 
+func _launch_at_angle(center_id: String, distance_km: float, angle_deg: float, speed_ratio: float) -> void:
+	var world = current_scene.world
+	var simulation = world.simulation
+	var center: int = world.index_of(center_id)
+	var angle := deg_to_rad(angle_deg)
+	var circular := sqrt(simulation.gm[center] / distance_km)
+	var position = simulation.position_of(center).plus(DVec3.new(cos(angle) * distance_km, sin(angle) * distance_km, 0.0))
+	var velocity = simulation.velocity_of(center).plus(DVec3.new(-sin(angle) * circular * speed_ratio, cos(angle) * circular * speed_ratio, 0.0))
+	world.add_custom_body("Probe", "asteroid", Color.WHITE, "res://assets/textures/bodies/moon.jpg", false, position, velocity, 1.0e15, 10.0)
+
+
+func _star_positions() -> Array:
+	var positions: Array = []
+	for id in ["star_a", "star_b", "star_c"]:
+		var point = current_scene.world.simulation.position_of(current_scene.world.index_of(id))
+		positions.append(Vector3(point.x, point.y, point.z))
+	return positions
+
+
 func _fast() -> void:
 	current_scene.clock.step_index = FAST_STEP
 
@@ -75,7 +100,7 @@ func _run_step() -> void:
 	var preferences := root.get_node("Preferences")
 	match step:
 		0:
-			_check("four challenges are offered", scene._challenges.size() == 4)
+			_check("five challenges are offered", scene._challenges.size() == 5)
 			scene.panel.show_page(3)
 		1:
 			_shot("challenge_list")
@@ -147,9 +172,45 @@ func _run_step() -> void:
 				step -= 1
 				return
 			_check("a moon on a circular orbit around the planet completes the challenge", _judge().state == 2)
-			_check("all four challenges are remembered", preferences.completed_challenges.size() == 4)
-			scene._leave_challenge()
+			scene._start_challenge(_index("slingshot"))
+			_check("the gravity assist starts with time paused for aiming", scene.clock.paused)
+			wait = 60
 		13:
+			_launch_at_angle("star", SLINGSHOT_DISTANCE_AU * AU_KM, SLINGSHOT_ANGLE_DEG, SLINGSHOT_SPEED_RATIO)
+			scene.clock.paused = false
+			_fast()
+			deadline = 80
+		14:
+			if _judge().state != 2 and deadline > 0:
+				deadline -= 1
+				step -= 1
+				return
+			_check("passing just behind the giant planet completes the gravity assist", _judge().state == 2)
+			_check("all five challenges are remembered", preferences.completed_challenges.size() == 5)
+			scene._leave_challenge()
+		15:
 			_check("leaving returns to the challenge list", not scene.panel.is_showing_challenge() and not _judge().is_active())
+			scene._load_preset(FIGURE_EIGHT_PRESET)
+			scene.clock.paused = true
+			wait = 30
+		16:
+			_check("the figure-eight preset loads three equal stars", scene.world.bodies.size() == 3 and scene.world.index_of("star_c") >= 0)
+			saved["start"] = _star_positions()
+			saved["seconds"] = scene.world.seconds
+			scene.clock.paused = false
+			scene.clock.step_index = FAST_STEP - 1
+			deadline = 120
+		17:
+			if scene.world.seconds - saved["seconds"] < FIGURE_EIGHT_PERIOD_DAYS * 86400.0 and deadline > 0:
+				deadline -= 1
+				step -= 1
+				return
+			scene.clock.paused = true
+			scene.world.advance(saved["seconds"] + FIGURE_EIGHT_PERIOD_DAYS * 86400.0 - scene.world.seconds, 1000000000)
+			var drift := 0.0
+			var now: Array = _star_positions()
+			for index in 3:
+				drift = maxf(drift, now[index].distance_to(saved["start"][index]))
+			_check("after one period every star returns within 0.05 AU of its start", drift < 0.05 * AU_KM)
 			print("FAILURES: ", failures)
 			quit()
