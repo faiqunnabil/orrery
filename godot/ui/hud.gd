@@ -257,6 +257,10 @@ func search_button() -> Control:
 	return _search_button
 
 
+func mode_button() -> Control:
+	return _mode_button
+
+
 func utc_offset_minutes() -> int:
 	return _utc_offset_minutes
 
