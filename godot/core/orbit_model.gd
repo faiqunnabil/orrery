@@ -15,6 +15,9 @@ var reference_plane := "ecliptic"
 var theory := ""
 
 var _plane_to_ecliptic := PackedFloat64Array()
+var _segment_ends := PackedFloat64Array()
+var _segment_elements: Array[PackedFloat64Array] = []
+var _segment_rates: Array[PackedFloat64Array] = []
 
 
 static func from_dictionary(data: Dictionary) -> OrbitModel:
@@ -22,6 +25,10 @@ static func from_dictionary(data: Dictionary) -> OrbitModel:
 	model.elements = PackedFloat64Array(data["elements"])
 	model.rates = PackedFloat64Array(data["rates"])
 	model.theory = str(data.get("theory", ""))
+	for segment: Dictionary in data.get("segments", []):
+		model._segment_ends.append((float(segment["until_jd"]) - Astro.J2000_JULIAN_DATE) / Astro.DAYS_PER_CENTURY)
+		model._segment_elements.append(PackedFloat64Array(segment["elements"]))
+		model._segment_rates.append(PackedFloat64Array(segment["rates"]))
 	if data.has("reference_pole"):
 		var pole: Array = data["reference_pole"]
 		model.reference_plane = str(data.get("reference_plane", "laplace"))
@@ -33,21 +40,31 @@ func period_seconds() -> float:
 	return Astro.SECONDS_PER_CENTURY * 360.0 / rates[MEAN_LONGITUDE]
 
 
+func segment_count() -> int:
+	return _segment_ends.size() + 1
+
+
 func mean_anomaly(centuries: float) -> float:
-	var mean_longitude := elements[MEAN_LONGITUDE] + rates[MEAN_LONGITUDE] * centuries
-	var periapsis_longitude := elements[LONGITUDE_OF_PERIAPSIS] + rates[LONGITUDE_OF_PERIAPSIS] * centuries
+	var segment := _segment_index(centuries)
+	var active_elements := _elements_for(segment)
+	var active_rates := _rates_for(segment)
+	var mean_longitude := active_elements[MEAN_LONGITUDE] + active_rates[MEAN_LONGITUDE] * centuries
+	var periapsis_longitude := active_elements[LONGITUDE_OF_PERIAPSIS] + active_rates[LONGITUDE_OF_PERIAPSIS] * centuries
 	return deg_to_rad(wrapf(mean_longitude - periapsis_longitude, -180.0, 180.0))
 
 
 func position_km(centuries: float) -> DVec3:
 	if theory == LUNAR_THEORY:
 		return LunarTheory.position_km(centuries)
-	var semi_major := elements[SEMI_MAJOR] + rates[SEMI_MAJOR] * centuries
-	var eccentricity := elements[ECCENTRICITY] + rates[ECCENTRICITY] * centuries
-	var inclination := elements[INCLINATION] + rates[INCLINATION] * centuries
-	var mean_longitude := elements[MEAN_LONGITUDE] + rates[MEAN_LONGITUDE] * centuries
-	var periapsis_longitude := elements[LONGITUDE_OF_PERIAPSIS] + rates[LONGITUDE_OF_PERIAPSIS] * centuries
-	var node_longitude := elements[LONGITUDE_OF_NODE] + rates[LONGITUDE_OF_NODE] * centuries
+	var segment := _segment_index(centuries)
+	var active_elements := _elements_for(segment)
+	var active_rates := _rates_for(segment)
+	var semi_major := active_elements[SEMI_MAJOR] + active_rates[SEMI_MAJOR] * centuries
+	var eccentricity := active_elements[ECCENTRICITY] + active_rates[ECCENTRICITY] * centuries
+	var inclination := active_elements[INCLINATION] + active_rates[INCLINATION] * centuries
+	var mean_longitude := active_elements[MEAN_LONGITUDE] + active_rates[MEAN_LONGITUDE] * centuries
+	var periapsis_longitude := active_elements[LONGITUDE_OF_PERIAPSIS] + active_rates[LONGITUDE_OF_PERIAPSIS] * centuries
+	var node_longitude := active_elements[LONGITUDE_OF_NODE] + active_rates[LONGITUDE_OF_NODE] * centuries
 	var mean_anomaly := deg_to_rad(wrapf(mean_longitude - periapsis_longitude, -180.0, 180.0))
 	var position := Kepler.ecliptic_position(
 		semi_major,
@@ -60,6 +77,21 @@ func position_km(centuries: float) -> DVec3:
 	if not _plane_to_ecliptic.is_empty():
 		position = _transform(position)
 	return position.scaled(Astro.AU_KM)
+
+
+func _segment_index(centuries: float) -> int:
+	for index in _segment_ends.size():
+		if centuries < _segment_ends[index]:
+			return index
+	return -1
+
+
+func _elements_for(segment: int) -> PackedFloat64Array:
+	return elements if segment < 0 else _segment_elements[segment]
+
+
+func _rates_for(segment: int) -> PackedFloat64Array:
+	return rates if segment < 0 else _segment_rates[segment]
 
 
 func _transform(local: DVec3) -> DVec3:
