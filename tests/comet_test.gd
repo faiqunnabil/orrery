@@ -2,6 +2,8 @@ extends SceneTree
 
 const PERIHELION := "1986-02-09T00:00:00"
 const FAR_AWAY := "2026-01-01T00:00:00"
+const PAST_PERIHELIA := ["1835-11-16T10:33:00", "1910-04-20T04:17:00"]
+const PERIHELION_TOLERANCE_DAYS := 1.0
 const J2000_UNIX := 946728000.0
 
 var frame := 0
@@ -54,7 +56,14 @@ func _run_step() -> void:
 	var tail = scene.renderer.comet_tail("halley")
 	match step:
 		0:
-			_check("Halley's Comet is in the catalog with a tail", scene.model.get_body("halley") != null and tail != null)
+			var halley = scene.model.get_body("halley")
+			_check("Halley's Comet is in the catalog with a tail", halley != null and tail != null)
+			_check("the orbit has a JPL solution for each return", halley.orbit.segment_count() == 3)
+			var on_time := true
+			for date: String in PAST_PERIHELIA:
+				on_time = on_time and _days_from_perihelion(halley.orbit, _seconds(date)) < PERIHELION_TOLERANCE_DAYS
+			_check("the 1835 and 1910 perihelia fall within a day of their real dates", on_time)
+			_check("the nucleus is stretched to its 15 by 8 km shape", halley.shape.x / halley.shape.y > 1.8)
 			scene.clock.paused = true
 			scene.clock.seconds = _seconds(PERIHELION)
 		1:
@@ -76,8 +85,24 @@ func _run_step() -> void:
 			scene.clock.seconds = _seconds(FAR_AWAY)
 		3:
 			_check("the tail disappears far from the Sun", not tail.visible and tail.length == 0.0)
+			scene._fly_to("halley", 3.0)
+			wait = 200
+		4:
+			_shot("comet_nucleus")
 			print("FAILURES: ", failures)
 			quit()
+
+
+func _days_from_perihelion(orbit, seconds: float) -> float:
+	var best := INF
+	var best_distance := INF
+	for hours in range(-24 * 20, 24 * 20 + 1, 2):
+		var t := seconds + hours * 3600.0
+		var distance: float = orbit.position_km(t / Astro.SECONDS_PER_CENTURY).length()
+		if distance < best_distance:
+			best_distance = distance
+			best = absf(hours / 24.0)
+	return best
 
 
 func _camera_distance(scene) -> float:
