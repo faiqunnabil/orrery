@@ -83,14 +83,18 @@ func _run_step() -> void:
 			_key(KEY_C)
 		1:
 			_check("C shows the constellation figures", preferences.constellations_visible and stars.constellations_visible())
+			_check("every constellation has a name label", stars.labels.size() == 88)
 			scene.camera.release_anchor(scene.camera.world_position(scene._anchor_position()))
 			scene.camera.aim(stars.direction(ORION.x, ORION.y))
 			wait = 60
 		2:
+			var names: Array = scene._labels._entries.map(func(entry: Dictionary) -> String: return entry["name"])
+			_check("Orion and its neighbors are labeled on screen", names.has("Orion") and names.has("Taurus"))
 			_shot("stars_orion")
 			_key(KEY_C)
 		3:
 			_check("C hides them again", not preferences.constellations_visible and not stars.constellations_visible())
+			_check("hiding the figures hides their names", not scene._labels._entries.any(func(entry: Dictionary) -> bool: return entry["name"] == "Orion"))
 			_shot("stars_orion_plain")
 			scene.camera.aim(stars.direction(CASSIOPEIA.x, CASSIOPEIA.y))
 			wait = 60
