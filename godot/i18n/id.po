@@ -130,49 +130,57 @@ msgstr "Periode rotasi"
 msgid "Axial tilt"
 msgstr "Kemiringan sumbu"
 
-#: core/challenge_judge.gd:104
-msgid "Eccentricity %s. Aim for %s to %s."
-msgstr "Eksentrisitas %s. Targetnya %s sampai %s."
-
-#: core/challenge_judge.gd:119
-msgid "Orbit progress: %d%%"
-msgstr "Kemajuan orbit: %d%%"
-
-#: core/challenge_judge.gd:124
-msgid "That body is still bound to the star. Launch it faster."
-msgstr "Benda itu masih terikat pada bintang. Luncurkan lebih cepat."
-
-#: core/challenge_judge.gd:131
-msgid "Escaping: %d%% of the way"
-msgstr "Melepaskan diri: %d%% perjalanan"
-
-#: core/challenge_judge.gd:146
-msgid "Tracking the new body."
-msgstr "Mengikuti benda yang baru."
-
-#: core/challenge_judge.gd:168
-msgid "Challenge complete!"
-msgstr "Tantangan selesai!"
-
-#: core/challenge_judge.gd:58
-msgid "Launch a body to begin."
-msgstr "Luncurkan sebuah benda untuk memulai."
-
-#: core/challenge_judge.gd:80
-msgid "The central body is gone. Restart the challenge."
-msgstr "Benda pusatnya sudah hilang. Ulangi tantangan ini."
-
-#: core/challenge_judge.gd:84
-msgid "That body crashed. Launch another one."
-msgstr "Benda itu menabrak. Luncurkan benda lain."
-
-#: core/challenge_judge.gd:95
+#: core/challenge_judge.gd:103 core/challenge_judge.gd:148
 msgid "That body is escaping. Launch it slower."
 msgstr "Benda itu lepas dari orbit. Luncurkan lebih lambat."
 
-#: core/challenge_judge.gd:98
+#: core/challenge_judge.gd:106
 msgid "That body is outside the planet's pull. Launch it closer and slower."
 msgstr "Benda itu berada di luar tarikan planet. Luncurkan lebih dekat dan lebih lambat."
+
+#: core/challenge_judge.gd:112
+msgid "Eccentricity %s. Aim for %s to %s."
+msgstr "Eksentrisitas %s. Targetnya %s sampai %s."
+
+#: core/challenge_judge.gd:127
+msgid "Orbit progress: %d%%"
+msgstr "Kemajuan orbit: %d%%"
+
+#: core/challenge_judge.gd:132
+msgid "That body is still bound to the star. Launch it faster."
+msgstr "Benda itu masih terikat pada bintang. Luncurkan lebih cepat."
+
+#: core/challenge_judge.gd:139
+msgid "Escaping: %d%% of the way"
+msgstr "Melepaskan diri: %d%% perjalanan"
+
+#: core/challenge_judge.gd:145 core/challenge_judge.gd:85
+msgid "The central body is gone. Restart the challenge."
+msgstr "Benda pusatnya sudah hilang. Ulangi tantangan ini."
+
+#: core/challenge_judge.gd:161
+msgid "The pass changed its energy by %d%%. Pass just behind the planet."
+msgstr "Lintasan itu mengubah energinya sebesar %d%%. Lewati tepat di belakang planet."
+
+#: core/challenge_judge.gd:163
+msgid "Closest pass so far: %s AU"
+msgstr "Jarak terdekat sejauh ini: %s AU"
+
+#: core/challenge_judge.gd:182
+msgid "Tracking the new body."
+msgstr "Mengikuti benda yang baru."
+
+#: core/challenge_judge.gd:204
+msgid "Challenge complete!"
+msgstr "Tantangan selesai!"
+
+#: core/challenge_judge.gd:63
+msgid "Launch a body to begin."
+msgstr "Luncurkan sebuah benda untuk memulai."
+
+#: core/challenge_judge.gd:89
+msgid "That body crashed. Launch another one."
+msgstr "Benda itu menabrak. Luncurkan benda lain."
 
 #: core/eclipse_search.gd:35
 msgid "Partial lunar eclipse"
@@ -1135,6 +1143,10 @@ msgid "Giant planet"
 msgstr "Planet raksasa"
 
 #: data/challenges.json
+msgid "Gravity assist"
+msgstr "Bantuan gravitasi"
+
+#: data/challenges.json
 msgid "Launch a body fast enough to escape the star and reach three times its starting distance."
 msgstr "Luncurkan benda cukup cepat untuk lepas dari bintang dan mencapai tiga kali jarak awalnya."
 
@@ -1145,6 +1157,10 @@ msgstr "Luncurkan planet pada orbit dengan eksentrisitas antara 0,5 dan 0,8, lal
 #: data/challenges.json
 msgid "Launch a planet that goes all the way around the star once."
 msgstr "Luncurkan planet yang mengelilingi bintang satu putaran penuh."
+
+#: data/challenges.json
+msgid "Launch from inside the planet's orbit, about 1.25 x circular orbit speed, so the probe crosses the orbit just behind the planet. Passing behind a planet speeds a probe up, and passing in front slows it down. Time starts paused so you can aim."
+msgstr "Luncurkan dari bagian dalam orbit planet, sekitar 1,25 x kecepatan orbit lingkaran, agar wahana memotong orbit tepat di belakang planet. Melintas di belakang planet mempercepat wahana, sedangkan melintas di depannya memperlambat. Waktu dimulai dalam keadaan dijeda agar kamu bisa membidik."
 
 #: data/challenges.json
 msgid "Launch slower or faster than a circle needs. About 0.6 x or 1.3 x circular orbit speed gives a long ellipse."
@@ -1165,6 +1181,10 @@ msgstr "Tempatkan sebuah bulan di orbit planet raksasa, lalu biarkan mengeliling
 #: data/challenges.json
 msgid "Round trip"
 msgstr "Satu putaran"
+
+#: data/challenges.json
+msgid "Send a probe past the giant planet so the pass adds at least 30% to its orbital energy around the star."
+msgstr "Kirim wahana melintasi planet raksasa sehingga lintasan itu menambah energi orbitnya mengelilingi bintang setidaknya 30%."
 
 #: data/challenges.json
 msgid "Stretched orbit"
@@ -2087,6 +2107,10 @@ msgid "Extra planet"
 msgstr "Planet tambahan"
 
 #: data/sandbox_presets.json
+msgid "Figure-eight"
+msgstr "Angka delapan"
+
+#: data/sandbox_presets.json
 msgid "Planet X"
 msgstr "Planet X"
 
@@ -2111,12 +2135,20 @@ msgid "Star B"
 msgstr "Bintang B"
 
 #: data/sandbox_presets.json
+msgid "Star C"
+msgstr "Bintang C"
+
+#: data/sandbox_presets.json
 msgid "The Sun, the planets, the major moons, Ceres, and Pluto at the current simulation date"
 msgstr "Matahari, planet-planet, bulan-bulan besar, Ceres, dan Pluto pada tanggal simulasi saat ini"
 
 #: data/sandbox_presets.json
 msgid "The solar system plus a Jupiter-mass planet on a circular orbit between Mars and Jupiter"
 msgstr "Tata surya ditambah planet bermassa Jupiter pada orbit lingkaran di antara Mars dan Jupiter"
+
+#: data/sandbox_presets.json
+msgid "Three equal stars chase each other along one figure-eight path, a rare stable solution of the three-body problem found by Moore and proved by Chenciner and Montgomery"
+msgstr "Tiga bintang bermassa sama saling mengejar di satu lintasan berbentuk angka delapan, solusi stabil yang langka dari masalah tiga benda yang ditemukan oleh Moore dan dibuktikan oleh Chenciner dan Montgomery"
 
 #: data/sandbox_presets.json
 msgid "Two Sun-like stars on a 65-day mutual orbit with an Earth-mass planet circling both"
@@ -2414,7 +2446,7 @@ msgstr "Kecepatan terbang"
 msgid "Shift+Scroll"
 msgstr "Shift+Gulir"
 
-#: modes/explore/explore_mode.gd:20 modes/explore/explore_mode.gd:415 modes/sandbox/sandbox_mode.gd:25
+#: modes/explore/explore_mode.gd:20 modes/explore/explore_mode.gd:416 modes/sandbox/sandbox_mode.gd:25
 msgid "Look around"
 msgstr "Lihat sekeliling"
 
@@ -2474,67 +2506,67 @@ msgstr "Lebih lambat / cepat"
 msgid "Now"
 msgstr "Sekarang"
 
-#: modes/explore/explore_mode.gd:411
+#: modes/explore/explore_mode.gd:412
 msgid "Welcome to Orrery"
 msgstr "Selamat datang di Orrery"
 
-#: modes/explore/explore_mode.gd:412
+#: modes/explore/explore_mode.gd:413
 msgid "Here is a quick look at the controls. It takes about a minute, and you can skip it at any time."
 msgstr "Berikut pengenalan singkat cara mengendalikan Orrery. Hanya sekitar satu menit, dan kamu bisa melewatinya kapan saja."
 
-#: modes/explore/explore_mode.gd:416
+#: modes/explore/explore_mode.gd:417
 msgid "Drag with the mouse, or swipe with two fingers, to orbit the body in view. Scroll or pinch to zoom, and move freely with W, A, S, and D."
 msgstr "Seret dengan mouse, atau usap dengan dua jari, untuk mengitari benda yang terlihat. Gulir atau cubit untuk memperbesar, dan bergerak bebas dengan W, A, S, dan D."
 
-#: modes/explore/explore_mode.gd:419
+#: modes/explore/explore_mode.gd:420
 msgid "Meet the bodies"
 msgstr "Kenali benda langit"
 
-#: modes/explore/explore_mode.gd:420
+#: modes/explore/explore_mode.gd:421
 msgid "Click a planet or moon to read about it, and double-click to fly to it. This button finds any body by name."
 msgstr "Klik planet atau bulan untuk membaca tentangnya, lalu klik ganda untuk terbang ke sana. Tombol ini mencari benda apa pun berdasarkan namanya."
 
-#: modes/explore/explore_mode.gd:424
+#: modes/explore/explore_mode.gd:425
 msgid "Control time"
 msgstr "Kendalikan waktu"
 
-#: modes/explore/explore_mode.gd:425
+#: modes/explore/explore_mode.gd:426
 msgid "Play, pause, reverse, or speed up time here. The calendar jumps to any date between 1800 and 2050."
 msgstr "Jalankan, jeda, balikkan, atau percepat waktu di sini. Kalender bisa melompat ke tanggal mana pun antara 1800 dan 2050."
 
-#: modes/explore/explore_mode.gd:429
+#: modes/explore/explore_mode.gd:430
 msgid "Take a guided tour"
 msgstr "Ikuti tur berpemandu"
 
-#: modes/explore/explore_mode.gd:430
+#: modes/explore/explore_mode.gd:431
 msgid "Tours show the highlights with narration, and each one ends with a short quiz."
 msgstr "Tur menampilkan hal-hal menarik dengan narasi, dan setiap tur diakhiri kuis singkat."
 
-#: modes/explore/explore_mode.gd:434
+#: modes/explore/explore_mode.gd:435
 msgid "Choose what you see"
 msgstr "Atur yang kamu lihat"
 
-#: modes/explore/explore_mode.gd:435
+#: modes/explore/explore_mode.gd:436
 msgid "Explorer keeps the facts simple and Scientist shows full data. Labels, orbits, rings, and the scale can be switched here."
 msgstr "Penjelajah menyajikan fakta sederhana, sedangkan Ilmuwan menampilkan data lengkap. Label, orbit, cincin, dan skala bisa diubah di sini."
 
-#: modes/explore/explore_mode.gd:439
+#: modes/explore/explore_mode.gd:440
 msgid "You are ready"
 msgstr "Kamu siap"
 
-#: modes/explore/explore_mode.gd:440
+#: modes/explore/explore_mode.gd:441
 msgid "Press F3 at any time to see every control. Enjoy the solar system."
 msgstr "Tekan F3 kapan saja untuk melihat semua kontrol. Selamat menjelajahi tata surya."
-
-#: modes/explore/explore_mode.gd:459
-msgid "No eclipse found between %d and %d in that direction"
-msgstr "Tidak ada gerhana antara %d dan %d ke arah itu"
 
 #: modes/explore/explore_mode.gd:46 ui/hud.gd:451
 msgid "View"
 msgstr "Tampilan"
 
-#: modes/explore/explore_mode.gd:484
+#: modes/explore/explore_mode.gd:460
+msgid "No eclipse found between %d and %d in that direction"
+msgstr "Tidak ada gerhana antara %d dan %d ke arah itu"
+
+#: modes/explore/explore_mode.gd:485
 msgid "%s, greatest at %s"
 msgstr "%s, puncak pada %s"
 
@@ -2706,27 +2738,27 @@ msgstr "Luncur %.2f km/dtk relatif terhadap %s (%.2f x orbit lingkaran)"
 msgid "Launch speed relative to %s: %.2f km/s (%.2f x circular orbit speed)"
 msgstr "Kecepatan luncur relatif terhadap %s: %.2f km/dtk (%.2f x kecepatan orbit lingkaran)"
 
-#: modes/shared/space_scene.gd:110
+#: modes/shared/space_scene.gd:111
 msgid "Auto-orbit: Off"
 msgstr "Orbit otomatis: mati"
 
-#: modes/shared/space_scene.gd:110
+#: modes/shared/space_scene.gd:111
 msgid "Auto-orbit: On"
 msgstr "Orbit otomatis: nyala"
 
-#: modes/shared/space_scene.gd:229
+#: modes/shared/space_scene.gd:246
 msgid "None"
 msgstr "Tidak ada"
 
-#: modes/shared/space_scene.gd:230
+#: modes/shared/space_scene.gd:247
 msgid "%d x %d segments"
 msgstr "%d x %d segmen"
 
-#: modes/shared/space_scene.gd:260
+#: modes/shared/space_scene.gd:277
 msgid "Screenshot saved: %s"
 msgstr "Tangkapan layar disimpan: %s"
 
-#: modes/shared/space_scene.gd:262
+#: modes/shared/space_scene.gd:279
 msgid "Screenshot failed"
 msgstr "Tangkapan layar gagal"
 

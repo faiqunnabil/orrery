@@ -129,48 +129,56 @@ msgstr ""
 msgid "Axial tilt"
 msgstr ""
 
-#: core/challenge_judge.gd:104
-msgid "Eccentricity %s. Aim for %s to %s."
-msgstr ""
-
-#: core/challenge_judge.gd:119
-msgid "Orbit progress: %d%%"
-msgstr ""
-
-#: core/challenge_judge.gd:124
-msgid "That body is still bound to the star. Launch it faster."
-msgstr ""
-
-#: core/challenge_judge.gd:131
-msgid "Escaping: %d%% of the way"
-msgstr ""
-
-#: core/challenge_judge.gd:146
-msgid "Tracking the new body."
-msgstr ""
-
-#: core/challenge_judge.gd:168
-msgid "Challenge complete!"
-msgstr ""
-
-#: core/challenge_judge.gd:58
-msgid "Launch a body to begin."
-msgstr ""
-
-#: core/challenge_judge.gd:80
-msgid "The central body is gone. Restart the challenge."
-msgstr ""
-
-#: core/challenge_judge.gd:84
-msgid "That body crashed. Launch another one."
-msgstr ""
-
-#: core/challenge_judge.gd:95
+#: core/challenge_judge.gd:103 core/challenge_judge.gd:148
 msgid "That body is escaping. Launch it slower."
 msgstr ""
 
-#: core/challenge_judge.gd:98
+#: core/challenge_judge.gd:106
 msgid "That body is outside the planet's pull. Launch it closer and slower."
+msgstr ""
+
+#: core/challenge_judge.gd:112
+msgid "Eccentricity %s. Aim for %s to %s."
+msgstr ""
+
+#: core/challenge_judge.gd:127
+msgid "Orbit progress: %d%%"
+msgstr ""
+
+#: core/challenge_judge.gd:132
+msgid "That body is still bound to the star. Launch it faster."
+msgstr ""
+
+#: core/challenge_judge.gd:139
+msgid "Escaping: %d%% of the way"
+msgstr ""
+
+#: core/challenge_judge.gd:145 core/challenge_judge.gd:85
+msgid "The central body is gone. Restart the challenge."
+msgstr ""
+
+#: core/challenge_judge.gd:161
+msgid "The pass changed its energy by %d%%. Pass just behind the planet."
+msgstr ""
+
+#: core/challenge_judge.gd:163
+msgid "Closest pass so far: %s AU"
+msgstr ""
+
+#: core/challenge_judge.gd:182
+msgid "Tracking the new body."
+msgstr ""
+
+#: core/challenge_judge.gd:204
+msgid "Challenge complete!"
+msgstr ""
+
+#: core/challenge_judge.gd:63
+msgid "Launch a body to begin."
+msgstr ""
+
+#: core/challenge_judge.gd:89
+msgid "That body crashed. Launch another one."
 msgstr ""
 
 #: core/eclipse_search.gd:35
@@ -1134,6 +1142,10 @@ msgid "Giant planet"
 msgstr ""
 
 #: data/challenges.json
+msgid "Gravity assist"
+msgstr ""
+
+#: data/challenges.json
 msgid "Launch a body fast enough to escape the star and reach three times its starting distance."
 msgstr ""
 
@@ -1143,6 +1155,10 @@ msgstr ""
 
 #: data/challenges.json
 msgid "Launch a planet that goes all the way around the star once."
+msgstr ""
+
+#: data/challenges.json
+msgid "Launch from inside the planet's orbit, about 1.25 x circular orbit speed, so the probe crosses the orbit just behind the planet. Passing behind a planet speeds a probe up, and passing in front slows it down. Time starts paused so you can aim."
 msgstr ""
 
 #: data/challenges.json
@@ -1163,6 +1179,10 @@ msgstr ""
 
 #: data/challenges.json
 msgid "Round trip"
+msgstr ""
+
+#: data/challenges.json
+msgid "Send a probe past the giant planet so the pass adds at least 30% to its orbital energy around the star."
 msgstr ""
 
 #: data/challenges.json
@@ -2086,6 +2106,10 @@ msgid "Extra planet"
 msgstr ""
 
 #: data/sandbox_presets.json
+msgid "Figure-eight"
+msgstr ""
+
+#: data/sandbox_presets.json
 msgid "Planet X"
 msgstr ""
 
@@ -2110,11 +2134,19 @@ msgid "Star B"
 msgstr ""
 
 #: data/sandbox_presets.json
+msgid "Star C"
+msgstr ""
+
+#: data/sandbox_presets.json
 msgid "The Sun, the planets, the major moons, Ceres, and Pluto at the current simulation date"
 msgstr ""
 
 #: data/sandbox_presets.json
 msgid "The solar system plus a Jupiter-mass planet on a circular orbit between Mars and Jupiter"
+msgstr ""
+
+#: data/sandbox_presets.json
+msgid "Three equal stars chase each other along one figure-eight path, a rare stable solution of the three-body problem found by Moore and proved by Chenciner and Montgomery"
 msgstr ""
 
 #: data/sandbox_presets.json
@@ -2413,7 +2445,7 @@ msgstr ""
 msgid "Shift+Scroll"
 msgstr ""
 
-#: modes/explore/explore_mode.gd:20 modes/explore/explore_mode.gd:415 modes/sandbox/sandbox_mode.gd:25
+#: modes/explore/explore_mode.gd:20 modes/explore/explore_mode.gd:416 modes/sandbox/sandbox_mode.gd:25
 msgid "Look around"
 msgstr ""
 
@@ -2473,67 +2505,67 @@ msgstr ""
 msgid "Now"
 msgstr ""
 
-#: modes/explore/explore_mode.gd:411
+#: modes/explore/explore_mode.gd:412
 msgid "Welcome to Orrery"
 msgstr ""
 
-#: modes/explore/explore_mode.gd:412
+#: modes/explore/explore_mode.gd:413
 msgid "Here is a quick look at the controls. It takes about a minute, and you can skip it at any time."
 msgstr ""
 
-#: modes/explore/explore_mode.gd:416
+#: modes/explore/explore_mode.gd:417
 msgid "Drag with the mouse, or swipe with two fingers, to orbit the body in view. Scroll or pinch to zoom, and move freely with W, A, S, and D."
 msgstr ""
 
-#: modes/explore/explore_mode.gd:419
+#: modes/explore/explore_mode.gd:420
 msgid "Meet the bodies"
 msgstr ""
 
-#: modes/explore/explore_mode.gd:420
+#: modes/explore/explore_mode.gd:421
 msgid "Click a planet or moon to read about it, and double-click to fly to it. This button finds any body by name."
 msgstr ""
 
-#: modes/explore/explore_mode.gd:424
+#: modes/explore/explore_mode.gd:425
 msgid "Control time"
 msgstr ""
 
-#: modes/explore/explore_mode.gd:425
+#: modes/explore/explore_mode.gd:426
 msgid "Play, pause, reverse, or speed up time here. The calendar jumps to any date between 1800 and 2050."
 msgstr ""
 
-#: modes/explore/explore_mode.gd:429
+#: modes/explore/explore_mode.gd:430
 msgid "Take a guided tour"
 msgstr ""
 
-#: modes/explore/explore_mode.gd:430
+#: modes/explore/explore_mode.gd:431
 msgid "Tours show the highlights with narration, and each one ends with a short quiz."
 msgstr ""
 
-#: modes/explore/explore_mode.gd:434
+#: modes/explore/explore_mode.gd:435
 msgid "Choose what you see"
 msgstr ""
 
-#: modes/explore/explore_mode.gd:435
+#: modes/explore/explore_mode.gd:436
 msgid "Explorer keeps the facts simple and Scientist shows full data. Labels, orbits, rings, and the scale can be switched here."
 msgstr ""
 
-#: modes/explore/explore_mode.gd:439
+#: modes/explore/explore_mode.gd:440
 msgid "You are ready"
 msgstr ""
 
-#: modes/explore/explore_mode.gd:440
+#: modes/explore/explore_mode.gd:441
 msgid "Press F3 at any time to see every control. Enjoy the solar system."
-msgstr ""
-
-#: modes/explore/explore_mode.gd:459
-msgid "No eclipse found between %d and %d in that direction"
 msgstr ""
 
 #: modes/explore/explore_mode.gd:46 ui/hud.gd:451
 msgid "View"
 msgstr ""
 
-#: modes/explore/explore_mode.gd:484
+#: modes/explore/explore_mode.gd:460
+msgid "No eclipse found between %d and %d in that direction"
+msgstr ""
+
+#: modes/explore/explore_mode.gd:485
 msgid "%s, greatest at %s"
 msgstr ""
 
@@ -2705,27 +2737,27 @@ msgstr ""
 msgid "Launch speed relative to %s: %.2f km/s (%.2f x circular orbit speed)"
 msgstr ""
 
-#: modes/shared/space_scene.gd:110
+#: modes/shared/space_scene.gd:111
 msgid "Auto-orbit: Off"
 msgstr ""
 
-#: modes/shared/space_scene.gd:110
+#: modes/shared/space_scene.gd:111
 msgid "Auto-orbit: On"
 msgstr ""
 
-#: modes/shared/space_scene.gd:229
+#: modes/shared/space_scene.gd:246
 msgid "None"
 msgstr ""
 
-#: modes/shared/space_scene.gd:230
+#: modes/shared/space_scene.gd:247
 msgid "%d x %d segments"
 msgstr ""
 
-#: modes/shared/space_scene.gd:260
+#: modes/shared/space_scene.gd:277
 msgid "Screenshot saved: %s"
 msgstr ""
 
-#: modes/shared/space_scene.gd:262
+#: modes/shared/space_scene.gd:279
 msgid "Screenshot failed"
 msgstr ""
 
