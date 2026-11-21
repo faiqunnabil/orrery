@@ -13,6 +13,7 @@ const MAIN_MENU_SCENE := "res://modes/menu/main_menu.tscn"
 const PICK_TOLERANCE_PIXELS := 16.0
 const RING_LABEL_MIN_SPACING := 56.0
 const DIAGNOSTICS_REFRESH_SECONDS := 0.25
+const CONSTELLATION_LABEL_COLOR := Color(0.55, 0.7, 1.0, 0.75)
 
 var clock := SimulationClock.new()
 var camera := CameraRig.new()
@@ -174,6 +175,22 @@ func pick_tolerance_angle() -> float:
 
 func pixels_per_radian() -> float:
 	return get_viewport().get_visible_rect().size.y / deg_to_rad(camera.fov)
+
+
+func append_constellation_labels(entries: Array) -> void:
+	if not star_field.constellations_visible():
+		return
+	var viewport_size := get_viewport().get_visible_rect().size
+	for label: Dictionary in star_field.labels:
+		var point: Vector3 = label["direction"] * camera.far * StarField.SPHERE_FRACTION
+		if camera.is_position_behind(point):
+			continue
+		var screen := camera.unproject_position(point)
+		if screen.x < 0.0 or screen.y < 0.0 or screen.x > viewport_size.x or screen.y > viewport_size.y:
+			continue
+		entries.append(
+			{"name": label["name"], "position": screen, "radius": 0.0, "labeled": true, "selected": false, "dim": true, "color": CONSTELLATION_LABEL_COLOR}
+		)
 
 
 func append_ring_labels(entries: Array, rings: Array) -> void:

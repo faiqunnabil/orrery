@@ -362,6 +362,7 @@ func _set_scale_mode(mode: ScaleMapper.Mode) -> void:
 
 func _update_labels() -> void:
 	var entries: Array = []
+	append_constellation_labels(entries)
 	if Preferences.labels_visible:
 		append_ring_labels(entries, renderer.ring_label_entries())
 	if not Preferences.labels_visible and _selected_id == "":
