@@ -142,8 +142,13 @@ These features were not in the original requirements and were added during devel
 | Date jump | `J` or the calendar button opens a field for any date and time from 1800 to 2050 in the computer's time zone, plus three historic moments: the Apollo 11 landing, the 2020 Jupiter–Saturn conjunction, and the 2027 total solar eclipse |
 | First-run introduction | Seven short tips highlight the camera, the bodies and search, time and dates, tours, and the view options the first time Explore opens. They can be skipped, stepped through with the arrow keys, and shown again from Settings → Controls |
 | Keyboard navigation | `F6` moves keyboard focus into the interface. Tab and Shift + Tab move between controls, Enter or Space presses them, and Esc returns focus to the scene. Clicking with the mouse never leaves a focus ring behind |
+| Eclipse finder | The date panel jumps to the previous or next solar or lunar eclipse. It steps between new and full moons on the same orbit models as the renderer and classifies each eclipse from the umbra and penumbra cones. Times match NASA's catalog within 2 minutes from 2024 to 2028. The view switches to true scale and frames the shadow |
+| Real star map | Naked-eye stars from the HYG catalog with magnitude-based size and B−V colors, optional constellation figures from Stellarium (C), and the Milky Way panorama aligned to galactic coordinates |
+| Gravity well | In the Sandbox, a grid bends by the gravitational potential of the bodies around the focused one (V) |
+| Halley's Comet | Added from JPL elements with ion and dust tails that always point away from the Sun, a side-on framing, and its 1986 perihelion in the date panel |
+| Sandbox challenges | Four missions with automatic checks: a full orbit, an orbit with eccentricity 0.5 to 0.8, an escape, and a moon around a giant planet. Crashes and escapes are explained, and completed challenges are remembered |
 | Bahasa Indonesia | Settings → Display switches the interface, body information, tours, quizzes, presets, and credits between English and Bahasa Indonesia, and numbers use the matching decimal and thousands separators. The first launch follows the system language. Captions follow the chosen language and the English-only voice-over is turned off for other languages. `tools/i18n` keeps the translation catalogs in step with the code |
-| Automated tests | 200 checks in `tests/` drive the real application: input, camera controls, menus, the sandbox panel, quizzes, key bindings, accessibility, sandbox accuracy and speed, eclipses, level of detail, texture tiers, the time zone display, search, date jumps, the introduction, keyboard navigation, and the Indonesian interface. `tests/run_tests.sh` runs them and restores the user's settings |
+| Automated tests | 256 checks in `tests/` drive the real application: input, camera controls, menus, the sandbox panel, quizzes, key bindings, accessibility, sandbox accuracy and speed, eclipses and the eclipse finder, the star field, the gravity well, the comet, the challenges, level of detail, texture tiers, the time zone display, search, date jumps, the introduction, keyboard navigation, and the Indonesian interface. `tests/run_tests.sh` runs them and restores the user's settings |
 | Continuous integration and releases | The CI workflow checks the translation catalogs, then runs the import and every test on each push to `dev` and each pull request into `main`, which only accepts pull requests that pass it. Pushing a version tag runs the Release workflow, which exports both builds and publishes a GitHub release. `tools/release.sh` sets the version and creates the tag |
 
 ## 6. Non-Functional Requirements
@@ -265,7 +270,7 @@ orrery/
 │   ├── ui/          Theme, HUD, panels, menus, search, date jump, introduction, credits
 │   ├── i18n/        Message template and the Bahasa Indonesia catalog
 │   └── assets/      Runtime textures, music, effects, and narration bundled into the build
-├── tools/           Offline generators for narration, audio, textures, and branding, and the translation extractor
+├── tools/           Offline generators for narration, audio, textures, branding, and the star catalog, and the translation extractor
 ├── build.sh         Release export helper
 └── run.sh           Linux launcher
 ```
@@ -285,9 +290,12 @@ orrery/
 | Eclipse shadows from an extended light source | Moons on planets and planets on moons, such as Io's shadow on Jupiter and the red Moon of a lunar eclipse. The Sun is treated as a disk, so the covered fraction of the disk gives a physically sized umbra and penumbra. Up to four occluders per body are chosen on the CPU each frame | Done |
 | Alpha blending and transparency sorting | Rings, atmospheres, clouds, trails | Done |
 | Post-processing (bloom/glow, tone mapping) | Sun glow, overall look | Done |
-| Skybox / environment mapping | Starfield and Milky Way panorama | Done |
+| Skybox / environment mapping | A custom sky shader samples the Milky Way panorama in galactic coordinates, rotated from the render frame through the IAU equatorial-to-galactic matrix, so the panorama lines up with the real stars | Done |
+| Point sprites | 8,920 naked-eye stars from the HYG catalog drawn as one point mesh. Size and brightness follow the flux 10^(−0.4·m), and color follows the B−V index through the Ballesteros temperature and a blackbody approximation. Constellation figures are a line mesh on the same sphere, placed between the depth shell and the far plane | Done |
+| Vertex-shader displacement | The Sandbox gravity well: a dense grid is lowered by the softened Newtonian potential of up to 24 bodies, compressed by u/(1+u) and normalized to the camera distance, with anti-aliased grid lines from screen-space derivatives | Done |
+| GPU particle systems | Ion and dust tails of Halley's Comet. Particles live in the emitter's local space, which is turned away from the Sun each frame, so the tails stay correct under the floating origin. The dust tail lags along the orbit, and tail length follows the heliocentric distance | Done |
 | GPU instancing with vertex-shader animation | Asteroid belt, with Kepler's equation solved per instance on the GPU | Done |
-| Dynamic mesh generation | Orbit trails, sandbox trails, distance rings | Done |
+| Dynamic mesh generation | Orbit trails, sandbox trails, distance rings. Highly eccentric orbits are sampled evenly in eccentric anomaly so the perihelion passage stays smooth | Done |
 | Camera systems and coordinate transforms | Floating origin, depth shell, focus-and-follow camera, smooth fly-to | Done |
 | Level of detail | Screen-space error: each body uses the coarsest sphere whose silhouette error, about r·π²/(2n²) pixels for n segments, stays under half a pixel. Meshes are shared between bodies | Done |
 | Quality scaling | Preset-driven shader, geometry, and instance counts | Done |

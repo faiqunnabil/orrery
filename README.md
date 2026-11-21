@@ -34,7 +34,9 @@ It is aimed at learners from elementary school to university. Every panel switch
 
 ### Explore
 
-- **Bodies.** The Sun, 8 planets, 6 moons, 2 dwarf planets, and an instanced asteroid belt of up to 10,000 rocks.
+- **Bodies.** The Sun, 8 planets, 6 moons, 2 dwarf planets, Halley's Comet, and an instanced asteroid belt of up to 10,000 rocks.
+- **Comet tails.** Near the Sun, Halley's Comet grows a blue ion tail that points straight away from the Sun and a broader dust tail that curves back along its orbit, both drawn with GPU particles.
+- **Real night sky.** 8,920 naked-eye stars from the HYG catalog, sized by brightness and colored by temperature, with optional constellation figures. The Milky Way panorama is aligned to the real sky.
 - **Accurate orbits.**
   - Planets use JPL Keplerian elements.
   - The Moon uses the main terms of Meeus' lunar theory, so eclipses happen within 2 minutes of their real times.
@@ -42,7 +44,8 @@ It is aimed at learners from elementary school to university. Every panel switch
   - Ceres and Pluto use JPL Small-Body Database orbits.
   - Positions of the moons and dwarf planets agree with JPL Horizons to within 0.4°.
 - **Time control.** Play, pause, reverse, change the speed, or jump to the current date. Dates are shown in the computer's time zone, such as UTC+7.
-- **Date jump.** Go to any date and time from 1800 to 2050, or to a historic moment such as the Apollo 11 landing or the 2027 total solar eclipse.
+- **Date jump.** Go to any date and time from 1800 to 2050, or to a historic moment such as the Apollo 11 landing, Halley's Comet in 1986, or the 2027 total solar eclipse.
+- **Eclipse finder.** Jump to the previous or next solar or lunar eclipse. The view switches to true scale and frames the shadow at the moment of greatest eclipse, within 2 minutes of NASA's times.
 - **Body search.** Type part of a name to find any body and fly to it.
 - **Two scales.** A compressed view keeps every world visible. True scale shows real sizes and distances.
 - **Eclipses.** Moons cast shadows on their planets and planets on their moons, such as Io's shadow crossing Jupiter or the red Moon of a lunar eclipse, with a soft penumbra from the size of the Sun's disk.
@@ -59,6 +62,8 @@ It is aimed at learners from elementary school to university. Every panel switch
   - Edit a body's mass, radius, and color, freeze it, or remove it.
 - **Collisions.** Bodies that touch merge with conserved mass and momentum. A swept contact test stops fast bodies from passing through each other.
 - **Presets.** Solar system, binary star, extra planet, and rogue star flyby. Snapshots save the current state and restore it later.
+- **Gravity well.** A grid under the bodies bends by their gravitational potential, so heavier bodies dig deeper wells.
+- **Challenges.** Four missions with automatic checks: put a planet in orbit, stretch the orbit into an ellipse, escape the star, and give a giant planet a moon.
 - **Conservation readouts.** At the Scientist level, total energy and angular momentum are shown with their drift, to illustrate the numerical error of each integrator.
 
 ### Application
@@ -142,6 +147,7 @@ These are the default bindings. Every keyboard action can be rebound in **Settin
 | Next body / free flight | Tab / F |
 | Pause, reverse, slower / faster | Space or P, R, `[` / `]` |
 | Labels, orbit lines, distance rings | L, O, G |
+| Constellation figures, gravity well | C, V (Sandbox) |
 | Explorer / Scientist level | M |
 | Compressed / true scale, jump to now | T, N (Explore) |
 | Find a body, go to a date | `/`, J (Explore) |
@@ -170,7 +176,7 @@ orrery/
 │   ├── i18n/               Message template and the Bahasa Indonesia catalog
 │   └── assets/             Textures, music, effects, narration
 ├── tests/                  Automated UI, input, and rendering tests with a runner script
-├── tools/                  Offline generators for narration, audio, textures, and branding, and the translation extractor
+├── tools/                  Offline generators for narration, audio, textures, branding, and the star catalog, and the translation extractor
 ├── build.sh                Release export helper (Linux / Windows)
 ├── run.sh                  Linux launcher script
 └── LICENSE                 MIT license for the project source
@@ -184,13 +190,13 @@ orrery/
 | Orbits | Analytic Kepler propagation in Explore. Satellite elements are rotated from their Laplace or equator plane into the ecliptic |
 | Orientation | IAU pole and prime-meridian models for every body |
 | N-body | Velocity Verlet and RK4 with Plummer softening, an adaptive dynamical time step, multiple time stepping (r-RESPA) for moon systems, swept collision detection, and Hill-sphere parent tracking |
-| Shaders | Day and night surfaces with ocean specular, normal maps from LOLA, MOLA, and ETOPO5 elevation, relief bump mapping, Saturn ring shadow, and eclipse shadows with umbra and penumbra; Sun surface and halo; atmosphere scattering; clouds; rings with planet shadow; and GPU-solved Keplerian asteroids |
-| Graphics techniques | GPU instancing, dynamic trail meshes, HDR glow, a panoramic sky, screen-space-error level of detail for spheres, mipmapped VRAM-compressed textures at 1K, 2K, or 4K by preset, and quality tiers |
+| Shaders | Day and night surfaces with ocean specular, normal maps from LOLA, MOLA, and ETOPO5 elevation, relief bump mapping, Saturn ring shadow, and eclipse shadows with umbra and penumbra; Sun surface and halo; atmosphere scattering; clouds; rings with planet shadow; GPU-solved Keplerian asteroids; a galactic sky; and a gravity well displaced in the vertex shader |
+| Graphics techniques | GPU instancing, GPU particle comet tails, point-sprite stars, dynamic trail meshes, HDR glow, a panoramic sky, screen-space-error level of detail for spheres, mipmapped VRAM-compressed textures at 1K, 2K, or 4K by preset, and quality tiers |
 | Audio | Separate Music, Effects, and Narration buses. Music ducks while narration plays |
 
 ## Tests
 
-The `tests/` folder holds 200 automated checks for input, camera controls, menus, the sandbox panel, quizzes, key bindings, accessibility, sandbox accuracy and speed, eclipses, level of detail, texture tiers, the time zone display, search, date jumps, the introduction, keyboard navigation, and the Indonesian interface. They drive the real application, so they need a display and open a window. From the repository root:
+The `tests/` folder holds 256 automated checks for input, camera controls, menus, the sandbox panel, quizzes, key bindings, accessibility, sandbox accuracy and speed, eclipses and the eclipse finder, the star field, the gravity well, the comet, the challenges, level of detail, texture tiers, the time zone display, search, date jumps, the introduction, keyboard navigation, and the Indonesian interface. They drive the real application, so they need a display and open a window. From the repository root:
 
 ```
 GODOT=/path/to/godot tests/run_tests.sh              # every test
@@ -230,6 +236,7 @@ All generated assets are committed, so these tools are only needed to regenerate
 | [`tools/audio`](tools/audio) | Procedural background music and sound effects with fixed seeds |
 | [`tools/textures`](tools/textures) | Moon and dwarf planet textures from USGS global mosaics, and the 4K High preset textures |
 | [`tools/branding`](tools/branding) | Application icon and boot splash from the Orrery emblem |
+| [`tools/stars`](tools/stars) | Naked-eye star catalog and constellation figures from HYG and Stellarium |
 
 ## Credits
 
@@ -238,6 +245,7 @@ All generated assets are committed, so these tools are only needed to regenerate
   - Moons and dwarf planets: USGS Astrogeology and NASA mission mosaics, public domain.
   - Elevation for normal maps: NASA LRO LOLA, NASA MGS MOLA, and NOAA ETOPO5, public domain.
 - **Orbital and physical data.** NASA JPL Solar System Dynamics, the IAU WGCCRE, and Meeus.
+- **Stars and constellations.** The [HYG Database](https://github.com/astronexus/HYG-Database) v4.1 by David Nash and the [Stellarium](https://stellarium.org) modern sky culture, both CC BY-SA 4.0. The derived `godot/data/stars.json` is shared under the same license.
 - **Narration.** Synthesized offline with Kokoro-82M (Apache-2.0) through kokoro-onnx (MIT). No speech is synthesized at runtime.
 - **Music and sound effects.** Generated procedurally with `tools/audio`.
 - **Typeface and icons.** [Inter](https://github.com/rsms/inter), SIL Open Font License 1.1, and [Lucide](https://lucide.dev) icons, ISC.
@@ -247,4 +255,4 @@ Every asset is recorded with its source, author, and license in [`assets/LICENSE
 
 ## License
 
-The source code and the generated music, sound effects, and quiz and tour content are released under the [MIT License](LICENSE). Third-party textures, data, and narration keep their own licenses, listed in [`assets/LICENSES.md`](assets/LICENSES.md). In particular, the Solar System Scope textures (CC BY 4.0) require attribution when redistributed.
+The source code and the generated music, sound effects, and quiz and tour content are released under the [MIT License](LICENSE). Third-party textures, data, and narration keep their own licenses, listed in [`assets/LICENSES.md`](assets/LICENSES.md). In particular, the Solar System Scope textures (CC BY 4.0) require attribution when redistributed, and `godot/data/stars.json`, derived from the HYG Database and Stellarium, is shared under CC BY-SA 4.0.
