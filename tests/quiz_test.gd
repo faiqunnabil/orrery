@@ -75,7 +75,7 @@ func _run_step() -> void:
 			_click_button("Guided tours")
 		1:
 			_shot("tour_menu")
-			_check("tour menu lists four quiz buttons", scene._tour_menu.find_children("*", "Button", true, false).filter(func(b: Button) -> bool: return b.text == "Quiz").size() == 4)
+			_check("tour menu lists five quiz buttons", scene._tour_menu.find_children("*", "Button", true, false).filter(func(b: Button) -> bool: return b.text == "Quiz").size() == 5)
 			_click_button("Quiz", 0)
 		2:
 			_check("quiz opens from the tour menu", quiz.is_open() and quiz._stage == 1)
