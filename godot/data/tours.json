@@ -191,5 +191,58 @@
 				"text_scientist": "Pluto orbits in a 3:2 resonance with Neptune. Sputnik Planitia is a convecting nitrogen-ice glacier about 1,000 km across."
 			}
 		]
+	},
+	{
+		"id": "eclipses_comets",
+		"title": "Eclipses and Comets",
+		"summary": "Watch a red Moon and the Moon's shadow on Earth, then follow Halley's Comet around the Sun.",
+		"steps": [
+			{
+				"target": "moon",
+				"title": "A red Moon",
+				"date": "2026-03-03T11:33:00",
+				"speed_step": 1,
+				"eclipse": "lunar",
+				"text": "During a lunar eclipse the Moon slides into Earth's shadow. Sunlight bent through Earth's air still reaches it and turns it a deep red.",
+				"text_scientist": "The total lunar eclipse of 3 March 2026. At the Moon's distance Earth's umbra is about 2.7 Moon diameters wide, and sunlight refracted and reddened by Earth's atmosphere gives the copper color."
+			},
+			{
+				"target": "earth",
+				"title": "The Moon's shadow on Earth",
+				"date": "2026-08-12T17:46:00",
+				"speed_step": 1,
+				"eclipse": "solar",
+				"text": "In a solar eclipse the Moon passes between the Sun and Earth. Its shadow races across our planet, here near Greenland, Iceland, and Spain.",
+				"text_scientist": "The total solar eclipse of 12 August 2026. The umbra is at most about 290 km wide. The Sun is about 400 times wider than the Moon and about 400 times farther away, so both look almost the same size."
+			},
+			{
+				"target": "moon",
+				"title": "Why not every month?",
+				"date": "2026-02-01T22:09:00",
+				"speed_step": 1,
+				"scale": "true",
+				"distance_radii": 5.0,
+				"text": "The Moon's orbit is tilted by about 5 degrees, so most full moons pass above or below Earth's shadow. This full Moon misses it completely.",
+				"text_scientist": "An eclipse needs a new or full moon close to a node of the lunar orbit. Eclipse seasons come about every 173 days, and the nodes circle the ecliptic every 18.6 years."
+			},
+			{
+				"target": "halley",
+				"title": "Halley's Comet",
+				"date": "1986-02-09T00:00:00",
+				"speed_step": 3,
+				"scale": "compressed",
+				"text": "Halley's Comet spends most of its 76-year orbit in the cold far beyond Neptune. Near the Sun its ice turns to gas and two tails stream away.",
+				"text_scientist": "Perihelion at 0.575 AU in February 1986 and aphelion near 35 AU. The blue ion tail follows the solar wind straight away from the Sun, and the dust tail curves back along the orbit."
+			},
+			{
+				"target": "halley",
+				"title": "Tails point away from the Sun",
+				"date": "1986-04-11T00:00:00",
+				"speed_step": 3,
+				"scale": "compressed",
+				"text": "A comet's tail does not trail behind it. Heading away from the Sun, Halley's tails point ahead of it. On this day it passed closest to Earth.",
+				"text_scientist": "On 11 April 1986 the comet passed 0.42 AU from Earth on its way out. Sunlight and the solar wind push gas and dust outward, so the tails point away from the Sun whichever way the comet moves."
+			}
+		]
 	}
 ]

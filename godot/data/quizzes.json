@@ -274,5 +274,71 @@
 				"explanation": "Pluto orbits twice for every three orbits of Neptune, which keeps the two from ever meeting."
 			}
 		]
+	},
+	"eclipses_comets": {
+		"explorer": [
+			{
+				"question": "What turns the Moon red during a lunar eclipse?",
+				"options": ["Red rocks on the Moon", "Sunlight bent through Earth's air", "Light from Mars", "The Moon gets hot"],
+				"answer": 1,
+				"explanation": "Earth's atmosphere bends and reddens sunlight into the shadow, so the eclipsed Moon glows red."
+			},
+			{
+				"question": "What happens during a solar eclipse?",
+				"options": ["Earth blocks the Sun from the Moon", "The Sun switches off", "The Moon passes between the Sun and Earth", "A cloud covers the Sun"],
+				"answer": 2,
+				"explanation": "The Moon lines up between the Sun and Earth, and its shadow falls on a small part of Earth."
+			},
+			{
+				"question": "Why is there no eclipse at every full moon?",
+				"options": ["The Moon's orbit is tilted", "The Moon is too small", "Earth's shadow is too short", "Full moons are too bright"],
+				"answer": 0,
+				"explanation": "The Moon's orbit is tilted by about 5 degrees, so the Moon usually passes above or below Earth's shadow."
+			},
+			{
+				"question": "Which way does a comet's tail point?",
+				"options": ["Behind the comet", "Toward the Sun", "Toward Earth", "Away from the Sun"],
+				"answer": 3,
+				"explanation": "Sunlight and the solar wind push the gas and dust away from the Sun, whichever way the comet moves."
+			},
+			{
+				"question": "About how often does Halley's Comet come back?",
+				"options": ["Every year", "Every 10 years", "Every 76 years", "Every 1,000 years"],
+				"answer": 2,
+				"explanation": "Halley's Comet returns about every 75 to 76 years. It last passed the Sun in 1986."
+			}
+		],
+		"scientist": [
+			{
+				"question": "At the Moon's distance, about how wide is Earth's umbra?",
+				"options": ["Half a Moon diameter", "About 2.7 Moon diameters", "About 10 Moon diameters", "As wide as Earth"],
+				"answer": 1,
+				"explanation": "The umbra narrows with distance, and at the Moon's orbit it is about 2.7 Moon diameters across."
+			},
+			{
+				"question": "Why do the Sun and the Moon look almost the same size?",
+				"options": ["They are the same size", "The Moon is closer to the Sun", "The Sun is about 400 times wider and 400 times farther", "Earth's air magnifies the Moon"],
+				"answer": 2,
+				"explanation": "The two ratios nearly cancel, which is why total and annular solar eclipses are both possible."
+			},
+			{
+				"question": "When can an eclipse happen?",
+				"options": ["At any new or full moon", "When a new or full moon falls near a node", "Only at the solstices", "Only when the Moon is at perigee"],
+				"answer": 1,
+				"explanation": "The Moon must be close to where its tilted orbit crosses the ecliptic, which happens in eclipse seasons about every 173 days."
+			},
+			{
+				"question": "What is the perihelion distance of Halley's Comet?",
+				"options": ["0.058 AU", "0.575 AU", "5.75 AU", "35 AU"],
+				"answer": 1,
+				"explanation": "Halley comes within 0.575 AU of the Sun, inside the orbit of Venus. 35 AU is its aphelion."
+			},
+			{
+				"question": "Which comet tail points straight away from the Sun?",
+				"options": ["The dust tail", "The ion tail", "Both tails equally", "Neither tail"],
+				"answer": 1,
+				"explanation": "Charged gas is carried by the solar wind straight outward, while dust grains drift on their own orbits and form a curved tail."
+			}
+		]
 	}
 }
