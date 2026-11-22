@@ -259,7 +259,8 @@ func _build_controls_page(page: VBoxContainer) -> void:
 	page.add_child(Hud.make_wrapped_label(TROUBLESHOOTING_NOTE, NOTE_WIDTH, "DimLabel"))
 	var support_row := HBoxContainer.new()
 	page.add_child(support_row)
-	var logs := Hud.make_button("Open log folder", open_log_folder, ProjectSettings.globalize_path(LOG_FOLDER), "folder_open")
+	var log_path := ProjectSettings.globalize_path(LOG_FOLDER)
+	var logs := Hud.make_button("Open log folder", open_log_folder, log_path, "folder_open")
 	_reset_all_button = Hud.make_button("Reset all settings", _press_reset_all, RESET_ALL_TOOLTIP, "rotate_ccw")
 	_reset_all_button.theme_type_variation = "DangerButton"
 	for button in [logs, _reset_all_button]:

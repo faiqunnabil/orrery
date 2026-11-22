@@ -3793,15 +3793,19 @@ msgstr ""
 msgid "Troubleshooting"
 msgstr ""
 
-#: ui/settings_panel.gd:259 ui/settings_panel.gd:314
-msgid "Reset all settings"
+#: ui/settings_panel.gd:259
+msgid "Open log folder"
 msgstr ""
 
 #: ui/settings_panel.gd:26
 msgid "The voice-over is available in English only. Captions follow the chosen language."
 msgstr ""
 
-#: ui/settings_panel.gd:265
+#: ui/settings_panel.gd:260 ui/settings_panel.gd:315
+msgid "Reset all settings"
+msgstr ""
+
+#: ui/settings_panel.gd:266
 msgid "Keyboard"
 msgstr ""
 
@@ -3809,11 +3813,11 @@ msgstr ""
 msgid "Changing the language reloads the current screen."
 msgstr ""
 
-#: ui/settings_panel.gd:271
+#: ui/settings_panel.gd:272
 msgid "Reset to defaults"
 msgstr ""
 
-#: ui/settings_panel.gd:271
+#: ui/settings_panel.gd:272
 msgid "Restore the default key bindings"
 msgstr ""
 
@@ -3821,7 +3825,7 @@ msgstr ""
 msgid "The log helps with bug reports. Resetting restores every display, graphics, audio, language, and key setting, keeps completed challenges, and reloads the screen."
 msgstr ""
 
-#: ui/settings_panel.gd:280
+#: ui/settings_panel.gd:281
 msgid "Click, then press a new key"
 msgstr ""
 
@@ -3829,11 +3833,11 @@ msgstr ""
 msgid "Restore every setting to its default. Press twice to confirm"
 msgstr ""
 
-#: ui/settings_panel.gd:306
+#: ui/settings_panel.gd:307
 msgid "Press again to reset"
 msgstr ""
 
-#: ui/settings_panel.gd:319
+#: ui/settings_panel.gd:320
 msgid "Will show"
 msgstr ""
 

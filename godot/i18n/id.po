@@ -3794,15 +3794,19 @@ msgstr "Tampilkan lagi"
 msgid "Troubleshooting"
 msgstr "Pemecahan masalah"
 
-#: ui/settings_panel.gd:259 ui/settings_panel.gd:314
-msgid "Reset all settings"
-msgstr "Reset semua pengaturan"
+#: ui/settings_panel.gd:259
+msgid "Open log folder"
+msgstr "Buka folder log"
 
 #: ui/settings_panel.gd:26
 msgid "The voice-over is available in English only. Captions follow the chosen language."
 msgstr "Suara narasi hanya tersedia dalam bahasa Inggris. Teks narasi mengikuti bahasa yang dipilih."
 
-#: ui/settings_panel.gd:265
+#: ui/settings_panel.gd:260 ui/settings_panel.gd:315
+msgid "Reset all settings"
+msgstr "Reset semua pengaturan"
+
+#: ui/settings_panel.gd:266
 msgid "Keyboard"
 msgstr "Keyboard"
 
@@ -3810,11 +3814,11 @@ msgstr "Keyboard"
 msgid "Changing the language reloads the current screen."
 msgstr "Mengganti bahasa akan memuat ulang layar saat ini."
 
-#: ui/settings_panel.gd:271
+#: ui/settings_panel.gd:272
 msgid "Reset to defaults"
 msgstr "Kembalikan bawaan"
 
-#: ui/settings_panel.gd:271
+#: ui/settings_panel.gd:272
 msgid "Restore the default key bindings"
 msgstr "Kembalikan tombol bawaan"
 
@@ -3822,7 +3826,7 @@ msgstr "Kembalikan tombol bawaan"
 msgid "The log helps with bug reports. Resetting restores every display, graphics, audio, language, and key setting, keeps completed challenges, and reloads the screen."
 msgstr "Log membantu saat melaporkan bug. Reset mengembalikan semua pengaturan layar, grafis, audio, bahasa, dan tombol ke bawaan, tetap menyimpan tantangan yang sudah selesai, lalu memuat ulang layar."
 
-#: ui/settings_panel.gd:280
+#: ui/settings_panel.gd:281
 msgid "Click, then press a new key"
 msgstr "Klik, lalu tekan tombol baru"
 
@@ -3830,11 +3834,11 @@ msgstr "Klik, lalu tekan tombol baru"
 msgid "Restore every setting to its default. Press twice to confirm"
 msgstr "Kembalikan semua pengaturan ke bawaan. Tekan dua kali untuk mengonfirmasi"
 
-#: ui/settings_panel.gd:306
+#: ui/settings_panel.gd:307
 msgid "Press again to reset"
 msgstr "Tekan lagi untuk reset"
 
-#: ui/settings_panel.gd:319
+#: ui/settings_panel.gd:320
 msgid "Will show"
 msgstr "Akan tampil"
 
