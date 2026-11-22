@@ -61,7 +61,7 @@ It is aimed at learners from elementary school to university. Every panel switch
   - Place a body and drag to launch it.
   - Edit a body's mass, radius, and color, freeze it, or remove it.
 - **Collisions.** Bodies that touch merge with conserved mass and momentum. A swept contact test stops fast bodies from passing through each other.
-- **Presets.** Solar system, binary star, extra planet, rogue star flyby, and the figure-eight orbit of three equal stars. Stars without a parent draw their trails around the system's barycenter. Snapshots save the current state and restore it later.
+- **Presets.** Solar system with Halley's Comet and its tails, binary star, extra planet, rogue star flyby, and the figure-eight orbit of three equal stars. Stars without a parent draw their trails around the system's barycenter. Snapshots save the current state and restore it later.
 - **Gravity well.** A grid under the bodies bends by their gravitational potential, so heavier bodies dig deeper wells.
 - **Challenges.** Five missions with automatic checks: put a planet in orbit, stretch the orbit into an ellipse, escape the star, give a giant planet a moon, and gain energy from a gravity assist.
 - **Conservation readouts.** At the Scientist level, total energy and angular momentum are shown with their drift, to illustrate the numerical error of each integrator.
@@ -78,6 +78,7 @@ It is aimed at learners from elementary school to university. Every panel switch
 - **Mouse and touchpad.** Drag or swipe with two fingers to orbit the focused body, and pinch or use the mouse wheel to zoom. In free flight, a two-finger swipe moves the camera. Touchpad scrolling is detected automatically, and the scroll behavior can be set to Auto, Orbit, Zoom, or Move.
 - **Presentation tools.** Fullscreen toggle, clean screenshots without the interface (saved to `screenshots/` in the user data folder), a performance overlay with frame time and draw calls, and a cinematic auto-orbit that also starts after 20 seconds without input while a body is focused.
 - **Controls.** Every action can be rebound. Conflicting bindings are refused, and the grouped controls help (F3) follows the active keys.
+- **Troubleshooting.** Settings → Controls opens the log folder for bug reports and resets every setting after a confirming second press, keeping completed challenges.
 - **Accessibility.**
   - Interface size of 100%, 115%, or 130%, and a view panel that collapses to make room for body information.
   - Text and controls meet WCAG AA contrast, and keyboard focus is always visible.
@@ -210,7 +211,7 @@ orrery/
 
 ## Tests
 
-The `tests/` folder holds 277 automated checks for input, camera controls, menus, the sandbox panel, quizzes, key bindings, accessibility, sandbox accuracy and speed, eclipses and the eclipse finder, the star field, the gravity well, the comet, the challenges, level of detail, texture tiers, the time zone display, search, date jumps, the introduction, keyboard navigation, and the Indonesian interface. They drive the real application, so they need a display and open a window. From the repository root:
+The `tests/` folder holds 301 automated checks for input, camera controls, menus, settings reset, keyboard navigation of the newer panels, the sandbox panel, quizzes, key bindings, accessibility, sandbox accuracy and speed, eclipses and the eclipse finder, the star field, the gravity well, the comet, the challenges, level of detail, texture tiers, the time zone display, search, date jumps, the introduction, keyboard navigation, and the Indonesian interface. They drive the real application, so they need a display and open a window. From the repository root:
 
 ```
 GODOT=/path/to/godot tests/run_tests.sh              # every test
@@ -225,8 +226,8 @@ Two GitHub Actions workflows keep `main` working and publish builds:
 
 | Workflow | Trigger | What it does |
 |---|---|---|
-| [CI](.github/workflows/ci.yml) | Every push to `dev` and every pull request into `main` | Checks that every message is translated and the catalogs are current, then imports the project and runs the whole test suite on Ubuntu with a virtual display and software OpenGL |
-| [Release](.github/workflows/release.yml) | Pushing a tag such as `v1.1.0`, or a manual run from the Actions tab | Checks the tag against the project version, exports the Windows and Linux builds, packages them, and publishes a GitHub release. A manual run only keeps the packages as a downloadable artifact for 7 days |
+| [CI](.github/workflows/ci.yml) | Every push to `dev` and every pull request into `main` | Checks that every message is translated and the catalogs are current, then imports the project and runs the whole test suite on Ubuntu with a virtual display and software OpenGL. Screenshots of failed checks are kept as a run artifact |
+| [Release](.github/workflows/release.yml) | Pushing a tag such as `v1.1.0`, or a manual run from the Actions tab | Checks the tag against the project version, exports the Windows and Linux builds, opens the menu, Explore, and Sandbox in the Linux build as a smoke test, packages them, and publishes a GitHub release. A manual run only keeps the packages as a downloadable artifact for 7 days |
 
 `main` only accepts pull requests whose CI run has passed. To release a new version:
 
@@ -250,7 +251,7 @@ All generated assets are committed, so these tools are only needed to regenerate
 | [`tools/audio`](tools/audio) | Procedural background music and sound effects with fixed seeds |
 | [`tools/textures`](tools/textures) | Moon and dwarf planet textures from USGS global mosaics, and the 4K High preset textures |
 | [`tools/branding`](tools/branding) | Application icon and boot splash from the Orrery emblem |
-| [`tools/media`](tools/media) | The README screenshots of the newer features, captured from the running application |
+| [`tools/media`](tools/media) | Every README screenshot, captured from the running application |
 | [`tools/stars`](tools/stars) | Naked-eye star catalog and constellation figures from HYG and Stellarium |
 
 ## Credits
