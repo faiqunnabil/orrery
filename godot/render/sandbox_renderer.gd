@@ -204,7 +204,7 @@ func update(camera_position: PackedFloat64Array) -> void:
 			halo.transform = Transform3D(Basis.from_scale(Vector3.ONE * placed_radius * HALO_RADIUS_FACTOR), placed_position)
 		_update_trail(index, camera_position, shell)
 		if _comet_tails.has(body.id):
-			_update_comet_tail(index, stars, placed_position, placed_radius, shrink)
+			_update_comet_tail(index, stars, placed_position, _camera_true_radius[body.id], shrink)
 	_update_eclipses(stars)
 	_rings.update(camera_position, shell, PackedFloat64Array([0.0, 0.0, 0.0]), _ring_radii)
 	_update_preview(camera_position, shell)
