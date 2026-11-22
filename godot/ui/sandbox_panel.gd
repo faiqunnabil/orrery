@@ -173,6 +173,8 @@ func _process(_delta: float) -> void:
 
 
 func show_page(page: Page) -> void:
+	if page == Page.PHYSICS and not Preferences.is_scientist():
+		page = Page.BODIES
 	_page = page
 	_tabs.select(page)
 	for index in _pages.size():

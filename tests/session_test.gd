@@ -156,6 +156,9 @@ func _run_step() -> void:
 		14:
 			scene._select("star")
 			scene._remove_selected()
+			root.get_node("Preferences").set_depth_level(0)
+			scene.panel.show_page(2)
+			_check("the Physics page stays hidden at the Explorer level", scene.panel._page != 2 and not scene.panel._pages[2].visible)
 			wait = 30
 		15:
 			_check("removing the central star is reported at once", scene._judge.status.begins_with("The central body is gone"))
