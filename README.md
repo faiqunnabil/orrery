@@ -187,7 +187,6 @@ These are the default bindings. Every keyboard action can be rebound in **Settin
 orrery/
 ├── .github/                Workflows for tests and releases, the setup-godot action, and README media
 ├── assets/LICENSES.md      Register of every third-party asset and data source
-├── docs/PRD.md             Product requirements document
 ├── godot/                  Godot project
 │   ├── core/               Simulation, data catalogs, settings, input, audio (double precision)
 │   ├── data/               Bodies, info texts, tours, quizzes, presets, credits (JSON)
