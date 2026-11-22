@@ -629,7 +629,7 @@ msgstr ""
 msgid "Ceres is the largest object in the asteroid belt between Mars and Jupiter. It is round like a planet, but small enough to fit inside Texas."
 msgstr ""
 
-#: data/body_info.json
+#: data/body_info.json modes/sandbox/sandbox_mode.gd:236
 msgid "Comet"
 msgstr ""
 
@@ -2378,7 +2378,7 @@ msgid "Star C"
 msgstr ""
 
 #: data/sandbox_presets.json
-msgid "The Sun, the planets, the major moons, Ceres, and Pluto at the current simulation date"
+msgid "The Sun, the planets, the major moons, Ceres, Pluto, and Halley's Comet at the current simulation date"
 msgstr ""
 
 #: data/sandbox_presets.json
@@ -2729,7 +2729,7 @@ msgstr ""
 msgid "Boost"
 msgstr ""
 
-#: modes/explore/explore_mode.gd:167 modes/sandbox/sandbox_mode.gd:303
+#: modes/explore/explore_mode.gd:167 modes/sandbox/sandbox_mode.gd:305
 msgid "Focus: %s"
 msgstr ""
 
@@ -2953,7 +2953,7 @@ msgstr ""
 msgid "Quit"
 msgstr ""
 
-#: modes/sandbox/sandbox_mode.gd:218 modes/sandbox/sandbox_mode.gd:235
+#: modes/sandbox/sandbox_mode.gd:218 modes/sandbox/sandbox_mode.gd:237
 msgid "Body"
 msgstr ""
 
@@ -2961,15 +2961,15 @@ msgstr ""
 msgid "Planet"
 msgstr ""
 
-#: modes/sandbox/sandbox_mode.gd:249
+#: modes/sandbox/sandbox_mode.gd:251
 msgid "%d/%d bodies, %s"
 msgstr ""
 
-#: modes/sandbox/sandbox_mode.gd:307
+#: modes/sandbox/sandbox_mode.gd:309
 msgid "Placing a body"
 msgstr ""
 
-#: modes/sandbox/sandbox_mode.gd:309
+#: modes/sandbox/sandbox_mode.gd:311
 msgid "Simulation speed limited by performance"
 msgstr ""
 
@@ -2977,7 +2977,7 @@ msgstr ""
 msgid "Remove"
 msgstr ""
 
-#: modes/sandbox/sandbox_mode.gd:357
+#: modes/sandbox/sandbox_mode.gd:359
 msgid "Body limit reached for the %s preset."
 msgstr ""
 
@@ -2989,7 +2989,7 @@ msgstr ""
 msgid "Place on the plane"
 msgstr ""
 
-#: modes/sandbox/sandbox_mode.gd:415
+#: modes/sandbox/sandbox_mode.gd:417
 msgid "Challenge complete: %s"
 msgstr ""
 
@@ -3009,11 +3009,11 @@ msgstr ""
 msgid "Release"
 msgstr ""
 
-#: modes/sandbox/sandbox_mode.gd:431
+#: modes/sandbox/sandbox_mode.gd:433
 msgid "The snapshot could not be saved."
 msgstr ""
 
-#: modes/sandbox/sandbox_mode.gd:437
+#: modes/sandbox/sandbox_mode.gd:439
 msgid "The saved snapshot could not be read."
 msgstr ""
 
@@ -3025,27 +3025,27 @@ msgstr ""
 msgid "Time and view"
 msgstr ""
 
-#: modes/sandbox/sandbox_mode.gd:525
+#: modes/sandbox/sandbox_mode.gd:527
 msgid "Speed: %.2f km/s"
 msgstr ""
 
-#: modes/sandbox/sandbox_mode.gd:530
+#: modes/sandbox/sandbox_mode.gd:532
 msgid "Speed: %.2f km/s\nDistance to %s: %s"
 msgstr ""
 
-#: modes/sandbox/sandbox_mode.gd:631
+#: modes/sandbox/sandbox_mode.gd:633
 msgid "No body to orbit nearby"
 msgstr ""
 
-#: modes/sandbox/sandbox_mode.gd:632
+#: modes/sandbox/sandbox_mode.gd:634
 msgid "No body to orbit. Add or keep a massive body nearby."
 msgstr ""
 
-#: modes/sandbox/sandbox_mode.gd:634
+#: modes/sandbox/sandbox_mode.gd:636
 msgid "Launch %.2f km/s relative to %s (%.2f x circular)"
 msgstr ""
 
-#: modes/sandbox/sandbox_mode.gd:636
+#: modes/sandbox/sandbox_mode.gd:638
 msgid "Launch speed relative to %s: %.2f km/s (%.2f x circular orbit speed)"
 msgstr ""
 
