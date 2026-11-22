@@ -168,6 +168,12 @@ func aim(direction: Vector3) -> void:
 	_look_toward(direction.normalized())
 
 
+func set_orientation(value: Basis) -> void:
+	_cancel_flight()
+	basis = value.orthonormalized()
+	_sync_angles_from_basis()
+
+
 func release_anchor(current_world_position: PackedFloat64Array) -> void:
 	_cancel_flight()
 	_manual_auto_orbit = false
