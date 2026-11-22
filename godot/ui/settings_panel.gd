@@ -28,8 +28,8 @@ const GRAPHICS_NOTE := (
 )
 const AUDIO_NOTE := "Tour narration text is always shown on screen. The voice-over is synthesized speech."
 const VOICE_LANGUAGE_NOTE := "The voice-over is available in English only. Captions follow the chosen language."
-const LANGUAGE_NOTE := "Changing the language reloads the current screen."
-const TROUBLESHOOTING_NOTE := "The log helps with bug reports. Resetting restores every display, graphics, audio, language, and key setting, keeps completed challenges, and reloads the screen."
+const LANGUAGE_NOTE := "Changing the language reloads the screen and keeps the time, the view, and the Sandbox bodies."
+const TROUBLESHOOTING_NOTE := "The log helps with bug reports. Resetting restores every display, graphics, audio, language, and key setting, keeps completed challenges and the current scene, and reloads the screen."
 const RESET_ALL_TOOLTIP := "Restore every setting to its default. Press twice to confirm"
 const RESET_CONFIRM_SECONDS := 4.0
 const LOG_FOLDER := "user://logs"

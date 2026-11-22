@@ -129,7 +129,7 @@ msgstr ""
 msgid "Axial tilt"
 msgstr ""
 
-#: core/challenge_judge.gd:118 core/challenge_judge.gd:178
+#: core/challenge_judge.gd:111 core/challenge_judge.gd:178
 msgid "The central body is gone. Restart the challenge."
 msgstr ""
 
@@ -313,7 +313,7 @@ msgstr ""
 msgid "Constellations"
 msgstr ""
 
-#: core/input_bindings.gd:77 modes/sandbox/sandbox_mode.gd:57 ui/sandbox_panel.gd:376
+#: core/input_bindings.gd:77 modes/sandbox/sandbox_mode.gd:57 ui/sandbox_panel.gd:378
 msgid "Gravity well"
 msgstr ""
 
@@ -2777,7 +2777,7 @@ msgstr ""
 msgid "Double-click"
 msgstr ""
 
-#: modes/explore/explore_mode.gd:27 ui/info_panel.gd:42 ui/sandbox_panel.gd:332
+#: modes/explore/explore_mode.gd:27 ui/info_panel.gd:42 ui/sandbox_panel.gd:334
 msgid "Focus"
 msgstr ""
 
@@ -2977,7 +2977,7 @@ msgstr ""
 msgid "Simulation speed limited by performance"
 msgstr ""
 
-#: modes/sandbox/sandbox_mode.gd:34 ui/sandbox_panel.gd:334
+#: modes/sandbox/sandbox_mode.gd:34 ui/sandbox_panel.gd:336
 msgid "Remove"
 msgstr ""
 
@@ -3273,7 +3273,7 @@ msgstr ""
 msgid "Show view options"
 msgstr ""
 
-#: ui/info_panel.gd:42 ui/sandbox_panel.gd:332
+#: ui/info_panel.gd:42 ui/sandbox_panel.gd:334
 msgid "Fly to this body"
 msgstr ""
 
@@ -3413,19 +3413,19 @@ msgstr ""
 msgid "Adaptive shortens steps during close encounters; fixed steps show how step size affects accuracy"
 msgstr ""
 
-#: ui/sandbox_panel.gd:212
+#: ui/sandbox_panel.gd:214
 msgid "%d / %d bodies"
 msgstr ""
 
-#: ui/sandbox_panel.gd:218 ui/sandbox_panel.gd:283 ui/sandbox_panel.gd:463
+#: ui/sandbox_panel.gd:220 ui/sandbox_panel.gd:285 ui/sandbox_panel.gd:465
 msgid "Place body"
 msgstr ""
 
-#: ui/sandbox_panel.gd:218
+#: ui/sandbox_panel.gd:220
 msgid "Placing... (Esc to stop)"
 msgstr ""
 
-#: ui/sandbox_panel.gd:267
+#: ui/sandbox_panel.gd:269
 msgid "New body"
 msgstr ""
 
@@ -3441,23 +3441,23 @@ msgstr ""
 msgid "World"
 msgstr ""
 
-#: ui/sandbox_panel.gd:282 ui/sandbox_panel.gd:322
+#: ui/sandbox_panel.gd:284 ui/sandbox_panel.gd:324
 msgid "Color"
-msgstr ""
-
-#: ui/sandbox_panel.gd:288 ui/sandbox_panel.gd:468
-msgid "Click and drag on the orbital plane to launch a body"
 msgstr ""
 
 #: ui/sandbox_panel.gd:29
 msgid "Short missions with an automatic check. Starting one replaces the bodies in the Sandbox."
 msgstr ""
 
+#: ui/sandbox_panel.gd:290 ui/sandbox_panel.gd:470
+msgid "Click and drag on the orbital plane to launch a body"
+msgstr ""
+
 #: ui/sandbox_panel.gd:30
 msgid "Heavier bodies dig deeper wells. Depth is compressed so small worlds stay visible next to stars."
 msgstr ""
 
-#: ui/sandbox_panel.gd:302
+#: ui/sandbox_panel.gd:304
 msgid "Selected body"
 msgstr ""
 
@@ -3465,27 +3465,27 @@ msgstr ""
 msgid "Click the orbital plane to place a body, then drag to set its launch velocity."
 msgstr ""
 
-#: ui/sandbox_panel.gd:324
+#: ui/sandbox_panel.gd:326
 msgid "Freeze in place"
 msgstr ""
 
-#: ui/sandbox_panel.gd:328
+#: ui/sandbox_panel.gd:330
 msgid "Hold this body still while it keeps pulling on others"
 msgstr ""
 
-#: ui/sandbox_panel.gd:334
+#: ui/sandbox_panel.gd:336
 msgid "Delete this body (Del)"
 msgstr ""
 
-#: ui/sandbox_panel.gd:344
+#: ui/sandbox_panel.gd:346
 msgid "Presets"
 msgstr ""
 
-#: ui/sandbox_panel.gd:354
+#: ui/sandbox_panel.gd:356
 msgid "Load"
 msgstr ""
 
-#: ui/sandbox_panel.gd:356
+#: ui/sandbox_panel.gd:358
 msgid "Replace all bodies with this preset at the current simulation date"
 msgstr ""
 
@@ -3493,19 +3493,19 @@ msgstr ""
 msgid "Velocity Verlet"
 msgstr ""
 
-#: ui/sandbox_panel.gd:362
+#: ui/sandbox_panel.gd:364
 msgid "Snapshot"
 msgstr ""
 
-#: ui/sandbox_panel.gd:363
+#: ui/sandbox_panel.gd:365
 msgid "Save every body as it is now and come back to it later."
 msgstr ""
 
-#: ui/sandbox_panel.gd:366
+#: ui/sandbox_panel.gd:368
 msgid "Save snapshot"
 msgstr ""
 
-#: ui/sandbox_panel.gd:366
+#: ui/sandbox_panel.gd:368
 msgid "Store every body as it is now"
 msgstr ""
 
@@ -3521,19 +3521,19 @@ msgstr ""
 msgid "Adaptive"
 msgstr ""
 
-#: ui/sandbox_panel.gd:370
+#: ui/sandbox_panel.gd:372
 msgid "Restore snapshot"
 msgstr ""
 
-#: ui/sandbox_panel.gd:370
+#: ui/sandbox_panel.gd:372
 msgid "Return to the last saved snapshot"
 msgstr ""
 
-#: ui/sandbox_panel.gd:379
+#: ui/sandbox_panel.gd:381
 msgid "Bend a grid by each body's gravitational potential (V)"
 msgstr ""
 
-#: ui/sandbox_panel.gd:379
+#: ui/sandbox_panel.gd:381
 msgid "Show gravity well"
 msgstr ""
 
@@ -3541,15 +3541,15 @@ msgstr ""
 msgid "An exact solution keeps both values constant. Drift since the baseline shows the integrator's numerical error. Merges, edits, and new bodies reset the baseline."
 msgstr ""
 
-#: ui/sandbox_panel.gd:405
+#: ui/sandbox_panel.gd:407
 msgid "Completed"
 msgstr ""
 
-#: ui/sandbox_panel.gd:406
+#: ui/sandbox_panel.gd:408
 msgid "Start"
 msgstr ""
 
-#: ui/sandbox_panel.gd:406
+#: ui/sandbox_panel.gd:408
 msgid "Start this challenge"
 msgstr ""
 
@@ -3561,55 +3561,55 @@ msgstr ""
 msgid "Asteroid"
 msgstr ""
 
-#: ui/sandbox_panel.gd:479
+#: ui/sandbox_panel.gd:481
 msgid "Restart"
 msgstr ""
 
-#: ui/sandbox_panel.gd:479
+#: ui/sandbox_panel.gd:481
 msgid "Set the challenge up again"
 msgstr ""
 
-#: ui/sandbox_panel.gd:480
+#: ui/sandbox_panel.gd:482
 msgid "Leave"
 msgstr ""
 
-#: ui/sandbox_panel.gd:480
+#: ui/sandbox_panel.gd:482
 msgid "Stop the challenge and keep the bodies"
 msgstr ""
 
-#: ui/sandbox_panel.gd:487
+#: ui/sandbox_panel.gd:489
 msgid "Integrator"
 msgstr ""
 
-#: ui/sandbox_panel.gd:491
+#: ui/sandbox_panel.gd:493
 msgid "Time step"
 msgstr ""
 
-#: ui/sandbox_panel.gd:496
+#: ui/sandbox_panel.gd:498
 msgid "Conservation"
 msgstr ""
 
-#: ui/sandbox_panel.gd:500
+#: ui/sandbox_panel.gd:502
 msgid "Angular momentum"
 msgstr ""
 
-#: ui/sandbox_panel.gd:500
+#: ui/sandbox_panel.gd:502
 msgid "Energy drift"
 msgstr ""
 
-#: ui/sandbox_panel.gd:500
+#: ui/sandbox_panel.gd:502
 msgid "Momentum drift"
 msgstr ""
 
-#: ui/sandbox_panel.gd:500
+#: ui/sandbox_panel.gd:502
 msgid "Total energy"
 msgstr ""
 
-#: ui/sandbox_panel.gd:511
+#: ui/sandbox_panel.gd:513
 msgid "Measure drift from now on"
 msgstr ""
 
-#: ui/sandbox_panel.gd:511
+#: ui/sandbox_panel.gd:513
 msgid "Reset baseline"
 msgstr ""
 
@@ -3617,11 +3617,11 @@ msgstr ""
 msgid "Rocky planet"
 msgstr ""
 
-#: ui/sandbox_panel.gd:584
+#: ui/sandbox_panel.gd:586
 msgid "Mass   %s Earths  (%s kg)"
 msgstr ""
 
-#: ui/sandbox_panel.gd:588
+#: ui/sandbox_panel.gd:590
 msgid "Radius   %s km"
 msgstr ""
 
@@ -3818,7 +3818,7 @@ msgid "Keyboard"
 msgstr ""
 
 #: ui/settings_panel.gd:27
-msgid "Changing the language reloads the current screen."
+msgid "Changing the language reloads the screen and keeps the time, the view, and the Sandbox bodies."
 msgstr ""
 
 #: ui/settings_panel.gd:272
@@ -3830,7 +3830,7 @@ msgid "Restore the default key bindings"
 msgstr ""
 
 #: ui/settings_panel.gd:28
-msgid "The log helps with bug reports. Resetting restores every display, graphics, audio, language, and key setting, keeps completed challenges, and reloads the screen."
+msgid "The log helps with bug reports. Resetting restores every display, graphics, audio, language, and key setting, keeps completed challenges and the current scene, and reloads the screen."
 msgstr ""
 
 #: ui/settings_panel.gd:281

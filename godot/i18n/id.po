@@ -130,7 +130,7 @@ msgstr "Periode rotasi"
 msgid "Axial tilt"
 msgstr "Kemiringan sumbu"
 
-#: core/challenge_judge.gd:118 core/challenge_judge.gd:178
+#: core/challenge_judge.gd:111 core/challenge_judge.gd:178
 msgid "The central body is gone. Restart the challenge."
 msgstr "Benda pusatnya sudah hilang. Ulangi tantangan ini."
 
@@ -314,7 +314,7 @@ msgstr "Garis orbit"
 msgid "Constellations"
 msgstr "Rasi bintang"
 
-#: core/input_bindings.gd:77 modes/sandbox/sandbox_mode.gd:57 ui/sandbox_panel.gd:376
+#: core/input_bindings.gd:77 modes/sandbox/sandbox_mode.gd:57 ui/sandbox_panel.gd:378
 msgid "Gravity well"
 msgstr "Sumur gravitasi"
 
@@ -2778,7 +2778,7 @@ msgstr "Pilih"
 msgid "Double-click"
 msgstr "Klik ganda"
 
-#: modes/explore/explore_mode.gd:27 ui/info_panel.gd:42 ui/sandbox_panel.gd:332
+#: modes/explore/explore_mode.gd:27 ui/info_panel.gd:42 ui/sandbox_panel.gd:334
 msgid "Focus"
 msgstr "Fokus"
 
@@ -2978,7 +2978,7 @@ msgstr "Sedang menempatkan benda"
 msgid "Simulation speed limited by performance"
 msgstr "Kecepatan simulasi dibatasi oleh performa"
 
-#: modes/sandbox/sandbox_mode.gd:34 ui/sandbox_panel.gd:334
+#: modes/sandbox/sandbox_mode.gd:34 ui/sandbox_panel.gd:336
 msgid "Remove"
 msgstr "Hapus"
 
@@ -3274,7 +3274,7 @@ msgstr "Sembunyikan pilihan tampilan agar informasi benda lebih lega"
 msgid "Show view options"
 msgstr "Tampilkan pilihan tampilan"
 
-#: ui/info_panel.gd:42 ui/sandbox_panel.gd:332
+#: ui/info_panel.gd:42 ui/sandbox_panel.gd:334
 msgid "Fly to this body"
 msgstr "Terbang ke benda ini"
 
@@ -3414,19 +3414,19 @@ msgstr "Metode numerik untuk menggerakkan benda"
 msgid "Adaptive shortens steps during close encounters; fixed steps show how step size affects accuracy"
 msgstr "Adaptif memperpendek langkah saat benda saling mendekat; langkah tetap menunjukkan pengaruh ukuran langkah terhadap akurasi"
 
-#: ui/sandbox_panel.gd:212
+#: ui/sandbox_panel.gd:214
 msgid "%d / %d bodies"
 msgstr "%d / %d benda"
 
-#: ui/sandbox_panel.gd:218 ui/sandbox_panel.gd:283 ui/sandbox_panel.gd:463
+#: ui/sandbox_panel.gd:220 ui/sandbox_panel.gd:285 ui/sandbox_panel.gd:465
 msgid "Place body"
 msgstr "Tempatkan benda"
 
-#: ui/sandbox_panel.gd:218
+#: ui/sandbox_panel.gd:220
 msgid "Placing... (Esc to stop)"
 msgstr "Menempatkan... (Esc untuk berhenti)"
 
-#: ui/sandbox_panel.gd:267
+#: ui/sandbox_panel.gd:269
 msgid "New body"
 msgstr "Benda baru"
 
@@ -3442,23 +3442,23 @@ msgstr "Fisika"
 msgid "World"
 msgstr "Dunia"
 
-#: ui/sandbox_panel.gd:282 ui/sandbox_panel.gd:322
+#: ui/sandbox_panel.gd:284 ui/sandbox_panel.gd:324
 msgid "Color"
 msgstr "Warna"
-
-#: ui/sandbox_panel.gd:288 ui/sandbox_panel.gd:468
-msgid "Click and drag on the orbital plane to launch a body"
-msgstr "Klik dan seret di bidang orbit untuk meluncurkan benda"
 
 #: ui/sandbox_panel.gd:29
 msgid "Short missions with an automatic check. Starting one replaces the bodies in the Sandbox."
 msgstr "Misi singkat dengan pemeriksaan otomatis. Memulai tantangan akan mengganti benda di Sandbox."
 
+#: ui/sandbox_panel.gd:290 ui/sandbox_panel.gd:470
+msgid "Click and drag on the orbital plane to launch a body"
+msgstr "Klik dan seret di bidang orbit untuk meluncurkan benda"
+
 #: ui/sandbox_panel.gd:30
 msgid "Heavier bodies dig deeper wells. Depth is compressed so small worlds stay visible next to stars."
 msgstr "Benda yang lebih berat membentuk sumur yang lebih dalam. Kedalamannya dipadatkan agar dunia kecil tetap terlihat di samping bintang."
 
-#: ui/sandbox_panel.gd:302
+#: ui/sandbox_panel.gd:304
 msgid "Selected body"
 msgstr "Benda terpilih"
 
@@ -3466,27 +3466,27 @@ msgstr "Benda terpilih"
 msgid "Click the orbital plane to place a body, then drag to set its launch velocity."
 msgstr "Klik bidang orbit untuk menempatkan benda, lalu seret untuk mengatur kecepatan luncurnya."
 
-#: ui/sandbox_panel.gd:324
+#: ui/sandbox_panel.gd:326
 msgid "Freeze in place"
 msgstr "Bekukan di tempat"
 
-#: ui/sandbox_panel.gd:328
+#: ui/sandbox_panel.gd:330
 msgid "Hold this body still while it keeps pulling on others"
 msgstr "Tahan benda ini diam sementara gravitasinya tetap menarik benda lain"
 
-#: ui/sandbox_panel.gd:334
+#: ui/sandbox_panel.gd:336
 msgid "Delete this body (Del)"
 msgstr "Hapus benda ini (Del)"
 
-#: ui/sandbox_panel.gd:344
+#: ui/sandbox_panel.gd:346
 msgid "Presets"
 msgstr "Preset"
 
-#: ui/sandbox_panel.gd:354
+#: ui/sandbox_panel.gd:356
 msgid "Load"
 msgstr "Muat"
 
-#: ui/sandbox_panel.gd:356
+#: ui/sandbox_panel.gd:358
 msgid "Replace all bodies with this preset at the current simulation date"
 msgstr "Ganti semua benda dengan preset ini pada tanggal simulasi saat ini"
 
@@ -3494,19 +3494,19 @@ msgstr "Ganti semua benda dengan preset ini pada tanggal simulasi saat ini"
 msgid "Velocity Verlet"
 msgstr "Velocity Verlet"
 
-#: ui/sandbox_panel.gd:362
+#: ui/sandbox_panel.gd:364
 msgid "Snapshot"
 msgstr "Snapshot"
 
-#: ui/sandbox_panel.gd:363
+#: ui/sandbox_panel.gd:365
 msgid "Save every body as it is now and come back to it later."
 msgstr "Simpan semua benda seperti saat ini dan kembali lagi nanti."
 
-#: ui/sandbox_panel.gd:366
+#: ui/sandbox_panel.gd:368
 msgid "Save snapshot"
 msgstr "Simpan snapshot"
 
-#: ui/sandbox_panel.gd:366
+#: ui/sandbox_panel.gd:368
 msgid "Store every body as it is now"
 msgstr "Simpan semua benda seperti saat ini"
 
@@ -3522,19 +3522,19 @@ msgstr "6 jam"
 msgid "Adaptive"
 msgstr "Adaptif"
 
-#: ui/sandbox_panel.gd:370
+#: ui/sandbox_panel.gd:372
 msgid "Restore snapshot"
 msgstr "Pulihkan snapshot"
 
-#: ui/sandbox_panel.gd:370
+#: ui/sandbox_panel.gd:372
 msgid "Return to the last saved snapshot"
 msgstr "Kembali ke snapshot terakhir"
 
-#: ui/sandbox_panel.gd:379
+#: ui/sandbox_panel.gd:381
 msgid "Bend a grid by each body's gravitational potential (V)"
 msgstr "Lengkungkan grid sesuai potensial gravitasi tiap benda (V)"
 
-#: ui/sandbox_panel.gd:379
+#: ui/sandbox_panel.gd:381
 msgid "Show gravity well"
 msgstr "Tampilkan sumur gravitasi"
 
@@ -3542,15 +3542,15 @@ msgstr "Tampilkan sumur gravitasi"
 msgid "An exact solution keeps both values constant. Drift since the baseline shows the integrator's numerical error. Merges, edits, and new bodies reset the baseline."
 msgstr "Solusi eksak menjaga kedua nilai tetap. Penyimpangan sejak titik acuan menunjukkan galat numerik integrator. Penggabungan, perubahan, dan benda baru mengatur ulang titik acuan."
 
-#: ui/sandbox_panel.gd:405
+#: ui/sandbox_panel.gd:407
 msgid "Completed"
 msgstr "Selesai"
 
-#: ui/sandbox_panel.gd:406
+#: ui/sandbox_panel.gd:408
 msgid "Start"
 msgstr "Mulai"
 
-#: ui/sandbox_panel.gd:406
+#: ui/sandbox_panel.gd:408
 msgid "Start this challenge"
 msgstr "Mulai tantangan ini"
 
@@ -3562,55 +3562,55 @@ msgstr "Benda yang dibekukan ditahan oleh gaya luar, sehingga energi dan momentu
 msgid "Asteroid"
 msgstr "Asteroid"
 
-#: ui/sandbox_panel.gd:479
+#: ui/sandbox_panel.gd:481
 msgid "Restart"
 msgstr "Ulangi"
 
-#: ui/sandbox_panel.gd:479
+#: ui/sandbox_panel.gd:481
 msgid "Set the challenge up again"
 msgstr "Siapkan tantangan dari awal"
 
-#: ui/sandbox_panel.gd:480
+#: ui/sandbox_panel.gd:482
 msgid "Leave"
 msgstr "Keluar"
 
-#: ui/sandbox_panel.gd:480
+#: ui/sandbox_panel.gd:482
 msgid "Stop the challenge and keep the bodies"
 msgstr "Hentikan tantangan dan biarkan benda tetap ada"
 
-#: ui/sandbox_panel.gd:487
+#: ui/sandbox_panel.gd:489
 msgid "Integrator"
 msgstr "Integrator"
 
-#: ui/sandbox_panel.gd:491
+#: ui/sandbox_panel.gd:493
 msgid "Time step"
 msgstr "Langkah waktu"
 
-#: ui/sandbox_panel.gd:496
+#: ui/sandbox_panel.gd:498
 msgid "Conservation"
 msgstr "Kekekalan"
 
-#: ui/sandbox_panel.gd:500
+#: ui/sandbox_panel.gd:502
 msgid "Angular momentum"
 msgstr "Momentum sudut"
 
-#: ui/sandbox_panel.gd:500
+#: ui/sandbox_panel.gd:502
 msgid "Energy drift"
 msgstr "Penyimpangan energi"
 
-#: ui/sandbox_panel.gd:500
+#: ui/sandbox_panel.gd:502
 msgid "Momentum drift"
 msgstr "Penyimpangan momentum"
 
-#: ui/sandbox_panel.gd:500
+#: ui/sandbox_panel.gd:502
 msgid "Total energy"
 msgstr "Energi total"
 
-#: ui/sandbox_panel.gd:511
+#: ui/sandbox_panel.gd:513
 msgid "Measure drift from now on"
 msgstr "Ukur penyimpangan mulai sekarang"
 
-#: ui/sandbox_panel.gd:511
+#: ui/sandbox_panel.gd:513
 msgid "Reset baseline"
 msgstr "Atur ulang acuan"
 
@@ -3618,11 +3618,11 @@ msgstr "Atur ulang acuan"
 msgid "Rocky planet"
 msgstr "Planet berbatu"
 
-#: ui/sandbox_panel.gd:584
+#: ui/sandbox_panel.gd:586
 msgid "Mass   %s Earths  (%s kg)"
 msgstr "Massa   %s Bumi  (%s kg)"
 
-#: ui/sandbox_panel.gd:588
+#: ui/sandbox_panel.gd:590
 msgid "Radius   %s km"
 msgstr "Jari-jari   %s km"
 
@@ -3819,8 +3819,8 @@ msgid "Keyboard"
 msgstr "Keyboard"
 
 #: ui/settings_panel.gd:27
-msgid "Changing the language reloads the current screen."
-msgstr "Mengganti bahasa akan memuat ulang layar saat ini."
+msgid "Changing the language reloads the screen and keeps the time, the view, and the Sandbox bodies."
+msgstr "Mengganti bahasa akan memuat ulang layar dan tetap menyimpan waktu, tampilan, serta benda di Sandbox."
 
 #: ui/settings_panel.gd:272
 msgid "Reset to defaults"
@@ -3831,8 +3831,8 @@ msgid "Restore the default key bindings"
 msgstr "Kembalikan tombol bawaan"
 
 #: ui/settings_panel.gd:28
-msgid "The log helps with bug reports. Resetting restores every display, graphics, audio, language, and key setting, keeps completed challenges, and reloads the screen."
-msgstr "Log membantu saat melaporkan bug. Reset mengembalikan semua pengaturan layar, grafis, audio, bahasa, dan tombol ke bawaan, tetap menyimpan tantangan yang sudah selesai, lalu memuat ulang layar."
+msgid "The log helps with bug reports. Resetting restores every display, graphics, audio, language, and key setting, keeps completed challenges and the current scene, and reloads the screen."
+msgstr "Log membantu saat melaporkan bug. Reset mengembalikan semua pengaturan layar, grafis, audio, bahasa, dan tombol ke bawaan, tetap menyimpan tantangan yang sudah selesai dan adegan saat ini, lalu memuat ulang layar."
 
 #: ui/settings_panel.gd:281
 msgid "Click, then press a new key"
