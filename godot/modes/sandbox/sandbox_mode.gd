@@ -340,6 +340,7 @@ func _install_world(new_world: SandboxWorld) -> void:
 	world.bodies_merged.connect(_on_bodies_merged)
 	renderer.set_world(world)
 	renderer.compute_positions()
+	_spawn_counter = maxi(_spawn_counter, world.custom_body_count())
 	_clear_selection()
 	if world.index_of(camera.anchor_id) < 0:
 		_home_camera()
@@ -357,6 +358,42 @@ func _replace_world(candidate: SandboxWorld) -> void:
 
 func _body_limit_notice() -> String:
 	return tr("Body limit reached for the %s preset.") % tr(Quality.PRESET_NAMES[Quality.preset])
+
+
+func capture_session() -> Dictionary:
+	var state := super()
+	state["world"] = world.to_snapshot()
+	state["integrator"] = _integrator
+	state["fixed_step"] = _fixed_step_seconds
+	state["selected"] = _selected_id
+	state["challenge"] = _challenge_index
+	state["judge"] = _judge.to_state() if _judge.is_active() else {}
+	state["page"] = panel._page
+	return state
+
+
+func _restore_session(state: Dictionary) -> void:
+	super(state)
+	var restored := SandboxWorld.from_snapshot(state["world"], model)
+	if restored.bodies.size() > Quality.profile()["max_bodies"]:
+		panel.set_notice(_body_limit_notice())
+		return
+	_integrator = state["integrator"] as NBodySimulation.Integrator
+	_fixed_step_seconds = state["fixed_step"]
+	panel.select_physics(_integrator, _fixed_step_seconds)
+	_install_world(restored)
+	var anchor: String = state["anchor"]
+	_restore_camera(state, anchor != "" and world.index_of(anchor) >= 0)
+	var challenge_index: int = state["challenge"]
+	if challenge_index >= 0 and challenge_index < _challenges.size() and not state["judge"].is_empty():
+		_challenge_index = challenge_index
+		_judge.restore_state(_challenges[challenge_index], state["judge"])
+		panel.show_challenge(_challenges[challenge_index])
+		_refresh_challenge()
+	var selected: String = state["selected"]
+	if selected != "" and world.index_of(selected) >= 0:
+		_select(selected)
+	panel.show_page(state["page"])
 
 
 func _start_challenge(index: int) -> void:

@@ -63,6 +63,39 @@ func start(value: Dictionary, world: SandboxWorld) -> void:
 	_set_status("Launch a body to begin.")
 
 
+func to_state() -> Dictionary:
+	return {
+		"state": state,
+		"target_id": target_id,
+		"progress": progress,
+		"status": status,
+		"status_args": status_args,
+		"known": _known.keys(),
+		"angle": _angle,
+		"last_angle": _last_angle,
+		"start_distance": _start_distance,
+		"launch_energy": _launch_energy,
+		"closest": _closest,
+	}
+
+
+func restore_state(value: Dictionary, saved: Dictionary) -> void:
+	challenge = value
+	state = saved["state"]
+	target_id = saved["target_id"]
+	progress = saved["progress"]
+	status = saved["status"]
+	status_args = saved["status_args"]
+	_known.clear()
+	for id: String in saved["known"]:
+		_known[id] = true
+	_angle = saved["angle"]
+	_last_angle = saved["last_angle"]
+	_start_distance = saved["start_distance"]
+	_launch_energy = saved["launch_energy"]
+	_closest = saved["closest"]
+
+
 func stop() -> void:
 	challenge = {}
 	state = State.WAITING

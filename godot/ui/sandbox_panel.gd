@@ -382,6 +382,11 @@ func _build_world_section(box: VBoxContainer) -> void:
 	box.add_child(_gravity_well_toggle)
 
 
+func select_physics(integrator: int, fixed_step_seconds: float) -> void:
+	_integrator_control.select(integrator)
+	_time_step_control.select(maxi(TIME_STEP_SECONDS.find(fixed_step_seconds), 0))
+
+
 func set_challenges(challenges: Array[Dictionary]) -> void:
 	for child in _challenge_list.get_children():
 		child.queue_free()

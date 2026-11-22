@@ -299,8 +299,7 @@ func reset_all_settings() -> void:
 	Preferences.reset_to_defaults()
 	Quality.reset_to_defaults()
 	Audio.reset_to_defaults()
-	get_tree().paused = false
-	get_tree().reload_current_scene.call_deferred()
+	_reload_screen()
 
 
 func _press_reset_all() -> void:
@@ -350,6 +349,13 @@ func _choose_language(index: int) -> void:
 	if code == Locale.current():
 		return
 	Preferences.set_language(code)
+	_reload_screen()
+
+
+func _reload_screen() -> void:
+	var scene := get_tree().current_scene
+	if scene != null and scene.has_method("capture_session"):
+		SessionState.store(scene.scene_file_path, scene.capture_session())
 	get_tree().paused = false
 	get_tree().reload_current_scene.call_deferred()
 

@@ -58,6 +58,9 @@ func _ready() -> void:
 	InputBindings.changed.connect(_apply_key_help)
 	clock.jump_to_now()
 	_build_world()
+	var session := SessionState.take(scene_file_path)
+	if not session.is_empty():
+		_restore_session(session)
 	_apply_quality()
 	_on_preferences_changed()
 
@@ -207,6 +210,36 @@ func append_ring_labels(entries: Array, rings: Array) -> void:
 			continue
 		previous = screen
 		entries.append({"name": ring["text"], "position": screen, "radius": 0.0, "labeled": true, "selected": false, "dim": true})
+
+
+func capture_session() -> Dictionary:
+	return {
+		"seconds": clock.seconds,
+		"step_index": clock.step_index,
+		"paused": clock.paused,
+		"reversed": clock.reversed,
+		"anchor": camera.anchor_id,
+		"offset": camera.offset.duplicate(),
+		"orientation": camera.basis,
+		"speed_scale": camera.speed_scale,
+	}
+
+
+func _restore_session(state: Dictionary) -> void:
+	clock.seconds = state["seconds"]
+	clock.step_index = state["step_index"]
+	clock.paused = state["paused"]
+	clock.reversed = state["reversed"]
+	clock.changed.emit()
+
+
+func _restore_camera(state: Dictionary, anchor_exists: bool) -> void:
+	if anchor_exists:
+		camera.reanchor(state["anchor"], state["offset"])
+	else:
+		camera.release_anchor(state["offset"])
+	camera.set_orientation(state["orientation"])
+	camera.speed_scale = state["speed_scale"]
 
 
 func _build_world() -> void:

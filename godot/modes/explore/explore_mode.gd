@@ -515,6 +515,25 @@ func _render_vector(body_id: String) -> Vector3:
 	return Vector3(position[0], position[1], position[2])
 
 
+func capture_session() -> Dictionary:
+	var state := super()
+	state["scale"] = renderer.mapper.mode
+	state["selected"] = _selected_id
+	return state
+
+
+func _restore_session(state: Dictionary) -> void:
+	super(state)
+	_set_scale_mode(state["scale"])
+	model.update(clock.seconds)
+	renderer.compute_positions()
+	var anchor: String = state["anchor"]
+	_restore_camera(state, anchor != "" and model.get_body(anchor) != null)
+	var selected: String = state["selected"]
+	if selected != "" and model.get_body(selected) != null:
+		_select(selected)
+
+
 func _search_items() -> Array[Dictionary]:
 	var items: Array[Dictionary] = []
 	for body in model.bodies:
