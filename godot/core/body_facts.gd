@@ -1,6 +1,7 @@
 class_name BodyFacts
 extends RefCounted
 
+const SMALL_RATIO := 0.01
 const EARTH_GRAVITY_MS2 := 9.80665
 const EARTH_RADIUS_KM := 6371.0
 const GRAVITATIONAL_CONSTANT_SI := 6.6743e-11
@@ -142,7 +143,9 @@ static func _ratio(value: float) -> String:
 		return format_number(value, 0)
 	if value >= 1.0:
 		return format_number(value, 1)
-	return format_number(value, 2)
+	if value >= SMALL_RATIO or value <= 0.0:
+		return format_number(value, 2)
+	return format_number(value, int(ceil(-log(value) / log(10.0))) + 1)
 
 
 static func _inclination_label(body: BodyDefinition, parent: BodyDefinition) -> String:
