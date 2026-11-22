@@ -2893,7 +2893,7 @@ msgstr ""
 msgid "Sandbox"
 msgstr ""
 
-#: modes/explore/explore_mode.gd:60 modes/sandbox/sandbox_mode.gd:65 ui/hud.gd:599
+#: modes/explore/explore_mode.gd:60 modes/sandbox/sandbox_mode.gd:65 ui/hud.gd:591
 msgid "Controls"
 msgstr ""
 
@@ -3030,11 +3030,11 @@ msgid "Time and view"
 msgstr ""
 
 #: modes/sandbox/sandbox_mode.gd:564
-msgid "Speed: %.2f km/s"
+msgid "Speed: %s km/s"
 msgstr ""
 
 #: modes/sandbox/sandbox_mode.gd:569
-msgid "Speed: %.2f km/s\nDistance to %s: %s"
+msgid "Speed: %s km/s\nDistance to %s: %s"
 msgstr ""
 
 #: modes/sandbox/sandbox_mode.gd:670
@@ -3045,12 +3045,12 @@ msgstr ""
 msgid "No body to orbit. Add or keep a massive body nearby."
 msgstr ""
 
-#: modes/sandbox/sandbox_mode.gd:673
-msgid "Launch %.2f km/s relative to %s (%.2f x circular)"
+#: modes/sandbox/sandbox_mode.gd:675
+msgid "Launch %s km/s relative to %s (%s x circular)"
 msgstr ""
 
-#: modes/sandbox/sandbox_mode.gd:675
-msgid "Launch speed relative to %s: %.2f km/s (%.2f x circular orbit speed)"
+#: modes/sandbox/sandbox_mode.gd:676
+msgid "Launch speed relative to %s: %s km/s (%s x circular orbit speed)"
 msgstr ""
 
 #: modes/sandbox/sandbox_mode.gd:76
@@ -3257,19 +3257,19 @@ msgstr ""
 msgid "Focus mesh"
 msgstr ""
 
+#: ui/hud.gd:594
+msgid "Close (%s)"
+msgstr ""
+
 #: ui/hud.gd:60
 msgid "Information depth (M)"
 msgstr ""
 
-#: ui/hud.gd:602
-msgid "Close (%s)"
-msgstr ""
-
-#: ui/hud.gd:617
+#: ui/hud.gd:609
 msgid "Hide view options to make room for body information"
 msgstr ""
 
-#: ui/hud.gd:617
+#: ui/hud.gd:609
 msgid "Show view options"
 msgstr ""
 

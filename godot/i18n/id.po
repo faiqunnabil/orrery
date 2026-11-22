@@ -2894,7 +2894,7 @@ msgstr "Aplikasi"
 msgid "Sandbox"
 msgstr "Sandbox"
 
-#: modes/explore/explore_mode.gd:60 modes/sandbox/sandbox_mode.gd:65 ui/hud.gd:599
+#: modes/explore/explore_mode.gd:60 modes/sandbox/sandbox_mode.gd:65 ui/hud.gd:591
 msgid "Controls"
 msgstr "Kontrol"
 
@@ -3031,12 +3031,12 @@ msgid "Time and view"
 msgstr "Waktu dan tampilan"
 
 #: modes/sandbox/sandbox_mode.gd:564
-msgid "Speed: %.2f km/s"
-msgstr "Kecepatan: %.2f km/dtk"
+msgid "Speed: %s km/s"
+msgstr "Kecepatan: %s km/dtk"
 
 #: modes/sandbox/sandbox_mode.gd:569
-msgid "Speed: %.2f km/s\nDistance to %s: %s"
-msgstr "Kecepatan: %.2f km/dtk\nJarak ke %s: %s"
+msgid "Speed: %s km/s\nDistance to %s: %s"
+msgstr "Kecepatan: %s km/dtk\nJarak ke %s: %s"
 
 #: modes/sandbox/sandbox_mode.gd:670
 msgid "No body to orbit nearby"
@@ -3046,13 +3046,13 @@ msgstr "Tidak ada benda di dekat sini untuk diorbit"
 msgid "No body to orbit. Add or keep a massive body nearby."
 msgstr "Tidak ada benda untuk diorbit. Tambahkan atau pertahankan benda bermassa besar di dekatnya."
 
-#: modes/sandbox/sandbox_mode.gd:673
-msgid "Launch %.2f km/s relative to %s (%.2f x circular)"
-msgstr "Luncur %.2f km/dtk relatif terhadap %s (%.2f x orbit lingkaran)"
-
 #: modes/sandbox/sandbox_mode.gd:675
-msgid "Launch speed relative to %s: %.2f km/s (%.2f x circular orbit speed)"
-msgstr "Kecepatan luncur relatif terhadap %s: %.2f km/dtk (%.2f x kecepatan orbit lingkaran)"
+msgid "Launch %s km/s relative to %s (%s x circular)"
+msgstr "Luncur %s km/dtk relatif terhadap %s (%s x orbit lingkaran)"
+
+#: modes/sandbox/sandbox_mode.gd:676
+msgid "Launch speed relative to %s: %s km/s (%s x circular orbit speed)"
+msgstr "Kecepatan luncur relatif terhadap %s: %s km/dtk (%s x kecepatan orbit lingkaran)"
 
 #: modes/sandbox/sandbox_mode.gd:76
 msgid "Open Explore ({mode_explore})"
@@ -3258,19 +3258,19 @@ msgstr "Adegan"
 msgid "Focus mesh"
 msgstr "Mesh fokus"
 
+#: ui/hud.gd:594
+msgid "Close (%s)"
+msgstr "Tutup (%s)"
+
 #: ui/hud.gd:60
 msgid "Information depth (M)"
 msgstr "Tingkat informasi (M)"
 
-#: ui/hud.gd:602
-msgid "Close (%s)"
-msgstr "Tutup (%s)"
-
-#: ui/hud.gd:617
+#: ui/hud.gd:609
 msgid "Hide view options to make room for body information"
 msgstr "Sembunyikan pilihan tampilan agar informasi benda lebih lega"
 
-#: ui/hud.gd:617
+#: ui/hud.gd:609
 msgid "Show view options"
 msgstr "Tampilkan pilihan tampilan"
 
