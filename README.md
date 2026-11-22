@@ -104,7 +104,7 @@ It is aimed at learners from elementary school to university. Every panel switch
 | ![Gravity well](.github/media/gravity_well.jpg) | ![Challenges](.github/media/challenges.jpg) |
 | The gravity well under a binary star | A Sandbox challenge in progress |
 | ![Solar eclipse](.github/media/solar_eclipse.jpg) | ![Figure-eight](.github/media/figure_eight.jpg) |
-| The Moon's shadow on the North Atlantic, 12 August 2026 | Three stars on the figure-eight orbit |
+| The Moon's shadow over Egypt and the Red Sea, 2 August 2027 | Three stars on the figure-eight orbit |
 
 ## Getting started
 
