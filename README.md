@@ -118,6 +118,14 @@ It is aimed at learners from elementary school to university. Every panel switch
 
 Supported platforms are Windows 10 and 11, and 64-bit Linux. No installation or internet connection is needed.
 
+On Linux, the release archive also contains `install.sh`, which adds Orrery to the application menu of any desktop environment and creates an `orrery` command:
+
+```
+./install.sh               # for the current user, no root needed
+sudo ./install.sh --system # for every user, into /opt/orrery
+./install.sh --uninstall   # remove it again (add --system for a system install)
+```
+
 ### Run from source
 
 1. Install [Godot 4.7.2](https://godotengine.org/download/archive/4.7.2-stable/) (standard build).
