@@ -1,0 +1,27 @@
+name: Feature request
+description: Suggest an idea or an improvement for Orrery
+labels: ["enhancement"]
+body:
+  - type: textarea
+    id: problem
+    attributes:
+      label: What would you like to do?
+      description: Describe the situation, for example a lesson or a question you want to explore.
+    validations:
+      required: true
+  - type: textarea
+    id: idea
+    attributes:
+      label: Your idea
+    validations:
+      required: true
+  - type: dropdown
+    id: audience
+    attributes:
+      label: Who would use it most?
+      options:
+        - Elementary school students
+        - Secondary school students
+        - University students
+        - Teachers
+        - Everyone
