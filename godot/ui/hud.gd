@@ -345,10 +345,10 @@ func refresh_diagnostics(scene_summary: String, focus_mesh: String) -> void:
 	var primitives := int(Performance.get_monitor(Performance.RENDER_TOTAL_PRIMITIVES_IN_FRAME))
 	var vram_mb := Performance.get_monitor(Performance.RENDER_VIDEO_MEM_USED) / 1048576.0
 	_diag_values["fps"].text = "%d" % fps
-	_diag_values["frame"].text = "%.1f / %.1f ms" % [_frame_ms, _cpu_ms]
+	_diag_values["frame"].text = "%s / %s ms" % [BodyFacts.format_number(_frame_ms, 1), BodyFacts.format_number(_cpu_ms, 1)]
 	_diag_values["draws"].text = format_count(draws)
 	_diag_values["primitives"].text = format_count(primitives)
-	_diag_values["vram"].text = "%.1f MB" % vram_mb
+	_diag_values["vram"].text = "%s MB" % BodyFacts.format_number(vram_mb, 1)
 	_diag_values["scene"].text = scene_summary
 	_diag_values["mesh"].text = focus_mesh
 
@@ -556,18 +556,10 @@ func _build_top_center() -> void:
 
 static func format_count(value: int) -> String:
 	if value >= 1000000:
-		return "%.2fM" % (float(value) / 1000000.0)
+		return "%sM" % BodyFacts.format_number(float(value) / 1000000.0, 2)
 	if value >= 10000:
-		return "%.1fk" % (float(value) / 1000.0)
-	var text := str(value)
-	var out := ""
-	var count := 0
-	for index in range(text.length() - 1, -1, -1):
-		if count > 0 and count % 3 == 0:
-			out = "," + out
-		out = text[index] + out
-		count += 1
-	return out
+		return "%sk" % BodyFacts.format_number(float(value) / 1000.0, 1)
+	return BodyFacts.format_number(value, 0)
 
 
 func _build_footer() -> void:

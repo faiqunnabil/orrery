@@ -561,19 +561,19 @@ func _refresh_readout() -> void:
 	var simulation := world.simulation
 	var parent_index := world.index_of(body.parent_id)
 	if parent_index < 0:
-		panel.set_readout(tr("Speed: %.2f km/s") % simulation.velocity_of(index).length())
+		panel.set_readout(tr("Speed: %s km/s") % BodyFacts.format_number(simulation.velocity_of(index).length(), 2))
 		return
 	var relative_speed := simulation.velocity_of(index).minus(simulation.velocity_of(parent_index)).length()
 	var distance := simulation.position_of(index).minus(simulation.position_of(parent_index)).length()
 	panel.set_readout(
-		tr("Speed: %.2f km/s\nDistance to %s: %s")
-		% [relative_speed, tr(world.bodies[parent_index].display_name), _distance_text(distance)]
+		tr("Speed: %s km/s\nDistance to %s: %s")
+		% [BodyFacts.format_number(relative_speed, 2), tr(world.bodies[parent_index].display_name), _distance_text(distance)]
 	)
 
 
 func _distance_text(distance_km: float) -> String:
 	if distance_km >= 1.0e7:
-		return "%.3f AU" % (distance_km / KM_PER_AU)
+		return "%s AU" % BodyFacts.format_number(distance_km / KM_PER_AU, 3)
 	return "%s km" % BodyFacts.format_number(distance_km, 0)
 
 
@@ -670,11 +670,10 @@ func _update_preview() -> void:
 		_launch_status = tr("No body to orbit nearby")
 		panel.set_launch_text(tr("No body to orbit. Add or keep a massive body nearby."))
 		return
-	_launch_status = tr("Launch %.2f km/s relative to %s (%.2f x circular)") % [launch["speed"], tr(launch["reference"]), launch["ratio"]]
-	panel.set_launch_text(
-		tr("Launch speed relative to %s: %.2f km/s (%.2f x circular orbit speed)")
-		% [tr(launch["reference"]), launch["speed"], launch["ratio"]]
-	)
+	var speed := BodyFacts.format_number(launch["speed"], 2)
+	var ratio := BodyFacts.format_number(launch["ratio"], 2)
+	_launch_status = tr("Launch %s km/s relative to %s (%s x circular)") % [speed, tr(launch["reference"]), ratio]
+	panel.set_launch_text(tr("Launch speed relative to %s: %s km/s (%s x circular orbit speed)") % [tr(launch["reference"]), speed, ratio])
 
 
 func _launch(origin: DVec3, tip: DVec3, mass_kg: float) -> Dictionary:
