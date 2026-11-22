@@ -87,7 +87,7 @@ func _run_step() -> void:
 			var lag: float = rad_to_deg(tail.dust_direction().angle_to(tail.ion_direction()))
 			_check("the dust tail curves back from the ion tail", lag > 5.0 and lag < 45.0)
 			var world = load("res://core/sandbox_world.gd").from_solar_system(scene.model, scene.clock.seconds)
-			_check("the Sandbox solar system leaves the comet out", world.index_of("halley") < 0 and world.index_of("pluto") >= 0)
+			_check("the Sandbox solar system includes the comet", world.index_of("halley") >= 0 and world.index_of("pluto") >= 0)
 			scene._focus_body("halley")
 			wait = 220
 		2:
@@ -100,6 +100,22 @@ func _run_step() -> void:
 			wait = 200
 		4:
 			_shot("comet_nucleus")
+			change_scene_to_file("res://modes/sandbox/sandbox_mode.tscn")
+			wait = 150
+		5:
+			scene.clock.paused = true
+			scene._install_world(load("res://core/sandbox_world.gd").from_solar_system(scene.model, _seconds(PERIHELION)))
+			scene._select("halley")
+			scene._fly_to("halley")
+			wait = 200
+		6:
+			var sandbox_tail = scene.renderer.comet_tail("halley")
+			_check("the Sandbox draws Halley's tails near perihelion", sandbox_tail != null and sandbox_tail.visible and sandbox_tail.activity > 0.9)
+			var star: PackedFloat64Array = scene.renderer.render_position("sun")
+			var comet: PackedFloat64Array = scene.renderer.render_position("halley")
+			var away := Vector3(comet[0] - star[0], comet[1] - star[1], comet[2] - star[2]).normalized()
+			_check("the Sandbox ion tail points away from the Sun", rad_to_deg(sandbox_tail.ion_direction().angle_to(away)) < 1.0)
+			_check("the Sandbox lists the comet by type", scene._search_items().any(func(item: Dictionary) -> bool: return item["id"] == "halley" and item["detail"] == "Comet"))
 			print("FAILURES: ", failures)
 			quit()
 
