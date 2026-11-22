@@ -29,6 +29,7 @@ var _camera_true_radius: Dictionary = {}
 var _trails_visible := true
 var _rings := ReferenceRings.new()
 var gravity_well := GravityWell.new()
+var _comet_tails: Dictionary = {}
 var _eclipses := EclipseFinder.new()
 var _ring_radii: Array[float] = []
 var _preview_active := false
@@ -84,6 +85,8 @@ func set_world(value: SandboxWorld) -> void:
 func apply_quality() -> void:
 	var profile := Quality.profile()
 	gravity_well.apply_quality(Quality.preset)
+	for tail: CometTail in _comet_tails.values():
+		tail.apply_quality(Quality.preset)
 	for visual: BodyVisual in _visuals.values():
 		visual.set_mesh_detail(profile["sphere_radial_segments"])
 		visual.set_effects_detail(profile["full_effects"])
@@ -200,6 +203,8 @@ func update(camera_position: PackedFloat64Array) -> void:
 			var halo: MeshInstance3D = _halos[body.id]
 			halo.transform = Transform3D(Basis.from_scale(Vector3.ONE * placed_radius * HALO_RADIUS_FACTOR), placed_position)
 		_update_trail(index, camera_position, shell)
+		if _comet_tails.has(body.id):
+			_update_comet_tail(index, stars, placed_position, placed_radius, shrink)
 	_update_eclipses(stars)
 	_rings.update(camera_position, shell, PackedFloat64Array([0.0, 0.0, 0.0]), _ring_radii)
 	_update_preview(camera_position, shell)
@@ -283,6 +288,29 @@ func _update_eclipses(stars: Array[int]) -> void:
 		var sun_angle := asin(clampf(simulation.radii[star] / distance, 0.0, 1.0))
 		_eclipses.find(index, Vector3(offset.x, offset.z, -offset.y).normalized(), sun_angle)
 		visual.set_eclipse(_eclipses.occluders, _eclipses.occluder_glows, sun_angle)
+
+
+func comet_tail(id: String) -> CometTail:
+	return _comet_tails.get(id)
+
+
+func _update_comet_tail(index: int, stars: Array[int], placed_position: Vector3, placed_radius: float, shrink: float) -> void:
+	var tail: CometTail = _comet_tails[world.bodies[index].id]
+	var star := _nearest_star(index, stars)
+	if star < 0:
+		tail.update(placed_position, Vector3.ZERO, Vector3.ZERO, INF, 0.0, placed_radius)
+		return
+	var simulation := world.simulation
+	var offset := simulation.position_of(index).minus(simulation.position_of(star))
+	var motion := simulation.velocity_of(index).minus(simulation.velocity_of(star))
+	tail.update(
+		placed_position,
+		Vector3(offset.x, offset.z, -offset.y),
+		Vector3(motion.x, motion.z, -motion.y),
+		offset.length() / Astro.AU_KM,
+		shrink / UNIT_KM,
+		placed_radius
+	)
 
 
 func _nearest_star(index: int, stars: Array[int]) -> int:
@@ -377,10 +405,16 @@ func _sync_bodies() -> void:
 		if definition != null and definition.ring_texture_path != "":
 			visual.add_rings(definition.ring_inner_km / definition.radius_km, definition.ring_outer_km / definition.radius_km, definition.ring_texture_path)
 		if definition != null:
+			visual.set_shape(definition.shape)
 			visual.add_atmosphere_layers(definition)
 			visual.add_surface_detail(definition)
 		add_child(visual)
 		_visuals[body.id] = visual
+		if body.kind == "comet":
+			var tail := CometTail.new()
+			tail.apply_quality(Quality.preset)
+			add_child(tail)
+			_comet_tails[body.id] = tail
 		var trail := SandboxTrail.new(body.color)
 		trail.configure(profile["trail_points"], Preferences.trail_length_fraction())
 		trail.visible = _trails_visible
@@ -401,6 +435,9 @@ func _sync_bodies() -> void:
 			if _halos.has(id):
 				_halos[id].queue_free()
 				_halos.erase(id)
+			if _comet_tails.has(id):
+				_comet_tails[id].queue_free()
+				_comet_tails.erase(id)
 	apply_trail_colors()
 	compute_positions()
 

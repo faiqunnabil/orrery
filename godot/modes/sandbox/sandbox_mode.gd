@@ -232,6 +232,8 @@ static func _definition_kind(definition: BodyDefinition) -> String:
 			return "Moon"
 		"dwarf_planet":
 			return "Dwarf planet"
+		"comet":
+			return "Comet"
 	return "Body"
 
 
