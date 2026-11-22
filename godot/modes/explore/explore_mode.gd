@@ -520,6 +520,8 @@ func capture_session() -> Dictionary:
 	var state := super()
 	state["scale"] = renderer.mapper.mode
 	state["selected"] = _selected_id
+	if _tour_player.active and not _before_tour.is_empty():
+		state.merge(_before_tour, true)
 	return state
 
 
