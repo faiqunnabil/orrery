@@ -98,6 +98,7 @@ var _press_position := Vector2.ZERO
 var _current_step: Dictionary = {}
 var _focus_actions: Array[StringName] = []
 var _eclipse_search: EclipseSearch
+var _before_tour: Dictionary = {}
 
 
 func _build_world() -> void:
@@ -558,6 +559,15 @@ func _start_tour(tour_id: String) -> void:
 			_tour_menu.visible = false
 			_quiz_panel.close_quiz()
 			_clear_selection()
+			_before_tour = {}
+			if tour["steps"].any(func(step: Dictionary) -> bool: return step.has("date")):
+				_before_tour = {
+					"seconds": clock.seconds,
+					"step_index": clock.step_index,
+					"paused": clock.paused,
+					"reversed": clock.reversed,
+					"scale": renderer.mapper.mode,
+				}
 			_tour_player.start(tour)
 			return
 
@@ -583,6 +593,14 @@ func _on_tour_stopped() -> void:
 	_current_step = {}
 	_tour_panel.dismiss()
 	_refresh_selection_content()
+	if not _before_tour.is_empty():
+		var saved := _before_tour
+		_before_tour = {}
+		_set_time(saved["seconds"], saved["step_index"])
+		clock.paused = saved["paused"]
+		clock.reversed = saved["reversed"]
+		clock.changed.emit()
+		_set_scale_mode(saved["scale"])
 
 
 func _cancel() -> void:
