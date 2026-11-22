@@ -106,6 +106,10 @@ func stop() -> void:
 func update(world: SandboxWorld) -> void:
 	if challenge.is_empty() or state == State.COMPLETE:
 		return
+	var center := world.index_of(str(challenge.get("center", "")))
+	if center < 0:
+		_wait("The central body is gone. Restart the challenge.")
+		return
 	for body in world.bodies:
 		if not _known.has(body.id):
 			_known[body.id] = true
@@ -113,10 +117,6 @@ func update(world: SandboxWorld) -> void:
 	if target_id == "":
 		return
 	var simulation := world.simulation
-	var center := world.index_of(str(challenge.get("center", "")))
-	if center < 0:
-		_wait("The central body is gone. Restart the challenge.")
-		return
 	var target := world.index_of(target_id)
 	if target < 0:
 		_wait("That body crashed. Launch another one.")
