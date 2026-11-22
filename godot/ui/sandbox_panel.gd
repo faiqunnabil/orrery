@@ -593,9 +593,9 @@ func _earth_ratio_text(earths: float) -> String:
 	if earths >= 100.0:
 		return BodyFacts.format_number(earths, 0)
 	if earths >= 10.0:
-		return "%.1f" % earths
+		return BodyFacts.format_number(earths, 1)
 	if earths >= 1.0:
-		return "%.2f" % earths
+		return BodyFacts.format_number(earths, 2)
 	if earths >= 0.01:
-		return "%.3f" % earths
+		return BodyFacts.format_number(earths, 3)
 	return BodyFacts.format_scientific(earths, 1)
