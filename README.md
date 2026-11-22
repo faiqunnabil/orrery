@@ -69,7 +69,7 @@ It is aimed at learners from elementary school to university. Every panel switch
 ### Application
 
 - **Menus.** A main menu, a pause menu, a credits screen, and settings that persist between sessions.
-- **Languages.** English and Bahasa Indonesia for the interface, body information, tours, quizzes, and presets, with matching number formats. The first launch follows the system language. The voice-over is English only, so it is turned off in Bahasa Indonesia while captions stay on.
+- **Languages.** English and Bahasa Indonesia for the interface, body information, tours, quizzes, and presets, with matching number formats. The first launch follows the system language, and switching keeps the current time, view, and Sandbox bodies. The voice-over is English only, so it is turned off in Bahasa Indonesia while captions stay on.
 - **Display and graphics settings.**
   - Window mode and resolution.
   - Low, Medium, or High quality preset, plus a render scale slider. High uses 4K textures for the Sun, the major planets, the Moon, and the sky.
@@ -217,7 +217,7 @@ orrery/
 
 ## Tests
 
-The `tests/` folder holds 301 automated checks for input, camera controls, menus, settings reset, keyboard navigation of the newer panels, the sandbox panel, quizzes, key bindings, accessibility, sandbox accuracy and speed, eclipses and the eclipse finder, the star field, the gravity well, the comet, the challenges, level of detail, texture tiers, the time zone display, search, date jumps, the introduction, keyboard navigation, and the Indonesian interface. They drive the real application, so they need a display and open a window. From the repository root:
+The `tests/` folder holds 324 automated checks for input, camera controls, menus, settings reset, keyboard navigation of the newer panels, the sandbox panel, quizzes, key bindings, accessibility, sandbox accuracy and speed, eclipses and the eclipse finder, the star field, the gravity well, the comet, the challenges, level of detail, texture tiers, the time zone display, search, date jumps, the introduction, keyboard navigation, and the Indonesian interface. They drive the real application, so they need a display and open a window. From the repository root:
 
 ```
 GODOT=/path/to/godot tests/run_tests.sh              # every test
