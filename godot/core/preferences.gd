@@ -45,6 +45,24 @@ func _ready() -> void:
 	_apply_language()
 
 
+func reset_to_defaults() -> void:
+	depth_level = DepthLevel.EXPLORER
+	labels_visible = true
+	trails_visible = true
+	rings_visible = true
+	constellations_visible = false
+	gravity_well_visible = false
+	view_panel_collapsed = false
+	language = ""
+	trail_length = TrailLength.MEDIUM
+	orbit_palette = OrbitPalette.NATURAL
+	scroll_mode = ScrollMode.AUTO
+	_save()
+	_apply_language()
+	trail_length_changed.emit()
+	changed.emit()
+
+
 func is_scientist() -> bool:
 	return depth_level == DepthLevel.SCIENTIST
 

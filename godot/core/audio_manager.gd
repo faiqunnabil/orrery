@@ -2,6 +2,10 @@ extends Node
 
 signal changed
 
+const DEFAULT_MUSIC_VOLUME := 0.5
+const DEFAULT_EFFECTS_VOLUME := 0.8
+const DEFAULT_NARRATION_VOLUME := 1.0
+
 const CONFIG_PATH := "user://settings.cfg"
 const CONFIG_SECTION := "audio"
 const MUSIC_BUS := &"Music"
@@ -20,9 +24,9 @@ const QUIT_SETTLE_SECONDS := 0.1
 const DUCK_DB := -8.0
 const DUCK_SECONDS := 0.4
 
-var music_volume := 0.5
-var effects_volume := 0.8
-var narration_volume := 1.0
+var music_volume := DEFAULT_MUSIC_VOLUME
+var effects_volume := DEFAULT_EFFECTS_VOLUME
+var narration_volume := DEFAULT_NARRATION_VOLUME
 var music_muted := false
 var narration_enabled := true
 
@@ -240,6 +244,17 @@ func _on_button_pressed() -> void:
 func _commit() -> void:
 	_apply()
 	_save()
+	changed.emit()
+
+
+func reset_to_defaults() -> void:
+	music_volume = DEFAULT_MUSIC_VOLUME
+	effects_volume = DEFAULT_EFFECTS_VOLUME
+	narration_volume = DEFAULT_NARRATION_VOLUME
+	music_muted = false
+	narration_enabled = true
+	_save()
+	_apply()
 	changed.emit()
 
 
