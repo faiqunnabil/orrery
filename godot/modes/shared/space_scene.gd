@@ -165,10 +165,10 @@ func _apply_key_help() -> void:
 	for group: Array in _help_groups:
 		var entries: Array = []
 		for entry: Array in group[1]:
-			entries.append([InputBindings.describe(entry[0]), entry[1]])
+			entries.append([InputBindings.describe(tr(entry[0])), entry[1]])
 		groups.append([group[0], entries])
 	hud.set_help(groups)
-	hud.set_mode_switch(_mode_label, InputBindings.describe(_mode_switch_template), _mode_icon)
+	hud.set_mode_switch(_mode_label, InputBindings.describe(tr(_mode_switch_template)), _mode_icon)
 	hud.refresh_binding_tooltips()
 
 

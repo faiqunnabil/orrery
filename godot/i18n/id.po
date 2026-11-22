@@ -18,169 +18,169 @@ msgstr "Efek"
 msgid "Narration"
 msgstr "Narasi"
 
-#: core/body_facts.gd:105
+#: core/body_facts.gd:106
 msgid "Distance from %s"
 msgstr "Jarak dari %s"
 
-#: core/body_facts.gd:110
+#: core/body_facts.gd:111
 msgid "%s million km"
 msgstr "%s juta km"
 
-#: core/body_facts.gd:122
+#: core/body_facts.gd:123
 msgid "%s days around %s"
 msgstr "%s hari mengelilingi %s"
 
-#: core/body_facts.gd:124 core/body_facts.gd:134
+#: core/body_facts.gd:125 core/body_facts.gd:135
 msgid "%s Earth days"
 msgstr "%s hari Bumi"
 
-#: core/body_facts.gd:125
+#: core/body_facts.gd:126
 msgid "%s Earth years"
 msgstr "%s tahun Bumi"
 
-#: core/body_facts.gd:132
+#: core/body_facts.gd:133
 msgid "%s hours"
 msgstr "%s jam"
 
-#: core/body_facts.gd:136
+#: core/body_facts.gd:137
 msgid ", spins backwards"
 msgstr ", berputar terbalik"
 
-#: core/body_facts.gd:151
+#: core/body_facts.gd:154
 msgid "Inclination to Laplace plane"
 msgstr "Inklinasi terhadap bidang Laplace"
 
-#: core/body_facts.gd:153
+#: core/body_facts.gd:156
 msgid "Inclination to %s's equator"
 msgstr "Inklinasi terhadap ekuator %s"
 
-#: core/body_facts.gd:154
+#: core/body_facts.gd:157
 msgid "Inclination"
 msgstr "Inklinasi"
 
-#: core/body_facts.gd:66
+#: core/body_facts.gd:67
 msgid "%s km (%s x Earth)"
 msgstr "%s km (%s x Bumi)"
 
-#: core/body_facts.gd:66
+#: core/body_facts.gd:67
 msgid "Width"
 msgstr "Lebar"
 
-#: core/body_facts.gd:69
+#: core/body_facts.gd:70
 msgid "Year"
 msgstr "Tahun"
 
-#: core/body_facts.gd:70
+#: core/body_facts.gd:71
 msgid "Day"
 msgstr "Hari"
 
-#: core/body_facts.gd:71
+#: core/body_facts.gd:72
 msgid "%s x Earth"
 msgstr "%s x Bumi"
 
-#: core/body_facts.gd:71
+#: core/body_facts.gd:72
 msgid "Gravity"
 msgstr "Gravitasi"
 
-#: core/body_facts.gd:77
+#: core/body_facts.gd:78
 msgid "Mass"
 msgstr "Massa"
 
-#: core/body_facts.gd:78
+#: core/body_facts.gd:79
 msgid "Mean radius"
 msgstr "Jari-jari rata-rata"
 
-#: core/body_facts.gd:79
+#: core/body_facts.gd:80
 msgid "Surface gravity"
 msgstr "Gravitasi permukaan"
 
-#: core/body_facts.gd:80
+#: core/body_facts.gd:81
 msgid "Escape velocity"
 msgstr "Kecepatan lepas"
 
-#: core/body_facts.gd:83
+#: core/body_facts.gd:84
 msgid "Semi-major axis"
 msgstr "Sumbu semi-mayor"
 
-#: core/body_facts.gd:84
+#: core/body_facts.gd:85
 msgid "Eccentricity"
 msgstr "Eksentrisitas"
 
-#: core/body_facts.gd:87
+#: core/body_facts.gd:88
 msgid "Orbital period"
 msgstr "Periode orbit"
 
-#: core/body_facts.gd:88
+#: core/body_facts.gd:89
 msgid "Current distance"
 msgstr "Jarak saat ini"
 
-#: core/body_facts.gd:89
+#: core/body_facts.gd:90
 msgid "Orbital speed"
 msgstr "Kecepatan orbit"
 
-#: core/body_facts.gd:90
+#: core/body_facts.gd:91
 msgid " (retrograde)"
 msgstr " (retrograd)"
 
-#: core/body_facts.gd:91
+#: core/body_facts.gd:92
 msgid "Rotation period"
 msgstr "Periode rotasi"
 
-#: core/body_facts.gd:93
+#: core/body_facts.gd:94
 msgid "Axial tilt"
 msgstr "Kemiringan sumbu"
 
-#: core/challenge_judge.gd:103 core/challenge_judge.gd:148
-msgid "That body is escaping. Launch it slower."
-msgstr "Benda itu lepas dari orbit. Luncurkan lebih lambat."
-
-#: core/challenge_judge.gd:106
-msgid "That body is outside the planet's pull. Launch it closer and slower."
-msgstr "Benda itu berada di luar tarikan planet. Luncurkan lebih dekat dan lebih lambat."
-
-#: core/challenge_judge.gd:112
-msgid "Eccentricity %s. Aim for %s to %s."
-msgstr "Eksentrisitas %s. Targetnya %s sampai %s."
-
-#: core/challenge_judge.gd:127
-msgid "Orbit progress: %d%%"
-msgstr "Kemajuan orbit: %d%%"
-
-#: core/challenge_judge.gd:132
-msgid "That body is still bound to the star. Launch it faster."
-msgstr "Benda itu masih terikat pada bintang. Luncurkan lebih cepat."
-
-#: core/challenge_judge.gd:139
-msgid "Escaping: %d%% of the way"
-msgstr "Melepaskan diri: %d%% perjalanan"
-
-#: core/challenge_judge.gd:145 core/challenge_judge.gd:85
+#: core/challenge_judge.gd:118 core/challenge_judge.gd:178
 msgid "The central body is gone. Restart the challenge."
 msgstr "Benda pusatnya sudah hilang. Ulangi tantangan ini."
 
-#: core/challenge_judge.gd:161
+#: core/challenge_judge.gd:122
+msgid "That body crashed. Launch another one."
+msgstr "Benda itu menabrak. Luncurkan benda lain."
+
+#: core/challenge_judge.gd:136 core/challenge_judge.gd:181
+msgid "That body is escaping. Launch it slower."
+msgstr "Benda itu lepas dari orbit. Luncurkan lebih lambat."
+
+#: core/challenge_judge.gd:139
+msgid "That body is outside the planet's pull. Launch it closer and slower."
+msgstr "Benda itu berada di luar tarikan planet. Luncurkan lebih dekat dan lebih lambat."
+
+#: core/challenge_judge.gd:145
+msgid "Eccentricity %s. Aim for %s to %s."
+msgstr "Eksentrisitas %s. Targetnya %s sampai %s."
+
+#: core/challenge_judge.gd:160
+msgid "Orbit progress: %d%%"
+msgstr "Kemajuan orbit: %d%%"
+
+#: core/challenge_judge.gd:165
+msgid "That body is still bound to the star. Launch it faster."
+msgstr "Benda itu masih terikat pada bintang. Luncurkan lebih cepat."
+
+#: core/challenge_judge.gd:172
+msgid "Escaping: %d%% of the way"
+msgstr "Melepaskan diri: %d%% perjalanan"
+
+#: core/challenge_judge.gd:194
 msgid "The pass changed its energy by %d%%. Pass just behind the planet."
 msgstr "Lintasan itu mengubah energinya sebesar %d%%. Lewati tepat di belakang planet."
 
-#: core/challenge_judge.gd:163
+#: core/challenge_judge.gd:196
 msgid "Closest pass so far: %s AU"
 msgstr "Jarak terdekat sejauh ini: %s AU"
 
-#: core/challenge_judge.gd:182
+#: core/challenge_judge.gd:215
 msgid "Tracking the new body."
 msgstr "Mengikuti benda yang baru."
 
-#: core/challenge_judge.gd:204
+#: core/challenge_judge.gd:237
 msgid "Challenge complete!"
 msgstr "Tantangan selesai!"
 
 #: core/challenge_judge.gd:63
 msgid "Launch a body to begin."
 msgstr "Luncurkan sebuah benda untuk memulai."
-
-#: core/challenge_judge.gd:89
-msgid "That body crashed. Launch another one."
-msgstr "Benda itu menabrak. Luncurkan benda lain."
 
 #: core/eclipse_search.gd:35
 msgid "Partial lunar eclipse"
@@ -258,7 +258,7 @@ msgstr "Ganti skala"
 msgid "Focus next body"
 msgstr "Fokus ke benda berikutnya"
 
-#: core/input_bindings.gd:63 modes/explore/explore_mode.gd:289 modes/explore/explore_mode.gd:30
+#: core/input_bindings.gd:63 modes/explore/explore_mode.gd:290 modes/explore/explore_mode.gd:30
 msgid "Free flight"
 msgstr "Terbang bebas"
 
@@ -2706,7 +2706,7 @@ msgstr "Mengapa tidak setiap bulan?"
 msgid "With a radius of 2,634 km and a normalized moment of inertia near 0.31, Ganymede has an iron core whose dynamo creates a small magnetosphere."
 msgstr "Dengan jari-jari 2.634 km dan momen inersia ternormalisasi mendekati 0,31, Ganymede punya inti besi yang dinamonya menciptakan magnetosfer kecil."
 
-#: modes/explore/explore_mode.gd:118 modes/explore/explore_mode.gd:48
+#: modes/explore/explore_mode.gd:119 modes/explore/explore_mode.gd:48
 msgid "Scale"
 msgstr "Skala"
 
@@ -2714,11 +2714,11 @@ msgstr "Skala"
 msgid "Camera"
 msgstr "Kamera"
 
-#: modes/explore/explore_mode.gd:121
+#: modes/explore/explore_mode.gd:122
 msgid "Choose a guided tour"
 msgstr "Pilih tur berpemandu"
 
-#: modes/explore/explore_mode.gd:121 ui/tour_menu.gd:32
+#: modes/explore/explore_mode.gd:122 ui/tour_menu.gd:32
 msgid "Guided tours"
 msgstr "Tur berpemandu"
 
@@ -2730,7 +2730,7 @@ msgstr "Turun / naik"
 msgid "Boost"
 msgstr "Percepat"
 
-#: modes/explore/explore_mode.gd:167 modes/sandbox/sandbox_mode.gd:305
+#: modes/explore/explore_mode.gd:168 modes/sandbox/sandbox_mode.gd:305
 msgid "Focus: %s"
 msgstr "Fokus: %s"
 
@@ -2750,7 +2750,7 @@ msgstr "Kecepatan terbang"
 msgid "Shift+Scroll"
 msgstr "Shift+Gulir"
 
-#: modes/explore/explore_mode.gd:20 modes/explore/explore_mode.gd:417 modes/sandbox/sandbox_mode.gd:25
+#: modes/explore/explore_mode.gd:20 modes/explore/explore_mode.gd:418 modes/sandbox/sandbox_mode.gd:25
 msgid "Look around"
 msgstr "Lihat sekeliling"
 
@@ -2758,7 +2758,7 @@ msgstr "Lihat sekeliling"
 msgid "Right drag"
 msgstr "Seret kanan"
 
-#: modes/explore/explore_mode.gd:214
+#: modes/explore/explore_mode.gd:215
 msgid "%d bodies, %s rocks"
 msgstr "%d benda, %s batuan"
 
@@ -2810,63 +2810,63 @@ msgstr "Lebih lambat / cepat"
 msgid "Now"
 msgstr "Sekarang"
 
-#: modes/explore/explore_mode.gd:413
+#: modes/explore/explore_mode.gd:414
 msgid "Welcome to Orrery"
 msgstr "Selamat datang di Orrery"
 
-#: modes/explore/explore_mode.gd:414
+#: modes/explore/explore_mode.gd:415
 msgid "Here is a quick look at the controls. It takes about a minute, and you can skip it at any time."
 msgstr "Berikut pengenalan singkat cara mengendalikan Orrery. Hanya sekitar satu menit, dan kamu bisa melewatinya kapan saja."
 
-#: modes/explore/explore_mode.gd:418
+#: modes/explore/explore_mode.gd:419
 msgid "Drag with the mouse, or swipe with two fingers, to orbit the body in view. Scroll or pinch to zoom, and move freely with W, A, S, and D."
 msgstr "Seret dengan mouse, atau usap dengan dua jari, untuk mengitari benda yang terlihat. Gulir atau cubit untuk memperbesar, dan bergerak bebas dengan W, A, S, dan D."
 
-#: modes/explore/explore_mode.gd:421
+#: modes/explore/explore_mode.gd:422
 msgid "Meet the bodies"
 msgstr "Kenali benda langit"
 
-#: modes/explore/explore_mode.gd:422
+#: modes/explore/explore_mode.gd:423
 msgid "Click a planet or moon to read about it, and double-click to fly to it. This button finds any body by name."
 msgstr "Klik planet atau bulan untuk membaca tentangnya, lalu klik ganda untuk terbang ke sana. Tombol ini mencari benda apa pun berdasarkan namanya."
 
-#: modes/explore/explore_mode.gd:426
+#: modes/explore/explore_mode.gd:427
 msgid "Control time"
 msgstr "Kendalikan waktu"
 
-#: modes/explore/explore_mode.gd:427
+#: modes/explore/explore_mode.gd:428
 msgid "Play, pause, reverse, or speed up time here. The calendar jumps to any date between 1800 and 2050, or straight to the next eclipse."
 msgstr "Jalankan, jeda, balikkan, atau percepat waktu di sini. Kalender bisa melompat ke tanggal mana pun antara 1800 dan 2050, atau langsung ke gerhana berikutnya."
 
-#: modes/explore/explore_mode.gd:431
+#: modes/explore/explore_mode.gd:432
 msgid "Take a guided tour"
 msgstr "Ikuti tur berpemandu"
 
-#: modes/explore/explore_mode.gd:432
+#: modes/explore/explore_mode.gd:433
 msgid "Tours show the highlights with narration, and each one ends with a short quiz."
 msgstr "Tur menampilkan hal-hal menarik dengan narasi, dan setiap tur diakhiri kuis singkat."
 
-#: modes/explore/explore_mode.gd:436
+#: modes/explore/explore_mode.gd:437
 msgid "Choose what you see"
 msgstr "Atur yang kamu lihat"
 
-#: modes/explore/explore_mode.gd:437
+#: modes/explore/explore_mode.gd:438
 msgid "Explorer keeps the facts simple and Scientist shows full data. Labels, orbits, rings, constellations, and the scale can be switched here."
 msgstr "Penjelajah menyajikan fakta sederhana, sedangkan Ilmuwan menampilkan data lengkap. Label, orbit, cincin, rasi bintang, dan skala bisa diubah di sini."
 
-#: modes/explore/explore_mode.gd:441
+#: modes/explore/explore_mode.gd:442
 msgid "Try the Sandbox"
 msgstr "Coba Sandbox"
 
-#: modes/explore/explore_mode.gd:442
+#: modes/explore/explore_mode.gd:443
 msgid "In the Sandbox you launch your own planets, watch them bend a gravity well, and take on five challenges."
 msgstr "Di Sandbox kamu bisa meluncurkan planet sendiri, melihatnya melengkungkan sumur gravitasi, dan mencoba lima tantangan."
 
-#: modes/explore/explore_mode.gd:446
+#: modes/explore/explore_mode.gd:447
 msgid "You are ready"
 msgstr "Kamu siap"
 
-#: modes/explore/explore_mode.gd:447
+#: modes/explore/explore_mode.gd:448
 msgid "Press F3 at any time to see every control. Enjoy the solar system."
 msgstr "Tekan F3 kapan saja untuk melihat semua kontrol. Selamat menjelajahi tata surya."
 
@@ -2874,11 +2874,11 @@ msgstr "Tekan F3 kapan saja untuk melihat semua kontrol. Selamat menjelajahi tat
 msgid "View"
 msgstr "Tampilan"
 
-#: modes/explore/explore_mode.gd:466
+#: modes/explore/explore_mode.gd:467
 msgid "No eclipse found between %d and %d in that direction"
 msgstr "Tidak ada gerhana antara %d dan %d ke arah itu"
 
-#: modes/explore/explore_mode.gd:475
+#: modes/explore/explore_mode.gd:476
 msgid "%s, greatest at %s"
 msgstr "%s, puncak pada %s"
 
@@ -2917,6 +2917,10 @@ msgstr "Esc"
 #: modes/explore/explore_mode.gd:66 modes/sandbox/sandbox_mode.gd:71 ui/hud.gd:499
 msgid "Menu"
 msgstr "Menu"
+
+#: modes/explore/explore_mode.gd:78
+msgid "Open Sandbox ({mode_sandbox})"
+msgstr "Buka Sandbox ({mode_sandbox})"
 
 #: modes/explore/explore_mode.gd:9
 msgid "Compressed"
@@ -2978,7 +2982,7 @@ msgstr "Kecepatan simulasi dibatasi oleh performa"
 msgid "Remove"
 msgstr "Hapus"
 
-#: modes/sandbox/sandbox_mode.gd:359
+#: modes/sandbox/sandbox_mode.gd:360
 msgid "Body limit reached for the %s preset."
 msgstr "Batas jumlah benda untuk preset %s sudah tercapai."
 
@@ -2989,10 +2993,6 @@ msgstr "Menempatkan benda"
 #: modes/sandbox/sandbox_mode.gd:41
 msgid "Place on the plane"
 msgstr "Tempatkan di bidang orbit"
-
-#: modes/sandbox/sandbox_mode.gd:417
-msgid "Challenge complete: %s"
-msgstr "Tantangan selesai: %s"
 
 #: modes/sandbox/sandbox_mode.gd:42
 msgid "Drag"
@@ -3010,67 +3010,75 @@ msgstr "Luncurkan"
 msgid "Release"
 msgstr "Lepas"
 
-#: modes/sandbox/sandbox_mode.gd:433
-msgid "The snapshot could not be saved."
-msgstr "Snapshot tidak dapat disimpan."
-
-#: modes/sandbox/sandbox_mode.gd:439
-msgid "The saved snapshot could not be read."
-msgstr "Snapshot yang tersimpan tidak dapat dibaca."
-
 #: modes/sandbox/sandbox_mode.gd:44
 msgid "Cancel"
 msgstr "Batal"
+
+#: modes/sandbox/sandbox_mode.gd:454
+msgid "Challenge complete: %s"
+msgstr "Tantangan selesai: %s"
+
+#: modes/sandbox/sandbox_mode.gd:470
+msgid "The snapshot could not be saved."
+msgstr "Snapshot tidak dapat disimpan."
+
+#: modes/sandbox/sandbox_mode.gd:476
+msgid "The saved snapshot could not be read."
+msgstr "Snapshot yang tersimpan tidak dapat dibaca."
 
 #: modes/sandbox/sandbox_mode.gd:48
 msgid "Time and view"
 msgstr "Waktu dan tampilan"
 
-#: modes/sandbox/sandbox_mode.gd:527
+#: modes/sandbox/sandbox_mode.gd:564
 msgid "Speed: %.2f km/s"
 msgstr "Kecepatan: %.2f km/dtk"
 
-#: modes/sandbox/sandbox_mode.gd:532
+#: modes/sandbox/sandbox_mode.gd:569
 msgid "Speed: %.2f km/s\nDistance to %s: %s"
 msgstr "Kecepatan: %.2f km/dtk\nJarak ke %s: %s"
 
-#: modes/sandbox/sandbox_mode.gd:633
+#: modes/sandbox/sandbox_mode.gd:670
 msgid "No body to orbit nearby"
 msgstr "Tidak ada benda di dekat sini untuk diorbit"
 
-#: modes/sandbox/sandbox_mode.gd:634
+#: modes/sandbox/sandbox_mode.gd:671
 msgid "No body to orbit. Add or keep a massive body nearby."
 msgstr "Tidak ada benda untuk diorbit. Tambahkan atau pertahankan benda bermassa besar di dekatnya."
 
-#: modes/sandbox/sandbox_mode.gd:636
+#: modes/sandbox/sandbox_mode.gd:673
 msgid "Launch %.2f km/s relative to %s (%.2f x circular)"
 msgstr "Luncur %.2f km/dtk relatif terhadap %s (%.2f x orbit lingkaran)"
 
-#: modes/sandbox/sandbox_mode.gd:638
+#: modes/sandbox/sandbox_mode.gd:675
 msgid "Launch speed relative to %s: %.2f km/s (%.2f x circular orbit speed)"
 msgstr "Kecepatan luncur relatif terhadap %s: %.2f km/dtk (%.2f x kecepatan orbit lingkaran)"
 
-#: modes/shared/space_scene.gd:111
+#: modes/sandbox/sandbox_mode.gd:76
+msgid "Open Explore ({mode_explore})"
+msgstr "Buka Jelajah ({mode_explore})"
+
+#: modes/shared/space_scene.gd:114
 msgid "Auto-orbit: Off"
 msgstr "Orbit otomatis: mati"
 
-#: modes/shared/space_scene.gd:111
+#: modes/shared/space_scene.gd:114
 msgid "Auto-orbit: On"
 msgstr "Orbit otomatis: nyala"
 
-#: modes/shared/space_scene.gd:246
+#: modes/shared/space_scene.gd:279
 msgid "None"
 msgstr "Tidak ada"
 
-#: modes/shared/space_scene.gd:247
+#: modes/shared/space_scene.gd:280
 msgid "%d x %d segments"
 msgstr "%d x %d segmen"
 
-#: modes/shared/space_scene.gd:277
+#: modes/shared/space_scene.gd:310
 msgid "Screenshot saved: %s"
 msgstr "Tangkapan layar disimpan: %s"
 
-#: modes/shared/space_scene.gd:279
+#: modes/shared/space_scene.gd:312
 msgid "Screenshot failed"
 msgstr "Tangkapan layar gagal"
 
@@ -3410,7 +3418,7 @@ msgstr "Adaptif memperpendek langkah saat benda saling mendekat; langkah tetap m
 msgid "%d / %d bodies"
 msgstr "%d / %d benda"
 
-#: ui/sandbox_panel.gd:218 ui/sandbox_panel.gd:283 ui/sandbox_panel.gd:458
+#: ui/sandbox_panel.gd:218 ui/sandbox_panel.gd:283 ui/sandbox_panel.gd:463
 msgid "Place body"
 msgstr "Tempatkan benda"
 
@@ -3438,7 +3446,7 @@ msgstr "Dunia"
 msgid "Color"
 msgstr "Warna"
 
-#: ui/sandbox_panel.gd:288 ui/sandbox_panel.gd:463
+#: ui/sandbox_panel.gd:288 ui/sandbox_panel.gd:468
 msgid "Click and drag on the orbital plane to launch a body"
 msgstr "Klik dan seret di bidang orbit untuk meluncurkan benda"
 
@@ -3534,15 +3542,15 @@ msgstr "Tampilkan sumur gravitasi"
 msgid "An exact solution keeps both values constant. Drift since the baseline shows the integrator's numerical error. Merges, edits, and new bodies reset the baseline."
 msgstr "Solusi eksak menjaga kedua nilai tetap. Penyimpangan sejak titik acuan menunjukkan galat numerik integrator. Penggabungan, perubahan, dan benda baru mengatur ulang titik acuan."
 
-#: ui/sandbox_panel.gd:400
+#: ui/sandbox_panel.gd:405
 msgid "Completed"
 msgstr "Selesai"
 
-#: ui/sandbox_panel.gd:401
+#: ui/sandbox_panel.gd:406
 msgid "Start"
 msgstr "Mulai"
 
-#: ui/sandbox_panel.gd:401
+#: ui/sandbox_panel.gd:406
 msgid "Start this challenge"
 msgstr "Mulai tantangan ini"
 
@@ -3554,55 +3562,55 @@ msgstr "Benda yang dibekukan ditahan oleh gaya luar, sehingga energi dan momentu
 msgid "Asteroid"
 msgstr "Asteroid"
 
-#: ui/sandbox_panel.gd:474
+#: ui/sandbox_panel.gd:479
 msgid "Restart"
 msgstr "Ulangi"
 
-#: ui/sandbox_panel.gd:474
+#: ui/sandbox_panel.gd:479
 msgid "Set the challenge up again"
 msgstr "Siapkan tantangan dari awal"
 
-#: ui/sandbox_panel.gd:475
+#: ui/sandbox_panel.gd:480
 msgid "Leave"
 msgstr "Keluar"
 
-#: ui/sandbox_panel.gd:475
+#: ui/sandbox_panel.gd:480
 msgid "Stop the challenge and keep the bodies"
 msgstr "Hentikan tantangan dan biarkan benda tetap ada"
 
-#: ui/sandbox_panel.gd:482
+#: ui/sandbox_panel.gd:487
 msgid "Integrator"
 msgstr "Integrator"
 
-#: ui/sandbox_panel.gd:486
+#: ui/sandbox_panel.gd:491
 msgid "Time step"
 msgstr "Langkah waktu"
 
-#: ui/sandbox_panel.gd:491
+#: ui/sandbox_panel.gd:496
 msgid "Conservation"
 msgstr "Kekekalan"
 
-#: ui/sandbox_panel.gd:495
+#: ui/sandbox_panel.gd:500
 msgid "Angular momentum"
 msgstr "Momentum sudut"
 
-#: ui/sandbox_panel.gd:495
+#: ui/sandbox_panel.gd:500
 msgid "Energy drift"
 msgstr "Penyimpangan energi"
 
-#: ui/sandbox_panel.gd:495
+#: ui/sandbox_panel.gd:500
 msgid "Momentum drift"
 msgstr "Penyimpangan momentum"
 
-#: ui/sandbox_panel.gd:495
+#: ui/sandbox_panel.gd:500
 msgid "Total energy"
 msgstr "Energi total"
 
-#: ui/sandbox_panel.gd:506
+#: ui/sandbox_panel.gd:511
 msgid "Measure drift from now on"
 msgstr "Ukur penyimpangan mulai sekarang"
 
-#: ui/sandbox_panel.gd:506
+#: ui/sandbox_panel.gd:511
 msgid "Reset baseline"
 msgstr "Atur ulang acuan"
 
@@ -3610,11 +3618,11 @@ msgstr "Atur ulang acuan"
 msgid "Rocky planet"
 msgstr "Planet berbatu"
 
-#: ui/sandbox_panel.gd:579
+#: ui/sandbox_panel.gd:584
 msgid "Mass   %s Earths  (%s kg)"
 msgstr "Massa   %s Bumi  (%s kg)"
 
-#: ui/sandbox_panel.gd:583
+#: ui/sandbox_panel.gd:588
 msgid "Radius   %s km"
 msgstr "Jari-jari   %s km"
 
@@ -3802,7 +3810,7 @@ msgstr "Buka folder log"
 msgid "The voice-over is available in English only. Captions follow the chosen language."
 msgstr "Suara narasi hanya tersedia dalam bahasa Inggris. Teks narasi mengikuti bahasa yang dipilih."
 
-#: ui/settings_panel.gd:260 ui/settings_panel.gd:315
+#: ui/settings_panel.gd:260 ui/settings_panel.gd:314
 msgid "Reset all settings"
 msgstr "Reset semua pengaturan"
 
@@ -3834,11 +3842,11 @@ msgstr "Klik, lalu tekan tombol baru"
 msgid "Restore every setting to its default. Press twice to confirm"
 msgstr "Kembalikan semua pengaturan ke bawaan. Tekan dua kali untuk mengonfirmasi"
 
-#: ui/settings_panel.gd:307
+#: ui/settings_panel.gd:306
 msgid "Press again to reset"
 msgstr "Tekan lagi untuk reset"
 
-#: ui/settings_panel.gd:320
+#: ui/settings_panel.gd:319
 msgid "Will show"
 msgstr "Akan tampil"
 
