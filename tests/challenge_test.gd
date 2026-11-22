@@ -41,6 +41,17 @@ func _check(label: String, condition: bool) -> void:
 	print(("PASS  " if condition else "FAIL  ") + label)
 	if not condition:
 		failures += 1
+		_save_failure()
+
+
+func _save_failure() -> void:
+	var directory := OS.get_environment("FAILURE_DIR")
+	if directory == "":
+		return
+	DirAccess.make_dir_recursive_absolute(directory)
+	var path := "%s/%s_failure_%d.jpg" % [directory, get_script().resource_path.get_file().get_basename(), failures]
+	root.get_texture().get_image().save_jpg(path, 0.85)
+	print("      screenshot ", path)
 
 
 func _shot(name: String) -> void:
