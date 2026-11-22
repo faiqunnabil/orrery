@@ -4,7 +4,7 @@ set -euo pipefail
 DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 GODOT_VERSION="4.7.2.stable"
 TEMPLATES_URL="https://github.com/godotengine/godot/releases/download/4.7.2-stable/Godot_v4.7.2-stable_export_templates.tpz"
-TEMPLATES_DIR="${XDG_DATA_HOME:-$HOME/.local/share}/godot/export_templates/$GODOT_VERSION"
+GODOT="${GODOT:-godot}"
 
 usage() {
 	cat <<'EOF'
@@ -18,11 +18,42 @@ Options:
   all                  Export both platforms (default)
   --install-templates  Download and install Godot 4.7.2 export templates if missing
   -h, --help           Show this help message
+
+Environment:
+  GODOT                Godot 4.7.2 executable (default: godot on PATH)
+  GODOT_TEMPLATES      Export template folder, when it is not found automatically
+
+On Windows, run it from Git Bash, for example:
+  GODOT=/d/Godot/Godot_v4.7.2-stable_win64_console.exe ./build.sh windows
 EOF
 }
 
+templates_dir() {
+	if [[ -n "${GODOT_TEMPLATES:-}" ]]; then
+		echo "$GODOT_TEMPLATES"
+		return
+	fi
+	local editor_dir
+	editor_dir="$(dirname "$GODOT_PATH")"
+	if [[ -f "$editor_dir/._sc_" || -f "$editor_dir/_sc_" ]]; then
+		echo "$editor_dir/editor_data/export_templates/$GODOT_VERSION"
+		return
+	fi
+	case "$(uname -s)" in
+		MINGW*|MSYS*|CYGWIN*) echo "${APPDATA}/Godot/export_templates/$GODOT_VERSION" ;;
+		Darwin) echo "$HOME/Library/Application Support/Godot/export_templates/$GODOT_VERSION" ;;
+		*) echo "${XDG_DATA_HOME:-$HOME/.local/share}/godot/export_templates/$GODOT_VERSION" ;;
+	esac
+}
+
 templates_installed() {
-	[[ -f "$TEMPLATES_DIR/linux_release.x86_64" && -f "$TEMPLATES_DIR/windows_release_x86_64.exe" ]]
+	local platform
+	for platform in "$@"; do
+		case "$platform" in
+			linux) [[ -f "$TEMPLATES_DIR/linux_release.x86_64" ]] || return 1 ;;
+			windows) [[ -f "$TEMPLATES_DIR/windows_release_x86_64.exe" ]] || return 1 ;;
+		esac
+	done
 }
 
 install_templates() {
@@ -41,7 +72,7 @@ install_templates() {
 export_linux() {
 	mkdir -p "$DIR/builds/linux"
 	echo "Exporting Linux release..."
-	godot --headless --path "$DIR/godot" --export-release "Linux" "../builds/linux/Orrery.x86_64"
+	"$GODOT_PATH" --headless --path "$DIR/godot" --export-release "Linux" "../builds/linux/Orrery.x86_64"
 	chmod +x "$DIR/builds/linux/Orrery.x86_64"
 	echo "Built: builds/linux/Orrery.x86_64"
 }
@@ -49,7 +80,7 @@ export_linux() {
 export_windows() {
 	mkdir -p "$DIR/builds/windows"
 	echo "Exporting Windows release..."
-	godot --headless --path "$DIR/godot" --export-release "Windows" "../builds/windows/Orrery.exe"
+	"$GODOT_PATH" --headless --path "$DIR/godot" --export-release "Windows" "../builds/windows/Orrery.exe"
 	echo "Built: builds/windows/Orrery.exe"
 }
 
@@ -76,12 +107,18 @@ for arg in "$@"; do
 	esac
 done
 
-if ! command -v godot >/dev/null 2>&1; then
-	echo "Error: 'godot' not found in PATH." >&2
+if ! GODOT_PATH="$(command -v "$GODOT")"; then
+	echo "Error: Godot was not found at '$GODOT'. Put godot on PATH or set GODOT to the executable." >&2
 	exit 1
 fi
+TEMPLATES_DIR="$(templates_dir)"
 
-if ! templates_installed; then
+case "$target" in
+	all) platforms=(linux windows) ;;
+	*) platforms=("$target") ;;
+esac
+
+if ! templates_installed "${platforms[@]}"; then
 	if [[ "$want_install" == true ]]; then
 		install_templates
 	else
