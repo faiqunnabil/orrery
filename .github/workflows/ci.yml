@@ -59,4 +59,14 @@ jobs:
           GODOT: godot
           GODOT_ARGS: --display-driver x11 --rendering-driver opengl3 --audio-driver Dummy
           LIBGL_ALWAYS_SOFTWARE: "1"
+          FAILURE_DIR: ${{ github.workspace }}/test-failures
         run: xvfb-run --auto-servernum --server-args="-screen 0 1280x720x24" tests/run_tests.sh
+
+      - name: Keep screenshots of failed checks
+        if: failure()
+        uses: actions/upload-artifact@v4
+        with:
+          name: test-failures-${{ github.run_id }}
+          path: test-failures/
+          if-no-files-found: ignore
+          retention-days: 14
