@@ -28,7 +28,8 @@ JSON_KEYS = {
     "data/challenges.json": {"title", "goal", "hint", "name"},
 }
 CREDIT_ENTRY_KEYS = {"author", "license", "url", "text"}
-PLACEHOLDER = re.compile(r"%[0-9.]*[dsf]")
+PLACEHOLDER = re.compile(r"%[0-9.]*[dsf]|\{[a-z_0-9]+\}")
+ACTION_TOKEN = re.compile(r"\{[a-z_0-9]+\}")
 CONCATENATION = re.compile(r'"\s*\n?\s*\+\s*"')
 UNIT_WORDS = {"km", "kg", "AU", "deg", "ms", "FPS", "MB", "UTC", "RK", "VRAM", "m2", "s"}
 IGNORED = {"Button", "Dummy", "Wayland", "ABCDEFGH", "Verlet"}
@@ -41,10 +42,11 @@ def parse_arguments() -> argparse.Namespace:
 
 
 def is_message(text: str) -> bool:
-    words = WORD.findall(re.sub(r"%[0-9.]*[dsf]", "", text))
+    visible = ACTION_TOKEN.sub("", text)
+    words = WORD.findall(re.sub(r"%[0-9.]*[dsf]", "", visible))
     if not words or all(word in UNIT_WORDS for word in words):
         return False
-    if text in IGNORED or text.startswith("#") or "{" in text or not re.search("[a-z]", text):
+    if text in IGNORED or text.startswith("#") or "{" in visible or not re.search("[a-z]", visible):
         return False
     if text.startswith(("res://", "user://", "http")) or IDENTIFIER.match(text) or CAMEL_TYPE.match(text):
         return False
