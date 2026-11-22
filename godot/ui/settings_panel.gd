@@ -29,6 +29,10 @@ const GRAPHICS_NOTE := (
 const AUDIO_NOTE := "Tour narration text is always shown on screen. The voice-over is synthesized speech."
 const VOICE_LANGUAGE_NOTE := "The voice-over is available in English only. Captions follow the chosen language."
 const LANGUAGE_NOTE := "Changing the language reloads the current screen."
+const TROUBLESHOOTING_NOTE := "The log helps with bug reports. Resetting restores every display, graphics, audio, language, and key setting, keeps completed challenges, and reloads the screen."
+const RESET_ALL_TOOLTIP := "Restore every setting to its default. Press twice to confirm"
+const RESET_CONFIRM_SECONDS := 4.0
+const LOG_FOLDER := "user://logs"
 
 var _tabs := SegmentedControl.new(PAGE_NAMES)
 var _pages: Array[ScrollContainer] = []
@@ -50,6 +54,8 @@ var _binding_buttons: Dictionary = {}
 var _capturing := ""
 var _binding_message: Label
 var _intro_button: Button
+var _reset_all_button: Button
+var _reset_armed := false
 var _language := SegmentedControl.new(Locale.LANGUAGE_NAMES)
 var _voice_note: Label
 
@@ -249,6 +255,17 @@ func _build_controls_page(page: VBoxContainer) -> void:
 	_intro_button = Hud.make_button("Show again", _reset_onboarding, "", "rotate_ccw")
 	intro_row.add_child(_intro_button)
 	page.add_child(HSeparator.new())
+	page.add_child(Hud.section_label("Troubleshooting"))
+	page.add_child(Hud.make_wrapped_label(TROUBLESHOOTING_NOTE, NOTE_WIDTH, "DimLabel"))
+	var support_row := HBoxContainer.new()
+	page.add_child(support_row)
+	var logs := Hud.make_button("Open log folder", open_log_folder, ProjectSettings.globalize_path(LOG_FOLDER), "folder_open")
+	_reset_all_button = Hud.make_button("Reset all settings", _press_reset_all, RESET_ALL_TOOLTIP, "rotate_ccw")
+	_reset_all_button.theme_type_variation = "DangerButton"
+	for button in [logs, _reset_all_button]:
+		button.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+		support_row.add_child(button)
+	page.add_child(HSeparator.new())
 	page.add_child(Hud.section_label("Keyboard"))
 	var header := HBoxContainer.new()
 	page.add_child(header)
@@ -268,6 +285,37 @@ func _build_controls_page(page: VBoxContainer) -> void:
 		button.custom_minimum_size = Vector2(BINDING_WIDTH, 0)
 		row.add_child(button)
 		_binding_buttons[action] = button
+
+
+func open_log_folder() -> void:
+	var folder := ProjectSettings.globalize_path(LOG_FOLDER)
+	DirAccess.make_dir_recursive_absolute(folder)
+	OS.shell_show_in_file_manager(folder)
+
+
+func reset_all_settings() -> void:
+	InputBindings.reset_to_defaults()
+	Preferences.reset_to_defaults()
+	Quality.reset_to_defaults()
+	Audio.reset_to_defaults()
+	get_tree().paused = false
+	get_tree().reload_current_scene.call_deferred()
+
+
+func _press_reset_all() -> void:
+	if _reset_armed:
+		reset_all_settings()
+		return
+	_reset_armed = true
+	_reset_all_button.text = "Press again to reset"
+	get_tree().create_timer(RESET_CONFIRM_SECONDS, true).timeout.connect(_disarm_reset_all)
+
+
+func _disarm_reset_all() -> void:
+	if not is_instance_valid(_reset_all_button):
+		return
+	_reset_armed = false
+	_reset_all_button.text = "Reset all settings"
 
 
 func _reset_onboarding() -> void:
