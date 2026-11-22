@@ -10,7 +10,8 @@ Usage: tools/package_release.sh <version>
 
 Packages builds/windows/Orrery.exe and builds/linux/Orrery.x86_64, exported by
 build.sh, into dist/ as a Windows zip and a Linux tar.gz. Both archives include
-the project license and the third-party license register. SHA256SUMS.txt lists
+the project license and the third-party license register, and the Linux archive
+adds install.sh and the icon for the application menu. SHA256SUMS.txt lists
 the checksums of both archives. Requires zip, tar, and sha256sum.
 USAGE
 }
@@ -55,8 +56,10 @@ stage "$WINDOWS" "$ROOT/builds/windows/Orrery.exe"
 
 LINUX="Orrery-$VERSION-linux-x86_64"
 stage "$LINUX" "$ROOT/builds/linux/Orrery.x86_64"
-chmod 755 "$STAGE/$LINUX/Orrery.x86_64"
-chmod 644 "$STAGE/$LINUX/LICENSE" "$STAGE/$LINUX/THIRD_PARTY_LICENSES.md"
+cp "$ROOT/tools/linux/install.sh" "$STAGE/$LINUX/install.sh"
+cp "$ROOT/godot/icon.png" "$STAGE/$LINUX/orrery.png"
+chmod 755 "$STAGE/$LINUX/Orrery.x86_64" "$STAGE/$LINUX/install.sh"
+chmod 644 "$STAGE/$LINUX/LICENSE" "$STAGE/$LINUX/THIRD_PARTY_LICENSES.md" "$STAGE/$LINUX/orrery.png"
 tar -C "$STAGE" --owner=0 --group=0 --numeric-owner -czf "$DIST/$LINUX.tar.gz" "$LINUX"
 
 (cd "$DIST" && sha256sum "$WINDOWS.zip" "$LINUX.tar.gz" > SHA256SUMS.txt)
