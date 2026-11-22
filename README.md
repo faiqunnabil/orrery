@@ -138,7 +138,13 @@ sudo ./install.sh --system # for every user, into /opt/orrery
 
 ### Export builds
 
-Install the Godot 4.7.2 export templates, then run `./build.sh` (or `./build.sh --install-templates` to fetch them automatically), or run directly from the repository root:
+Install the Godot 4.7.2 export templates, then run `./build.sh` (or `./build.sh --install-templates` to fetch them automatically). Set `GODOT` when Godot is not on PATH; on Windows, run it from Git Bash:
+
+```
+GODOT=/d/Godot/Godot_v4.7.2-stable_win64_console.exe ./build.sh windows
+```
+
+The script finds the templates of a self-contained Godot folder as well as the standard locations on Windows, macOS, and Linux, and `GODOT_TEMPLATES` overrides them. To export without the script, run from the repository root:
 
 ```
 godot --headless --path godot --export-release "Windows" ../builds/windows/Orrery.exe
