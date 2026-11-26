@@ -178,7 +178,9 @@ func _run_step() -> void:
 			var now: Dictionary = _state(camera)
 			_check("Shift + scroll changes flight speed only", now["speed"] > before["speed"] and absf(now["distance"] - before["distance"]) < 1e-9)
 			before = now
-			_pan(Vector2(8, 0))
+			# Wayland reports larger swipe deltas, which the rig scales down, so
+			# size the swipe to give the same rotation on every display server.
+			_pan(Vector2(8, 0) / camera._pan_scale)
 		7:
 			var now: Dictionary = _state(camera)
 			_check("pan gesture orbits the focused body", absf(now["azimuth"] - before["azimuth"]) > 0.05)
