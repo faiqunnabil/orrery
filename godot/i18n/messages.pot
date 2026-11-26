@@ -341,11 +341,11 @@ msgstr ""
 msgid "Remove body"
 msgstr ""
 
-#: core/input_bindings.gd:87
+#: core/input_bindings.gd:97
 msgid "Cancel and menu"
 msgstr ""
 
-#: core/input_bindings.gd:88 modes/explore/explore_mode.gd:28 modes/sandbox/sandbox_mode.gd:32
+#: core/input_bindings.gd:98 modes/explore/explore_mode.gd:28 modes/sandbox/sandbox_mode.gd:32
 msgid "Focus a body"
 msgstr ""
 
