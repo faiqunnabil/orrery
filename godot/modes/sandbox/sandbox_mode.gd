@@ -30,6 +30,7 @@ const HELP_GROUPS := [
 		[
 			["Click", "Select"],
 			["1-0", "Focus a body"],
+			["{search}", "Find a body"],
 			["{delete_body}", "Remove"],
 			["{toggle_auto_orbit}", "Auto-orbit"],
 		],
@@ -52,6 +53,8 @@ const HELP_GROUPS := [
 			["{toggle_labels}", "Labels"],
 			["{toggle_trails}", "Orbit lines"],
 			["{toggle_grid}", "Distance rings"],
+			["{toggle_constellations}", "Constellations"],
+			["{toggle_gravity_well}", "Gravity well"],
 			["{toggle_level}", "Depth level"],
 		],
 	],
@@ -60,6 +63,7 @@ const HELP_GROUPS := [
 		[
 			["{mode_explore}", "Explore"],
 			["{toggle_help}", "Controls"],
+			["{focus_interface}", "Keyboard navigation"],
 			["{toggle_diagnostics}", "Performance"],
 			["{toggle_hud}", "Hide interface"],
 			["{toggle_fullscreen}", "Fullscreen"],
@@ -71,6 +75,7 @@ const HELP_GROUPS := [
 const MODE_SWITCH_LABEL := "Explore"
 const MODE_SWITCH_TEXT := "Open Explore ({mode_explore})"
 const MODE_SWITCH_ICON := "telescope"
+const CHALLENGE_TOAST_SECONDS := 5.0
 
 var model: SolarSystemModel
 var world: SandboxWorld
@@ -95,11 +100,15 @@ var _integrator: NBodySimulation.Integrator = NBodySimulation.Integrator.VELOCIT
 var _fixed_step_seconds := 0.0
 var _energy_baseline := 0.0
 var _momentum_baseline := 0.0
+var _challenges: Array[Dictionary] = []
+var _challenge_index := -1
+var _judge := ChallengeJudge.new()
 
 
 func _build_world() -> void:
 	model = SolarSystemModel.new(BodyCatalog.load_bodies())
 	_presets = SandboxPresets.load_presets()
+	_challenges = ChallengeJudge.load_challenges()
 	add_child(renderer)
 	hud.add_overlay(_labels)
 	hud.left_column.add_child(panel)
@@ -128,6 +137,11 @@ func _build_world() -> void:
 	panel.selected_mass_changed.connect(_set_selected_mass)
 	panel.selected_radius_changed.connect(_set_selected_radius)
 	panel.selected_color_changed.connect(_set_selected_color)
+	panel.set_challenges(_challenges)
+	panel.challenge_start_requested.connect(_start_challenge)
+	panel.challenge_restart_requested.connect(func() -> void: _start_challenge(_challenge_index))
+	panel.challenge_leave_requested.connect(_leave_challenge)
+	_judge.completed.connect(_on_challenge_completed)
 	_install_world(SandboxWorld.from_solar_system(model, clock.seconds))
 
 
@@ -150,8 +164,10 @@ func _process(delta: float) -> void:
 		for index in world.bodies.size():
 			world.assign_parent(index)
 	renderer.compute_positions()
+	_judge.update(world)
 	camera.update(delta, renderer.nearest_surface_distance)
 	renderer.update(camera.world_position(_anchor_position()))
+	renderer.update_gravity_well(camera.world_position(_anchor_position()), _well_center())
 	camera.set_clip_range(renderer.near_plane, renderer.far_plane)
 	_update_labels()
 	_info_timer += delta
@@ -159,12 +175,15 @@ func _process(delta: float) -> void:
 		_info_timer = 0.0
 		_refresh_readout()
 		_refresh_conservation()
+		_refresh_challenge()
 	hud.refresh(clock)
 	hud.set_status(_status_text())
 
 
 func _unhandled_input(event: InputEvent) -> void:
 	super(event)
+	if get_viewport().is_input_handled():
+		return
 	if event is InputEventMouseMotion:
 		if _dragging:
 			_update_drag(event.position)
@@ -175,6 +194,8 @@ func _unhandled_input(event: InputEvent) -> void:
 		_cancel()
 	elif event.is_action_pressed("delete_body"):
 		_remove_selected()
+	elif event.is_action_pressed("toggle_gravity_well"):
+		Preferences.set_gravity_well_visible(not Preferences.gravity_well_visible)
 	elif event.is_action_pressed("focus_release"):
 		camera.release_anchor(camera.world_position(_anchor_position()))
 	else:
@@ -190,19 +211,51 @@ func _on_quality_changed() -> void:
 	_refresh_count()
 
 
+func _search_items() -> Array[Dictionary]:
+	var items: Array[Dictionary] = []
+	for body in world.bodies:
+		var name := tr(body.display_name)
+		var detail := tr("Star") if body.emissive else tr("Body")
+		if body.definition != null:
+			detail = tr(_definition_kind(body.definition))
+		items.append({"id": body.id, "name": name, "detail": detail, "keywords": [name, body.display_name]})
+	return items
+
+
+static func _definition_kind(definition: BodyDefinition) -> String:
+	match definition.kind:
+		"star":
+			return "Star"
+		"planet":
+			return "Planet"
+		"moon":
+			return "Moon"
+		"dwarf_planet":
+			return "Dwarf planet"
+		"comet":
+			return "Comet"
+	return "Body"
+
+
+func _on_search_chosen(id: String) -> void:
+	_select(id)
+	_fly_to(id)
+
+
 func _focus_mesh_summary() -> String:
 	return mesh_summary(renderer.mesh_segments(camera.anchor_id))
 
 
 func _diagnostics_summary() -> String:
 	var integrator := "RK4" if _integrator == NBodySimulation.Integrator.RK4 else "Verlet"
-	return "%d/%d bodies, %s" % [world.bodies.size(), Quality.profile()["max_bodies"], integrator]
+	return tr("%d/%d bodies, %s") % [world.bodies.size(), Quality.profile()["max_bodies"], integrator]
 
 
 func _on_preferences_changed() -> void:
 	renderer.set_trails_visible(Preferences.trails_visible)
 	renderer.apply_trail_colors()
 	renderer.set_rings_visible(Preferences.rings_visible)
+	renderer.set_gravity_well_visible(Preferences.gravity_well_visible)
 
 
 func _handle_left_button(event: InputEventMouseButton) -> void:
@@ -233,6 +286,12 @@ func _pick(screen_position: Vector2) -> String:
 	return renderer.pick(camera.project_ray_normal(screen_position), pick_tolerance_angle())
 
 
+func _well_center() -> PackedFloat64Array:
+	if camera.anchor_id != "" and world.index_of(camera.anchor_id) >= 0:
+		return renderer.render_position(camera.anchor_id)
+	return camera.world_position(_anchor_position())
+
+
 func _anchor_position() -> PackedFloat64Array:
 	if camera.anchor_id == "" or world.index_of(camera.anchor_id) < 0:
 		return PackedFloat64Array([0.0, 0.0, 0.0])
@@ -240,16 +299,16 @@ func _anchor_position() -> PackedFloat64Array:
 
 
 func _status_text() -> String:
-	var focus := "Free flight"
+	var focus := tr("Free flight")
 	if camera.anchor_id != "" and world.index_of(camera.anchor_id) >= 0:
-		focus = world.bodies[world.index_of(camera.anchor_id)].display_name
-	var text := "Focus: " + focus
+		focus = tr(world.bodies[world.index_of(camera.anchor_id)].display_name)
+	var text := tr("Focus: %s") % focus
 	if _dragging and _launch_status != "":
 		text += "   |   " + _launch_status
 	elif _placing:
-		text += "   |   Placing a body"
+		text += "   |   " + tr("Placing a body")
 	if _speed_limited:
-		text += "   |   Simulation speed limited by performance"
+		text += "   |   " + tr("Simulation speed limited by performance")
 	return text
 
 
@@ -281,6 +340,7 @@ func _install_world(new_world: SandboxWorld) -> void:
 	world.bodies_merged.connect(_on_bodies_merged)
 	renderer.set_world(world)
 	renderer.compute_positions()
+	_spawn_counter = maxi(_spawn_counter, world.custom_body_count())
 	_clear_selection()
 	if world.index_of(camera.anchor_id) < 0:
 		_home_camera()
@@ -297,12 +357,108 @@ func _replace_world(candidate: SandboxWorld) -> void:
 
 
 func _body_limit_notice() -> String:
-	return "Body limit reached for the %s preset." % Quality.PRESET_NAMES[Quality.preset]
+	return tr("Body limit reached for the %s preset.") % tr(Quality.PRESET_NAMES[Quality.preset])
+
+
+func capture_session() -> Dictionary:
+	var state := super()
+	state["world"] = world.to_snapshot()
+	state["integrator"] = _integrator
+	state["fixed_step"] = _fixed_step_seconds
+	state["selected"] = _selected_id
+	state["challenge"] = _challenge_index
+	state["judge"] = _judge.to_state() if _judge.is_active() else {}
+	state["page"] = panel._page
+	return state
+
+
+func _restore_session(state: Dictionary) -> void:
+	super(state)
+	var restored := SandboxWorld.from_snapshot(state["world"], model)
+	if restored.bodies.size() > Quality.profile()["max_bodies"]:
+		panel.set_notice(_body_limit_notice())
+		return
+	_integrator = state["integrator"] as NBodySimulation.Integrator
+	_fixed_step_seconds = state["fixed_step"]
+	panel.select_physics(_integrator, _fixed_step_seconds)
+	_install_world(restored)
+	var anchor: String = state["anchor"]
+	_restore_camera(state, anchor != "" and world.index_of(anchor) >= 0)
+	var challenge_index: int = state["challenge"]
+	if challenge_index >= 0 and challenge_index < _challenges.size() and not state["judge"].is_empty():
+		_challenge_index = challenge_index
+		_judge.restore_state(_challenges[challenge_index], state["judge"])
+		panel.show_challenge(_challenges[challenge_index])
+		_refresh_challenge()
+	var selected: String = state["selected"]
+	if selected != "" and world.index_of(selected) >= 0:
+		_select(selected)
+	panel.show_page(state["page"])
+
+
+func _start_challenge(index: int) -> void:
+	if index < 0 or index >= _challenges.size():
+		return
+	var challenge := _challenges[index]
+	var candidate := SandboxWorld.from_preset(challenge, model, clock.seconds)
+	if candidate.bodies.size() > Quality.profile()["max_bodies"]:
+		panel.set_notice(_body_limit_notice())
+		return
+	_replace_world(candidate)
+	_challenge_index = index
+	_judge.start(challenge, world)
+	clock.step_index = clampi(int(challenge.get("speed_step", SimulationClock.DEFAULT_STEP_INDEX)), 0, SimulationClock.SPEED_STEPS.size() - 1)
+	clock.reversed = false
+	clock.paused = bool(challenge.get("start_paused", false))
+	clock.changed.emit()
+	panel.show_challenge(challenge)
+	_refresh_challenge()
+	_frame_challenge(challenge)
+
+
+func _frame_challenge(challenge: Dictionary) -> void:
+	var center_id := str(challenge.get("center", ""))
+	var index := world.index_of(center_id)
+	if index < 0:
+		return
+	var radius := maxf(world.simulation.radii[index] / SandboxRenderer.UNIT_KM, 1.0e-6)
+	var view_units := float(challenge.get("view_au", 1.0)) * Astro.AU_KM / SandboxRenderer.UNIT_KM
+	camera.fly_to(
+		center_id,
+		renderer.render_position(center_id),
+		camera.world_position(_anchor_position()),
+		radius,
+		_toward_light(index),
+		maxf(view_units / radius, CameraRig.FOCUS_DISTANCE_RADII)
+	)
+
+
+func _leave_challenge() -> void:
+	_judge.stop()
+	_challenge_index = -1
+	panel.hide_challenge()
+
+
+func _refresh_challenge() -> void:
+	if not _judge.is_active():
+		return
+	var status := tr(_judge.status)
+	if not _judge.status_args.is_empty():
+		status = status % _judge.status_args
+	panel.set_challenge_progress(_judge.progress, status, _judge.state == ChallengeJudge.State.COMPLETE)
+
+
+func _on_challenge_completed(challenge_id: String) -> void:
+	Preferences.mark_challenge_complete(challenge_id)
+	panel.set_challenges(_challenges)
+	hud.show_toast(tr("Challenge complete: %s") % tr(str(_judge.challenge.get("title", ""))), CHALLENGE_TOAST_SECONDS)
+	_refresh_challenge()
 
 
 func _load_preset(index: int) -> void:
 	if index < 0 or index >= _presets.size():
 		return
+	_leave_challenge()
 	_replace_world(SandboxWorld.from_preset(_presets[index], model, clock.seconds))
 
 
@@ -319,6 +475,7 @@ func _restore_snapshot() -> void:
 	if restored == null:
 		panel.set_notice("The saved snapshot could not be read.")
 		return
+	_leave_challenge()
 	_replace_world(restored)
 
 
@@ -404,19 +561,19 @@ func _refresh_readout() -> void:
 	var simulation := world.simulation
 	var parent_index := world.index_of(body.parent_id)
 	if parent_index < 0:
-		panel.set_readout("Speed: %.2f km/s" % simulation.velocity_of(index).length())
+		panel.set_readout(tr("Speed: %s km/s") % BodyFacts.format_number(simulation.velocity_of(index).length(), 2))
 		return
 	var relative_speed := simulation.velocity_of(index).minus(simulation.velocity_of(parent_index)).length()
 	var distance := simulation.position_of(index).minus(simulation.position_of(parent_index)).length()
 	panel.set_readout(
-		"Speed: %.2f km/s\nDistance to %s: %s"
-		% [relative_speed, world.bodies[parent_index].display_name, _distance_text(distance)]
+		tr("Speed: %s km/s\nDistance to %s: %s")
+		% [BodyFacts.format_number(relative_speed, 2), tr(world.bodies[parent_index].display_name), _distance_text(distance)]
 	)
 
 
 func _distance_text(distance_km: float) -> String:
 	if distance_km >= 1.0e7:
-		return "%.3f AU" % (distance_km / KM_PER_AU)
+		return "%s AU" % BodyFacts.format_number(distance_km / KM_PER_AU, 3)
 	return "%s km" % BodyFacts.format_number(distance_km, 0)
 
 
@@ -460,7 +617,7 @@ func _plane_point(screen_position: Vector2) -> DVec3:
 func _begin_drag(screen_position: Vector2) -> void:
 	var cap: int = Quality.profile()["max_bodies"]
 	if world.bodies.size() >= cap:
-		panel.set_notice("Body limit reached for the %s preset." % Quality.PRESET_NAMES[Quality.preset])
+		panel.set_notice(_body_limit_notice())
 		return
 	panel.set_notice("")
 	var point := _plane_point(screen_position)
@@ -490,7 +647,7 @@ func _finish_drag() -> void:
 	var launch := _launch(_drag_origin, _drag_tip, spec["mass_kg"])
 	_spawn_counter += 1
 	var body := world.add_custom_body(
-		"%s %d" % [spec["name"], _spawn_counter],
+		"%s %d" % [tr(spec["name"]), _spawn_counter],
 		spec["kind"],
 		spec["color"],
 		spec["texture"],
@@ -510,14 +667,13 @@ func _update_preview() -> void:
 	renderer.set_preview(true, _drag_origin, _drag_tip, spec["radius_km"])
 	var launch := _launch(_drag_origin, _drag_tip, spec["mass_kg"])
 	if launch["reference"] == "":
-		_launch_status = "No body to orbit nearby"
-		panel.set_launch_text("No body to orbit. Add or keep a massive body nearby.")
+		_launch_status = tr("No body to orbit nearby")
+		panel.set_launch_text(tr("No body to orbit. Add or keep a massive body nearby."))
 		return
-	_launch_status = "Launch %.2f km/s relative to %s (%.2f x circular)" % [launch["speed"], launch["reference"], launch["ratio"]]
-	panel.set_launch_text(
-		"Launch speed relative to %s: %.2f km/s (%.2f x circular orbit speed)"
-		% [launch["reference"], launch["speed"], launch["ratio"]]
-	)
+	var speed := BodyFacts.format_number(launch["speed"], 2)
+	var ratio := BodyFacts.format_number(launch["ratio"], 2)
+	_launch_status = tr("Launch %s km/s relative to %s (%s x circular)") % [speed, tr(launch["reference"]), ratio]
+	panel.set_launch_text(tr("Launch speed relative to %s: %s km/s (%s x circular orbit speed)") % [tr(launch["reference"]), speed, ratio])
 
 
 func _launch(origin: DVec3, tip: DVec3, mass_kg: float) -> Dictionary:
@@ -600,6 +756,7 @@ func _toward_light(index: int) -> Vector3:
 
 func _update_labels() -> void:
 	var entries: Array = []
+	append_constellation_labels(entries)
 	if Preferences.labels_visible:
 		append_ring_labels(entries, renderer.ring_label_entries())
 	if not Preferences.labels_visible and _selected_id == "":
@@ -626,7 +783,7 @@ func _update_labels() -> void:
 			labeled = screen.distance_to(parent_screen) > MOON_LABEL_HIDE_DISTANCE
 		entries.append(
 			{
-				"name": body.display_name,
+				"name": tr(body.display_name),
 				"position": screen,
 				"radius": minf(radius_pixels, viewport_size.y),
 				"labeled": labeled,

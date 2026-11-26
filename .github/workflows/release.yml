@@ -50,6 +50,26 @@ jobs:
       - name: Export the Windows and Linux builds
         run: ./build.sh all
 
+      - name: Install a virtual display and software OpenGL
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y --no-install-recommends             xvfb libgl1-mesa-dri libglx-mesa0 libegl1 libxcursor1 libxinerama1 libxrandr2 libxi6 libxkbcommon0 libfontconfig1
+
+      - name: Smoke-test the Linux build
+        env:
+          LIBGL_ALWAYS_SOFTWARE: "1"
+        run: |
+          timeout 180 xvfb-run --auto-servernum --server-args="-screen 0 1280x720x24"             builds/linux/Orrery.x86_64 --display-driver x11 --rendering-driver opengl3 --audio-driver Dummy -- --smoke-test             2>&1 | tee smoke.log
+          status="${PIPESTATUS[0]}"
+          if [[ "$status" != "0" ]]; then
+            echo "::error::The Linux build exited with status $status"
+            exit 1
+          fi
+          if grep -E "SCRIPT ERROR|ERROR:" smoke.log; then
+            echo "::error::The Linux build reported errors while opening the menu, Explore, and Sandbox"
+            exit 1
+          fi
+
       - name: Package the builds
         run: tools/package_release.sh "$VERSION"
 

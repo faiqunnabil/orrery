@@ -8,6 +8,7 @@ const NEAR_FRACTION := 0.05
 const MIN_NEAR := 0.001
 const MAX_NEAR := 1.0e6
 const FAR_MARGIN := 1.5
+const COMET_VELOCITY_SECONDS := 3600.0
 
 var mapper := ScaleMapper.new()
 var nearest_surface_distance := 1.0
@@ -26,14 +27,16 @@ var _ring_radii: Array[float] = []
 var _scratch := PackedFloat64Array([0.0, 0.0, 0.0])
 var _belt: AsteroidBelt
 var _eclipses := EclipseFinder.new()
+var _comet_tails: Dictionary = {}
 
 
 func setup(model: SolarSystemModel) -> void:
 	_model = model
 	for body in _model.bodies:
-		var visual := BodyVisual.new(body.texture_path, body.night_texture_path, body.emissive)
+		var visual := BodyVisual.new(body.texture_path, body.night_texture_path, body.emissive, body.tint)
 		if body.ring_texture_path != "":
 			visual.add_rings(body.ring_inner_km / body.radius_km, body.ring_outer_km / body.radius_km, body.ring_texture_path)
+		visual.set_shape(body.shape)
 		visual.add_atmosphere_layers(body)
 		visual.add_surface_detail(body)
 		add_child(visual)
@@ -42,6 +45,10 @@ func setup(model: SolarSystemModel) -> void:
 			var trail := OrbitTrail.new(body)
 			add_child(trail)
 			_trails[body.id] = trail
+		if body.kind == "comet":
+			var tail := CometTail.new()
+			add_child(tail)
+			_comet_tails[body.id] = tail
 	_build_halo()
 	apply_trail_colors()
 	_belt = AsteroidBelt.new(Astro.GRAVITATIONAL_CONSTANT_KM * _model.bodies[0].mass_kg)
@@ -59,6 +66,8 @@ func apply_quality() -> void:
 	for trail: OrbitTrail in _trails.values():
 		trail.configure(profile["trail_points"], Preferences.trail_length_fraction())
 	_belt.set_count(profile["asteroid_count"])
+	for tail: CometTail in _comet_tails.values():
+		tail.apply_quality(Quality.preset)
 
 
 func compute_positions() -> void:
@@ -184,6 +193,8 @@ func update(camera_position: PackedFloat64Array, simulation_seconds: float) -> v
 		_camera_relative[body.id] = placed_position
 		_camera_radius[body.id] = placed_radius
 		visual.place(placed_position, placed_radius, body.orientation(simulation_seconds), sun_direction.normalized())
+		if _comet_tails.has(body.id):
+			_update_comet_tail(body, placed_position, placed_radius, -sun_direction, shrink, simulation_seconds)
 		visual.update_level_of_detail(BodyVisual.pixel_radius(placed_position, placed_radius, pixels_per_radian))
 		if _trails.has(body.id):
 			_update_trail(body, camera_position, simulation_seconds, shell)
@@ -239,6 +250,29 @@ func _update_trail(
 	)
 	var trail: OrbitTrail = _trails[body.id]
 	trail.update(simulation_seconds, _model.relative_km[body.id], parent_camera, parent, mapper, shell)
+
+
+func comet_tail(id: String) -> CometTail:
+	return _comet_tails.get(id)
+
+
+func _update_comet_tail(
+	body: BodyDefinition, placed_position: Vector3, placed_radius: float, away_from_sun: Vector3, shrink: float, simulation_seconds: float
+) -> void:
+	var relative: DVec3 = _model.relative_km[body.id]
+	var distance_km := relative.length()
+	var before := body.orbit.position_km((simulation_seconds - COMET_VELOCITY_SECONDS) / Astro.SECONDS_PER_CENTURY)
+	var after := body.orbit.position_km((simulation_seconds + COMET_VELOCITY_SECONDS) / Astro.SECONDS_PER_CENTURY)
+	var motion := after.minus(before)
+	var tail: CometTail = _comet_tails[body.id]
+	tail.update(
+		placed_position,
+		away_from_sun,
+		Vector3(motion.x, motion.z, -motion.y),
+		distance_km / Astro.AU_KM,
+		mapper.heliocentric_scale(distance_km) * shrink,
+		placed_radius
+	)
 
 
 func _surface_distance(body: BodyDefinition, camera_position: PackedFloat64Array) -> float:

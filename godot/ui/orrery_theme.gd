@@ -63,6 +63,7 @@ static func build() -> Theme:
 	_add_ranges(theme)
 	_add_scrollbars(theme)
 	_add_popups(theme, fonts)
+	_add_inputs(theme, fonts)
 	return theme
 
 
@@ -272,3 +273,31 @@ static func _add_popups(theme: Theme, fonts: Dictionary) -> void:
 	theme.set_color("font_hover_color", "PopupMenu", TEXT)
 	theme.set_font("font", "PopupMenu", fonts["regular"])
 	theme.set_stylebox("panel", "PopupPanel", panel)
+
+
+static func _add_inputs(theme: Theme, fonts: Dictionary) -> void:
+	var field := bordered(Color(0, 0, 0, 0.32), CONTROL_RADIUS, SPACE_M, SPACE_S, Color(1, 1, 1, 0.14))
+	theme.set_stylebox("normal", "LineEdit", field)
+	var focused := bordered(Color(0, 0, 0, 0.32), CONTROL_RADIUS, SPACE_M, SPACE_S, ACCENT_TEXT)
+	focused.set_border_width_all(FOCUS_WIDTH)
+	theme.set_stylebox("focus", "LineEdit", focused)
+	theme.set_stylebox("read_only", "LineEdit", field)
+	theme.set_font("font", "LineEdit", fonts["regular"])
+	theme.set_color("font_color", "LineEdit", TEXT)
+	theme.set_color("font_placeholder_color", "LineEdit", TEXT_DISABLED)
+	theme.set_color("caret_color", "LineEdit", ACCENT_TEXT)
+	theme.set_color("selection_color", "LineEdit", tint(ACCENT_TEXT, 0.35))
+	theme.set_color("clear_button_color", "LineEdit", TEXT_DIM)
+	theme.set_stylebox("panel", "ItemList", box(Color(0, 0, 0, 0), CONTROL_RADIUS, 0.0, 0.0))
+	theme.set_stylebox("focus", "ItemList", StyleBoxEmpty.new())
+	theme.set_stylebox("hovered", "ItemList", box(CONTROL_HOVER, CONTROL_RADIUS - 2, SPACE_S, 4.0))
+	theme.set_stylebox("selected", "ItemList", box(tint(ACCENT_TEXT, 0.2), CONTROL_RADIUS - 2, SPACE_S, 4.0))
+	theme.set_stylebox("selected_focus", "ItemList", box(tint(ACCENT_TEXT, 0.24), CONTROL_RADIUS - 2, SPACE_S, 4.0))
+	theme.set_stylebox("cursor", "ItemList", StyleBoxEmpty.new())
+	theme.set_stylebox("cursor_unfocused", "ItemList", StyleBoxEmpty.new())
+	theme.set_font("font", "ItemList", fonts["regular"])
+	theme.set_color("font_color", "ItemList", TEXT)
+	theme.set_color("font_hovered_color", "ItemList", TEXT)
+	theme.set_color("font_selected_color", "ItemList", TEXT)
+	theme.set_constant("v_separation", "ItemList", 2)
+	theme.set_constant("line_separation", "ItemList", 0)

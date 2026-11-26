@@ -31,6 +31,8 @@ const KEY_ACTIONS := {
 	"toggle_grid": [KEY_G],
 	"toggle_labels": [KEY_L],
 	"toggle_trails": [KEY_O],
+	"toggle_constellations": [KEY_C],
+	"toggle_gravity_well": [KEY_V],
 	"toggle_level": [KEY_M],
 	"tour_next": [KEY_RIGHT, KEY_ENTER],
 	"tour_previous": [KEY_LEFT],
@@ -38,6 +40,9 @@ const KEY_ACTIONS := {
 	"mode_explore": [KEY_F1],
 	"mode_sandbox": [KEY_F2],
 	"delete_body": [KEY_DELETE, KEY_BACKSPACE],
+	"search": [KEY_SLASH],
+	"jump_to_date": [KEY_J],
+	"focus_interface": [KEY_F6],
 }
 
 const ACTION_LABELS := {
@@ -58,6 +63,9 @@ const ACTION_LABELS := {
 	"focus_release": "Free flight",
 	"toggle_hud": "Hide interface",
 	"toggle_help": "Controls help",
+	"search": "Find a body",
+	"jump_to_date": "Go to a date",
+	"focus_interface": "Keyboard navigation",
 	"toggle_diagnostics": "Performance overlay",
 	"toggle_auto_orbit": "Cinematic auto-orbit",
 	"toggle_fullscreen": "Toggle fullscreen",
@@ -65,6 +73,8 @@ const ACTION_LABELS := {
 	"toggle_grid": "Distance rings",
 	"toggle_labels": "Labels",
 	"toggle_trails": "Orbit lines",
+	"toggle_constellations": "Constellations",
+	"toggle_gravity_well": "Gravity well",
 	"toggle_level": "Information depth",
 	"tour_next": "Next tour stop",
 	"tour_previous": "Previous tour stop",

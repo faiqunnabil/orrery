@@ -1,0 +1,85 @@
+name: Bug report
+description: Something in Orrery does not work as expected
+labels: ["bug"]
+body:
+  - type: markdown
+    attributes:
+      value: Thanks for taking the time to report a problem. The details below help us reproduce it.
+  - type: input
+    id: version
+    attributes:
+      label: Orrery version
+      description: Shown on the credits screen, for example 1.1.0.
+    validations:
+      required: true
+  - type: dropdown
+    id: platform
+    attributes:
+      label: Platform
+      options:
+        - Windows 10
+        - Windows 11
+        - Linux
+    validations:
+      required: true
+  - type: input
+    id: system
+    attributes:
+      label: Distribution and desktop
+      description: On Linux, for example Ubuntu 24.04 with GNOME on Wayland.
+  - type: input
+    id: gpu
+    attributes:
+      label: Graphics card and driver
+      description: For example Intel UHD 620 with Mesa 24.0, or NVIDIA GTX 1650 with driver 550.
+    validations:
+      required: true
+  - type: dropdown
+    id: quality
+    attributes:
+      label: Graphics quality
+      options:
+        - Low
+        - Medium
+        - High
+    validations:
+      required: true
+  - type: dropdown
+    id: mode
+    attributes:
+      label: Where it happened
+      options:
+        - Main menu
+        - Explore
+        - Sandbox
+        - Settings
+        - Somewhere else
+    validations:
+      required: true
+  - type: textarea
+    id: steps
+    attributes:
+      label: Steps to reproduce
+      placeholder: |
+        1. Open Explore
+        2. Press J and choose Next under Eclipses
+        3. ...
+    validations:
+      required: true
+  - type: textarea
+    id: expected
+    attributes:
+      label: What you expected and what happened instead
+    validations:
+      required: true
+  - type: textarea
+    id: log
+    attributes:
+      label: Log
+      description: Settings → Controls → Open log folder opens the folder with godot.log. Paste the end of the file here.
+      render: text
+  - type: textarea
+    id: media
+    attributes:
+      label: Screenshots or video
+      description: F12 saves a screenshot without the interface.

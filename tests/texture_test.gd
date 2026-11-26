@@ -7,6 +7,7 @@ var failures := 0
 
 
 func _initialize() -> void:
+	root.get_node("Preferences").set_onboarding_done(true)
 	change_scene_to_file("res://modes/explore/explore_mode.tscn")
 
 
@@ -25,6 +26,17 @@ func _check(label: String, condition: bool) -> void:
 	print(("PASS  " if condition else "FAIL  ") + label)
 	if not condition:
 		failures += 1
+		_save_failure()
+
+
+func _save_failure() -> void:
+	var directory := OS.get_environment("FAILURE_DIR")
+	if directory == "":
+		return
+	DirAccess.make_dir_recursive_absolute(directory)
+	var path := "%s/%s_failure_%d.jpg" % [directory, get_script().resource_path.get_file().get_basename(), failures]
+	root.get_texture().get_image().save_jpg(path, 0.85)
+	print("      screenshot ", path)
 
 
 func _width(scene, id: String, parameter: String) -> int:
@@ -42,7 +54,8 @@ func _cloud_width(scene) -> int:
 
 
 func _sky_width(scene) -> int:
-	return (scene.space_environment.sky.sky_material as PanoramaSkyMaterial).panorama.get_width()
+	var panorama: Texture2D = (scene.space_environment.sky.sky_material as ShaderMaterial).get_shader_parameter("panorama")
+	return panorama.get_width()
 
 
 func _timed_preset(quality, preset: int) -> float:

@@ -8,6 +8,7 @@ var out_dir := ""
 
 
 func _initialize() -> void:
+	root.get_node("Preferences").set_onboarding_done(true)
 	out_dir = OS.get_environment("SHOT_DIR")
 	change_scene_to_file("res://modes/explore/explore_mode.tscn")
 
@@ -27,6 +28,17 @@ func _check(label: String, condition: bool) -> void:
 	print(("PASS  " if condition else "FAIL  ") + label)
 	if not condition:
 		failures += 1
+		_save_failure()
+
+
+func _save_failure() -> void:
+	var directory := OS.get_environment("FAILURE_DIR")
+	if directory == "":
+		return
+	DirAccess.make_dir_recursive_absolute(directory)
+	var path := "%s/%s_failure_%d.jpg" % [directory, get_script().resource_path.get_file().get_basename(), failures]
+	root.get_texture().get_image().save_jpg(path, 0.85)
+	print("      screenshot ", path)
 
 
 func _key(keycode: Key) -> void:
@@ -74,7 +86,7 @@ func _run_step() -> void:
 			_click_button("Guided tours")
 		1:
 			_shot("tour_menu")
-			_check("tour menu lists four quiz buttons", scene._tour_menu.find_children("*", "Button", true, false).filter(func(b: Button) -> bool: return b.text == "Quiz").size() == 4)
+			_check("tour menu lists five quiz buttons", scene._tour_menu.find_children("*", "Button", true, false).filter(func(b: Button) -> bool: return b.text == "Quiz").size() == 5)
 			_click_button("Quiz", 0)
 		2:
 			_check("quiz opens from the tour menu", quiz.is_open() and quiz._stage == 1)

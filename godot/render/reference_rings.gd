@@ -50,4 +50,4 @@ func _vertex(offset: PackedFloat64Array, x: float, z: float, shell: float) -> Ve
 
 
 func _label_text(radius_au: float) -> String:
-	return "%s AU" % ("%.2f" % radius_au if radius_au < 1.0 else "%d" % int(radius_au))
+	return "%s AU" % BodyFacts.format_number(radius_au, 2 if radius_au < 1.0 else 0)

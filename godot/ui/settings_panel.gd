@@ -27,6 +27,12 @@ const GRAPHICS_NOTE := (
 	+ "Changing the preset resets the render scale to the preset default."
 )
 const AUDIO_NOTE := "Tour narration text is always shown on screen. The voice-over is synthesized speech."
+const VOICE_LANGUAGE_NOTE := "The voice-over is available in English only. Captions follow the chosen language."
+const LANGUAGE_NOTE := "Changing the language reloads the screen and keeps the time, the view, and the Sandbox bodies."
+const TROUBLESHOOTING_NOTE := "The log helps with bug reports. Resetting restores every display, graphics, audio, language, and key setting, keeps completed challenges and the current scene, and reloads the screen."
+const RESET_ALL_TOOLTIP := "Restore every setting to its default. Press twice to confirm"
+const RESET_CONFIRM_SECONDS := 4.0
+const LOG_FOLDER := "user://logs"
 
 var _tabs := SegmentedControl.new(PAGE_NAMES)
 var _pages: Array[ScrollContainer] = []
@@ -47,6 +53,11 @@ var _voice_over_toggle: Button
 var _binding_buttons: Dictionary = {}
 var _capturing := ""
 var _binding_message: Label
+var _intro_button: Button
+var _reset_all_button: Button
+var _reset_armed := false
+var _language := SegmentedControl.new(Locale.LANGUAGE_NAMES)
+var _voice_note: Label
 
 
 func _ready() -> void:
@@ -103,7 +114,7 @@ func _input(event: InputEvent) -> void:
 		return
 	var conflict := InputBindings.conflict_for(_capturing, key)
 	if conflict != "":
-		_set_binding_message(CONFLICT_TEXT % [InputBindings.key_name(key), conflict])
+		_set_binding_message(tr(CONFLICT_TEXT) % [InputBindings.key_name(key), tr(conflict)])
 		return
 	InputBindings.rebind(_capturing, key)
 	_capturing = ""
@@ -129,13 +140,19 @@ func _add_row(page: VBoxContainer, label: String, control: Control) -> void:
 
 
 func _build_display_page(page: VBoxContainer) -> void:
+	page.add_child(Hud.section_label("Language"))
+	_language.auto_translate_mode = Node.AUTO_TRANSLATE_MODE_DISABLED
+	_add_row(page, "Language", _language)
+	_language.selected.connect(_choose_language)
+	page.add_child(Hud.make_wrapped_label(LANGUAGE_NOTE, NOTE_WIDTH, "DimLabel"))
+	page.add_child(HSeparator.new())
 	page.add_child(Hud.section_label("Window"))
 	_add_row(page, "Window mode", _window_mode)
 	_window_mode.selected.connect(func(index: int) -> void: Quality.set_fullscreen(index == 1))
 	_resolutions = Quality.available_window_sizes()
 	for window_size in _resolutions:
 		_resolution.add_item("%d × %d" % [window_size.x, window_size.y])
-	_resolution.focus_mode = Control.FOCUS_NONE
+	_resolution.focus_mode = Control.FOCUS_ALL
 	_resolution.tooltip_text = "Window size in windowed mode"
 	_resolution.item_selected.connect(func(index: int) -> void: Quality.set_window_size(_resolutions[index]))
 	_add_row(page, "Resolution", _resolution)
@@ -155,7 +172,7 @@ func _build_graphics_page(page: VBoxContainer) -> void:
 	_render_scale.min_value = Quality.MIN_RENDER_SCALE * 100.0
 	_render_scale.max_value = Quality.MAX_RENDER_SCALE * 100.0
 	_render_scale.step = 5.0
-	_render_scale.focus_mode = Control.FOCUS_NONE
+	_render_scale.focus_mode = Control.FOCUS_ALL
 	_render_scale.tooltip_text = "Resolution of the 3D scene relative to the window"
 	_render_scale.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 	_render_scale.size_flags_vertical = Control.SIZE_SHRINK_CENTER
@@ -197,6 +214,8 @@ func _build_audio_page(page: VBoxContainer) -> void:
 	)
 	toggles.add_child(_voice_over_toggle)
 	page.add_child(Hud.make_wrapped_label(AUDIO_NOTE, NOTE_WIDTH, "DimLabel"))
+	_voice_note = Hud.make_wrapped_label(VOICE_LANGUAGE_NOTE, NOTE_WIDTH, "WarningLabel")
+	page.add_child(_voice_note)
 
 
 func _add_volume_row(grid: GridContainer, label: String, tooltip: String, setter: Callable) -> void:
@@ -207,7 +226,7 @@ func _add_volume_row(grid: GridContainer, label: String, tooltip: String, setter
 	slider.min_value = 0.0
 	slider.max_value = 100.0
 	slider.step = 1.0
-	slider.focus_mode = Control.FOCUS_NONE
+	slider.focus_mode = Control.FOCUS_ALL
 	slider.tooltip_text = tooltip
 	slider.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 	slider.size_flags_vertical = Control.SIZE_SHRINK_CENTER
@@ -225,6 +244,28 @@ func _build_controls_page(page: VBoxContainer) -> void:
 	_add_row(page, "Vertical scroll", _scroll_mode)
 	_scroll_mode.selected.connect(func(index: int) -> void: Preferences.set_scroll_mode(index as Preferences.ScrollMode))
 	page.add_child(Hud.make_wrapped_label(POINTER_NOTE, NOTE_WIDTH, "DimLabel"))
+	page.add_child(HSeparator.new())
+	page.add_child(Hud.section_label("Introduction"))
+	var intro_row := HBoxContainer.new()
+	page.add_child(intro_row)
+	var intro_note := Hud.make_label("Show the welcome tips again the next time Explore opens.", "DimLabel")
+	intro_note.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+	intro_note.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
+	intro_row.add_child(intro_note)
+	_intro_button = Hud.make_button("Show again", _reset_onboarding, "", "rotate_ccw")
+	intro_row.add_child(_intro_button)
+	page.add_child(HSeparator.new())
+	page.add_child(Hud.section_label("Troubleshooting"))
+	page.add_child(Hud.make_wrapped_label(TROUBLESHOOTING_NOTE, NOTE_WIDTH, "DimLabel"))
+	var support_row := HBoxContainer.new()
+	page.add_child(support_row)
+	var log_path := ProjectSettings.globalize_path(LOG_FOLDER)
+	var logs := Hud.make_button("Open log folder", open_log_folder, log_path, "folder_open")
+	_reset_all_button = Hud.make_button("Reset all settings", _press_reset_all, RESET_ALL_TOOLTIP, "rotate_ccw")
+	_reset_all_button.theme_type_variation = "DangerButton"
+	for button in [logs, _reset_all_button]:
+		button.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+		support_row.add_child(button)
 	page.add_child(HSeparator.new())
 	page.add_child(Hud.section_label("Keyboard"))
 	var header := HBoxContainer.new()
@@ -247,6 +288,42 @@ func _build_controls_page(page: VBoxContainer) -> void:
 		_binding_buttons[action] = button
 
 
+func open_log_folder() -> void:
+	var folder := ProjectSettings.globalize_path(LOG_FOLDER)
+	DirAccess.make_dir_recursive_absolute(folder)
+	OS.shell_show_in_file_manager(folder)
+
+
+func reset_all_settings() -> void:
+	InputBindings.reset_to_defaults()
+	Preferences.reset_to_defaults()
+	Quality.reset_to_defaults()
+	Audio.reset_to_defaults()
+	_reload_screen()
+
+
+func _press_reset_all() -> void:
+	if _reset_armed:
+		reset_all_settings()
+		return
+	_reset_armed = true
+	_reset_all_button.text = "Press again to reset"
+	get_tree().create_timer(RESET_CONFIRM_SECONDS, true).timeout.connect(_disarm_reset_all)
+
+
+func _disarm_reset_all() -> void:
+	if not is_instance_valid(_reset_all_button):
+		return
+	_reset_armed = false
+	_reset_all_button.text = "Reset all settings"
+
+
+func _reset_onboarding() -> void:
+	Preferences.set_onboarding_done(false)
+	_intro_button.text = "Will show"
+	_intro_button.disabled = true
+
+
 func _style_value(label: Label) -> void:
 	label.theme_type_variation = "DimLabel"
 	label.custom_minimum_size = Vector2(VALUE_WIDTH, 0)
@@ -267,7 +344,24 @@ func _cancel_capture() -> void:
 	_sync_bindings()
 
 
+func _choose_language(index: int) -> void:
+	var code := Locale.LANGUAGES[index]
+	if code == Locale.current():
+		return
+	Preferences.set_language(code)
+	_reload_screen()
+
+
+func _reload_screen() -> void:
+	var scene := get_tree().current_scene
+	if scene != null and scene.has_method("capture_session"):
+		SessionState.store(scene.scene_file_path, scene.capture_session())
+	get_tree().paused = false
+	get_tree().reload_current_scene.call_deferred()
+
+
 func _sync_display() -> void:
+	_language.select(Locale.LANGUAGES.find(Locale.current()))
 	_window_mode.select(1 if Quality.fullscreen else 0)
 	_resolution.select(_resolutions.find(Quality.window_size))
 	_resolution.disabled = Quality.fullscreen
@@ -289,7 +383,9 @@ func _sync_audio() -> void:
 		_volume_sliders[index].set_value_no_signal(volumes[index] * 100.0)
 		_volume_values[index].text = "%d%%" % roundi(volumes[index] * 100.0)
 	_music_mute_toggle.set_pressed_no_signal(Audio.music_muted)
-	_voice_over_toggle.set_pressed_no_signal(Audio.narration_enabled)
+	_voice_over_toggle.set_pressed_no_signal(Audio.narration_enabled and Locale.has_voice())
+	_voice_over_toggle.disabled = not Locale.has_voice()
+	_voice_note.visible = not Locale.has_voice()
 
 
 func _sync_bindings() -> void:

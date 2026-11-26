@@ -13,6 +13,8 @@ const SUN_DIRECTION := Vector3(-0.78, 0.22, -0.58)
 const SKY_DRIFT := 0.004
 const SWAY_AMPLITUDE := 0.02
 const SWAY_FREQUENCY := 0.11
+const SMOKE_TEST_ARGUMENT := "--smoke-test"
+const SMOKE_TEST_STAGE_SECONDS := 6.0
 
 var _camera := Camera3D.new()
 var _menu := ShellMenu.new(TITLE, TAGLINE, TITLE_FONT_SIZE, true)
@@ -24,6 +26,8 @@ var _elapsed := 0.0
 
 
 func _ready() -> void:
+	if OS.get_cmdline_user_args().has(SMOKE_TEST_ARGUMENT):
+		_start_smoke_test()
 	var world_environment := WorldEnvironment.new()
 	world_environment.environment = _environment
 	_environment.glow_enabled = Quality.profile()["glow"]
@@ -87,3 +91,11 @@ func _unhandled_input(event: InputEvent) -> void:
 func _capture_screenshot() -> void:
 	if await ScreenCapture.save_frame(get_viewport()) != "":
 		Audio.play_effect(&"click")
+
+
+func _start_smoke_test() -> void:
+	var tree := get_tree()
+	var stages := [SpaceScene.EXPLORE_SCENE, SpaceScene.SANDBOX_SCENE]
+	for index in stages.size():
+		tree.create_timer(SMOKE_TEST_STAGE_SECONDS * (index + 1)).timeout.connect(tree.change_scene_to_file.bind(stages[index]))
+	tree.create_timer(SMOKE_TEST_STAGE_SECONDS * (stages.size() + 1)).timeout.connect(tree.quit)

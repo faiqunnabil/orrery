@@ -27,10 +27,13 @@ func set_entries(entries: Array) -> void:
 func _draw() -> void:
 	var font := get_theme_font("font", "Button")
 	var placed: Array[Rect2] = []
+	var discs: Array = _entries.filter(func(entry: Dictionary) -> bool: return entry["radius"] > 0.0)
 	for index in _priority_order():
 		var entry: Dictionary = _entries[index]
 		var position: Vector2 = entry["position"]
 		var radius: float = entry["radius"]
+		if entry.get("dim", false) and discs.any(func(disc: Dictionary) -> bool: return position.distance_to(disc["position"]) < disc["radius"]):
+			continue
 		if entry["selected"]:
 			draw_arc(position, maxf(radius + SELECTION_PADDING, MIN_SELECTION_RADIUS), 0.0, TAU, 48, OrreryTheme.SELECTION, 2.0, true)
 		if not entry["labeled"]:
@@ -42,7 +45,7 @@ func _draw() -> void:
 		if not entry["selected"] and placed.any(func(other: Rect2) -> bool: return other.intersects(rect)):
 			continue
 		placed.append(rect)
-		var color := DIM_TEXT_COLOR if entry.get("dim", false) else TEXT_COLOR
+		var color: Color = entry.get("color", DIM_TEXT_COLOR if entry.get("dim", false) else TEXT_COLOR)
 		draw_string_outline(font, origin, text, HORIZONTAL_ALIGNMENT_LEFT, -1, FONT_SIZE, OUTLINE_SIZE, OUTLINE_COLOR)
 		draw_string(font, origin, text, HORIZONTAL_ALIGNMENT_LEFT, -1, FONT_SIZE, color)
 

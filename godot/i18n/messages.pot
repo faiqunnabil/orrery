@@ -1,0 +1,3922 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: Orrery\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8-bit\n"
+
+#: core/audio_manager.gd:11 ui/settings_panel.gd:199
+msgid "Music"
+msgstr ""
+
+#: core/audio_manager.gd:12 ui/settings_panel.gd:200
+msgid "Effects"
+msgstr ""
+
+#: core/audio_manager.gd:13 data/credits.json ui/settings_panel.gd:201
+msgid "Narration"
+msgstr ""
+
+#: core/body_facts.gd:106
+msgid "Distance from %s"
+msgstr ""
+
+#: core/body_facts.gd:111
+msgid "%s million km"
+msgstr ""
+
+#: core/body_facts.gd:123
+msgid "%s days around %s"
+msgstr ""
+
+#: core/body_facts.gd:125 core/body_facts.gd:135
+msgid "%s Earth days"
+msgstr ""
+
+#: core/body_facts.gd:126
+msgid "%s Earth years"
+msgstr ""
+
+#: core/body_facts.gd:133
+msgid "%s hours"
+msgstr ""
+
+#: core/body_facts.gd:137
+msgid ", spins backwards"
+msgstr ""
+
+#: core/body_facts.gd:154
+msgid "Inclination to Laplace plane"
+msgstr ""
+
+#: core/body_facts.gd:156
+msgid "Inclination to %s's equator"
+msgstr ""
+
+#: core/body_facts.gd:157
+msgid "Inclination"
+msgstr ""
+
+#: core/body_facts.gd:67
+msgid "%s km (%s x Earth)"
+msgstr ""
+
+#: core/body_facts.gd:67
+msgid "Width"
+msgstr ""
+
+#: core/body_facts.gd:70
+msgid "Year"
+msgstr ""
+
+#: core/body_facts.gd:71
+msgid "Day"
+msgstr ""
+
+#: core/body_facts.gd:72
+msgid "%s x Earth"
+msgstr ""
+
+#: core/body_facts.gd:72
+msgid "Gravity"
+msgstr ""
+
+#: core/body_facts.gd:78
+msgid "Mass"
+msgstr ""
+
+#: core/body_facts.gd:79
+msgid "Mean radius"
+msgstr ""
+
+#: core/body_facts.gd:80
+msgid "Surface gravity"
+msgstr ""
+
+#: core/body_facts.gd:81
+msgid "Escape velocity"
+msgstr ""
+
+#: core/body_facts.gd:84
+msgid "Semi-major axis"
+msgstr ""
+
+#: core/body_facts.gd:85
+msgid "Eccentricity"
+msgstr ""
+
+#: core/body_facts.gd:88
+msgid "Orbital period"
+msgstr ""
+
+#: core/body_facts.gd:89
+msgid "Current distance"
+msgstr ""
+
+#: core/body_facts.gd:90
+msgid "Orbital speed"
+msgstr ""
+
+#: core/body_facts.gd:91
+msgid " (retrograde)"
+msgstr ""
+
+#: core/body_facts.gd:92
+msgid "Rotation period"
+msgstr ""
+
+#: core/body_facts.gd:94
+msgid "Axial tilt"
+msgstr ""
+
+#: core/challenge_judge.gd:111 core/challenge_judge.gd:178
+msgid "The central body is gone. Restart the challenge."
+msgstr ""
+
+#: core/challenge_judge.gd:122
+msgid "That body crashed. Launch another one."
+msgstr ""
+
+#: core/challenge_judge.gd:136 core/challenge_judge.gd:181
+msgid "That body is escaping. Launch it slower."
+msgstr ""
+
+#: core/challenge_judge.gd:139
+msgid "That body is outside the planet's pull. Launch it closer and slower."
+msgstr ""
+
+#: core/challenge_judge.gd:145
+msgid "Eccentricity %s. Aim for %s to %s."
+msgstr ""
+
+#: core/challenge_judge.gd:160
+msgid "Orbit progress: %d%%"
+msgstr ""
+
+#: core/challenge_judge.gd:165
+msgid "That body is still bound to the star. Launch it faster."
+msgstr ""
+
+#: core/challenge_judge.gd:172
+msgid "Escaping: %d%% of the way"
+msgstr ""
+
+#: core/challenge_judge.gd:194
+msgid "The pass changed its energy by %d%%. Pass just behind the planet."
+msgstr ""
+
+#: core/challenge_judge.gd:196
+msgid "Closest pass so far: %s AU"
+msgstr ""
+
+#: core/challenge_judge.gd:215
+msgid "Tracking the new body."
+msgstr ""
+
+#: core/challenge_judge.gd:237
+msgid "Challenge complete!"
+msgstr ""
+
+#: core/challenge_judge.gd:63
+msgid "Launch a body to begin."
+msgstr ""
+
+#: core/eclipse_search.gd:35
+msgid "Partial lunar eclipse"
+msgstr ""
+
+#: core/eclipse_search.gd:35
+msgid "Total lunar eclipse"
+msgstr ""
+
+#: core/eclipse_search.gd:38
+msgid "Total solar eclipse"
+msgstr ""
+
+#: core/eclipse_search.gd:40
+msgid "Annular solar eclipse"
+msgstr ""
+
+#: core/eclipse_search.gd:41
+msgid "Partial solar eclipse"
+msgstr ""
+
+#: core/input_bindings.gd:49
+msgid "Move forward"
+msgstr ""
+
+#: core/input_bindings.gd:50
+msgid "Move back"
+msgstr ""
+
+#: core/input_bindings.gd:51
+msgid "Move left"
+msgstr ""
+
+#: core/input_bindings.gd:52
+msgid "Move right"
+msgstr ""
+
+#: core/input_bindings.gd:53
+msgid "Move up"
+msgstr ""
+
+#: core/input_bindings.gd:54
+msgid "Move down"
+msgstr ""
+
+#: core/input_bindings.gd:55
+msgid "Speed boost"
+msgstr ""
+
+#: core/input_bindings.gd:56
+msgid "Pause time"
+msgstr ""
+
+#: core/input_bindings.gd:57
+msgid "Reverse time"
+msgstr ""
+
+#: core/input_bindings.gd:58
+msgid "Faster time"
+msgstr ""
+
+#: core/input_bindings.gd:59
+msgid "Slower time"
+msgstr ""
+
+#: core/input_bindings.gd:60
+msgid "Jump to now"
+msgstr ""
+
+#: core/input_bindings.gd:61
+msgid "Toggle scale"
+msgstr ""
+
+#: core/input_bindings.gd:62
+msgid "Focus next body"
+msgstr ""
+
+#: core/input_bindings.gd:63 modes/explore/explore_mode.gd:290 modes/explore/explore_mode.gd:30
+msgid "Free flight"
+msgstr ""
+
+#: core/input_bindings.gd:64 modes/explore/explore_mode.gd:63 modes/sandbox/sandbox_mode.gd:68
+msgid "Hide interface"
+msgstr ""
+
+#: core/input_bindings.gd:65
+msgid "Controls help"
+msgstr ""
+
+#: core/input_bindings.gd:66 modes/explore/explore_mode.gd:31 modes/sandbox/sandbox_mode.gd:33
+msgid "Find a body"
+msgstr ""
+
+#: core/input_bindings.gd:67 modes/explore/explore_mode.gd:42 ui/date_panel.gd:32
+msgid "Go to a date"
+msgstr ""
+
+#: core/input_bindings.gd:68 modes/explore/explore_mode.gd:61 modes/sandbox/sandbox_mode.gd:66
+msgid "Keyboard navigation"
+msgstr ""
+
+#: core/input_bindings.gd:69
+msgid "Performance overlay"
+msgstr ""
+
+#: core/input_bindings.gd:70
+msgid "Cinematic auto-orbit"
+msgstr ""
+
+#: core/input_bindings.gd:71
+msgid "Toggle fullscreen"
+msgstr ""
+
+#: core/input_bindings.gd:72
+msgid "Take screenshot"
+msgstr ""
+
+#: core/input_bindings.gd:73 modes/explore/explore_mode.gd:51 modes/sandbox/sandbox_mode.gd:55
+msgid "Distance rings"
+msgstr ""
+
+#: core/input_bindings.gd:74 modes/explore/explore_mode.gd:49 modes/sandbox/sandbox_mode.gd:53
+msgid "Labels"
+msgstr ""
+
+#: core/input_bindings.gd:75 modes/explore/explore_mode.gd:50 modes/sandbox/sandbox_mode.gd:54
+msgid "Orbit lines"
+msgstr ""
+
+#: core/input_bindings.gd:76 modes/explore/explore_mode.gd:52 modes/sandbox/sandbox_mode.gd:56
+msgid "Constellations"
+msgstr ""
+
+#: core/input_bindings.gd:77 modes/sandbox/sandbox_mode.gd:57 ui/sandbox_panel.gd:378
+msgid "Gravity well"
+msgstr ""
+
+#: core/input_bindings.gd:78
+msgid "Information depth"
+msgstr ""
+
+#: core/input_bindings.gd:79
+msgid "Next tour stop"
+msgstr ""
+
+#: core/input_bindings.gd:80
+msgid "Previous tour stop"
+msgstr ""
+
+#: core/input_bindings.gd:81
+msgid "Open Explore"
+msgstr ""
+
+#: core/input_bindings.gd:82
+msgid "Open Sandbox"
+msgstr ""
+
+#: core/input_bindings.gd:83
+msgid "Remove body"
+msgstr ""
+
+#: core/input_bindings.gd:87
+msgid "Cancel and menu"
+msgstr ""
+
+#: core/input_bindings.gd:88 modes/explore/explore_mode.gd:28 modes/sandbox/sandbox_mode.gd:32
+msgid "Focus a body"
+msgstr ""
+
+#: core/locale.gd:7
+msgid "Bahasa Indonesia"
+msgstr ""
+
+#: core/locale.gd:7
+msgid "English"
+msgstr ""
+
+#: core/preferences.gd:13
+msgid "Explorer"
+msgstr ""
+
+#: core/preferences.gd:13
+msgid "Scientist"
+msgstr ""
+
+#: core/preferences.gd:14
+msgid "Long"
+msgstr ""
+
+#: core/preferences.gd:14 core/quality_settings.gd:10
+msgid "Medium"
+msgstr ""
+
+#: core/preferences.gd:14
+msgid "Short"
+msgstr ""
+
+#: core/preferences.gd:16
+msgid "Colorblind-safe"
+msgstr ""
+
+#: core/preferences.gd:16
+msgid "Natural"
+msgstr ""
+
+#: core/preferences.gd:17
+msgid "Auto"
+msgstr ""
+
+#: core/preferences.gd:17 modes/explore/explore_mode.gd:14 modes/sandbox/sandbox_mode.gd:19
+msgid "Move"
+msgstr ""
+
+#: core/preferences.gd:17 modes/explore/explore_mode.gd:17 modes/sandbox/sandbox_mode.gd:22
+msgid "Orbit"
+msgstr ""
+
+#: core/preferences.gd:17 modes/explore/explore_mode.gd:18 modes/sandbox/sandbox_mode.gd:23
+msgid "Zoom"
+msgstr ""
+
+#: core/quality_settings.gd:10
+msgid "High"
+msgstr ""
+
+#: core/quality_settings.gd:10
+msgid "Low"
+msgstr ""
+
+#: core/simulation_clock.gd:10
+msgid "1 day/s"
+msgstr ""
+
+#: core/simulation_clock.gd:10
+msgid "1 hour/s"
+msgstr ""
+
+#: core/simulation_clock.gd:10
+msgid "1 min/s"
+msgstr ""
+
+#: core/simulation_clock.gd:10
+msgid "1 month/s"
+msgstr ""
+
+#: core/simulation_clock.gd:10
+msgid "1 year/s"
+msgstr ""
+
+#: core/simulation_clock.gd:10
+msgid "10 days/s"
+msgstr ""
+
+#: core/simulation_clock.gd:10
+msgid "10 years/s"
+msgstr ""
+
+#: core/simulation_clock.gd:10
+msgid "6 months/s"
+msgstr ""
+
+#: core/simulation_clock.gd:10
+msgid "Real time"
+msgstr ""
+
+#: data/bodies.json data/quizzes.json
+msgid "Callisto"
+msgstr ""
+
+#: data/bodies.json data/tours.json
+msgid "Ceres"
+msgstr ""
+
+#: data/bodies.json data/quizzes.json data/tours.json
+msgid "Earth"
+msgstr ""
+
+#: data/bodies.json data/quizzes.json data/tours.json
+msgid "Europa"
+msgstr ""
+
+#: data/bodies.json data/quizzes.json data/tours.json
+msgid "Ganymede"
+msgstr ""
+
+#: data/bodies.json data/tours.json
+msgid "Halley's Comet"
+msgstr ""
+
+#: data/bodies.json data/quizzes.json data/tours.json
+msgid "Io"
+msgstr ""
+
+#: data/bodies.json data/quizzes.json data/tours.json
+msgid "Jupiter"
+msgstr ""
+
+#: data/bodies.json data/quizzes.json data/tours.json
+msgid "Mars"
+msgstr ""
+
+#: data/bodies.json data/quizzes.json data/tours.json
+msgid "Mercury"
+msgstr ""
+
+#: data/bodies.json data/body_info.json modes/sandbox/sandbox_mode.gd:232
+msgid "Moon"
+msgstr ""
+
+#: data/bodies.json data/quizzes.json data/tours.json
+msgid "Neptune"
+msgstr ""
+
+#: data/bodies.json data/tours.json
+msgid "Pluto"
+msgstr ""
+
+#: data/bodies.json data/quizzes.json data/tours.json
+msgid "Saturn"
+msgstr ""
+
+#: data/bodies.json
+msgid "Sun"
+msgstr ""
+
+#: data/bodies.json data/quizzes.json data/tours.json
+msgid "Titan"
+msgstr ""
+
+#: data/bodies.json data/quizzes.json data/tours.json
+msgid "Uranus"
+msgstr ""
+
+#: data/bodies.json data/quizzes.json data/tours.json
+msgid "Venus"
+msgstr ""
+
+#: data/body_info.json
+msgid "A G-type main-sequence star (G2V) fusing hydrogen into helium in its core at roughly 15 million K. Its effective surface temperature is about 5,772 K and its age is about 4.6 billion years."
+msgstr ""
+
+#: data/body_info.json
+msgid "A Halley-type periodic comet on a retrograde orbit inclined 162 degrees, with an eccentricity of 0.968 and a perihelion distance of 0.575 AU. Its nucleus measures about 15 by 8 km and has a very dark surface with an albedo near 0.04."
+msgstr ""
+
+#: data/body_info.json
+msgid "A Kuiper belt dwarf planet with a mean radius of 1,188 km, a bulk density of 1.85 g/cm3, and a thin nitrogen atmosphere with layered haze. It is locked in a 3:2 orbital resonance with Neptune."
+msgstr ""
+
+#: data/body_info.json
+msgid "A day on Jupiter lasts only about 10 hours."
+msgstr ""
+
+#: data/body_info.json
+msgid "A day on Mars is just a little longer than a day on Earth."
+msgstr ""
+
+#: data/body_info.json
+msgid "A day on Venus is longer than its year."
+msgstr ""
+
+#: data/body_info.json
+msgid "A deep ocean is thought to lie far beneath its icy crust."
+msgstr ""
+
+#: data/body_info.json
+msgid "A differentiated moon with a mean radius of 1,560.8 km and an ice shell over a global liquid-water ocean. Galileo detected an induced magnetic field consistent with a conducting, salty ocean."
+msgstr ""
+
+#: data/body_info.json
+msgid "A gas giant composed mostly of hydrogen and helium, with the strongest planetary magnetic field in the solar system. Its rapid rotation produces banded zonal winds."
+msgstr ""
+
+#: data/body_info.json
+msgid "A gas giant of hydrogen and helium with a ring system of mostly water ice. The main rings extend hundreds of thousands of kilometers but are typically only about ten meters thick."
+msgstr ""
+
+#: data/body_info.json
+msgid "A moon with a mean radius of 2,410.3 km and a density of 1.83 g/cm3. Its moment of inertia indicates only partial differentiation, and Galileo magnetometer data suggest a subsurface ocean."
+msgstr ""
+
+#: data/body_info.json
+msgid "A persistent hexagonal jet stream surrounds the north pole."
+msgstr ""
+
+#: data/body_info.json
+msgid "A terrestrial planet in a 3:2 spin-orbit resonance, rotating three times for every two orbits. Its large iron core spans roughly 85% of the planet's radius, and it holds only a tenuous exosphere."
+msgstr ""
+
+#: data/body_info.json
+msgid "A terrestrial planet with a dense carbon dioxide atmosphere and sulfuric acid clouds. A runaway greenhouse effect maintains a surface pressure of about 92 bar."
+msgstr ""
+
+#: data/body_info.json
+msgid "A terrestrial planet with a nitrogen-oxygen atmosphere, a global magnetic field, and active plate tectonics. Orbital data shown is for the Earth-Moon barycenter."
+msgstr ""
+
+#: data/body_info.json
+msgid "A terrestrial planet with a thin carbon dioxide atmosphere at roughly 0.6% of Earth's surface pressure. Past liquid water is recorded in its geology."
+msgstr ""
+
+#: data/body_info.json
+msgid "A year on Mercury lasts only 88 Earth days."
+msgstr ""
+
+#: data/body_info.json
+msgid "About 1.3 million Earths could fit inside it."
+msgstr ""
+
+#: data/body_info.json
+msgid "About 71% of Earth's surface is covered by water."
+msgstr ""
+
+#: data/body_info.json
+msgid "Ahuna Mons, about 4 km high, is interpreted as a cryovolcanic dome."
+msgstr ""
+
+#: data/body_info.json
+msgid "An eccentricity of 0.25 brings it closer to the Sun than Neptune for part of each orbit, as it was from 1979 to 1999."
+msgstr ""
+
+#: data/body_info.json
+msgid "An ice giant with a hydrogen, helium, and methane atmosphere over a mantle of water, ammonia, and methane ices. It rotates retrograde on an axis tilted about 98 degrees."
+msgstr ""
+
+#: data/body_info.json
+msgid "An ice giant with an atmosphere of hydrogen, helium, and methane. It radiates more energy than it receives from the Sun and has the fastest sustained winds of any planet."
+msgstr ""
+
+#: data/body_info.json
+msgid "Bright grooved terrain cuts across older, darker, heavily cratered regions."
+msgstr ""
+
+#: data/body_info.json
+msgid "Bright spots inside the crater Occator are deposits of salt."
+msgstr ""
+
+#: data/body_info.json
+msgid "Callisto is almost as wide as the planet Mercury."
+msgstr ""
+
+#: data/body_info.json
+msgid "Callisto is the outermost of Jupiter's four big moons. Its dark, icy surface is covered with more craters than almost any other world."
+msgstr ""
+
+#: data/body_info.json
+msgid "Ceres is the largest object in the asteroid belt between Mars and Jupiter. It is round like a planet, but small enough to fit inside Texas."
+msgstr ""
+
+#: data/body_info.json modes/sandbox/sandbox_mode.gd:236
+msgid "Comet"
+msgstr ""
+
+#: data/body_info.json
+msgid "Daytime surface temperatures reach about 430 degrees C, while nights drop to about -180 degrees C."
+msgstr ""
+
+#: data/body_info.json
+msgid "Dust it left behind causes two meteor showers each year, the Eta Aquariids in May and the Orionids in October."
+msgstr ""
+
+#: data/body_info.json modes/sandbox/sandbox_mode.gd:234
+msgid "Dwarf planet"
+msgstr ""
+
+#: data/body_info.json
+msgid "ESA's JUICE spacecraft will orbit Ganymede in the 2030s."
+msgstr ""
+
+#: data/body_info.json
+msgid "Each pole spends about 21 years in continuous sunlight, then 21 years in darkness."
+msgstr ""
+
+#: data/body_info.json
+msgid "Earth has one natural satellite, the Moon."
+msgstr ""
+
+#: data/body_info.json
+msgid "Earth is our home and the only place we know of that has life. Liquid water covers most of its surface."
+msgstr ""
+
+#: data/body_info.json
+msgid "Earth's only natural satellite, in synchronous rotation. Its mass is about 1.2% of Earth's, and its orbit is inclined about 5.1 degrees to the ecliptic."
+msgstr ""
+
+#: data/body_info.json
+msgid "Earth's tilt is what gives us the seasons."
+msgstr ""
+
+#: data/body_info.json
+msgid "Europa is covered by a shell of ice with a salty ocean hidden underneath. That ocean may hold more water than all of Earth's oceans."
+msgstr ""
+
+#: data/body_info.json
+msgid "Few impact craters suggest a young surface, about 40 to 90 million years old."
+msgstr ""
+
+#: data/body_info.json
+msgid "Ganymede is the largest moon in the solar system. It is even wider than the planet Mercury."
+msgstr ""
+
+#: data/body_info.json ui/sandbox_panel.gd:63
+msgid "Gas giant"
+msgstr ""
+
+#: data/body_info.json
+msgid "Global heat flow of about 2 W/m2, more than twenty times Earth's average."
+msgstr ""
+
+#: data/body_info.json
+msgid "Halley's Comet is a lump of ice and dust about 15 km long that comes back to the inner solar system every 75 to 76 years. Near the Sun its ice turns to gas and streams away in long glowing tails."
+msgstr ""
+
+#: data/body_info.json
+msgid "Holds 99.86% of the total mass of the solar system."
+msgstr ""
+
+#: data/body_info.json
+msgid "Holds the coldest recorded planetary atmosphere, with a minimum near 49 K."
+msgstr ""
+
+#: data/body_info.json
+msgid "Hundreds of volcanoes are active on Io, and some shoot plumes hundreds of kilometers high."
+msgstr ""
+
+#: data/body_info.json
+msgid "Ice giant"
+msgstr ""
+
+#: data/body_info.json
+msgid "Io is a little larger than our Moon."
+msgstr ""
+
+#: data/body_info.json
+msgid "Io is the most volcanic world in the solar system. Its yellow, orange, and white colors come from sulfur and frozen gases spread by its eruptions."
+msgstr ""
+
+#: data/body_info.json
+msgid "It has hundreds of known moons, including the large moon Titan."
+msgstr ""
+
+#: data/body_info.json
+msgid "It has lakes and seas, but they are filled with liquid methane and ethane instead of water."
+msgstr ""
+
+#: data/body_info.json
+msgid "It is likely the result of a giant collision early in Earth's history."
+msgstr ""
+
+#: data/body_info.json
+msgid "It is the only Galilean moon outside the Laplace resonance."
+msgstr ""
+
+#: data/body_info.json
+msgid "It is the only moon known to make its own magnetic field."
+msgstr ""
+
+#: data/body_info.json
+msgid "It last passed the Sun in 1986 and will return in 2061."
+msgstr ""
+
+#: data/body_info.json
+msgid "It orbits farther from Jupiter's radiation, so it could be a base for future explorers."
+msgstr ""
+
+#: data/body_info.json
+msgid "It was found in 1846 using math before it was ever seen through a telescope."
+msgstr ""
+
+#: data/body_info.json
+msgid "It was the first asteroid ever discovered, by Giuseppe Piazzi in 1801."
+msgstr ""
+
+#: data/body_info.json
+msgid "Its ancient surface records about 4 billion years of impacts with little geologic resurfacing."
+msgstr ""
+
+#: data/body_info.json
+msgid "Its axial tilt of about 177 degrees reflects the retrograde spin."
+msgstr ""
+
+#: data/body_info.json
+msgid "Its axis is tilted nearly 98 degrees, so it spins on its side."
+msgstr ""
+
+#: data/body_info.json
+msgid "Its biggest impact basin, Valhalla, has rings that spread out about 3,800 km."
+msgstr ""
+
+#: data/body_info.json
+msgid "Its blue-green color comes from methane in the atmosphere."
+msgstr ""
+
+#: data/body_info.json
+msgid "Its bright, heart-shaped region is a giant plain of frozen nitrogen."
+msgstr ""
+
+#: data/body_info.json
+msgid "Its gravity causes the ocean tides."
+msgstr ""
+
+#: data/body_info.json
+msgid "Its large moon Triton orbits retrograde and is likely a captured Kuiper belt object."
+msgstr ""
+
+#: data/body_info.json
+msgid "Its normalized moment of inertia of about 0.31 is among the lowest of any solid body."
+msgstr ""
+
+#: data/body_info.json
+msgid "Its surface is covered in craters, much like our Moon."
+msgstr ""
+
+#: data/body_info.json
+msgid "Its tails always point away from the Sun, pushed by sunlight and the solar wind."
+msgstr ""
+
+#: data/body_info.json
+msgid "Jupiter is more than twice as massive as all the other planets combined."
+msgstr ""
+
+#: data/body_info.json
+msgid "Jupiter is the largest planet. It is a huge ball of gas with colorful stripes and storms."
+msgstr ""
+
+#: data/body_info.json
+msgid "Jupiter's gravity squeezes Io as it orbits, heating its insides."
+msgstr ""
+
+#: data/body_info.json
+msgid "Luminosity of about 3.83 x 10^26 W."
+msgstr ""
+
+#: data/body_info.json
+msgid "Mars has two small moons, Phobos and Deimos."
+msgstr ""
+
+#: data/body_info.json
+msgid "Mars is a cold, dusty desert world. Its red color comes from rusty iron in the soil."
+msgstr ""
+
+#: data/body_info.json
+msgid "Mean density of about 0.69 g/cm3, the lowest of any planet."
+msgstr ""
+
+#: data/body_info.json
+msgid "Mean radius of about 11 Earth radii and a mass of about 318 Earth masses."
+msgstr ""
+
+#: data/body_info.json
+msgid "Mercury is the smallest planet and the closest to the Sun. It has no moons and almost no atmosphere."
+msgstr ""
+
+#: data/body_info.json
+msgid "Moon of Jupiter"
+msgstr ""
+
+#: data/body_info.json
+msgid "Moon of Saturn"
+msgstr ""
+
+#: data/body_info.json
+msgid "More than 99.8% of all the mass in the solar system is in the Sun."
+msgstr ""
+
+#: data/body_info.json
+msgid "Much of the southern hemisphere was in polar night during the 2015 flyby, so this map shows it as an even tone."
+msgstr ""
+
+#: data/body_info.json
+msgid "NASA's Dawn spacecraft orbited Ceres from 2015 to 2018."
+msgstr ""
+
+#: data/body_info.json
+msgid "NASA's Europa Clipper spacecraft is on its way to study it."
+msgstr ""
+
+#: data/body_info.json
+msgid "NASA's New Horizons flew past Pluto in July 2015 and took the first close-up pictures."
+msgstr ""
+
+#: data/body_info.json
+msgid "Nearly circular orbit with an eccentricity of 0.0068."
+msgstr ""
+
+#: data/body_info.json
+msgid "Neptune is a deep blue planet at the edge of the solar system. It is cold, dark, and very windy."
+msgstr ""
+
+#: data/body_info.json
+msgid "Olympus Mons, a volcano about 22 km tall, is the tallest in the solar system."
+msgstr ""
+
+#: data/body_info.json
+msgid "One solar day lasts about 176 Earth days, twice its orbital period."
+msgstr ""
+
+#: data/body_info.json
+msgid "One year on Neptune lasts about 165 Earth years."
+msgstr ""
+
+#: data/body_info.json
+msgid "One year on Pluto lasts about 248 Earth years."
+msgstr ""
+
+#: data/body_info.json
+msgid "One year on Uranus lasts about 84 Earth years."
+msgstr ""
+
+#: data/body_info.json
+msgid "Orbital eccentricity of 0.093 makes seasons uneven between hemispheres."
+msgstr ""
+
+#: data/body_info.json
+msgid "Orbital period of 1.769 days at about 5.9 Jupiter radii."
+msgstr ""
+
+#: data/body_info.json
+msgid "Orbital period of 11.86 years at 5.2 AU, with more than 90 known moons."
+msgstr ""
+
+#: data/body_info.json
+msgid "Orbital period of 15.945 days at about 20 Saturn radii."
+msgstr ""
+
+#: data/body_info.json
+msgid "Orbital period of 16.69 days at about 26 Jupiter radii."
+msgstr ""
+
+#: data/body_info.json
+msgid "Orbital period of 29.4 years and a rotation period of about 10.7 hours."
+msgstr ""
+
+#: data/body_info.json
+msgid "Orbital period of 3.551 days, in a 2:1 resonance with Io."
+msgstr ""
+
+#: data/body_info.json
+msgid "Orbital period of 7.155 days, in a 2:1 resonance with Europa."
+msgstr ""
+
+#: data/body_info.json
+msgid "Orbital period of about 164.8 years at 30.1 AU."
+msgstr ""
+
+#: data/body_info.json
+msgid "Pluto is a small, icy world far beyond Neptune. It was called the ninth planet until 2006, when astronomers named it a dwarf planet."
+msgstr ""
+
+#: data/body_info.json
+msgid "Retrograde rotation with a sidereal period of about 243 days, longer than its 225-day orbit."
+msgstr ""
+
+#: data/body_info.json
+msgid "Rotates differentially: about 25 days at the equator and about 35 days near the poles."
+msgstr ""
+
+#: data/body_info.json
+msgid "Rotation period of 24 h 37 min and an axial tilt of about 25 degrees give Earth-like seasons."
+msgstr ""
+
+#: data/body_info.json
+msgid "Saturn is famous for its bright rings, which are made of countless pieces of ice and rock."
+msgstr ""
+
+#: data/body_info.json
+msgid "Saturn is less dense than water, so it would float in a giant bathtub."
+msgstr ""
+
+#: data/body_info.json
+msgid "Scientists think Europa is one of the best places to look for life beyond Earth."
+msgstr ""
+
+#: data/body_info.json
+msgid "Sidereal rotation period of about 17.2 hours, retrograde."
+msgstr ""
+
+#: data/body_info.json
+msgid "Sidereal rotation period of about 9.07 hours at a semi-major axis of 2.77 AU."
+msgstr ""
+
+#: data/body_info.json
+msgid "Sidereal rotation period of roughly 9.9 hours."
+msgstr ""
+
+#: data/body_info.json
+msgid "Sputnik Planitia is a convecting nitrogen-ice glacier about 1,000 km across."
+msgstr ""
+
+#: data/body_info.json data/challenges.json modes/sandbox/sandbox_mode.gd:218
+msgid "Star"
+msgstr ""
+
+#: data/body_info.json
+msgid "Sunlight takes about 8 minutes to reach Earth."
+msgstr ""
+
+#: data/body_info.json
+msgid "Surface temperature of about 94 K supports a methane cycle with clouds, rain, rivers, and polar seas such as Kraken Mare."
+msgstr ""
+
+#: data/body_info.json
+msgid "Surface temperatures of about 465 degrees C are hot enough to melt lead."
+msgstr ""
+
+#: data/body_info.json
+msgid "Terrestrial planet"
+msgstr ""
+
+#: data/body_info.json
+msgid "The Giotto spacecraft passed about 600 km from the nucleus in March 1986."
+msgstr ""
+
+#: data/body_info.json
+msgid "The Great Red Spot is a storm wider than Earth that has lasted for centuries."
+msgstr ""
+
+#: data/body_info.json
+msgid "The Huygens probe landed on Titan in 2005."
+msgstr ""
+
+#: data/body_info.json
+msgid "The Moon is Earth's only natural satellite. It always shows us the same face as it circles our planet."
+msgstr ""
+
+#: data/body_info.json
+msgid "The Moon is slowly drifting away from Earth, about 3.8 centimeters each year."
+msgstr ""
+
+#: data/body_info.json
+msgid "The Sun is the star at the center of our solar system. Its gravity keeps every planet in orbit, and its light and heat power life on Earth."
+msgstr ""
+
+#: data/body_info.json
+msgid "The atmosphere is about 78% nitrogen and 21% oxygen."
+msgstr ""
+
+#: data/body_info.json
+msgid "The axial tilt of 23.44 degrees drives seasonal insolation changes."
+msgstr ""
+
+#: data/body_info.json
+msgid "The axial tilt of about 0.03 degrees is the smallest of any planet."
+msgstr ""
+
+#: data/body_info.json
+msgid "The bright faculae in Occator crater are mostly sodium carbonate brought up from a briny reservoir."
+msgstr ""
+
+#: data/body_info.json
+msgid "The dark lines across its surface are cracks and ridges in the ice."
+msgstr ""
+
+#: data/body_info.json
+msgid "The ice shell is estimated to be roughly 15 to 25 km thick over an ocean up to about 100 km deep."
+msgstr ""
+
+#: data/body_info.json
+msgid "The innermost Galilean moon, with a mean radius of 1,821.6 km and a density of 3.53 g/cm3. Tidal heating from its eccentric orbit, forced by the 1:2:4 Laplace resonance with Europa and Ganymede, drives intense silicate volcanism."
+msgstr ""
+
+#: data/body_info.json
+msgid "The ion tail of charged gas points straight away from the Sun, while the broader dust tail curves back along the orbit."
+msgstr ""
+
+#: data/body_info.json
+msgid "The largest moon, with a mean radius of 2,634.1 km and a density of 1.94 g/cm3. It is strongly differentiated, with an iron core that generates an intrinsic magnetic field and a magnetosphere embedded in Jupiter's."
+msgstr ""
+
+#: data/body_info.json
+msgid "The only dwarf planet in the inner solar system, with a mean radius of about 470 km and a bulk density of 2.16 g/cm3. It is partly differentiated, with a rocky interior under a crust rich in ice, salts, and hydrated minerals."
+msgstr ""
+
+#: data/body_info.json
+msgid "The orbit switches between the JPL solutions for the 1835, 1910, and 1986 returns, so each perihelion falls on its real date. The nucleus shape follows its 15 by 8 km size, while the surface map is an illustration."
+msgstr ""
+
+#: data/body_info.json
+msgid "The orbit's line of nodes regresses with a period of about 18.6 years."
+msgstr ""
+
+#: data/body_info.json
+msgid "The orbital eccentricity of 0.0167 puts perihelion in early January."
+msgstr ""
+
+#: data/body_info.json
+msgid "The orbital eccentricity of 0.055 causes visible libration."
+msgstr ""
+
+#: data/body_info.json
+msgid "The orbital eccentricity of 0.206 is the highest of any planet."
+msgstr ""
+
+#: data/body_info.json
+msgid "The planet completed its first full orbit since discovery in 2011."
+msgstr ""
+
+#: data/body_info.json
+msgid "The rings are wide but extremely thin."
+msgstr ""
+
+#: data/body_info.json
+msgid "The second-largest moon, with a mean radius of 2,574.7 km and a nitrogen atmosphere with a surface pressure of about 1.5 bar. Photochemistry of methane produces the organic haze that hides the surface in visible light."
+msgstr ""
+
+#: data/body_info.json
+msgid "The surface map shown here comes from Cassini near-infrared images taken through the haze."
+msgstr ""
+
+#: data/body_info.json
+msgid "Tidally locked, so its rotation period equals its orbital period of 27.32 days."
+msgstr ""
+
+#: data/body_info.json
+msgid "Titan is Saturn's largest moon and the only moon with a thick atmosphere. An orange haze hides its surface from view."
+msgstr ""
+
+#: data/body_info.json
+msgid "Titan is bigger than the planet Mercury."
+msgstr ""
+
+#: data/body_info.json
+msgid "Uranus is a pale blue-green planet that rolls around the Sun tipped on its side."
+msgstr ""
+
+#: data/body_info.json
+msgid "Valles Marineris stretches about 4,000 km."
+msgstr ""
+
+#: data/body_info.json
+msgid "Venus is the hottest planet, wrapped in thick clouds. It is similar in size to Earth, but its surface is a scorching, high-pressure desert."
+msgstr ""
+
+#: data/body_info.json
+msgid "Venus spins backwards compared with most planets."
+msgstr ""
+
+#: data/body_info.json
+msgid "Volcanic gases supply the Io plasma torus that surrounds Jupiter along Io's orbit."
+msgstr ""
+
+#: data/body_info.json
+msgid "Winds on Neptune can blow faster than 2,000 kilometers per hour."
+msgstr ""
+
+#: data/challenges.json
+msgid "A body escapes when it moves faster than about 1.41 x circular orbit speed."
+msgstr ""
+
+#: data/challenges.json
+msgid "Break free"
+msgstr ""
+
+#: data/challenges.json
+msgid "Drag sideways, at a right angle to the line toward the star. About 1.0 x circular orbit speed makes a near circle."
+msgstr ""
+
+#: data/challenges.json
+msgid "Giant planet"
+msgstr ""
+
+#: data/challenges.json
+msgid "Gravity assist"
+msgstr ""
+
+#: data/challenges.json
+msgid "Launch a body fast enough to escape the star and reach three times its starting distance."
+msgstr ""
+
+#: data/challenges.json
+msgid "Launch a planet on an orbit with an eccentricity between 0.5 and 0.8 and let it go around once."
+msgstr ""
+
+#: data/challenges.json
+msgid "Launch a planet that goes all the way around the star once."
+msgstr ""
+
+#: data/challenges.json
+msgid "Launch from inside the planet's orbit, about 1.25 x circular orbit speed, so the probe crosses the orbit just behind the planet. Passing behind a planet speeds a probe up, and passing in front slows it down. Time starts paused so you can aim."
+msgstr ""
+
+#: data/challenges.json
+msgid "Launch slower or faster than a circle needs. About 0.6 x or 1.3 x circular orbit speed gives a long ellipse."
+msgstr ""
+
+#: data/challenges.json
+msgid "Make a moon"
+msgstr ""
+
+#: data/challenges.json
+msgid "Place the moon close to the planet and launch it sideways. The launch speed is measured relative to the planet when you place it nearby."
+msgstr ""
+
+#: data/challenges.json
+msgid "Put a moon in orbit around the giant planet and let it go around the planet once."
+msgstr ""
+
+#: data/challenges.json
+msgid "Round trip"
+msgstr ""
+
+#: data/challenges.json
+msgid "Send a probe past the giant planet so the pass adds at least 30% to its orbital energy around the star."
+msgstr ""
+
+#: data/challenges.json
+msgid "Stretched orbit"
+msgstr ""
+
+#: data/credits.json
+msgid "Alexander William Sinjaya"
+msgstr ""
+
+#: data/credits.json
+msgid "Background music and sound effects"
+msgstr ""
+
+#: data/credits.json
+msgid "Constellation figures"
+msgstr ""
+
+#: data/credits.json
+msgid "Data sources"
+msgstr ""
+
+#: data/credits.json
+msgid "Engine"
+msgstr ""
+
+#: data/credits.json
+msgid "Fonts and icons"
+msgstr ""
+
+#: data/credits.json
+msgid "FreeType"
+msgstr ""
+
+#: data/credits.json
+msgid "Godot Engine"
+msgstr ""
+
+#: data/credits.json
+msgid "Inter typeface"
+msgstr ""
+
+#: data/credits.json
+msgid "Io, Europa, Ganymede, Callisto, Titan, Ceres, and Pluto textures"
+msgstr ""
+
+#: data/credits.json
+msgid "Keplerian Elements for Approximate Positions of the Major Planets"
+msgstr ""
+
+#: data/credits.json
+msgid "Lucide icons"
+msgstr ""
+
+#: data/credits.json
+msgid "Lunar mean orbital elements"
+msgstr ""
+
+#: data/credits.json
+msgid "Member"
+msgstr ""
+
+#: data/credits.json
+msgid "Moon, Mars, and Earth elevation for normal maps"
+msgstr ""
+
+#: data/credits.json
+msgid "Muhamad Fahry Pratama Putra"
+msgstr ""
+
+#: data/credits.json
+msgid "Muhammad Atha Tsaqif"
+msgstr ""
+
+#: data/credits.json
+msgid "Muhammad Hafizh Faiqunnabil"
+msgstr ""
+
+#: data/credits.json
+msgid "Music and sound effects"
+msgstr ""
+
+#: data/credits.json
+msgid "Physical parameters and rotation poles"
+msgstr ""
+
+#: data/credits.json
+msgid "Planetary satellite mean elements, Horizons ephemerides, and Small-Body Database"
+msgstr ""
+
+#: data/credits.json
+msgid "Star positions, brightness, and colors"
+msgstr ""
+
+#: data/credits.json
+msgid "Sun, planet, Moon, Saturn ring, and Milky Way textures"
+msgstr ""
+
+#: data/credits.json
+msgid "Team Lead"
+msgstr ""
+
+#: data/credits.json
+msgid "Team Sepak Takraw"
+msgstr ""
+
+#: data/credits.json
+msgid "Textures"
+msgstr ""
+
+#: data/credits.json
+msgid "The narration voice is synthesized speech. It was generated offline during development with the Kokoro-82M text-to-speech model and is not a recording of a human speaker."
+msgstr ""
+
+#: data/credits.json
+msgid "Voice-over narration (voice af_bella)"
+msgstr ""
+
+#: data/quizzes.json
+msgid "0.006 bar"
+msgstr ""
+
+#: data/quizzes.json
+msgid "0.058 AU"
+msgstr ""
+
+#: data/quizzes.json
+msgid "0.575 AU"
+msgstr ""
+
+#: data/quizzes.json
+msgid "0.69 g/cm3"
+msgstr ""
+
+#: data/quizzes.json
+msgid "1 AU"
+msgstr ""
+
+#: data/quizzes.json
+msgid "1 AU divided by the speed of light is about 499 s, or 8.3 minutes."
+msgstr ""
+
+#: data/quizzes.json
+msgid "1 Earth radius"
+msgstr ""
+
+#: data/quizzes.json
+msgid "1 bar"
+msgstr ""
+
+#: data/quizzes.json ui/sandbox_panel.gd:37
+msgid "1 day"
+msgstr ""
+
+#: data/quizzes.json
+msgid "1 km"
+msgstr ""
+
+#: data/quizzes.json
+msgid "1,000 km"
+msgstr ""
+
+#: data/quizzes.json
+msgid "1,274 km"
+msgstr ""
+
+#: data/quizzes.json
+msgid "1,321 Earth masses"
+msgstr ""
+
+#: data/quizzes.json
+msgid "1,321 times"
+msgstr ""
+
+#: data/quizzes.json
+msgid "1.27 million km"
+msgstr ""
+
+#: data/quizzes.json
+msgid "1.3 million"
+msgstr ""
+
+#: data/quizzes.json
+msgid "1.3 million times"
+msgstr ""
+
+#: data/quizzes.json
+msgid "1.33 g/cm3"
+msgstr ""
+
+#: data/quizzes.json
+msgid "1.5 bar"
+msgstr ""
+
+#: data/quizzes.json
+msgid "109 times"
+msgstr ""
+
+#: data/quizzes.json
+msgid "12 years"
+msgstr ""
+
+#: data/quizzes.json
+msgid "12,742 km"
+msgstr ""
+
+#: data/quizzes.json
+msgid "127,420 km"
+msgstr ""
+
+#: data/quizzes.json
+msgid "15 bar"
+msgstr ""
+
+#: data/quizzes.json
+msgid "177 degrees"
+msgstr ""
+
+#: data/quizzes.json
+msgid "2,000 km/h"
+msgstr ""
+
+#: data/quizzes.json
+msgid "20 km/h"
+msgstr ""
+
+#: data/quizzes.json
+msgid "20,000 km/h"
+msgstr ""
+
+#: data/quizzes.json
+msgid "200 km/h"
+msgstr ""
+
+#: data/quizzes.json
+msgid "248 years"
+msgstr ""
+
+#: data/quizzes.json
+msgid "27 days"
+msgstr ""
+
+#: data/quizzes.json
+msgid "28 degrees"
+msgstr ""
+
+#: data/quizzes.json
+msgid "3 degrees"
+msgstr ""
+
+#: data/quizzes.json
+msgid "3.93 g/cm3"
+msgstr ""
+
+#: data/quizzes.json
+msgid "318 Earth masses"
+msgstr ""
+
+#: data/quizzes.json
+msgid "32 Earth masses"
+msgstr ""
+
+#: data/quizzes.json
+msgid "333,000 times"
+msgstr ""
+
+#: data/quizzes.json
+msgid "35 AU"
+msgstr ""
+
+#: data/quizzes.json
+msgid "365 days"
+msgstr ""
+
+#: data/quizzes.json
+msgid "384,400 km divided by 6,371 km is about 60 Earth radii."
+msgstr ""
+
+#: data/quizzes.json
+msgid "384,400 km divided by the speed of light is about 1.28 s."
+msgstr ""
+
+#: data/quizzes.json
+msgid "5.51 g/cm3"
+msgstr ""
+
+#: data/quizzes.json
+msgid "5.75 AU"
+msgstr ""
+
+#: data/quizzes.json
+msgid "7 days"
+msgstr ""
+
+#: data/quizzes.json
+msgid "8 minutes"
+msgstr ""
+
+#: data/quizzes.json
+msgid "8.3 min"
+msgstr ""
+
+#: data/quizzes.json
+msgid "84 years"
+msgstr ""
+
+#: data/quizzes.json
+msgid "88 days"
+msgstr ""
+
+#: data/quizzes.json
+msgid "9 bar"
+msgstr ""
+
+#: data/quizzes.json
+msgid "92 bar"
+msgstr ""
+
+#: data/quizzes.json
+msgid "920 bar"
+msgstr ""
+
+#: data/quizzes.json
+msgid "95 Earth masses"
+msgstr ""
+
+#: data/quizzes.json
+msgid "98 degrees"
+msgstr ""
+
+#: data/quizzes.json
+msgid "A cloud covers the Sun"
+msgstr ""
+
+#: data/quizzes.json
+msgid "A global salty ocean lies under Europa's ice shell."
+msgstr ""
+
+#: data/quizzes.json
+msgid "A layer of lava"
+msgstr ""
+
+#: data/quizzes.json
+msgid "A retrograde orbit"
+msgstr ""
+
+#: data/quizzes.json
+msgid "A ring system"
+msgstr ""
+
+#: data/quizzes.json
+msgid "A rocky desert"
+msgstr ""
+
+#: data/quizzes.json
+msgid "A runaway greenhouse effect keeps a dense carbon dioxide atmosphere at about 92 bar."
+msgstr ""
+
+#: data/quizzes.json
+msgid "A salty ocean"
+msgstr ""
+
+#: data/quizzes.json
+msgid "A thick atmosphere"
+msgstr ""
+
+#: data/quizzes.json
+msgid "About 1 day"
+msgstr ""
+
+#: data/quizzes.json
+msgid "About 1 hour"
+msgstr ""
+
+#: data/quizzes.json
+msgid "About 1 second"
+msgstr ""
+
+#: data/quizzes.json
+msgid "About 10 Moon diameters"
+msgstr ""
+
+#: data/quizzes.json
+msgid "About 2.7 Moon diameters"
+msgstr ""
+
+#: data/quizzes.json
+msgid "About 50%"
+msgstr ""
+
+#: data/quizzes.json
+msgid "About 75%"
+msgstr ""
+
+#: data/quizzes.json
+msgid "About 8 minutes"
+msgstr ""
+
+#: data/quizzes.json
+msgid "About 90%"
+msgstr ""
+
+#: data/quizzes.json
+msgid "About 99.86%"
+msgstr ""
+
+#: data/quizzes.json
+msgid "About how long does the Moon take to orbit Earth?"
+msgstr ""
+
+#: data/quizzes.json
+msgid "About how many Earths could fit inside Jupiter?"
+msgstr ""
+
+#: data/quizzes.json
+msgid "About how many times wider than Earth is the Sun?"
+msgstr ""
+
+#: data/quizzes.json
+msgid "About how often does Halley's Comet come back?"
+msgstr ""
+
+#: data/quizzes.json
+msgid "An induced magnetic field measured by Galileo"
+msgstr ""
+
+#: data/quizzes.json
+msgid "An intrinsic magnetic field"
+msgstr ""
+
+#: data/quizzes.json
+msgid "Around Jupiter"
+msgstr ""
+
+#: data/quizzes.json
+msgid "As wide as Earth"
+msgstr ""
+
+#: data/quizzes.json
+msgid "At Earth's center"
+msgstr ""
+
+#: data/quizzes.json
+msgid "At about 0.69 g/cm3, Saturn is the least dense planet, less dense than water."
+msgstr ""
+
+#: data/quizzes.json
+msgid "At any new or full moon"
+msgstr ""
+
+#: data/quizzes.json
+msgid "At the Moon's center"
+msgstr ""
+
+#: data/quizzes.json
+msgid "At the Moon's distance, about how wide is Earth's umbra?"
+msgstr ""
+
+#: data/quizzes.json
+msgid "At true scale, about how many Earth-widths away is the Moon?"
+msgstr ""
+
+#: data/quizzes.json
+msgid "At true scale, the planets would be tiny dots far apart. Try the true scale view to see it."
+msgstr ""
+
+#: data/quizzes.json
+msgid "Away from the Sun"
+msgstr ""
+
+#: data/quizzes.json
+msgid "Behind the comet"
+msgstr ""
+
+#: data/quizzes.json
+msgid "Being the smallest planet"
+msgstr ""
+
+#: data/quizzes.json
+msgid "Between Venus and Earth"
+msgstr ""
+
+#: data/quizzes.json
+msgid "Beyond Neptune"
+msgstr ""
+
+#: data/quizzes.json
+msgid "Both tails equally"
+msgstr ""
+
+#: data/quizzes.json
+msgid "Ceres is the largest object in the asteroid belt between Mars and Jupiter."
+msgstr ""
+
+#: data/quizzes.json
+msgid "Charged gas is carried by the solar wind straight outward, while dust grains drift on their own orbits and form a curved tail."
+msgstr ""
+
+#: data/quizzes.json
+msgid "Dawn identified sodium carbonate deposited from brine that rose from below the crust."
+msgstr ""
+
+#: data/quizzes.json
+msgid "Day and night"
+msgstr ""
+
+#: data/quizzes.json
+msgid "Earth blocks the Sun from the Moon"
+msgstr ""
+
+#: data/quizzes.json
+msgid "Earth blocks the other side"
+msgstr ""
+
+#: data/quizzes.json
+msgid "Earth is 12,742 km across."
+msgstr ""
+
+#: data/quizzes.json
+msgid "Earth's air magnifies the Moon"
+msgstr ""
+
+#: data/quizzes.json
+msgid "Earth's atmosphere bends and reddens sunlight into the shadow, so the eclipsed Moon glows red."
+msgstr ""
+
+#: data/quizzes.json
+msgid "Earth's shadow is too short"
+msgstr ""
+
+#: data/quizzes.json
+msgid "Earthquakes"
+msgstr ""
+
+#: data/quizzes.json
+msgid "Every 1,000 years"
+msgstr ""
+
+#: data/quizzes.json
+msgid "Every 10 years"
+msgstr ""
+
+#: data/quizzes.json
+msgid "Every 76 years"
+msgstr ""
+
+#: data/quizzes.json
+msgid "Every year"
+msgstr ""
+
+#: data/quizzes.json
+msgid "Exposed iron"
+msgstr ""
+
+#: data/quizzes.json
+msgid "Frequent large impacts"
+msgstr ""
+
+#: data/quizzes.json
+msgid "Frozen methane"
+msgstr ""
+
+#: data/quizzes.json
+msgid "Full moons are too bright"
+msgstr ""
+
+#: data/quizzes.json
+msgid "Ganymede is even wider than the planet Mercury."
+msgstr ""
+
+#: data/quizzes.json
+msgid "Ganymede's iron core drives a dynamo, giving it a small magnetosphere of its own."
+msgstr ""
+
+#: data/quizzes.json
+msgid "Half a Moon diameter"
+msgstr ""
+
+#: data/quizzes.json
+msgid "Halfway between Earth and the Moon"
+msgstr ""
+
+#: data/quizzes.json
+msgid "Halley comes within 0.575 AU of the Sun, inside the orbit of Venus. 35 AU is its aphelion."
+msgstr ""
+
+#: data/quizzes.json
+msgid "Halley's Comet returns about every 75 to 76 years. It last passed the Sun in 1986."
+msgstr ""
+
+#: data/quizzes.json
+msgid "How long does Pluto take to orbit the Sun?"
+msgstr ""
+
+#: data/quizzes.json
+msgid "How long does light take to travel from the Moon to Earth?"
+msgstr ""
+
+#: data/quizzes.json
+msgid "How long does sunlight take to reach Neptune?"
+msgstr ""
+
+#: data/quizzes.json
+msgid "How wide is Earth?"
+msgstr ""
+
+#: data/quizzes.json
+msgid "In the asteroid belt"
+msgstr ""
+
+#: data/quizzes.json
+msgid "In true-scale mode, one render unit equals:"
+msgstr ""
+
+#: data/quizzes.json
+msgid "Inside Earth, about 4,600 km from its center"
+msgstr ""
+
+#: data/quizzes.json
+msgid "Io has hundreds of active volcanoes, heated by Jupiter's squeezing gravity."
+msgstr ""
+
+#: data/quizzes.json
+msgid "It has volcanoes everywhere"
+msgstr ""
+
+#: data/quizzes.json
+msgid "It is the closest planet to the Sun"
+msgstr ""
+
+#: data/quizzes.json
+msgid "It spins once for every orbit"
+msgstr ""
+
+#: data/quizzes.json
+msgid "It spins very fast"
+msgstr ""
+
+#: data/quizzes.json
+msgid "Its blue oceans"
+msgstr ""
+
+#: data/quizzes.json
+msgid "Its high bulk density"
+msgstr ""
+
+#: data/quizzes.json
+msgid "Its rings of ice"
+msgstr ""
+
+#: data/quizzes.json
+msgid "Its synchronous rotation"
+msgstr ""
+
+#: data/quizzes.json
+msgid "Its thick clouds trap heat"
+msgstr ""
+
+#: data/quizzes.json
+msgid "Jupiter has about 318 Earth masses. 95 is Saturn, and 1,321 is Jupiter's volume ratio."
+msgstr ""
+
+#: data/quizzes.json
+msgid "Jupiter is more than 11 times wider than Earth."
+msgstr ""
+
+#: data/quizzes.json
+msgid "Jupiter's mass is about:"
+msgstr ""
+
+#: data/quizzes.json
+msgid "Jupiter's volume is about 1,300 times Earth's."
+msgstr ""
+
+#: data/quizzes.json
+msgid "Lava"
+msgstr ""
+
+#: data/quizzes.json
+msgid "Light from Mars"
+msgstr ""
+
+#: data/quizzes.json
+msgid "Light needs just over one second. Sunlight needs about eight minutes."
+msgstr ""
+
+#: data/quizzes.json
+msgid "Liquid methane and ethane"
+msgstr ""
+
+#: data/quizzes.json
+msgid "Liquid nitrogen"
+msgstr ""
+
+#: data/quizzes.json
+msgid "Liquid water seen at the surface"
+msgstr ""
+
+#: data/quizzes.json
+msgid "Mercury orbits closest to the Sun and finishes a year in just 88 days."
+msgstr ""
+
+#: data/quizzes.json
+msgid "Mercury rotates in which spin-orbit resonance?"
+msgstr ""
+
+#: data/quizzes.json
+msgid "Mercury rotates three times for every two orbits, so one solar day lasts about 176 Earth days."
+msgstr ""
+
+#: data/quizzes.json
+msgid "Neither tail"
+msgstr ""
+
+#: data/quizzes.json
+msgid "Neptune is about 30 times farther from the Sun than Earth, so sunlight needs over four hours."
+msgstr ""
+
+#: data/quizzes.json
+msgid "Neptune's upper atmosphere carries the fastest sustained winds of any planet, above 2,000 km/h."
+msgstr ""
+
+#: data/quizzes.json
+msgid "No time at all"
+msgstr ""
+
+#: data/quizzes.json
+msgid "Ocean tides"
+msgstr ""
+
+#: data/quizzes.json
+msgid "Only at the solstices"
+msgstr ""
+
+#: data/quizzes.json
+msgid "Only when the Moon is at perigee"
+msgstr ""
+
+#: data/quizzes.json
+msgid "Orbital eccentricity and inclination"
+msgstr ""
+
+#: data/quizzes.json
+msgid "Our Moon"
+msgstr ""
+
+#: data/quizzes.json
+msgid "Over 4 hours"
+msgstr ""
+
+#: data/quizzes.json
+msgid "Pluto is in which orbital resonance with Neptune?"
+msgstr ""
+
+#: data/quizzes.json
+msgid "Pluto is so far away that one orbit takes about 248 Earth years."
+msgstr ""
+
+#: data/quizzes.json
+msgid "Pluto orbits twice for every three orbits of Neptune, which keeps the two from ever meeting."
+msgstr ""
+
+#: data/quizzes.json
+msgid "Radar echoes from Earth"
+msgstr ""
+
+#: data/quizzes.json
+msgid "Radioactive decay alone"
+msgstr ""
+
+#: data/quizzes.json
+msgid "Real distances are too large to fit"
+msgstr ""
+
+#: data/quizzes.json
+msgid "Red rocks on the Moon"
+msgstr ""
+
+#: data/quizzes.json
+msgid "Refraction in Earth's atmosphere"
+msgstr ""
+
+#: data/quizzes.json
+msgid "Rotation is steady while orbital speed and tilt vary, so slightly more than half of the surface becomes visible over time."
+msgstr ""
+
+#: data/quizzes.json
+msgid "Saturn's rings are made mostly of pieces of water ice."
+msgstr ""
+
+#: data/quizzes.json
+msgid "Seasons"
+msgstr ""
+
+#: data/quizzes.json
+msgid "Sodium carbonate"
+msgstr ""
+
+#: data/quizzes.json
+msgid "Space is crowded"
+msgstr ""
+
+#: data/quizzes.json
+msgid "Spinning on its side"
+msgstr ""
+
+#: data/quizzes.json
+msgid "Sulfur"
+msgstr ""
+
+#: data/quizzes.json
+msgid "Sunlight and the solar wind push the gas and dust away from the Sun, whichever way the comet moves."
+msgstr ""
+
+#: data/quizzes.json
+msgid "Sunlight bent through Earth's air"
+msgstr ""
+
+#: data/quizzes.json
+msgid "Sustained winds on Neptune exceed about:"
+msgstr ""
+
+#: data/quizzes.json
+msgid "The 1:2:4 Laplace resonance with Europa and Ganymede"
+msgstr ""
+
+#: data/quizzes.json
+msgid "The Moon circles Earth about once every 27 days."
+msgstr ""
+
+#: data/quizzes.json
+msgid "The Moon does not spin"
+msgstr ""
+
+#: data/quizzes.json
+msgid "The Moon gets hot"
+msgstr ""
+
+#: data/quizzes.json
+msgid "The Moon has about 1.2% of Earth's mass, so the common center of mass lies inside Earth."
+msgstr ""
+
+#: data/quizzes.json
+msgid "The Moon has about 1/81 of Earth's mass, or 1.2%."
+msgstr ""
+
+#: data/quizzes.json
+msgid "The Moon is about 384,400 km away, roughly 30 Earth-widths."
+msgstr ""
+
+#: data/quizzes.json
+msgid "The Moon is closer to the Sun"
+msgstr ""
+
+#: data/quizzes.json
+msgid "The Moon is too small"
+msgstr ""
+
+#: data/quizzes.json
+msgid "The Moon lines up between the Sun and Earth, and its shadow falls on a small part of Earth."
+msgstr ""
+
+#: data/quizzes.json
+msgid "The Moon must be close to where its tilted orbit crosses the ecliptic, which happens in eclipse seasons about every 173 days."
+msgstr ""
+
+#: data/quizzes.json
+msgid "The Moon passes between the Sun and Earth"
+msgstr ""
+
+#: data/quizzes.json
+msgid "The Moon spins exactly once per orbit. Its far side does get sunlight, it just never faces Earth."
+msgstr ""
+
+#: data/quizzes.json
+msgid "The Moon's mass relative to Earth is about:"
+msgstr ""
+
+#: data/quizzes.json
+msgid "The Moon's orbit is tilted"
+msgstr ""
+
+#: data/quizzes.json
+msgid "The Moon's orbit is tilted by about 5 degrees, so the Moon usually passes above or below Earth's shadow."
+msgstr ""
+
+#: data/quizzes.json
+msgid "The Moon's pull raises the ocean tides. Seasons come from Earth's tilt."
+msgstr ""
+
+#: data/quizzes.json
+msgid "The Sun holds about 99.86% of all the mass in the solar system."
+msgstr ""
+
+#: data/quizzes.json
+msgid "The Sun is about 109 Earths wide. 1.3 million is how many Earths fit inside it."
+msgstr ""
+
+#: data/quizzes.json
+msgid "The Sun is about 400 times wider and 400 times farther"
+msgstr ""
+
+#: data/quizzes.json
+msgid "The Sun is very small"
+msgstr ""
+
+#: data/quizzes.json
+msgid "The Sun switches off"
+msgstr ""
+
+#: data/quizzes.json
+msgid "The Sun's volume compared with Earth's is about:"
+msgstr ""
+
+#: data/quizzes.json
+msgid "The bright spots in Ceres's Occator crater are mostly:"
+msgstr ""
+
+#: data/quizzes.json
+msgid "The dust tail"
+msgstr ""
+
+#: data/quizzes.json
+msgid "The far side is always dark"
+msgstr ""
+
+#: data/quizzes.json
+msgid "The induced field requires a conducting layer, best explained by a salty ocean."
+msgstr ""
+
+#: data/quizzes.json
+msgid "The ion tail"
+msgstr ""
+
+#: data/quizzes.json
+msgid "The mean Earth-Moon distance is about how many Earth radii?"
+msgstr ""
+
+#: data/quizzes.json
+msgid "The planets are close together"
+msgstr ""
+
+#: data/quizzes.json
+msgid "The resonance keeps Io's orbit eccentric, so Jupiter's tides keep flexing and heating it."
+msgstr ""
+
+#: data/quizzes.json
+msgid "The solar wind"
+msgstr ""
+
+#: data/quizzes.json
+msgid "The two ratios nearly cancel, which is why total and annular solar eclipses are both possible."
+msgstr ""
+
+#: data/quizzes.json
+msgid "The umbra narrows with distance, and at the Moon's orbit it is about 2.7 Moon diameters across."
+msgstr ""
+
+#: data/quizzes.json
+msgid "They are the same size"
+msgstr ""
+
+#: data/quizzes.json
+msgid "Tidal heating"
+msgstr ""
+
+#: data/quizzes.json
+msgid "Titan is so cold that methane and ethane are liquid and rain down from its clouds."
+msgstr ""
+
+#: data/quizzes.json
+msgid "Titan's nitrogen atmosphere reaches about 1.5 bar, higher than Earth's."
+msgstr ""
+
+#: data/quizzes.json
+msgid "Toward Earth"
+msgstr ""
+
+#: data/quizzes.json
+msgid "Toward the Sun"
+msgstr ""
+
+#: data/quizzes.json
+msgid "True-scale mode draws sizes and distances at 1 render unit per 1,000 km."
+msgstr ""
+
+#: data/quizzes.json
+msgid "Uranus has an obliquity of about 97.8 degrees. 177 degrees belongs to Venus."
+msgstr ""
+
+#: data/quizzes.json
+msgid "Uranus is tilted by almost 98 degrees, so it rolls around the Sun on its side."
+msgstr ""
+
+#: data/quizzes.json
+msgid "Venus is farther from the Sun than Mercury, but its thick atmosphere traps heat like a greenhouse."
+msgstr ""
+
+#: data/quizzes.json
+msgid "Volume scales with radius cubed: 109 cubed is about 1.3 million. 333,000 is the mass ratio."
+msgstr ""
+
+#: data/quizzes.json
+msgid "Water"
+msgstr ""
+
+#: data/quizzes.json
+msgid "Water ice"
+msgstr ""
+
+#: data/quizzes.json
+msgid "What does the Moon's gravity cause on Earth?"
+msgstr ""
+
+#: data/quizzes.json
+msgid "What fills the lakes on Titan?"
+msgstr ""
+
+#: data/quizzes.json
+msgid "What fraction of the solar system's mass is in the Sun?"
+msgstr ""
+
+#: data/quizzes.json
+msgid "What happens during a solar eclipse?"
+msgstr ""
+
+#: data/quizzes.json
+msgid "What is Saturn best known for?"
+msgstr ""
+
+#: data/quizzes.json
+msgid "What is Saturn's mean density?"
+msgstr ""
+
+#: data/quizzes.json
+msgid "What is hidden under Europa's ice?"
+msgstr ""
+
+#: data/quizzes.json
+msgid "What is the approximate surface pressure on Venus?"
+msgstr ""
+
+#: data/quizzes.json
+msgid "What is the one-way light time across 1 AU?"
+msgstr ""
+
+#: data/quizzes.json
+msgid "What is the one-way light time from the Moon to Earth?"
+msgstr ""
+
+#: data/quizzes.json
+msgid "What is the perihelion distance of Halley's Comet?"
+msgstr ""
+
+#: data/quizzes.json
+msgid "What is the surface pressure on Titan?"
+msgstr ""
+
+#: data/quizzes.json
+msgid "What mainly causes the Moon's visible libration?"
+msgstr ""
+
+#: data/quizzes.json
+msgid "What makes Ganymede unique among moons?"
+msgstr ""
+
+#: data/quizzes.json
+msgid "What sustains Io's tidal heating?"
+msgstr ""
+
+#: data/quizzes.json
+msgid "What turns the Moon red during a lunar eclipse?"
+msgstr ""
+
+#: data/quizzes.json
+msgid "When a new or full moon falls near a node"
+msgstr ""
+
+#: data/quizzes.json
+msgid "When can an eclipse happen?"
+msgstr ""
+
+#: data/quizzes.json
+msgid "Where does the dwarf planet Ceres orbit?"
+msgstr ""
+
+#: data/quizzes.json
+msgid "Where is the Earth-Moon barycenter?"
+msgstr ""
+
+#: data/quizzes.json
+msgid "Which comet tail points straight away from the Sun?"
+msgstr ""
+
+#: data/quizzes.json
+msgid "Which is the largest moon in the solar system?"
+msgstr ""
+
+#: data/quizzes.json
+msgid "Which is the largest planet?"
+msgstr ""
+
+#: data/quizzes.json
+msgid "Which measurement points to an ocean inside Europa?"
+msgstr ""
+
+#: data/quizzes.json
+msgid "Which moon has the most active volcanoes?"
+msgstr ""
+
+#: data/quizzes.json
+msgid "Which planet is closest to the Sun?"
+msgstr ""
+
+#: data/quizzes.json
+msgid "Which planet rotates on its side?"
+msgstr ""
+
+#: data/quizzes.json
+msgid "Which value is closest to the obliquity of Uranus?"
+msgstr ""
+
+#: data/quizzes.json
+msgid "Which way does a comet's tail point?"
+msgstr ""
+
+#: data/quizzes.json
+msgid "Why do most solar system pictures squeeze distances?"
+msgstr ""
+
+#: data/quizzes.json
+msgid "Why do the Sun and the Moon look almost the same size?"
+msgstr ""
+
+#: data/quizzes.json
+msgid "Why do we always see the same side of the Moon?"
+msgstr ""
+
+#: data/quizzes.json
+msgid "Why is Venus the hottest planet?"
+msgstr ""
+
+#: data/quizzes.json
+msgid "Why is there no eclipse at every full moon?"
+msgstr ""
+
+#: data/sandbox_presets.json
+msgid "A half-solar-mass star sweeps past the outer planets about three years after loading"
+msgstr ""
+
+#: data/sandbox_presets.json
+msgid "Binary star"
+msgstr ""
+
+#: data/sandbox_presets.json
+msgid "Circumbinary planet"
+msgstr ""
+
+#: data/sandbox_presets.json
+msgid "Extra planet"
+msgstr ""
+
+#: data/sandbox_presets.json
+msgid "Figure-eight"
+msgstr ""
+
+#: data/sandbox_presets.json
+msgid "Planet X"
+msgstr ""
+
+#: data/sandbox_presets.json
+msgid "Rogue star"
+msgstr ""
+
+#: data/sandbox_presets.json
+msgid "Rogue star flyby"
+msgstr ""
+
+#: data/sandbox_presets.json
+msgid "Solar system"
+msgstr ""
+
+#: data/sandbox_presets.json
+msgid "Star A"
+msgstr ""
+
+#: data/sandbox_presets.json
+msgid "Star B"
+msgstr ""
+
+#: data/sandbox_presets.json
+msgid "Star C"
+msgstr ""
+
+#: data/sandbox_presets.json
+msgid "The Sun, the planets, the major moons, Ceres, Pluto, and Halley's Comet at the current simulation date"
+msgstr ""
+
+#: data/sandbox_presets.json
+msgid "The solar system plus a Jupiter-mass planet on a circular orbit between Mars and Jupiter"
+msgstr ""
+
+#: data/sandbox_presets.json
+msgid "Three equal stars chase each other along one figure-eight path, a rare stable solution of the three-body problem found by Moore and proved by Chenciner and Montgomery"
+msgstr ""
+
+#: data/sandbox_presets.json
+msgid "Two Sun-like stars on a 65-day mutual orbit with an Earth-mass planet circling both"
+msgstr ""
+
+#: data/tours.json
+msgid "A G2V star with a mean radius of 695,700 km and 99.86% of the solar system's mass. Planetary orbits here are computed from JPL Keplerian elements."
+msgstr ""
+
+#: data/tours.json
+msgid "A comet's tail does not trail behind it. Heading away from the Sun, Halley's tails point ahead of it. On this day it passed closest to Earth."
+msgstr ""
+
+#: data/tours.json
+msgid "A planet and its Moon"
+msgstr ""
+
+#: data/tours.json
+msgid "A red Moon"
+msgstr ""
+
+#: data/tours.json
+msgid "A second away"
+msgstr ""
+
+#: data/tours.json
+msgid "Always the same face"
+msgstr ""
+
+#: data/tours.json
+msgid "An eclipse needs a new or full moon close to a node of the lunar orbit. Eclipse seasons come about every 173 days, and the nodes circle the ecliptic every 18.6 years."
+msgstr ""
+
+#: data/tours.json
+msgid "At 384,400 km the one-way light time is about 1.28 s. At 1 AU the light time is about 499 s."
+msgstr ""
+
+#: data/tours.json
+msgid "At true scale, the Moon is about 30 Earth-widths away. Distances in space are far larger than most models suggest."
+msgstr ""
+
+#: data/tours.json
+msgid "Ceres is the biggest object in the asteroid belt and the closest dwarf planet to the Sun. Its bright spots are salt left behind by salty water."
+msgstr ""
+
+#: data/tours.json
+msgid "Compare the true sizes and distances of Earth, Jupiter, the Sun, and Neptune."
+msgstr ""
+
+#: data/tours.json
+msgid "Dawn found sodium carbonate faculae in Occator crater, deposited from brine that reached the surface from below the crust."
+msgstr ""
+
+#: data/tours.json
+msgid "During a lunar eclipse the Moon slides into Earth's shadow. Sunlight bent through Earth's air still reaches it and turns it a deep red."
+msgstr ""
+
+#: data/tours.json
+msgid "Earth and Moon"
+msgstr ""
+
+#: data/tours.json
+msgid "Earth and the Moon form a pair. The Moon's gravity raises our ocean tides and helps keep Earth's tilt steady over very long times."
+msgstr ""
+
+#: data/tours.json
+msgid "Earth is the third planet from the Sun and the only world known to host life. Notice its blue oceans."
+msgstr ""
+
+#: data/tours.json
+msgid "Eclipses and Comets"
+msgstr ""
+
+#: data/tours.json
+msgid "Galileo measured an induced magnetic field that points to a conducting ocean beneath an ice shell roughly 15 to 25 km thick."
+msgstr ""
+
+#: data/tours.json
+msgid "Ganymede is the largest moon in the solar system, wider than the planet Mercury. It is the only moon with its own magnetic field."
+msgstr ""
+
+#: data/tours.json
+msgid "Grand Tour"
+msgstr ""
+
+#: data/tours.json
+msgid "Halley's Comet spends most of its 76-year orbit in the cold far beyond Neptune. Near the Sun its ice turns to gas and two tails stream away."
+msgstr ""
+
+#: data/tours.json
+msgid "In a solar eclipse the Moon passes between the Sun and Earth. Its shadow races across our planet, here near Greenland, Iceland, and Spain."
+msgstr ""
+
+#: data/tours.json
+msgid "Io is the most volcanic world we know. Jupiter's gravity squeezes it on every orbit, and that heat feeds hundreds of active volcanoes."
+msgstr ""
+
+#: data/tours.json
+msgid "Io's forced eccentricity comes from the 1:2:4 Laplace resonance with Europa and Ganymede. Tidal dissipation yields a global heat flow of about 2 W/m2."
+msgstr ""
+
+#: data/tours.json
+msgid "Jupiter is about 11 times wider than Earth. More than 1,300 Earths could fit inside it."
+msgstr ""
+
+#: data/tours.json
+msgid "Jupiter is the giant of the solar system, more than 11 times wider than Earth. Its bands are storm clouds stretched out by its fast spin."
+msgstr ""
+
+#: data/tours.json
+msgid "Light takes just over one second to travel from the Moon to Earth. Sunlight, by comparison, needs about eight minutes."
+msgstr ""
+
+#: data/tours.json
+msgid "Mars is a cold desert planet with giant volcanoes and deep canyons. Robots have been exploring its surface for decades."
+msgstr ""
+
+#: data/tours.json
+msgid "Mean radius 6,371 km. All sizes and distances in true-scale mode are drawn at 1 render unit per 1,000 km."
+msgstr ""
+
+#: data/tours.json
+msgid "Mean radius 69,911 km, a volume ratio of about 1,321 Earths, and a mass of about 318 Earth masses."
+msgstr ""
+
+#: data/tours.json
+msgid "Mean radius 695,700 km, a volume ratio of about 1.3 million Earths, and 99.86% of the solar system's mass."
+msgstr ""
+
+#: data/tours.json
+msgid "Meet volcanic Io, ocean world Europa, giant Ganymede, hazy Titan, and the dwarf planets Ceres and Pluto."
+msgstr ""
+
+#: data/tours.json
+msgid "Mercury is the closest planet to the Sun and completes an orbit in just 88 days. It is about 40% wider than our Moon."
+msgstr ""
+
+#: data/tours.json
+msgid "Moons and Dwarf Planets"
+msgstr ""
+
+#: data/tours.json
+msgid "Neptune is the most distant planet, about 30 times farther from the Sun than Earth. Sunlight takes over four hours to reach it."
+msgstr ""
+
+#: data/tours.json
+msgid "Neptune orbits about 4.5 billion kilometers from the Sun. Sunlight needs over four hours to reach it."
+msgstr ""
+
+#: data/tours.json
+msgid "On 11 April 1986 the comet passed 0.42 AU from Earth on its way out. Sunlight and the solar wind push gas and dust outward, so the tails point away from the Sun whichever way the comet moves."
+msgstr ""
+
+#: data/tours.json
+msgid "Our journey starts at the Sun, a star about 109 times wider than Earth. Everything in the solar system is held in orbit by its gravity."
+msgstr ""
+
+#: data/tours.json
+msgid "Perihelion at 0.575 AU in February 1986 and aphelion near 35 AU. The blue ion tail follows the solar wind straight away from the Sun, and the dust tail curves back along the orbit."
+msgstr ""
+
+#: data/tours.json
+msgid "Pluto lives far beyond Neptune and takes 248 years to circle the Sun. Its heart-shaped plain is a giant field of frozen nitrogen."
+msgstr ""
+
+#: data/tours.json
+msgid "Pluto orbits in a 3:2 resonance with Neptune. Sputnik Planitia is a convecting nitrogen-ice glacier about 1,000 km across."
+msgstr ""
+
+#: data/tours.json
+msgid "Saturn is the second-largest planet and is known for its system of icy rings. It is so light for its size that it would float in water."
+msgstr ""
+
+#: data/tours.json
+msgid "See how the Moon orbits Earth, and how far away it really is."
+msgstr ""
+
+#: data/tours.json
+msgid "Semi-major axis 0.387 AU, eccentricity 0.206, period 87.97 days. A 3:2 spin-orbit resonance gives a solar day of about 176 Earth days."
+msgstr ""
+
+#: data/tours.json
+msgid "Semi-major axis 0.723 AU, period 224.7 days, retrograde sidereal rotation of 243 days, and a surface pressure of about 92 bar."
+msgstr ""
+
+#: data/tours.json
+msgid "Semi-major axis 1.000 AU, eccentricity 0.0167, obliquity 23.44 degrees. The elements used describe the Earth-Moon barycenter."
+msgstr ""
+
+#: data/tours.json
+msgid "Semi-major axis 1.524 AU, eccentricity 0.093, period 687 days, and an obliquity of 25.2 degrees that gives Earth-like seasons of unequal length."
+msgstr ""
+
+#: data/tours.json
+msgid "Semi-major axis 19.19 AU, period 84 years, obliquity 97.8 degrees, and a retrograde rotation period of about 17.2 hours."
+msgstr ""
+
+#: data/tours.json
+msgid "Semi-major axis 30.07 AU, period 164.8 years, and sustained winds above 2,000 km/h in its upper atmosphere."
+msgstr ""
+
+#: data/tours.json
+msgid "Semi-major axis 30.07 AU, so the one-way light time from the Sun is about 4.2 hours."
+msgstr ""
+
+#: data/tours.json
+msgid "Semi-major axis 384,400 km, eccentricity 0.055, inclination 5.14 degrees, sidereal period 27.32 days. Tidal locking keeps its near side facing Earth."
+msgstr ""
+
+#: data/tours.json
+msgid "Semi-major axis 5.203 AU, period 11.86 years, a mass of about 318 Earth masses, and a sidereal rotation period near 9.9 hours."
+msgstr ""
+
+#: data/tours.json
+msgid "Semi-major axis 9.537 AU, period 29.4 years, a mean density of about 0.69 g/cm3, and rings made mostly of water ice."
+msgstr ""
+
+#: data/tours.json
+msgid "Sense of Scale"
+msgstr ""
+
+#: data/tours.json
+msgid "Tails point away from the Sun"
+msgstr ""
+
+#: data/tours.json
+msgid "The Moon"
+msgstr ""
+
+#: data/tours.json
+msgid "The Moon always shows Earth the same face. It takes about 27 days to orbit Earth, and the same time to spin once."
+msgstr ""
+
+#: data/tours.json
+msgid "The Moon circles Earth about once every 27 days. In this compressed view it is drawn much closer to Earth than it truly is."
+msgstr ""
+
+#: data/tours.json
+msgid "The Moon has about 1.2% of Earth's mass, so the two bodies orbit a common barycenter that lies inside Earth, about 4,600 km from its center."
+msgstr ""
+
+#: data/tours.json
+msgid "The Moon's orbit is tilted by about 5 degrees, so most full moons pass above or below Earth's shadow. This full Moon misses it completely."
+msgstr ""
+
+#: data/tours.json
+msgid "The Moon's shadow on Earth"
+msgstr ""
+
+#: data/tours.json
+msgid "The Sun"
+msgstr ""
+
+#: data/tours.json
+msgid "The Sun is about 109 times wider than Earth, and about 1.3 million Earths could fit inside it."
+msgstr ""
+
+#: data/tours.json
+msgid "The mean Earth-Moon distance of 384,400 km is about 60 Earth radii, or 30 Earth diameters."
+msgstr ""
+
+#: data/tours.json
+msgid "The total lunar eclipse of 3 March 2026. At the Moon's distance Earth's umbra is about 2.7 Moon diameters wide, and sunlight refracted and reddened by Earth's atmosphere gives the copper color."
+msgstr ""
+
+#: data/tours.json
+msgid "The total solar eclipse of 12 August 2026. The umbra is at most about 290 km wide. The Sun is about 400 times wider than the Moon and about 400 times farther away, so both look almost the same size."
+msgstr ""
+
+#: data/tours.json
+msgid "The true distance"
+msgstr ""
+
+#: data/tours.json
+msgid "This is Earth at true scale, 12,742 km across. Remember this size as we compare other worlds."
+msgstr ""
+
+#: data/tours.json
+msgid "Tidal locking synchronizes the sidereal rotation period with the 27.32-day orbital period. Orbital eccentricity of 0.055 causes visible libration."
+msgstr ""
+
+#: data/tours.json
+msgid "Titan's nitrogen atmosphere reaches about 1.5 bar at the surface, where 94 K temperatures let methane and ethane exist as liquids."
+msgstr ""
+
+#: data/tours.json
+msgid "Titan, Saturn's biggest moon, has a thick orange sky. Rain made of methane fills its rivers, lakes, and seas."
+msgstr ""
+
+#: data/tours.json
+msgid "Under Europa's cracked ice lies a salty ocean with more water than all of Earth's oceans. It is one of the best places to search for life."
+msgstr ""
+
+#: data/tours.json
+msgid "Uranus is an ice giant that rotates on its side. Its pale blue-green color comes from methane in its atmosphere."
+msgstr ""
+
+#: data/tours.json
+msgid "Venus is wrapped in thick clouds that trap heat, making it the hottest planet. It spins backwards, so the Sun rises in the west."
+msgstr ""
+
+#: data/tours.json
+msgid "Visit the Sun and every planet, from Mercury to Neptune."
+msgstr ""
+
+#: data/tours.json
+msgid "Watch a red Moon and the Moon's shadow on Earth, then follow Halley's Comet around the Sun."
+msgstr ""
+
+#: data/tours.json
+msgid "Why not every month?"
+msgstr ""
+
+#: data/tours.json
+msgid "With a radius of 2,634 km and a normalized moment of inertia near 0.31, Ganymede has an iron core whose dynamo creates a small magnetosphere."
+msgstr ""
+
+#: modes/explore/explore_mode.gd:119 modes/explore/explore_mode.gd:48
+msgid "Scale"
+msgstr ""
+
+#: modes/explore/explore_mode.gd:12 modes/sandbox/sandbox_mode.gd:17
+msgid "Camera"
+msgstr ""
+
+#: modes/explore/explore_mode.gd:122
+msgid "Choose a guided tour"
+msgstr ""
+
+#: modes/explore/explore_mode.gd:122 ui/tour_menu.gd:32
+msgid "Guided tours"
+msgstr ""
+
+#: modes/explore/explore_mode.gd:15 modes/sandbox/sandbox_mode.gd:20
+msgid "Down / up"
+msgstr ""
+
+#: modes/explore/explore_mode.gd:16 modes/sandbox/sandbox_mode.gd:21
+msgid "Boost"
+msgstr ""
+
+#: modes/explore/explore_mode.gd:168 modes/sandbox/sandbox_mode.gd:305
+msgid "Focus: %s"
+msgstr ""
+
+#: modes/explore/explore_mode.gd:17 modes/sandbox/sandbox_mode.gd:22
+msgid "Drag|Swipe"
+msgstr ""
+
+#: modes/explore/explore_mode.gd:18 modes/sandbox/sandbox_mode.gd:23
+msgid "Pinch|Ctrl+Scroll"
+msgstr ""
+
+#: modes/explore/explore_mode.gd:19 modes/sandbox/sandbox_mode.gd:24
+msgid "Flight speed"
+msgstr ""
+
+#: modes/explore/explore_mode.gd:19 modes/sandbox/sandbox_mode.gd:24
+msgid "Shift+Scroll"
+msgstr ""
+
+#: modes/explore/explore_mode.gd:20 modes/explore/explore_mode.gd:418 modes/sandbox/sandbox_mode.gd:25
+msgid "Look around"
+msgstr ""
+
+#: modes/explore/explore_mode.gd:20 modes/sandbox/sandbox_mode.gd:25
+msgid "Right drag"
+msgstr ""
+
+#: modes/explore/explore_mode.gd:215
+msgid "%d bodies, %s rocks"
+msgstr ""
+
+#: modes/explore/explore_mode.gd:24 modes/sandbox/sandbox_mode.gd:29 ui/sandbox_panel.gd:27
+msgid "Bodies"
+msgstr ""
+
+#: modes/explore/explore_mode.gd:26 modes/sandbox/sandbox_mode.gd:31 modes/sandbox/sandbox_mode.gd:41
+msgid "Click"
+msgstr ""
+
+#: modes/explore/explore_mode.gd:26 modes/sandbox/sandbox_mode.gd:31
+msgid "Select"
+msgstr ""
+
+#: modes/explore/explore_mode.gd:27
+msgid "Double-click"
+msgstr ""
+
+#: modes/explore/explore_mode.gd:27 ui/info_panel.gd:42 ui/sandbox_panel.gd:334
+msgid "Focus"
+msgstr ""
+
+#: modes/explore/explore_mode.gd:29
+msgid "Next body"
+msgstr ""
+
+#: modes/explore/explore_mode.gd:32 modes/sandbox/sandbox_mode.gd:35
+msgid "Auto-orbit"
+msgstr ""
+
+#: modes/explore/explore_mode.gd:36
+msgid "Time"
+msgstr ""
+
+#: modes/explore/explore_mode.gd:38 modes/sandbox/sandbox_mode.gd:50
+msgid "Pause"
+msgstr ""
+
+#: modes/explore/explore_mode.gd:39 modes/sandbox/sandbox_mode.gd:51
+msgid "Reverse"
+msgstr ""
+
+#: modes/explore/explore_mode.gd:40 modes/sandbox/sandbox_mode.gd:52
+msgid "Slower / faster"
+msgstr ""
+
+#: modes/explore/explore_mode.gd:41 ui/hud.gd:428
+msgid "Now"
+msgstr ""
+
+#: modes/explore/explore_mode.gd:414
+msgid "Welcome to Orrery"
+msgstr ""
+
+#: modes/explore/explore_mode.gd:415
+msgid "Here is a quick look at the controls. It takes about a minute, and you can skip it at any time."
+msgstr ""
+
+#: modes/explore/explore_mode.gd:419
+msgid "Drag with the mouse, or swipe with two fingers, to orbit the body in view. Scroll or pinch to zoom, and move freely with W, A, S, and D."
+msgstr ""
+
+#: modes/explore/explore_mode.gd:422
+msgid "Meet the bodies"
+msgstr ""
+
+#: modes/explore/explore_mode.gd:423
+msgid "Click a planet or moon to read about it, and double-click to fly to it. This button finds any body by name."
+msgstr ""
+
+#: modes/explore/explore_mode.gd:427
+msgid "Control time"
+msgstr ""
+
+#: modes/explore/explore_mode.gd:428
+msgid "Play, pause, reverse, or speed up time here. The calendar jumps to any date between 1800 and 2050, or straight to the next eclipse."
+msgstr ""
+
+#: modes/explore/explore_mode.gd:432
+msgid "Take a guided tour"
+msgstr ""
+
+#: modes/explore/explore_mode.gd:433
+msgid "Tours show the highlights with narration, and each one ends with a short quiz."
+msgstr ""
+
+#: modes/explore/explore_mode.gd:437
+msgid "Choose what you see"
+msgstr ""
+
+#: modes/explore/explore_mode.gd:438
+msgid "Explorer keeps the facts simple and Scientist shows full data. Labels, orbits, rings, constellations, and the scale can be switched here."
+msgstr ""
+
+#: modes/explore/explore_mode.gd:442
+msgid "Try the Sandbox"
+msgstr ""
+
+#: modes/explore/explore_mode.gd:443
+msgid "In the Sandbox you launch your own planets, watch them bend a gravity well, and take on five challenges."
+msgstr ""
+
+#: modes/explore/explore_mode.gd:447
+msgid "You are ready"
+msgstr ""
+
+#: modes/explore/explore_mode.gd:448
+msgid "Press F3 at any time to see every control. Enjoy the solar system."
+msgstr ""
+
+#: modes/explore/explore_mode.gd:46 ui/hud.gd:455
+msgid "View"
+msgstr ""
+
+#: modes/explore/explore_mode.gd:467
+msgid "No eclipse found between %d and %d in that direction"
+msgstr ""
+
+#: modes/explore/explore_mode.gd:476
+msgid "%s, greatest at %s"
+msgstr ""
+
+#: modes/explore/explore_mode.gd:53 modes/sandbox/sandbox_mode.gd:58
+msgid "Depth level"
+msgstr ""
+
+#: modes/explore/explore_mode.gd:57 modes/sandbox/sandbox_mode.gd:62
+msgid "App"
+msgstr ""
+
+#: modes/explore/explore_mode.gd:59 modes/explore/explore_mode.gd:77 modes/menu/main_menu.gd:48
+msgid "Sandbox"
+msgstr ""
+
+#: modes/explore/explore_mode.gd:60 modes/sandbox/sandbox_mode.gd:65 ui/hud.gd:591
+msgid "Controls"
+msgstr ""
+
+#: modes/explore/explore_mode.gd:62 modes/sandbox/sandbox_mode.gd:67 ui/hud.gd:525
+msgid "Performance"
+msgstr ""
+
+#: modes/explore/explore_mode.gd:64 modes/sandbox/sandbox_mode.gd:69 ui/settings_panel.gd:13
+msgid "Fullscreen"
+msgstr ""
+
+#: modes/explore/explore_mode.gd:65 modes/sandbox/sandbox_mode.gd:70
+msgid "Screenshot"
+msgstr ""
+
+#: modes/explore/explore_mode.gd:66 modes/sandbox/sandbox_mode.gd:44 modes/sandbox/sandbox_mode.gd:71
+msgid "Esc"
+msgstr ""
+
+#: modes/explore/explore_mode.gd:66 modes/sandbox/sandbox_mode.gd:71 ui/hud.gd:499
+msgid "Menu"
+msgstr ""
+
+#: modes/explore/explore_mode.gd:78
+msgid "Open Sandbox ({mode_sandbox})"
+msgstr ""
+
+#: modes/explore/explore_mode.gd:9
+msgid "Compressed"
+msgstr ""
+
+#: modes/explore/explore_mode.gd:9
+msgid "True scale"
+msgstr ""
+
+#: modes/explore/explore_mode.gd:93
+msgid "Distance and size scale (T)"
+msgstr ""
+
+#: modes/menu/main_menu.gd:4
+msgid "Orrery"
+msgstr ""
+
+#: modes/menu/main_menu.gd:47 modes/sandbox/sandbox_mode.gd:64 modes/sandbox/sandbox_mode.gd:75
+msgid "Explore"
+msgstr ""
+
+#: modes/menu/main_menu.gd:49 ui/pause_menu.gd:29 ui/settings_panel.gd:66
+msgid "Settings"
+msgstr ""
+
+#: modes/menu/main_menu.gd:5
+msgid "An interactive 3D solar system for exploration and gravity experiments."
+msgstr ""
+
+#: modes/menu/main_menu.gd:50 ui/credits_panel.gd:20 ui/pause_menu.gd:30
+msgid "Credits"
+msgstr ""
+
+#: modes/menu/main_menu.gd:51 ui/pause_menu.gd:32
+msgid "Quit"
+msgstr ""
+
+#: modes/sandbox/sandbox_mode.gd:218 modes/sandbox/sandbox_mode.gd:237
+msgid "Body"
+msgstr ""
+
+#: modes/sandbox/sandbox_mode.gd:230
+msgid "Planet"
+msgstr ""
+
+#: modes/sandbox/sandbox_mode.gd:251
+msgid "%d/%d bodies, %s"
+msgstr ""
+
+#: modes/sandbox/sandbox_mode.gd:309
+msgid "Placing a body"
+msgstr ""
+
+#: modes/sandbox/sandbox_mode.gd:311
+msgid "Simulation speed limited by performance"
+msgstr ""
+
+#: modes/sandbox/sandbox_mode.gd:34 ui/sandbox_panel.gd:336
+msgid "Remove"
+msgstr ""
+
+#: modes/sandbox/sandbox_mode.gd:360
+msgid "Body limit reached for the %s preset."
+msgstr ""
+
+#: modes/sandbox/sandbox_mode.gd:39
+msgid "Place a body"
+msgstr ""
+
+#: modes/sandbox/sandbox_mode.gd:41
+msgid "Place on the plane"
+msgstr ""
+
+#: modes/sandbox/sandbox_mode.gd:42
+msgid "Drag"
+msgstr ""
+
+#: modes/sandbox/sandbox_mode.gd:42
+msgid "Set velocity"
+msgstr ""
+
+#: modes/sandbox/sandbox_mode.gd:43
+msgid "Launch"
+msgstr ""
+
+#: modes/sandbox/sandbox_mode.gd:43
+msgid "Release"
+msgstr ""
+
+#: modes/sandbox/sandbox_mode.gd:44
+msgid "Cancel"
+msgstr ""
+
+#: modes/sandbox/sandbox_mode.gd:454
+msgid "Challenge complete: %s"
+msgstr ""
+
+#: modes/sandbox/sandbox_mode.gd:470
+msgid "The snapshot could not be saved."
+msgstr ""
+
+#: modes/sandbox/sandbox_mode.gd:476
+msgid "The saved snapshot could not be read."
+msgstr ""
+
+#: modes/sandbox/sandbox_mode.gd:48
+msgid "Time and view"
+msgstr ""
+
+#: modes/sandbox/sandbox_mode.gd:564
+msgid "Speed: %s km/s"
+msgstr ""
+
+#: modes/sandbox/sandbox_mode.gd:569
+msgid "Speed: %s km/s\nDistance to %s: %s"
+msgstr ""
+
+#: modes/sandbox/sandbox_mode.gd:670
+msgid "No body to orbit nearby"
+msgstr ""
+
+#: modes/sandbox/sandbox_mode.gd:671
+msgid "No body to orbit. Add or keep a massive body nearby."
+msgstr ""
+
+#: modes/sandbox/sandbox_mode.gd:675
+msgid "Launch %s km/s relative to %s (%s x circular)"
+msgstr ""
+
+#: modes/sandbox/sandbox_mode.gd:676
+msgid "Launch speed relative to %s: %s km/s (%s x circular orbit speed)"
+msgstr ""
+
+#: modes/sandbox/sandbox_mode.gd:76
+msgid "Open Explore ({mode_explore})"
+msgstr ""
+
+#: modes/shared/space_scene.gd:114
+msgid "Auto-orbit: Off"
+msgstr ""
+
+#: modes/shared/space_scene.gd:114
+msgid "Auto-orbit: On"
+msgstr ""
+
+#: modes/shared/space_scene.gd:279
+msgid "None"
+msgstr ""
+
+#: modes/shared/space_scene.gd:280
+msgid "%d x %d segments"
+msgstr ""
+
+#: modes/shared/space_scene.gd:310
+msgid "Screenshot saved: %s"
+msgstr ""
+
+#: modes/shared/space_scene.gd:312
+msgid "Screenshot failed"
+msgstr ""
+
+#: ui/credits_panel.gd:23
+msgid "Version %s"
+msgstr ""
+
+#: ui/credits_panel.gd:25 ui/settings_panel.gd:69
+msgid "Back"
+msgstr ""
+
+#: ui/credits_panel.gd:25 ui/settings_panel.gd:69
+msgid "Return (Esc)"
+msgstr ""
+
+#: ui/date_panel.gd:12
+msgid "Apollo 11 lands on the Moon"
+msgstr ""
+
+#: ui/date_panel.gd:13
+msgid "Halley's Comet rounds the Sun"
+msgstr ""
+
+#: ui/date_panel.gd:137
+msgid "Write the date as YYYY-MM-DD, optionally followed by HH:MM."
+msgstr ""
+
+#: ui/date_panel.gd:14
+msgid "Jupiter and Saturn meet in the sky"
+msgstr ""
+
+#: ui/date_panel.gd:141
+msgid "The orbits are accurate from %d to %d. Choose a date in that range."
+msgstr ""
+
+#: ui/date_panel.gd:15
+msgid "Total solar eclipse over North Africa"
+msgstr ""
+
+#: ui/date_panel.gd:44
+msgid "Go"
+msgstr ""
+
+#: ui/date_panel.gd:44
+msgid "Jump to this date (Enter)"
+msgstr ""
+
+#: ui/date_panel.gd:49
+msgid "Dates from %d to %d, in this computer's time zone."
+msgstr ""
+
+#: ui/date_panel.gd:53
+msgid "Moments to visit"
+msgstr ""
+
+#: ui/date_panel.gd:61
+msgid "Eclipses"
+msgstr ""
+
+#: ui/date_panel.gd:65
+msgid "Go to the previous solar or lunar eclipse"
+msgstr ""
+
+#: ui/date_panel.gd:65
+msgid "Previous"
+msgstr ""
+
+#: ui/date_panel.gd:66
+msgid "Go to the next solar or lunar eclipse"
+msgstr ""
+
+#: ui/date_panel.gd:66 ui/onboarding.gd:48 ui/onboarding.gd:91
+msgid "Next"
+msgstr ""
+
+#: ui/date_panel.gd:71
+msgid "Shows the moment of greatest eclipse at true scale."
+msgstr ""
+
+#: ui/hud.gd:108
+msgid "Close (Esc)"
+msgstr ""
+
+#: ui/hud.gd:17
+msgid "   |   %s controls"
+msgstr ""
+
+#: ui/hud.gd:18
+msgid "   |   Auto-orbit"
+msgstr ""
+
+#: ui/hud.gd:367 ui/hud.gd:417
+msgid "Pause time (Space)"
+msgstr ""
+
+#: ui/hud.gd:367
+msgid "Resume time (Space)"
+msgstr ""
+
+#: ui/hud.gd:397
+msgid "Times are shown in this computer's time zone"
+msgstr ""
+
+#: ui/hud.gd:409
+msgid "Run time backwards (R)"
+msgstr ""
+
+#: ui/hud.gd:421
+msgid "Slower ([)"
+msgstr ""
+
+#: ui/hud.gd:426
+msgid "Faster (])"
+msgstr ""
+
+#: ui/hud.gd:428
+msgid "Jump to the current date (N)"
+msgstr ""
+
+#: ui/hud.gd:445
+msgid "Find a body (%s)"
+msgstr ""
+
+#: ui/hud.gd:446
+msgid "Go to a date (%s)"
+msgstr ""
+
+#: ui/hud.gd:472
+msgid "Show body names (L)"
+msgstr ""
+
+#: ui/hud.gd:473 ui/settings_panel.gd:182
+msgid "Orbits"
+msgstr ""
+
+#: ui/hud.gd:473
+msgid "Show orbit lines (O)"
+msgstr ""
+
+#: ui/hud.gd:474
+msgid "Rings"
+msgstr ""
+
+#: ui/hud.gd:474
+msgid "Show distance rings around the Sun (G)"
+msgstr ""
+
+#: ui/hud.gd:479
+msgid "Show constellation figures (C)"
+msgstr ""
+
+#: ui/hud.gd:490
+msgid "Graphics quality. Lower quality runs faster on older devices"
+msgstr ""
+
+#: ui/hud.gd:499
+msgid "Pause menu, settings and credits (Esc)"
+msgstr ""
+
+#: ui/hud.gd:532
+msgid "Frame / CPU"
+msgstr ""
+
+#: ui/hud.gd:533
+msgid "Draw calls"
+msgstr ""
+
+#: ui/hud.gd:534
+msgid "Primitives"
+msgstr ""
+
+#: ui/hud.gd:536
+msgid "Scene"
+msgstr ""
+
+#: ui/hud.gd:537
+msgid "Focus mesh"
+msgstr ""
+
+#: ui/hud.gd:594
+msgid "Close (%s)"
+msgstr ""
+
+#: ui/hud.gd:60
+msgid "Information depth (M)"
+msgstr ""
+
+#: ui/hud.gd:609
+msgid "Hide view options to make room for body information"
+msgstr ""
+
+#: ui/hud.gd:609
+msgid "Show view options"
+msgstr ""
+
+#: ui/info_panel.gd:42 ui/sandbox_panel.gd:334
+msgid "Fly to this body"
+msgstr ""
+
+#: ui/info_panel.gd:56
+msgid "Data"
+msgstr ""
+
+#: ui/info_panel.gd:80
+msgid "Did you know?"
+msgstr ""
+
+#: ui/info_panel.gd:80
+msgid "Technical notes"
+msgstr ""
+
+#: ui/onboarding.gd:43
+msgid "Close the introduction (Esc)"
+msgstr ""
+
+#: ui/onboarding.gd:43
+msgid "Skip"
+msgstr ""
+
+#: ui/onboarding.gd:46
+msgid "Previous tip (Left)"
+msgstr ""
+
+#: ui/onboarding.gd:48
+msgid "Next tip (Right or Enter)"
+msgstr ""
+
+#: ui/onboarding.gd:89
+msgid "%d of %d"
+msgstr ""
+
+#: ui/onboarding.gd:91
+msgid "Start exploring"
+msgstr ""
+
+#: ui/pause_menu.gd:11
+msgid "Paused"
+msgstr ""
+
+#: ui/pause_menu.gd:28
+msgid "Resume"
+msgstr ""
+
+#: ui/pause_menu.gd:31
+msgid "Main menu"
+msgstr ""
+
+#: ui/quiz_panel.gd:118
+msgid "Quiz: %s"
+msgstr ""
+
+#: ui/quiz_panel.gd:126
+msgid "Question %d of %d"
+msgstr ""
+
+#: ui/quiz_panel.gd:156
+msgid "Correct answer"
+msgstr ""
+
+#: ui/quiz_panel.gd:160
+msgid "Your answer"
+msgstr ""
+
+#: ui/quiz_panel.gd:164
+msgid "Correct."
+msgstr ""
+
+#: ui/quiz_panel.gd:164
+msgid "Not quite. The correct answer is %s."
+msgstr ""
+
+#: ui/quiz_panel.gd:169
+msgid "Next question"
+msgstr ""
+
+#: ui/quiz_panel.gd:169
+msgid "See results"
+msgstr ""
+
+#: ui/quiz_panel.gd:175
+msgid "You answered %d of %d correctly."
+msgstr ""
+
+#: ui/quiz_panel.gd:178
+msgid "A perfect score. You know this tour inside out."
+msgstr ""
+
+#: ui/quiz_panel.gd:180
+msgid "Well done. Replay the tour to review the questions you missed."
+msgstr ""
+
+#: ui/quiz_panel.gd:182
+msgid "Replay the tour, then try again. Switching the information level changes the questions."
+msgstr ""
+
+#: ui/quiz_panel.gd:186
+msgid "Close"
+msgstr ""
+
+#: ui/quiz_panel.gd:186
+msgid "Try again"
+msgstr ""
+
+#: ui/quiz_panel.gd:44
+msgid "Close the quiz (Esc)"
+msgstr ""
+
+#: ui/quiz_panel.gd:65
+msgid "Continue (Enter)"
+msgstr ""
+
+#: ui/quiz_panel.gd:75
+msgid "Ready for a quick quiz?"
+msgstr ""
+
+#: ui/quiz_panel.gd:76
+msgid "Answer %d questions about the %s tour."
+msgstr ""
+
+#: ui/quiz_panel.gd:80
+msgid "Not now"
+msgstr ""
+
+#: ui/quiz_panel.gd:80
+msgid "Start quiz"
+msgstr ""
+
+#: ui/sandbox_panel.gd:106
+msgid "Numerical method used to advance the bodies"
+msgstr ""
+
+#: ui/sandbox_panel.gd:107
+msgid "Adaptive shortens steps during close encounters; fixed steps show how step size affects accuracy"
+msgstr ""
+
+#: ui/sandbox_panel.gd:214
+msgid "%d / %d bodies"
+msgstr ""
+
+#: ui/sandbox_panel.gd:220 ui/sandbox_panel.gd:285 ui/sandbox_panel.gd:465
+msgid "Place body"
+msgstr ""
+
+#: ui/sandbox_panel.gd:220
+msgid "Placing... (Esc to stop)"
+msgstr ""
+
+#: ui/sandbox_panel.gd:269
+msgid "New body"
+msgstr ""
+
+#: ui/sandbox_panel.gd:27
+msgid "Challenges"
+msgstr ""
+
+#: ui/sandbox_panel.gd:27
+msgid "Physics"
+msgstr ""
+
+#: ui/sandbox_panel.gd:27
+msgid "World"
+msgstr ""
+
+#: ui/sandbox_panel.gd:284 ui/sandbox_panel.gd:324
+msgid "Color"
+msgstr ""
+
+#: ui/sandbox_panel.gd:29
+msgid "Short missions with an automatic check. Starting one replaces the bodies in the Sandbox."
+msgstr ""
+
+#: ui/sandbox_panel.gd:290 ui/sandbox_panel.gd:470
+msgid "Click and drag on the orbital plane to launch a body"
+msgstr ""
+
+#: ui/sandbox_panel.gd:30
+msgid "Heavier bodies dig deeper wells. Depth is compressed so small worlds stay visible next to stars."
+msgstr ""
+
+#: ui/sandbox_panel.gd:304
+msgid "Selected body"
+msgstr ""
+
+#: ui/sandbox_panel.gd:31
+msgid "Click the orbital plane to place a body, then drag to set its launch velocity."
+msgstr ""
+
+#: ui/sandbox_panel.gd:326
+msgid "Freeze in place"
+msgstr ""
+
+#: ui/sandbox_panel.gd:330
+msgid "Hold this body still while it keeps pulling on others"
+msgstr ""
+
+#: ui/sandbox_panel.gd:336
+msgid "Delete this body (Del)"
+msgstr ""
+
+#: ui/sandbox_panel.gd:346
+msgid "Presets"
+msgstr ""
+
+#: ui/sandbox_panel.gd:356
+msgid "Load"
+msgstr ""
+
+#: ui/sandbox_panel.gd:358
+msgid "Replace all bodies with this preset at the current simulation date"
+msgstr ""
+
+#: ui/sandbox_panel.gd:36
+msgid "Velocity Verlet"
+msgstr ""
+
+#: ui/sandbox_panel.gd:364
+msgid "Snapshot"
+msgstr ""
+
+#: ui/sandbox_panel.gd:365
+msgid "Save every body as it is now and come back to it later."
+msgstr ""
+
+#: ui/sandbox_panel.gd:368
+msgid "Save snapshot"
+msgstr ""
+
+#: ui/sandbox_panel.gd:368
+msgid "Store every body as it is now"
+msgstr ""
+
+#: ui/sandbox_panel.gd:37
+msgid "1 hour"
+msgstr ""
+
+#: ui/sandbox_panel.gd:37
+msgid "6 hours"
+msgstr ""
+
+#: ui/sandbox_panel.gd:37
+msgid "Adaptive"
+msgstr ""
+
+#: ui/sandbox_panel.gd:372
+msgid "Restore snapshot"
+msgstr ""
+
+#: ui/sandbox_panel.gd:372
+msgid "Return to the last saved snapshot"
+msgstr ""
+
+#: ui/sandbox_panel.gd:381
+msgid "Bend a grid by each body's gravitational potential (V)"
+msgstr ""
+
+#: ui/sandbox_panel.gd:381
+msgid "Show gravity well"
+msgstr ""
+
+#: ui/sandbox_panel.gd:40
+msgid "An exact solution keeps both values constant. Drift since the baseline shows the integrator's numerical error. Merges, edits, and new bodies reset the baseline."
+msgstr ""
+
+#: ui/sandbox_panel.gd:407
+msgid "Completed"
+msgstr ""
+
+#: ui/sandbox_panel.gd:408
+msgid "Start"
+msgstr ""
+
+#: ui/sandbox_panel.gd:408
+msgid "Start this challenge"
+msgstr ""
+
+#: ui/sandbox_panel.gd:42
+msgid "Frozen bodies are held by an outside force, so energy and angular momentum are not conserved."
+msgstr ""
+
+#: ui/sandbox_panel.gd:45
+msgid "Asteroid"
+msgstr ""
+
+#: ui/sandbox_panel.gd:481
+msgid "Restart"
+msgstr ""
+
+#: ui/sandbox_panel.gd:481
+msgid "Set the challenge up again"
+msgstr ""
+
+#: ui/sandbox_panel.gd:482
+msgid "Leave"
+msgstr ""
+
+#: ui/sandbox_panel.gd:482
+msgid "Stop the challenge and keep the bodies"
+msgstr ""
+
+#: ui/sandbox_panel.gd:489
+msgid "Integrator"
+msgstr ""
+
+#: ui/sandbox_panel.gd:493
+msgid "Time step"
+msgstr ""
+
+#: ui/sandbox_panel.gd:498
+msgid "Conservation"
+msgstr ""
+
+#: ui/sandbox_panel.gd:502
+msgid "Angular momentum"
+msgstr ""
+
+#: ui/sandbox_panel.gd:502
+msgid "Energy drift"
+msgstr ""
+
+#: ui/sandbox_panel.gd:502
+msgid "Momentum drift"
+msgstr ""
+
+#: ui/sandbox_panel.gd:502
+msgid "Total energy"
+msgstr ""
+
+#: ui/sandbox_panel.gd:513
+msgid "Measure drift from now on"
+msgstr ""
+
+#: ui/sandbox_panel.gd:513
+msgid "Reset baseline"
+msgstr ""
+
+#: ui/sandbox_panel.gd:54
+msgid "Rocky planet"
+msgstr ""
+
+#: ui/sandbox_panel.gd:586
+msgid "Mass   %s Earths  (%s kg)"
+msgstr ""
+
+#: ui/sandbox_panel.gd:590
+msgid "Radius   %s km"
+msgstr ""
+
+#: ui/sandbox_panel.gd:83
+msgid "Sandbox sections"
+msgstr ""
+
+#: ui/search_panel.gd:30
+msgid "Find a body, such as Saturn or Europa"
+msgstr ""
+
+#: ui/search_panel.gd:42
+msgid "No body matches that name"
+msgstr ""
+
+#: ui/search_panel.gd:45
+msgid "Arrow keys to choose, Enter to fly there, Esc to close"
+msgstr ""
+
+#: ui/settings_panel.gd:12
+msgid "Audio"
+msgstr ""
+
+#: ui/settings_panel.gd:12
+msgid "Display"
+msgstr ""
+
+#: ui/settings_panel.gd:12
+msgid "Graphics"
+msgstr ""
+
+#: ui/settings_panel.gd:13
+msgid "Windowed"
+msgstr ""
+
+#: ui/settings_panel.gd:139 ui/settings_panel.gd:141
+msgid "Language"
+msgstr ""
+
+#: ui/settings_panel.gd:14
+msgid "Press a key..."
+msgstr ""
+
+#: ui/settings_panel.gd:145
+msgid "Window"
+msgstr ""
+
+#: ui/settings_panel.gd:146
+msgid "Window mode"
+msgstr ""
+
+#: ui/settings_panel.gd:15
+msgid "Click an action, then press a key. Esc cancels."
+msgstr ""
+
+#: ui/settings_panel.gd:152
+msgid "Window size in windowed mode"
+msgstr ""
+
+#: ui/settings_panel.gd:154
+msgid "Resolution"
+msgstr ""
+
+#: ui/settings_panel.gd:157
+msgid "Accessibility"
+msgstr ""
+
+#: ui/settings_panel.gd:158
+msgid "Interface size"
+msgstr ""
+
+#: ui/settings_panel.gd:16
+msgid "%s is already used for %s. Press another key, or Esc to cancel."
+msgstr ""
+
+#: ui/settings_panel.gd:164
+msgid "Quality"
+msgstr ""
+
+#: ui/settings_panel.gd:165
+msgid "Preset"
+msgstr ""
+
+#: ui/settings_panel.gd:17
+msgid "Resolution applies in windowed mode. Fullscreen uses the screen resolution."
+msgstr ""
+
+#: ui/settings_panel.gd:172
+msgid "Resolution of the 3D scene relative to the window"
+msgstr ""
+
+#: ui/settings_panel.gd:179
+msgid "Render scale"
+msgstr ""
+
+#: ui/settings_panel.gd:18
+msgid "Larger sizes suit high-resolution screens and reading from a distance. 130% works best at 1600 x 900 or above."
+msgstr ""
+
+#: ui/settings_panel.gd:183
+msgid "Trail length"
+msgstr ""
+
+#: ui/settings_panel.gd:187
+msgid "Orbit colors"
+msgstr ""
+
+#: ui/settings_panel.gd:194
+msgid "Volume"
+msgstr ""
+
+#: ui/settings_panel.gd:199
+msgid "Background music volume"
+msgstr ""
+
+#: ui/settings_panel.gd:20
+msgid "Drag with the left button to orbit the focused body. Auto makes mouse wheel steps zoom. A two-finger touchpad swipe orbits the focused body, or moves the camera in free flight. Pinch or Ctrl + scroll always zooms, and Shift + scroll changes flight speed."
+msgstr ""
+
+#: ui/settings_panel.gd:200
+msgid "Sound effects volume"
+msgstr ""
+
+#: ui/settings_panel.gd:201
+msgid "Voice-over volume"
+msgstr ""
+
+#: ui/settings_panel.gd:203
+msgid "Playback"
+msgstr ""
+
+#: ui/settings_panel.gd:206
+msgid "Mute music"
+msgstr ""
+
+#: ui/settings_panel.gd:206
+msgid "Silence the background music"
+msgstr ""
+
+#: ui/settings_panel.gd:209
+msgid "Play spoken narration during guided tours"
+msgstr ""
+
+#: ui/settings_panel.gd:209
+msgid "Voice-over"
+msgstr ""
+
+#: ui/settings_panel.gd:23
+msgid "Lower presets and render scales run faster on older devices. Changing the preset resets the render scale to the preset default."
+msgstr ""
+
+#: ui/settings_panel.gd:239
+msgid "Mouse and touchpad"
+msgstr ""
+
+#: ui/settings_panel.gd:240
+msgid "Vertical scroll"
+msgstr ""
+
+#: ui/settings_panel.gd:244
+msgid "Introduction"
+msgstr ""
+
+#: ui/settings_panel.gd:247
+msgid "Show the welcome tips again the next time Explore opens."
+msgstr ""
+
+#: ui/settings_panel.gd:25
+msgid "Tour narration text is always shown on screen. The voice-over is synthesized speech."
+msgstr ""
+
+#: ui/settings_panel.gd:251
+msgid "Show again"
+msgstr ""
+
+#: ui/settings_panel.gd:254
+msgid "Troubleshooting"
+msgstr ""
+
+#: ui/settings_panel.gd:259
+msgid "Open log folder"
+msgstr ""
+
+#: ui/settings_panel.gd:26
+msgid "The voice-over is available in English only. Captions follow the chosen language."
+msgstr ""
+
+#: ui/settings_panel.gd:260 ui/settings_panel.gd:314
+msgid "Reset all settings"
+msgstr ""
+
+#: ui/settings_panel.gd:266
+msgid "Keyboard"
+msgstr ""
+
+#: ui/settings_panel.gd:27
+msgid "Changing the language reloads the screen and keeps the time, the view, and the Sandbox bodies."
+msgstr ""
+
+#: ui/settings_panel.gd:272
+msgid "Reset to defaults"
+msgstr ""
+
+#: ui/settings_panel.gd:272
+msgid "Restore the default key bindings"
+msgstr ""
+
+#: ui/settings_panel.gd:28
+msgid "The log helps with bug reports. Resetting restores every display, graphics, audio, language, and key setting, keeps completed challenges and the current scene, and reloads the screen."
+msgstr ""
+
+#: ui/settings_panel.gd:281
+msgid "Click, then press a new key"
+msgstr ""
+
+#: ui/settings_panel.gd:29
+msgid "Restore every setting to its default. Press twice to confirm"
+msgstr ""
+
+#: ui/settings_panel.gd:306
+msgid "Press again to reset"
+msgstr ""
+
+#: ui/settings_panel.gd:319
+msgid "Will show"
+msgstr ""
+
+#: ui/settings_panel.gd:42
+msgid "Colorblind-safe colors use the Okabe-Ito palette"
+msgstr ""
+
+#: ui/settings_panel.gd:43
+msgid "Size of text and panels"
+msgstr ""
+
+#: ui/settings_panel.gd:44
+msgid "What vertical scrolling does"
+msgstr ""
+
+#: ui/tour_menu.gd:55
+msgid "%d stops"
+msgstr ""
+
+#: ui/tour_menu.gd:61
+msgid "Quiz"
+msgstr ""
+
+#: ui/tour_menu.gd:61
+msgid "Test what you know about this tour"
+msgstr ""
+
+#: ui/tour_menu.gd:64
+msgid "Begin this guided tour"
+msgstr ""
+
+#: ui/tour_menu.gd:64
+msgid "Start tour"
+msgstr ""
+
+#: ui/tour_panel.gd:103
+msgid "The voice-over is available in English only"
+msgstr ""
+
+#: ui/tour_panel.gd:46
+msgid "Exit tour"
+msgstr ""
+
+#: ui/tour_panel.gd:46
+msgid "Leave the tour (Esc)"
+msgstr ""
+
+#: ui/tour_panel.gd:52
+msgid "Play the voice-over (captions always stay visible)"
+msgstr ""
+
+#: ui/tour_panel.gd:52
+msgid "Voice"
+msgstr ""
+
+#: ui/tour_panel.gd:56
+msgid "Replay the voice-over for this step"
+msgstr ""
+
+#: ui/tour_panel.gd:59
+msgid "Previous step (Left)"
+msgstr ""
+
+#: ui/tour_panel.gd:60
+msgid "Next step (Right or Enter)"
+msgstr ""
+
+#: ui/tour_panel.gd:74
+msgid "Step %d of %d"
+msgstr ""
+
+#: ui/tour_panel.gd:80
+msgid "Finish"
+msgstr ""

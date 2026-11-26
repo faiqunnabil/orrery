@@ -4,7 +4,7 @@ set -uo pipefail
 ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
 GODOT="${GODOT:-godot}"
 TIMEOUT_FRAMES=20000
-ALL_TESTS=(simulation_test input_test shell_test quiz_test panel_test binding_test a11y_test pointer_test graphics_test texture_test timezone_test)
+ALL_TESTS=(simulation_test ux_test language_test eclipse_test star_test gravity_well_test comet_test challenge_test input_test shell_test quiz_test panel_test binding_test a11y_test pointer_test graphics_test texture_test timezone_test settings_test keyboard_test session_test)
 
 usage() {
 	cat <<'EOF'
@@ -13,7 +13,8 @@ Usage: tests/run_tests.sh [test_name ...]
 Runs the Orrery UI, input, and rendering tests in a real window. With no
 arguments every test runs. Set GODOT to the Godot 4.7.2 executable when it is
 not on PATH, and GODOT_ARGS to pass extra engine options such as
---display-driver x11. Set SHOT_DIR to also save the screenshots some tests take.
+--display-driver x11. Set SHOT_DIR to also save the screenshots some tests take,
+and FAILURE_DIR to save a screenshot of the window at every failed check.
 
 The user settings and sandbox snapshot are backed up before the run and
 restored afterwards, so the tests never change your saved preferences.

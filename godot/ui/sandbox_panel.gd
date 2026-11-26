@@ -14,14 +14,20 @@ signal freeze_toggled(frozen: bool)
 signal selected_mass_changed(mass_kg: float)
 signal selected_radius_changed(radius_km: float)
 signal selected_color_changed(color: Color)
+signal challenge_start_requested(index: int)
+signal challenge_restart_requested
+signal challenge_leave_requested
 
-enum Page { BODIES, WORLD, PHYSICS }
+enum Page { BODIES, WORLD, PHYSICS, CHALLENGES }
 
 const PANEL_WIDTH := 340
 const CONTENT_WIDTH := 300
 const SCROLL_HEIGHT := 460
 const MIN_SCROLL_HEIGHT := 180.0
-const PAGE_NAMES: Array[String] = ["Bodies", "World", "Physics"]
+const PAGE_NAMES: Array[String] = ["Bodies", "World", "Physics", "Challenges"]
+const CHALLENGE_BUTTON_ROOM := 90.0
+const CHALLENGES_NOTE := "Short missions with an automatic check. Starting one replaces the bodies in the Sandbox."
+const GRAVITY_WELL_NOTE := "Heavier bodies dig deeper wells. Depth is compressed so small worlds stay visible next to stars."
 const DEFAULT_LAUNCH_HINT := "Click the orbital plane to place a body, then drag to set its launch velocity."
 const EARTH_MASS_KG := 5.9722e24
 const MASS_LOG_RANGE := Vector2(-10.0, 6.5)
@@ -107,6 +113,17 @@ var _preset_option := OptionButton.new()
 var _preset_description: Label
 var _preset_descriptions: Array[String] = []
 var _restore_button: Button
+var _gravity_well_toggle: Button
+var _challenge_list := VBoxContainer.new()
+var _challenge_active := VBoxContainer.new()
+var _challenge_title := Label.new()
+var _challenge_goal: Label
+var _challenge_hint: Label
+var _challenge_progress := ProgressBar.new()
+var _challenge_status: Label
+var _challenge_place := Button.new()
+var _challenge_launch: Label
+var _challenge_note: Label
 
 
 func _init() -> void:
@@ -139,6 +156,7 @@ func _init() -> void:
 	_build_new_body_section(_pages[Page.BODIES])
 	_build_world_section(_pages[Page.WORLD])
 	_build_physics_section(_pages[Page.PHYSICS])
+	_build_challenge_section(_pages[Page.CHALLENGES])
 	_apply_template(1)
 	show_page(Page.BODIES)
 
@@ -155,6 +173,8 @@ func _process(_delta: float) -> void:
 
 
 func show_page(page: Page) -> void:
+	if page == Page.PHYSICS and not Preferences.is_scientist():
+		page = Page.BODIES
 	_page = page
 	_tabs.select(page)
 	for index in _pages.size():
@@ -192,18 +212,20 @@ func new_body_spec() -> Dictionary:
 
 
 func set_body_count(count: int, cap: int) -> void:
-	_count_label.text = "%d / %d bodies" % [count, cap]
+	_count_label.text = tr("%d / %d bodies") % [count, cap]
 
 
 func set_placing(active: bool) -> void:
-	_place_button.set_pressed_no_signal(active)
-	_place_button.text = "Placing... (Esc to stop)" if active else "Place body"
+	for button in [_place_button, _challenge_place]:
+		button.set_pressed_no_signal(active)
+		button.text = "Placing... (Esc to stop)" if active else "Place body"
 	if active:
-		show_page(Page.BODIES)
+		_show_bodies_page()
 
 
 func set_launch_text(text: String) -> void:
 	_launch_label.text = text
+	_challenge_launch.text = text
 
 
 func set_notice(text: String) -> void:
@@ -223,7 +245,7 @@ func show_selected(
 	_freeze_check.set_pressed_no_signal(frozen)
 	_selected_color.color = color
 	_selected_color_row.visible = colorable
-	show_page(Page.BODIES)
+	_show_bodies_page()
 
 
 func hide_selected() -> void:
@@ -249,7 +271,7 @@ func _build_new_body_section(box: VBoxContainer) -> void:
 	for template in TEMPLATES:
 		_template_option.add_item(template["name"])
 	_template_option.select(1)
-	_template_option.focus_mode = Control.FOCUS_NONE
+	_template_option.focus_mode = Control.FOCUS_ALL
 	_template_option.item_selected.connect(_apply_template)
 	box.add_child(_template_option)
 	_add_slider(box, _new_mass_label, _new_mass_slider, MASS_LOG_RANGE)
@@ -265,7 +287,7 @@ func _build_new_body_section(box: VBoxContainer) -> void:
 	_place_button.toggle_mode = true
 	_place_button.theme_type_variation = "AccentButton"
 	_place_button.icon = OrreryTheme.icon("circle_plus")
-	_place_button.focus_mode = Control.FOCUS_NONE
+	_place_button.focus_mode = Control.FOCUS_ALL
 	_place_button.tooltip_text = "Click and drag on the orbital plane to launch a body"
 	_place_button.toggled.connect(
 		func(active: bool) -> void:
@@ -305,7 +327,7 @@ func _build_selected_section(box: VBoxContainer) -> void:
 	_freeze_check.text = "Freeze in place"
 	_freeze_check.theme_type_variation = "ToggleButton"
 	_freeze_check.toggle_mode = true
-	_freeze_check.focus_mode = Control.FOCUS_NONE
+	_freeze_check.focus_mode = Control.FOCUS_ALL
 	_freeze_check.tooltip_text = "Hold this body still while it keeps pulling on others"
 	_freeze_check.toggled.connect(func(frozen: bool) -> void: freeze_toggled.emit(frozen))
 	_selected_box.add_child(_freeze_check)
@@ -326,7 +348,7 @@ func _build_world_section(box: VBoxContainer) -> void:
 	var preset_row := HBoxContainer.new()
 	box.add_child(preset_row)
 	_preset_option.size_flags_horizontal = Control.SIZE_EXPAND_FILL
-	_preset_option.focus_mode = Control.FOCUS_NONE
+	_preset_option.focus_mode = Control.FOCUS_ALL
 	_preset_option.clip_text = true
 	_preset_option.item_selected.connect(_show_preset_description)
 	preset_row.add_child(_preset_option)
@@ -353,6 +375,115 @@ func _build_world_section(box: VBoxContainer) -> void:
 	_restore_button.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 	_restore_button.disabled = true
 	snapshot_row.add_child(_restore_button)
+	box.add_child(HSeparator.new())
+	box.add_child(Hud.section_label("Gravity well"))
+	box.add_child(Hud.make_wrapped_label(GRAVITY_WELL_NOTE, CONTENT_WIDTH, "DimLabel"))
+	_gravity_well_toggle = Hud.make_toggle(
+		"Show gravity well", "Bend a grid by each body's gravitational potential (V)", Preferences.set_gravity_well_visible
+	)
+	box.add_child(_gravity_well_toggle)
+
+
+func select_physics(integrator: int, fixed_step_seconds: float) -> void:
+	_integrator_control.select(integrator)
+	_time_step_control.select(maxi(TIME_STEP_SECONDS.find(fixed_step_seconds), 0))
+
+
+func set_challenges(challenges: Array[Dictionary]) -> void:
+	for child in _challenge_list.get_children():
+		child.queue_free()
+	for index in challenges.size():
+		var challenge := challenges[index]
+		var row := HBoxContainer.new()
+		row.add_theme_constant_override("separation", OrreryTheme.SPACE_S)
+		_challenge_list.add_child(row)
+		var text := VBoxContainer.new()
+		text.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+		row.add_child(text)
+		var title := Hud.make_label(str(challenge.get("title", "")), "InfoLabel")
+		text.add_child(title)
+		var goal := Hud.make_wrapped_label(str(challenge.get("goal", "")), CONTENT_WIDTH - CHALLENGE_BUTTON_ROOM, "DimLabel")
+		text.add_child(goal)
+		if Preferences.is_challenge_complete(str(challenge.get("id", ""))):
+			text.add_child(Hud.make_label("Completed", "SuccessLabel"))
+		var start := Hud.make_button("Start", func() -> void: challenge_start_requested.emit(index), "Start this challenge")
+		start.size_flags_vertical = Control.SIZE_SHRINK_BEGIN
+		row.add_child(start)
+
+
+func show_challenge(challenge: Dictionary) -> void:
+	_challenge_title.text = str(challenge.get("title", ""))
+	_challenge_goal.text = str(challenge.get("goal", ""))
+	_challenge_hint.text = str(challenge.get("hint", ""))
+	_challenge_progress.value = 0.0
+	_challenge_status.text = ""
+	_challenge_list.visible = false
+	_challenge_note.visible = false
+	_challenge_active.visible = true
+	show_page(Page.CHALLENGES)
+
+
+func hide_challenge() -> void:
+	_challenge_active.visible = false
+	_challenge_list.visible = true
+	_challenge_note.visible = true
+
+
+func is_showing_challenge() -> bool:
+	return _challenge_active.visible
+
+
+func set_challenge_progress(progress: float, status: String, complete: bool) -> void:
+	_challenge_progress.value = progress * 100.0
+	_challenge_status.text = status
+	_challenge_status.theme_type_variation = "SuccessLabel" if complete else "InfoLabel"
+
+
+func _show_bodies_page() -> void:
+	if not is_showing_challenge():
+		show_page(Page.BODIES)
+
+
+func _build_challenge_section(box: VBoxContainer) -> void:
+	_challenge_note = Hud.make_wrapped_label(CHALLENGES_NOTE, CONTENT_WIDTH, "DimLabel")
+	box.add_child(_challenge_note)
+	_challenge_list.add_theme_constant_override("separation", OrreryTheme.SPACE_M)
+	box.add_child(_challenge_list)
+	_challenge_active.visible = false
+	_challenge_active.add_theme_constant_override("separation", OrreryTheme.SPACE_S)
+	box.add_child(_challenge_active)
+	_challenge_title.theme_type_variation = "HeaderLabel"
+	_challenge_active.add_child(_challenge_title)
+	_challenge_goal = Hud.make_wrapped_label("", CONTENT_WIDTH, "InfoLabel")
+	_challenge_active.add_child(_challenge_goal)
+	_challenge_hint = Hud.make_wrapped_label("", CONTENT_WIDTH, "DimLabel")
+	_challenge_active.add_child(_challenge_hint)
+	_challenge_progress.show_percentage = false
+	_challenge_progress.custom_minimum_size = Vector2(0, 6)
+	_challenge_active.add_child(_challenge_progress)
+	_challenge_status = Hud.make_wrapped_label("", CONTENT_WIDTH, "InfoLabel")
+	_challenge_active.add_child(_challenge_status)
+	_challenge_place.text = "Place body"
+	_challenge_place.toggle_mode = true
+	_challenge_place.theme_type_variation = "AccentButton"
+	_challenge_place.icon = OrreryTheme.icon("circle_plus")
+	_challenge_place.focus_mode = Control.FOCUS_ALL
+	_challenge_place.tooltip_text = "Click and drag on the orbital plane to launch a body"
+	_challenge_place.toggled.connect(
+		func(active: bool) -> void:
+			set_placing(active)
+			place_toggled.emit(active)
+	)
+	_challenge_active.add_child(_challenge_place)
+	_challenge_launch = Hud.make_wrapped_label(DEFAULT_LAUNCH_HINT, CONTENT_WIDTH, "DimLabel")
+	_challenge_active.add_child(_challenge_launch)
+	var actions := HBoxContainer.new()
+	_challenge_active.add_child(actions)
+	var restart := Hud.make_button("Restart", func() -> void: challenge_restart_requested.emit(), "Set the challenge up again", "rotate_ccw")
+	var leave := Hud.make_button("Leave", func() -> void: challenge_leave_requested.emit(), "Stop the challenge and keep the bodies", "log_out")
+	for button in [restart, leave]:
+		button.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+		actions.add_child(button)
 
 
 func _build_physics_section(box: VBoxContainer) -> void:
@@ -396,6 +527,7 @@ func _drift_text(drift: float) -> String:
 
 
 func _sync_level() -> void:
+	_gravity_well_toggle.set_pressed_no_signal(Preferences.gravity_well_visible)
 	var scientist := Preferences.is_scientist()
 	_tabs.set_option_visible(Page.PHYSICS, scientist)
 	if not scientist and _page == Page.PHYSICS:
@@ -408,7 +540,7 @@ func _add_slider(box: VBoxContainer, label: Label, slider: HSlider, range_values
 	slider.min_value = range_values.x
 	slider.max_value = range_values.y
 	slider.step = SLIDER_STEP
-	slider.focus_mode = Control.FOCUS_NONE
+	slider.focus_mode = Control.FOCUS_ALL
 	slider.custom_minimum_size = Vector2(0, 18)
 	box.add_child(slider)
 
@@ -419,7 +551,7 @@ func _color_row(text: String, picker: ColorPickerButton) -> HBoxContainer:
 	label.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 	row.add_child(label)
 	picker.custom_minimum_size = Vector2(72, 24)
-	picker.focus_mode = Control.FOCUS_NONE
+	picker.focus_mode = Control.FOCUS_ALL
 	picker.edit_alpha = false
 	row.add_child(picker)
 	return row
@@ -452,20 +584,20 @@ func _slider_from_radius(radius_km: float) -> float:
 
 
 func _mass_text(mass_kg: float) -> String:
-	return "Mass   %s Earths  (%s kg)" % [_earth_ratio_text(mass_kg / EARTH_MASS_KG), BodyFacts.format_scientific(mass_kg, 2)]
+	return tr("Mass   %s Earths  (%s kg)") % [_earth_ratio_text(mass_kg / EARTH_MASS_KG), BodyFacts.format_scientific(mass_kg, 2)]
 
 
 func _radius_text(radius_km: float) -> String:
-	return "Radius   %s km" % BodyFacts.format_number(radius_km, 1 if radius_km < 100.0 else 0)
+	return tr("Radius   %s km") % BodyFacts.format_number(radius_km, 1 if radius_km < 100.0 else 0)
 
 
 func _earth_ratio_text(earths: float) -> String:
 	if earths >= 100.0:
 		return BodyFacts.format_number(earths, 0)
 	if earths >= 10.0:
-		return "%.1f" % earths
+		return BodyFacts.format_number(earths, 1)
 	if earths >= 1.0:
-		return "%.2f" % earths
+		return BodyFacts.format_number(earths, 2)
 	if earths >= 0.01:
-		return "%.3f" % earths
+		return BodyFacts.format_number(earths, 3)
 	return BodyFacts.format_scientific(earths, 1)

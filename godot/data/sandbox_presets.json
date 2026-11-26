@@ -1,7 +1,7 @@
 [
 	{
 		"name": "Solar system",
-		"description": "The Sun, the planets, the major moons, Ceres, and Pluto at the current simulation date",
+		"description": "The Sun, the planets, the major moons, Ceres, Pluto, and Halley's Comet at the current simulation date",
 		"solar_system": true,
 		"bodies": []
 	},
@@ -85,6 +85,49 @@
 				"emissive": true,
 				"position_km": [-4664000029.6, -2692761672.6, 0.0],
 				"velocity_km_s": [45.0, 0.0, 0.0]
+			}
+		]
+	},
+	{
+		"name": "Figure-eight",
+		"description": "Three equal stars chase each other along one figure-eight path, a rare stable solution of the three-body problem found by Moore and proved by Chenciner and Montgomery",
+		"solar_system": false,
+		"bodies": [
+			{
+				"id": "star_a",
+				"name": "Star A",
+				"kind": "star",
+				"mass_kg": 1.98847e30,
+				"radius_km": 695700.0,
+				"texture": "res://assets/textures/bodies/sun.jpg",
+				"color": "#FFD27D",
+				"emissive": true,
+				"position_km": [-145110586.8, 36365376.9, 0.0],
+				"velocity_km_s": [13.8859, 12.8781, 0.0]
+			},
+			{
+				"id": "star_b",
+				"name": "Star B",
+				"kind": "star",
+				"mass_kg": 1.98847e30,
+				"radius_km": 695700.0,
+				"texture": "res://assets/textures/bodies/sun.jpg",
+				"color": "#FFB27A",
+				"emissive": true,
+				"position_km": [0.0, 0.0, 0.0],
+				"velocity_km_s": [-27.7719, -25.7561, 0.0]
+			},
+			{
+				"id": "star_c",
+				"name": "Star C",
+				"kind": "star",
+				"mass_kg": 1.98847e30,
+				"radius_km": 695700.0,
+				"texture": "res://assets/textures/bodies/sun.jpg",
+				"color": "#FFE9B0",
+				"emissive": true,
+				"position_km": [145110586.8, -36365376.9, 0.0],
+				"velocity_km_s": [13.8859, 12.8781, 0.0]
 			}
 		]
 	}

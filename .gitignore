@@ -11,6 +11,7 @@ desktop.ini
 .idea/
 *.swp
 tools/**/.venv/
+tools/**/.venv-*/
 tools/**/models/
 __pycache__/
 *.pyc

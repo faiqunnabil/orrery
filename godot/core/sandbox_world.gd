@@ -165,6 +165,10 @@ func add_body(body: SandboxBody, position: DVec3, velocity: DVec3, mass_kg: floa
 			_next_custom_index = maxi(_next_custom_index, suffix.to_int() + 1)
 
 
+func custom_body_count() -> int:
+	return _next_custom_index - 1
+
+
 func to_snapshot() -> Dictionary:
 	var entries: Array[Dictionary] = []
 	for index in bodies.size():

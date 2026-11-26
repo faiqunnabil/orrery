@@ -40,6 +40,13 @@ func heliocentric_units(distance_km: float) -> float:
 	return PLANET_ORBIT_BASE + PLANET_ORBIT_FACTOR * pow(distance_km / Astro.AU_KM, PLANET_ORBIT_EXPONENT)
 
 
+func heliocentric_scale(distance_km: float) -> float:
+	if mode == Mode.TRUE_SCALE:
+		return 1.0 / TRUE_SCALE_UNIT_KM
+	var distance_au := maxf(distance_km / Astro.AU_KM, 1.0e-6)
+	return PLANET_ORBIT_FACTOR * PLANET_ORBIT_EXPONENT * pow(distance_au, PLANET_ORBIT_EXPONENT - 1.0) / Astro.AU_KM
+
+
 func _compressed_distance(body: BodyDefinition, parent: BodyDefinition, distance_km: float) -> float:
 	if parent.kind == "star":
 		return heliocentric_units(distance_km)

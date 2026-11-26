@@ -15,7 +15,13 @@ From this directory:
 uv run generate_narration.py
 ```
 
-On Windows without a local Python, run it inside WSL or Linux with `UV_LINK_MODE=copy` when the repository is on a Windows drive.
+On Windows, it also runs natively from Git Bash or PowerShell. If `.venv` was created from WSL or Linux, keep a separate Windows environment so the two do not fight over it:
+
+```
+UV_PROJECT_ENVIRONMENT=.venv-windows UV_LINK_MODE=copy uv run generate_narration.py
+```
+
+Inside WSL with the repository on a Windows drive, set `UV_LINK_MODE=copy` as well.
 
 | Option | Default | Purpose |
 |---|---|---|

@@ -70,8 +70,8 @@ func _ready() -> void:
 
 func show_step(tour_title: String, step: Dictionary, index: int, count: int) -> void:
 	visible = true
-	_tour_title.text = tour_title.to_upper()
-	_counter.text = "Step %d of %d" % [index + 1, count]
+	_tour_title.text = tr(tour_title).to_upper()
+	_counter.text = tr("Step %d of %d") % [index + 1, count]
 	_progress.max_value = count
 	_progress.value = index + 1
 	_step_title.text = step["title"]
@@ -95,5 +95,9 @@ func _text_for(step: Dictionary) -> String:
 
 
 func _sync_voice() -> void:
-	_voice_toggle.set_pressed_no_signal(Audio.narration_enabled)
-	_replay_button.disabled = not Audio.narration_enabled
+	var available := Locale.has_voice()
+	_voice_toggle.set_pressed_no_signal(Audio.narration_enabled and available)
+	_voice_toggle.disabled = not available
+	_replay_button.disabled = not Audio.narration_enabled or not available
+	if not available:
+		_voice_toggle.tooltip_text = "The voice-over is available in English only"

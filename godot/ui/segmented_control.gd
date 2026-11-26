@@ -18,7 +18,7 @@ func _init(options: Array[String], tooltip: String = "") -> void:
 		button.theme_type_variation = "SegmentButton"
 		button.toggle_mode = true
 		button.button_group = group
-		button.focus_mode = Control.FOCUS_NONE
+		button.focus_mode = Control.FOCUS_ALL
 		button.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 		button.tooltip_text = tooltip
 		button.pressed.connect(func() -> void: selected.emit(index))

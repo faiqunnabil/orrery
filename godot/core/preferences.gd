@@ -29,7 +29,12 @@ var depth_level: DepthLevel = DepthLevel.EXPLORER
 var labels_visible := true
 var trails_visible := true
 var rings_visible := true
+var constellations_visible := false
+var gravity_well_visible := false
+var completed_challenges := PackedStringArray()
 var view_panel_collapsed := false
+var onboarding_done := false
+var language := ""
 var trail_length: TrailLength = TrailLength.MEDIUM
 var orbit_palette: OrbitPalette = OrbitPalette.NATURAL
 var scroll_mode: ScrollMode = ScrollMode.AUTO
@@ -37,6 +42,25 @@ var scroll_mode: ScrollMode = ScrollMode.AUTO
 
 func _ready() -> void:
 	_load()
+	_apply_language()
+
+
+func reset_to_defaults() -> void:
+	depth_level = DepthLevel.EXPLORER
+	labels_visible = true
+	trails_visible = true
+	rings_visible = true
+	constellations_visible = false
+	gravity_well_visible = false
+	view_panel_collapsed = false
+	language = ""
+	trail_length = TrailLength.MEDIUM
+	orbit_palette = OrbitPalette.NATURAL
+	scroll_mode = ScrollMode.AUTO
+	_save()
+	_apply_language()
+	trail_length_changed.emit()
+	changed.emit()
 
 
 func is_scientist() -> bool:
@@ -77,6 +101,30 @@ func set_depth_level(value: DepthLevel) -> void:
 	changed.emit()
 
 
+func effective_language() -> String:
+	return language if Locale.LANGUAGES.has(language) else Locale.system_language()
+
+
+func set_language(value: String) -> void:
+	if value == effective_language() and value == language:
+		return
+	language = value
+	_save()
+	_apply_language()
+	changed.emit()
+
+
+func _apply_language() -> void:
+	TranslationServer.set_locale(effective_language())
+
+
+func set_onboarding_done(value: bool) -> void:
+	if value == onboarding_done:
+		return
+	onboarding_done = value
+	_save()
+
+
 func set_view_panel_collapsed(value: bool) -> void:
 	if value == view_panel_collapsed:
 		return
@@ -109,6 +157,34 @@ func set_rings_visible(value: bool) -> void:
 	changed.emit()
 
 
+func set_constellations_visible(value: bool) -> void:
+	if value == constellations_visible:
+		return
+	constellations_visible = value
+	_save()
+	changed.emit()
+
+
+func set_gravity_well_visible(value: bool) -> void:
+	if value == gravity_well_visible:
+		return
+	gravity_well_visible = value
+	_save()
+	changed.emit()
+
+
+func is_challenge_complete(id: String) -> bool:
+	return completed_challenges.has(id)
+
+
+func mark_challenge_complete(id: String) -> void:
+	if id == "" or completed_challenges.has(id):
+		return
+	completed_challenges.append(id)
+	_save()
+	changed.emit()
+
+
 func set_trail_length(value: TrailLength) -> void:
 	if value == trail_length:
 		return
@@ -126,7 +202,12 @@ func _load() -> void:
 	labels_visible = config.get_value(CONFIG_SECTION, "labels_visible", true)
 	trails_visible = config.get_value(CONFIG_SECTION, "trails_visible", true)
 	rings_visible = config.get_value(CONFIG_SECTION, "rings_visible", true)
+	constellations_visible = config.get_value(CONFIG_SECTION, "constellations_visible", false)
+	gravity_well_visible = config.get_value(CONFIG_SECTION, "gravity_well_visible", false)
+	completed_challenges = PackedStringArray(config.get_value(CONFIG_SECTION, "completed_challenges", PackedStringArray()))
 	view_panel_collapsed = config.get_value(CONFIG_SECTION, "view_panel_collapsed", false)
+	onboarding_done = config.get_value(CONFIG_SECTION, "onboarding_done", false)
+	language = config.get_value(CONFIG_SECTION, "language", "")
 	var stored_trail: int = config.get_value(CONFIG_SECTION, "trail_length", TrailLength.MEDIUM)
 	trail_length = clampi(stored_trail, TrailLength.SHORT, TrailLength.LONG) as TrailLength
 	var stored_palette: int = config.get_value(CONFIG_SECTION, "orbit_palette", OrbitPalette.NATURAL)
@@ -142,7 +223,12 @@ func _save() -> void:
 	config.set_value(CONFIG_SECTION, "labels_visible", labels_visible)
 	config.set_value(CONFIG_SECTION, "trails_visible", trails_visible)
 	config.set_value(CONFIG_SECTION, "rings_visible", rings_visible)
+	config.set_value(CONFIG_SECTION, "constellations_visible", constellations_visible)
+	config.set_value(CONFIG_SECTION, "gravity_well_visible", gravity_well_visible)
+	config.set_value(CONFIG_SECTION, "completed_challenges", completed_challenges)
 	config.set_value(CONFIG_SECTION, "view_panel_collapsed", view_panel_collapsed)
+	config.set_value(CONFIG_SECTION, "onboarding_done", onboarding_done)
+	config.set_value(CONFIG_SECTION, "language", language)
 	config.set_value(CONFIG_SECTION, "trail_length", trail_length)
 	config.set_value(CONFIG_SECTION, "orbit_palette", orbit_palette)
 	config.set_value(CONFIG_SECTION, "scroll_mode", scroll_mode)

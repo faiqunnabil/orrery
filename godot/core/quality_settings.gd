@@ -73,6 +73,18 @@ func profile() -> Dictionary:
 	return PROFILES[preset]
 
 
+func reset_to_defaults() -> void:
+	preset = Preset.MEDIUM
+	render_scale = PROFILES[preset]["render_scale"]
+	fullscreen = false
+	window_size = DEFAULT_WINDOW_SIZE
+	ui_scale = 1.0
+	_save()
+	_apply_window()
+	changed.emit()
+	display_changed.emit()
+
+
 func set_preset(value: Preset) -> void:
 	if value == preset:
 		return

@@ -20,7 +20,7 @@ func _ready() -> void:
 	var heading := Hud.make_label("Credits", "TitleLabel")
 	heading.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 	header.add_child(heading)
-	var version := Hud.make_label("Version %s" % ProjectSettings.get_setting("application/config/version", ""), "DimLabel")
+	var version := Hud.make_label(tr("Version %s") % ProjectSettings.get_setting("application/config/version", ""), "DimLabel")
 	header.add_child(version)
 	header.add_child(Hud.make_button("Back", func() -> void: back_requested.emit(), "Return (Esc)", "chevron_left"))
 	var scroll := ScrollContainer.new()

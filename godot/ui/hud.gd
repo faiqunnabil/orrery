@@ -9,6 +9,8 @@ signal now_pressed
 signal quality_selected(preset: int)
 signal mode_switch_pressed
 signal menu_pressed
+signal search_requested
+signal date_requested
 
 const OUTER_MARGIN := 14
 const SIDE_PANEL_WIDTH := 340
@@ -28,6 +30,10 @@ var left_column := VBoxContainer.new()
 var right_column := VBoxContainer.new()
 var top_center := VBoxContainer.new()
 var bottom_center := VBoxContainer.new()
+var toolbar := HBoxContainer.new()
+var search_panel := SearchPanel.new()
+var date_panel := DatePanel.new()
+var onboarding := Onboarding.new()
 
 var _root := Control.new()
 var _date_label := Label.new()
@@ -53,12 +59,17 @@ var _utc_offset_minutes := Astro.local_offset_minutes()
 var _quality_option := OptionButton.new()
 var _depth_control := SegmentedControl.new(Preferences.DEPTH_NAMES, "Information depth (M)")
 var _labels_toggle: Button
+var _constellations_toggle: Button
 var _trails_toggle: Button
 var _rings_toggle: Button
 var _mode_button := Button.new()
 var _settings_extras := VBoxContainer.new()
 var _view_body := VBoxContainer.new()
 var _collapse_button: Button
+var _search_button: Button
+var _date_button: Button
+var _time_panel: Control
+var _view_panel: Control
 
 
 static func make_panel(parent: Control) -> VBoxContainer:
@@ -73,7 +84,7 @@ static func make_button(label: String, pressed_callback: Callable, tooltip: Stri
 	var button := Button.new()
 	button.text = label
 	button.tooltip_text = tooltip
-	button.focus_mode = Control.FOCUS_NONE
+	button.focus_mode = Control.FOCUS_ALL
 	button.pressed.connect(pressed_callback)
 	if icon_name != "":
 		button.icon = OrreryTheme.icon(icon_name)
@@ -113,7 +124,7 @@ static func make_wrapped_label(text: String, width: float, variation: String = "
 
 
 static func section_label(text: String) -> Label:
-	return make_label(text.to_upper(), "SectionLabel")
+	return make_label(Locale.t(text).to_upper(), "SectionLabel")
 
 
 static func make_toggle(label: String, tooltip: String, toggled_callback: Callable, icon_name: String = "") -> Button:
@@ -124,7 +135,7 @@ static func make_toggle(label: String, tooltip: String, toggled_callback: Callab
 	if icon_name != "":
 		button.icon = OrreryTheme.icon(icon_name)
 	button.toggle_mode = true
-	button.focus_mode = Control.FOCUS_NONE
+	button.focus_mode = Control.FOCUS_ALL
 	button.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 	button.toggled.connect(toggled_callback)
 	return button
@@ -160,12 +171,31 @@ func _ready() -> void:
 	_place_column(top_center, Control.PRESET_CENTER_TOP, Control.GROW_DIRECTION_BOTH, Control.GROW_DIRECTION_END)
 	_place_bottom_center()
 	_build_time_panel()
+	left_column.add_child(date_panel)
+	_build_toolbar()
 	_build_settings_panel()
 	_build_top_center()
 	_build_footer()
+	_root.add_child(onboarding)
 	_depth_control.selected.connect(func(index: int) -> void: Preferences.set_depth_level(index as Preferences.DepthLevel))
 	Preferences.changed.connect(_sync_preferences)
 	_sync_preferences()
+
+
+func _input(event: InputEvent) -> void:
+	if event is InputEventMouseButton and not event.pressed:
+		var owner := get_viewport().gui_get_focus_owner()
+		if owner != null and _root.is_ancestor_of(owner) and not owner is LineEdit:
+			owner.release_focus.call_deferred()
+
+
+func has_keyboard_focus() -> bool:
+	var owner := get_viewport().gui_get_focus_owner()
+	return owner != null and _root.is_ancestor_of(owner) and not owner is LineEdit
+
+
+func focus_interface() -> void:
+	_reverse_button.grab_focus()
 
 
 func _process(delta: float) -> void:
@@ -212,6 +242,27 @@ func set_depth_visible(value: bool) -> void:
 func set_now_visible(value: bool) -> void:
 	_now_button.visible = value
 	_now_separator.visible = value
+	_date_button.visible = value
+
+
+func time_panel() -> Control:
+	return _time_panel
+
+
+func view_panel() -> Control:
+	return _view_panel
+
+
+func search_button() -> Control:
+	return _search_button
+
+
+func mode_button() -> Control:
+	return _mode_button
+
+
+func utc_offset_minutes() -> int:
+	return _utc_offset_minutes
 
 
 func set_auto_orbit_active(value: bool) -> void:
@@ -219,8 +270,8 @@ func set_auto_orbit_active(value: bool) -> void:
 
 
 func set_status(text: String) -> void:
-	var full := text + (AUTO_ORBIT_HINT if _auto_orbit_active else "")
-	_status_label.text = full if _help_panel.visible else full + HELP_HINT % InputBindings.keys_text("toggle_help")
+	var full := text + (tr(AUTO_ORBIT_HINT) if _auto_orbit_active else "")
+	_status_label.text = full if _help_panel.visible else full + tr(HELP_HINT) % InputBindings.keys_text("toggle_help")
 
 
 func set_help(groups: Array) -> void:
@@ -294,18 +345,18 @@ func refresh_diagnostics(scene_summary: String, focus_mesh: String) -> void:
 	var primitives := int(Performance.get_monitor(Performance.RENDER_TOTAL_PRIMITIVES_IN_FRAME))
 	var vram_mb := Performance.get_monitor(Performance.RENDER_VIDEO_MEM_USED) / 1048576.0
 	_diag_values["fps"].text = "%d" % fps
-	_diag_values["frame"].text = "%.1f / %.1f ms" % [_frame_ms, _cpu_ms]
+	_diag_values["frame"].text = "%s / %s ms" % [BodyFacts.format_number(_frame_ms, 1), BodyFacts.format_number(_cpu_ms, 1)]
 	_diag_values["draws"].text = format_count(draws)
 	_diag_values["primitives"].text = format_count(primitives)
-	_diag_values["vram"].text = "%.1f MB" % vram_mb
+	_diag_values["vram"].text = "%s MB" % BodyFacts.format_number(vram_mb, 1)
 	_diag_values["scene"].text = scene_summary
 	_diag_values["mesh"].text = focus_mesh
 
 
-func show_toast(text: String) -> void:
+func show_toast(text: String, seconds: float = TOAST_SECONDS) -> void:
 	_toast_label.text = text
 	_toast_panel.visible = true
-	_toast_timer = TOAST_SECONDS
+	_toast_timer = seconds
 
 
 func refresh(clock: SimulationClock) -> void:
@@ -313,7 +364,7 @@ func refresh(clock: SimulationClock) -> void:
 	_speed_label.text = clock.speed_label()
 	_reverse_button.set_pressed_no_signal(clock.reversed)
 	_pause_button.icon = OrreryTheme.icon("play" if clock.paused else "pause")
-	_pause_button.tooltip_text = ("Resume" if clock.paused else "Pause") + " time (Space)"
+	_pause_button.tooltip_text = "Resume time (Space)" if clock.paused else "Pause time (Space)"
 	_fps_label.text = "%d FPS" % Engine.get_frames_per_second()
 
 
@@ -334,11 +385,14 @@ func _place_column(
 
 func _build_time_panel() -> void:
 	var box := make_panel(left_column)
+	_time_panel = box.get_parent()
 	var header := HBoxContainer.new()
 	box.add_child(header)
 	_date_label.theme_type_variation = "HeaderLabel"
 	_date_label.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 	header.add_child(_date_label)
+	_date_button = make_icon_button("calendar", func() -> void: date_requested.emit(), "", "IconFlatButton")
+	header.add_child(_date_button)
 	var zone := make_label(Astro.utc_offset_label(_utc_offset_minutes), "DimLabel")
 	zone.tooltip_text = "Times are shown in this computer's time zone"
 	zone.mouse_filter = Control.MOUSE_FILTER_STOP
@@ -351,7 +405,7 @@ func _build_time_panel() -> void:
 	_reverse_button.icon_alignment = HORIZONTAL_ALIGNMENT_CENTER
 	_reverse_button.custom_minimum_size = Vector2(ICON_BUTTON_WIDTH, 0)
 	_reverse_button.toggle_mode = true
-	_reverse_button.focus_mode = Control.FOCUS_NONE
+	_reverse_button.focus_mode = Control.FOCUS_ALL
 	_reverse_button.tooltip_text = "Run time backwards (R)"
 	_reverse_button.pressed.connect(func() -> void: reverse_pressed.emit())
 	row.add_child(_reverse_button)
@@ -359,7 +413,7 @@ func _build_time_panel() -> void:
 	_pause_button.icon = OrreryTheme.icon("pause")
 	_pause_button.icon_alignment = HORIZONTAL_ALIGNMENT_CENTER
 	_pause_button.custom_minimum_size = Vector2(ICON_BUTTON_WIDTH, 0)
-	_pause_button.focus_mode = Control.FOCUS_NONE
+	_pause_button.focus_mode = Control.FOCUS_ALL
 	_pause_button.tooltip_text = "Pause time (Space)"
 	_pause_button.pressed.connect(func() -> void: pause_pressed.emit())
 	row.add_child(_pause_button)
@@ -375,8 +429,26 @@ func _build_time_panel() -> void:
 	row.add_child(_now_button)
 
 
+func _build_toolbar() -> void:
+	var panel := PanelContainer.new()
+	panel.theme_type_variation = "ToolbarPanel"
+	panel.size_flags_horizontal = Control.SIZE_SHRINK_BEGIN
+	left_column.add_child(panel)
+	toolbar.add_theme_constant_override("separation", OrreryTheme.SPACE_XS)
+	panel.add_child(toolbar)
+	var search := make_icon_button("search", func() -> void: search_requested.emit(), "")
+	toolbar.add_child(search)
+	_search_button = search
+
+
+func refresh_binding_tooltips() -> void:
+	_search_button.tooltip_text = tr("Find a body (%s)") % InputBindings.keys_text("search")
+	_date_button.tooltip_text = tr("Go to a date (%s)") % InputBindings.keys_text("jump_to_date")
+
+
 func _build_settings_panel() -> void:
 	var box := make_panel(right_column)
+	_view_panel = box.get_parent()
 	box.custom_minimum_size = Vector2(SIDE_PANEL_WIDTH, 0)
 	var header := HBoxContainer.new()
 	box.add_child(header)
@@ -392,8 +464,10 @@ func _build_settings_panel() -> void:
 	header.add_child(_collapse_button)
 	box.add_child(_view_body)
 	_view_body.add_child(_depth_control)
-	var toggles := HBoxContainer.new()
-	toggles.add_theme_constant_override("separation", OrreryTheme.SPACE_XS)
+	var toggles := GridContainer.new()
+	toggles.columns = 2
+	toggles.add_theme_constant_override("h_separation", OrreryTheme.SPACE_XS)
+	toggles.add_theme_constant_override("v_separation", OrreryTheme.SPACE_XS)
 	_view_body.add_child(toggles)
 	_labels_toggle = make_toggle("Labels", "Show body names (L)", Preferences.set_labels_visible, "tag")
 	_trails_toggle = make_toggle("Orbits", "Show orbit lines (O)", Preferences.set_trails_visible, "orbit")
@@ -401,6 +475,10 @@ func _build_settings_panel() -> void:
 	toggles.add_child(_labels_toggle)
 	toggles.add_child(_trails_toggle)
 	toggles.add_child(_rings_toggle)
+	_constellations_toggle = make_toggle(
+		"Constellations", "Show constellation figures (C)", Preferences.set_constellations_visible, "sparkles"
+	)
+	toggles.add_child(_constellations_toggle)
 	_view_body.add_child(_settings_extras)
 	_view_body.add_child(HSeparator.new())
 	var actions := HBoxContainer.new()
@@ -408,13 +486,13 @@ func _build_settings_panel() -> void:
 	box.add_child(actions)
 	for preset_name in Quality.PRESET_NAMES:
 		_quality_option.add_item(preset_name)
-	_quality_option.focus_mode = Control.FOCUS_NONE
+	_quality_option.focus_mode = Control.FOCUS_ALL
 	_quality_option.tooltip_text = "Graphics quality. Lower quality runs faster on older devices"
 	_quality_option.icon = OrreryTheme.icon("gauge")
 	_quality_option.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 	_quality_option.item_selected.connect(func(index: int) -> void: quality_selected.emit(index))
 	actions.add_child(_quality_option)
-	_mode_button.focus_mode = Control.FOCUS_NONE
+	_mode_button.focus_mode = Control.FOCUS_ALL
 	_mode_button.visible = false
 	_mode_button.pressed.connect(func() -> void: mode_switch_pressed.emit())
 	actions.add_child(_mode_button)
@@ -435,6 +513,7 @@ func _place_bottom_center() -> void:
 
 
 func _build_top_center() -> void:
+	top_center.add_child(search_panel)
 	_diagnostics_panel.custom_minimum_size = Vector2(DIAGNOSTICS_WIDTH, 0)
 	_diagnostics_panel.size_flags_horizontal = Control.SIZE_SHRINK_CENTER
 	_diagnostics_panel.visible = false
@@ -477,18 +556,10 @@ func _build_top_center() -> void:
 
 static func format_count(value: int) -> String:
 	if value >= 1000000:
-		return "%.2fM" % (float(value) / 1000000.0)
+		return "%sM" % BodyFacts.format_number(float(value) / 1000000.0, 2)
 	if value >= 10000:
-		return "%.1fk" % (float(value) / 1000.0)
-	var text := str(value)
-	var out := ""
-	var count := 0
-	for index in range(text.length() - 1, -1, -1):
-		if count > 0 and count % 3 == 0:
-			out = "," + out
-		out = text[index] + out
-		count += 1
-	return out
+		return "%sk" % BodyFacts.format_number(float(value) / 1000.0, 1)
+	return BodyFacts.format_number(value, 0)
 
 
 func _build_footer() -> void:
@@ -520,7 +591,7 @@ func _build_footer() -> void:
 	var title := make_label("Controls", "HeaderLabel")
 	title.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 	header.add_child(title)
-	header.add_child(make_close_button(toggle_help, "Close (%s)" % InputBindings.keys_text("toggle_help")))
+	header.add_child(make_close_button(toggle_help, tr("Close (%s)") % InputBindings.keys_text("toggle_help")))
 	_help_flow.add_theme_constant_override("h_separation", OrreryTheme.SPACE_L)
 	_help_flow.add_theme_constant_override("v_separation", OrreryTheme.SPACE_M)
 	help_box.add_child(_help_flow)
@@ -531,6 +602,7 @@ func _sync_preferences() -> void:
 	_labels_toggle.set_pressed_no_signal(Preferences.labels_visible)
 	_trails_toggle.set_pressed_no_signal(Preferences.trails_visible)
 	_rings_toggle.set_pressed_no_signal(Preferences.rings_visible)
+	_constellations_toggle.set_pressed_no_signal(Preferences.constellations_visible)
 	var collapsed := Preferences.view_panel_collapsed
 	_view_body.visible = not collapsed
 	_collapse_button.icon = OrreryTheme.icon("chevron_down" if collapsed else "chevron_up")

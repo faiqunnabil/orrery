@@ -1,0 +1,6 @@
+[project]
+name = "orrery-star-tools"
+version = "0.1.0"
+description = "Star catalog and constellation figure preparation for Orrery"
+requires-python = ">=3.10"
+dependencies = []

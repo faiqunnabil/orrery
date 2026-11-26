@@ -281,5 +281,26 @@
 		"texture": "res://assets/textures/bodies/titan.jpg",
 		"atmosphere": {"color": "#E3A45A", "thickness": 0.06, "intensity": 1.3},
 		"color": "#E0A85A"
+	},
+	{
+		"id": "halley",
+		"name": "Halley's Comet",
+		"kind": "comet",
+		"parent": "sun",
+		"mass_kg": 2.2e14,
+		"radius_km": 5.5,
+		"orbit": {
+			"elements": [17.9286350486, 0.9679359957, 162.1905300439, 237.2306867138, 171.3403786699, 59.0989472061],
+			"rates": [0.0, 0.0, 0.0, 474.2130029038, 0.0, 0.0],
+			"segments": [
+				{"until_jd": 2405159.5, "elements": [17.9894191253, 0.967394, 162.2588, 222.5758553785, 168.2228, 57.5185], "rates": [0.0, 0.0, 0.0, 471.811577925, 0.0, 0.0]},
+				{"until_jd": 2432551.5, "elements": [17.9585295737, 0.967302, 162.2186, 234.6125018563, 170.3, 58.5629], "rates": [0.0, 0.0, 0.0, 473.029394475, 0.0, 0.0]}
+			]
+		},
+		"rotation": {"obliquity_deg": 0.0, "pole_ra_deg": 0.0, "pole_dec_deg": 90.0, "prime_meridian_deg": 0.0, "rate_deg_per_day": 163.6},
+		"texture": "res://assets/textures/bodies/halley_nucleus.jpg",
+		"shape": [1.61, 0.79, 0.79],
+		"relief": 4.0,
+		"color": "#9FD8FF"
 	}
 ]

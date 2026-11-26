@@ -10,6 +10,7 @@ const MIN_NEAR := 0.001
 const MAX_NEAR := 1.0e6
 const FAR_MARGIN := 1.5
 const DEFAULT_PERIOD_SECONDS := 3.15576e7
+const DOMINANT_MASS_FRACTION := 0.9
 const PREVIEW_COLOR := Color(0.55, 0.85, 1.0, 0.95)
 const HALO_SHADER := preload("res://render/shaders/sun_halo.gdshader")
 
@@ -27,6 +28,8 @@ var _camera_radius: Dictionary = {}
 var _camera_true_radius: Dictionary = {}
 var _trails_visible := true
 var _rings := ReferenceRings.new()
+var gravity_well := GravityWell.new()
+var _comet_tails: Dictionary = {}
 var _eclipses := EclipseFinder.new()
 var _ring_radii: Array[float] = []
 var _preview_active := false
@@ -55,6 +58,7 @@ func _ready() -> void:
 	_preview_line.mesh = _preview_mesh
 	_preview_line.visible = false
 	add_child(_rings)
+	add_child(gravity_well)
 	for radius_au in ReferenceRings.RING_RADII_AU:
 		_ring_radii.append(radius_au * Astro.AU_KM / UNIT_KM)
 	add_child(_preview_marker)
@@ -80,6 +84,9 @@ func set_world(value: SandboxWorld) -> void:
 
 func apply_quality() -> void:
 	var profile := Quality.profile()
+	gravity_well.apply_quality(Quality.preset)
+	for tail: CometTail in _comet_tails.values():
+		tail.apply_quality(Quality.preset)
 	for visual: BodyVisual in _visuals.values():
 		visual.set_mesh_detail(profile["sphere_radial_segments"])
 		visual.set_effects_detail(profile["full_effects"])
@@ -196,6 +203,8 @@ func update(camera_position: PackedFloat64Array) -> void:
 			var halo: MeshInstance3D = _halos[body.id]
 			halo.transform = Transform3D(Basis.from_scale(Vector3.ONE * placed_radius * HALO_RADIUS_FACTOR), placed_position)
 		_update_trail(index, camera_position, shell)
+		if _comet_tails.has(body.id):
+			_update_comet_tail(index, stars, placed_position, _camera_true_radius[body.id], shrink)
 	_update_eclipses(stars)
 	_rings.update(camera_position, shell, PackedFloat64Array([0.0, 0.0, 0.0]), _ring_radii)
 	_update_preview(camera_position, shell)
@@ -281,6 +290,29 @@ func _update_eclipses(stars: Array[int]) -> void:
 		visual.set_eclipse(_eclipses.occluders, _eclipses.occluder_glows, sun_angle)
 
 
+func comet_tail(id: String) -> CometTail:
+	return _comet_tails.get(id)
+
+
+func _update_comet_tail(index: int, stars: Array[int], placed_position: Vector3, placed_radius: float, shrink: float) -> void:
+	var tail: CometTail = _comet_tails[world.bodies[index].id]
+	var star := _nearest_star(index, stars)
+	if star < 0:
+		tail.update(placed_position, Vector3.ZERO, Vector3.ZERO, INF, 0.0, placed_radius)
+		return
+	var simulation := world.simulation
+	var offset := simulation.position_of(index).minus(simulation.position_of(star))
+	var motion := simulation.velocity_of(index).minus(simulation.velocity_of(star))
+	tail.update(
+		placed_position,
+		Vector3(offset.x, offset.z, -offset.y),
+		Vector3(motion.x, motion.z, -motion.y),
+		offset.length() / Astro.AU_KM,
+		shrink / UNIT_KM,
+		placed_radius
+	)
+
+
 func _nearest_star(index: int, stars: Array[int]) -> int:
 	var best := -1
 	var best_distance := INF
@@ -323,11 +355,11 @@ func _update_trail(index: int, camera_position: PackedFloat64Array, shell: float
 	var trail: SandboxTrail = _trails[body.id]
 	trail.set_parent_id(body.parent_id)
 	var parent_index := world.index_of(body.parent_id)
+	var simulation := world.simulation
 	if parent_index < 0:
-		trail.visible = false
+		_update_barycentric_trail(index, trail, camera_position, shell)
 		return
 	trail.visible = _trails_visible
-	var simulation := world.simulation
 	var relative := simulation.position_of(index).minus(simulation.position_of(parent_index))
 	var parent_position: PackedFloat64Array = _render_positions[body.parent_id]
 	var parent_camera := PackedFloat64Array(
@@ -341,6 +373,22 @@ func _update_trail(index: int, camera_position: PackedFloat64Array, shell: float
 	var total_gm := simulation.gm[index] + simulation.gm[parent_index]
 	var period := TAU * sqrt(distance * distance * distance / maxf(total_gm, 1.0e-9))
 	trail.update(world.seconds, relative, parent_camera, shell, period if period > 0.0 else DEFAULT_PERIOD_SECONDS)
+
+
+func _update_barycentric_trail(index: int, trail: SandboxTrail, camera_position: PackedFloat64Array, shell: float) -> void:
+	var simulation := world.simulation
+	var system_gm := 0.0
+	for other in world.bodies.size():
+		system_gm += simulation.gm[other]
+	if world.bodies.size() < 2 or simulation.gm[index] > system_gm * DOMINANT_MASS_FRACTION:
+		trail.visible = false
+		return
+	trail.visible = _trails_visible
+	var relative := simulation.position_of(index)
+	var origin_camera := PackedFloat64Array([-camera_position[0], -camera_position[1], -camera_position[2]])
+	var distance := maxf(relative.length(), 1.0)
+	var period := TAU * sqrt(distance * distance * distance / maxf(system_gm, 1.0e-9))
+	trail.update(world.seconds, relative, origin_camera, shell, period if period > 0.0 else DEFAULT_PERIOD_SECONDS)
 
 
 func _sync_bodies() -> void:
@@ -357,10 +405,16 @@ func _sync_bodies() -> void:
 		if definition != null and definition.ring_texture_path != "":
 			visual.add_rings(definition.ring_inner_km / definition.radius_km, definition.ring_outer_km / definition.radius_km, definition.ring_texture_path)
 		if definition != null:
+			visual.set_shape(definition.shape)
 			visual.add_atmosphere_layers(definition)
 			visual.add_surface_detail(definition)
 		add_child(visual)
 		_visuals[body.id] = visual
+		if body.kind == "comet":
+			var tail := CometTail.new()
+			tail.apply_quality(Quality.preset)
+			add_child(tail)
+			_comet_tails[body.id] = tail
 		var trail := SandboxTrail.new(body.color)
 		trail.configure(profile["trail_points"], Preferences.trail_length_fraction())
 		trail.visible = _trails_visible
@@ -381,6 +435,9 @@ func _sync_bodies() -> void:
 			if _halos.has(id):
 				_halos[id].queue_free()
 				_halos.erase(id)
+			if _comet_tails.has(id):
+				_comet_tails[id].queue_free()
+				_comet_tails.erase(id)
 	apply_trail_colors()
 	compute_positions()
 
@@ -426,6 +483,31 @@ func _to_camera_relative(position_km: DVec3, camera_position: PackedFloat64Array
 		position_km.z / UNIT_KM - camera_position[1],
 		-position_km.y / UNIT_KM - camera_position[2]
 	)
+
+
+func set_gravity_well_visible(value: bool) -> void:
+	gravity_well.visible = value
+
+
+func update_gravity_well(camera_position: PackedFloat64Array, center: PackedFloat64Array) -> void:
+	if not gravity_well.visible:
+		return
+	var simulation := world.simulation
+	var ids: Array[String] = []
+	var offsets: Array[Vector3] = []
+	var radii := PackedFloat64Array()
+	for index in world.bodies.size():
+		var position: PackedFloat64Array = _render_positions[world.bodies[index].id]
+		ids.append(world.bodies[index].id)
+		offsets.append(Vector3(position[0] - center[0], position[1], position[2] - center[2]))
+		radii.append(simulation.radii[index] / UNIT_KM)
+	var view_distance := Vector3(
+		camera_position[0] - center[0], camera_position[1], camera_position[2] - center[2]
+	).length()
+	var camera_relative_center := Vector3(
+		center[0] - camera_position[0], -camera_position[1], center[2] - camera_position[2]
+	)
+	gravity_well.update(camera_relative_center, view_distance, ids, offsets, simulation.gm, radii)
 
 
 func set_rings_visible(value: bool) -> void:
