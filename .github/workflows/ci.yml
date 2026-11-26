@@ -70,3 +70,61 @@ jobs:
           path: test-failures/
           if-no-files-found: ignore
           retention-days: 14
+
+  wayland:
+    name: Import and tests (Wayland)
+    runs-on: ubuntu-24.04
+    timeout-minutes: 60
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: ./.github/actions/setup-godot
+
+      - name: Install a headless Wayland compositor and software OpenGL
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y --no-install-recommends \
+            weston libgl1-mesa-dri libegl1 libegl-mesa0 libwayland-client0 libwayland-cursor0 libwayland-egl1 libdecor-0-0 libxkbcommon0 libfontconfig1
+
+      - name: Restore imported assets
+        uses: actions/cache@v4
+        with:
+          path: godot/.godot
+          key: godot-import-${{ hashFiles('godot/project.godot', 'godot/**/*.import') }}
+          restore-keys: godot-import-
+
+      - name: Import the project
+        run: |
+          godot --headless --path godot --import 2>&1 | tee import.log
+          if grep -E "SCRIPT ERROR|Parse Error" import.log; then
+            echo "::error::Scripts failed to compile during import"
+            exit 1
+          fi
+
+      - name: Check that Godot runs on Wayland
+        env:
+          LIBGL_ALWAYS_SOFTWARE: "1"
+        run: |
+          tests/with_weston.sh godot --display-driver wayland --rendering-driver opengl3 --audio-driver Dummy \
+            --path godot --script "$PWD/tests/display_check.gd" 2>&1 | tee display.log
+          if ! grep -q "^DISPLAY_SERVER: Wayland$" display.log; then
+            echo "::error::Godot did not start on the Wayland display server"
+            exit 1
+          fi
+
+      - name: Run the test suite
+        env:
+          GODOT: godot
+          GODOT_ARGS: --display-driver wayland --rendering-driver opengl3 --audio-driver Dummy
+          LIBGL_ALWAYS_SOFTWARE: "1"
+          FAILURE_DIR: ${{ github.workspace }}/test-failures
+        run: tests/with_weston.sh tests/run_tests.sh
+
+      - name: Keep screenshots of failed checks
+        if: failure()
+        uses: actions/upload-artifact@v4
+        with:
+          name: test-failures-wayland-${{ github.run_id }}
+          path: test-failures/
+          if-no-files-found: ignore
+          retention-days: 14
