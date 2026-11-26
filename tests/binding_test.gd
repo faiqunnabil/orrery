@@ -5,6 +5,7 @@ var step := 0
 var wait := 60
 var failures := 0
 var out_dir := ""
+var before_speed := 0
 
 
 func _initialize() -> void:
@@ -108,5 +109,37 @@ func _run_step() -> void:
 			_click_button("Reset to defaults")
 		7:
 			_check("reset restores W", bindings.keys_text("move_forward") == "W")
+			_check("] matches faster time", _physical_event(KEY_BRACKETRIGHT).is_action("time_faster"))
+			_check("Wayland ] (reported as }) matches faster time", _physical_event(KEY_BRACERIGHT).is_action("time_faster"))
+			_check("Wayland [ (reported as {) matches slower time", _physical_event(KEY_BRACELEFT).is_action("time_slower"))
+			_check("brace codes map back to brackets", bindings.canonical_key(KEY_BRACELEFT) == KEY_BRACKETLEFT and bindings.canonical_key(KEY_R) == KEY_R)
+			_click_button("W")
+		8:
+			_key(KEY_BRACELEFT)
+		9:
+			_check("captured Wayland [ is treated as [", _label_visible("is already used for Slower time"))
+			_check("binding unchanged after bracket conflict", bindings.keys_text("move_forward") == "W")
+			_key(KEY_ESCAPE)
+		10:
+			for node in root.find_children("*", "", true, false):
+				var script: Script = node.get_script()
+				if script != null and script.resource_path.ends_with("pause_menu.gd"):
+					node.close()
+		11:
+			_check("menu closed and time running", not paused)
+			before_speed = scene.clock.step_index
+			_key(KEY_BRACERIGHT)
+		12:
+			_check("Wayland ] speeds time up", scene.clock.step_index == before_speed + 1)
+			_key(KEY_BRACELEFT)
+		13:
+			_check("Wayland [ slows time down", scene.clock.step_index == before_speed)
 			print("FAILURES: ", failures)
 			quit()
+
+
+func _physical_event(keycode: Key) -> InputEventKey:
+	var event := InputEventKey.new()
+	event.physical_keycode = keycode
+	event.pressed = true
+	return event

@@ -216,7 +216,7 @@ orrery/
 
 ## Tests
 
-The `tests/` folder holds 324 automated checks for input, camera controls, menus, settings reset, keyboard navigation of the newer panels, the sandbox panel, quizzes, key bindings, accessibility, sandbox accuracy and speed, eclipses and the eclipse finder, the star field, the gravity well, the comet, the challenges, level of detail, texture tiers, the time zone display, search, date jumps, the introduction, keyboard navigation, and the Indonesian interface. They drive the real application, so they need a display and open a window. From the repository root:
+The `tests/` folder holds 333 automated checks for input, camera controls, menus, settings reset, keyboard navigation of the newer panels, the sandbox panel, quizzes, key bindings, accessibility, sandbox accuracy and speed, eclipses and the eclipse finder, the star field, the gravity well, the comet, the challenges, level of detail, texture tiers, the time zone display, search, date jumps, the introduction, keyboard navigation, and the Indonesian interface. They drive the real application, so they need a display and open a window. From the repository root:
 
 ```
 GODOT=/path/to/godot tests/run_tests.sh              # every test
@@ -225,13 +225,20 @@ GODOT=/path/to/godot tests/run_tests.sh pointer_test # one test
 
 On Windows, run the script from Git Bash and point `GODOT` at the console executable. Your saved settings and sandbox snapshot are backed up before the run and restored afterwards.
 
+On Linux, the project starts on Wayland when it is available and on X11 otherwise, and a few behaviors differ between them, such as how touchpad swipes and some keys are reported. To run the suite on both, as CI does, use `xvfb-run` for X11 and `tests/with_weston.sh`, which starts a headless Weston compositor, for Wayland:
+
+```
+GODOT_ARGS="--display-driver x11" xvfb-run tests/run_tests.sh
+GODOT_ARGS="--display-driver wayland" tests/with_weston.sh tests/run_tests.sh
+```
+
 ## Continuous integration and releases
 
 Two GitHub Actions workflows keep `main` working and publish builds:
 
 | Workflow | Trigger | What it does |
 |---|---|---|
-| [CI](.github/workflows/ci.yml) | Every push to `dev` and every pull request into `main` | Checks that every message is translated and the catalogs are current, then imports the project and runs the whole test suite on Ubuntu with a virtual display and software OpenGL. Screenshots of failed checks are kept as a run artifact |
+| [CI](.github/workflows/ci.yml) | Every push to `dev` and every pull request into `main` | Checks that every message is translated and the catalogs are current, then imports the project and runs the whole test suite on Ubuntu with software OpenGL twice: once on X11 with a virtual display, and once on Wayland with a headless Weston compositor. Screenshots of failed checks are kept as a run artifact |
 | [Release](.github/workflows/release.yml) | Pushing a tag such as `v1.1.0`, or a manual run from the Actions tab | Checks the tag against the project version, exports the Windows and Linux builds, opens the menu, Explore, and Sandbox in the Linux build as a smoke test, packages them, and publishes a GitHub release. A manual run only keeps the packages as a downloadable artifact for 7 days |
 
 `main` only accepts pull requests whose CI run has passed. To release a new version:

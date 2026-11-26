@@ -108,7 +108,7 @@ func _input(event: InputEvent) -> void:
 	if key_event == null or not key_event.pressed or key_event.echo:
 		return
 	get_viewport().set_input_as_handled()
-	var key := key_event.physical_keycode
+	var key := InputBindings.canonical_key(key_event.physical_keycode) as Key
 	if key == KEY_ESCAPE or key == KEY_NONE:
 		_cancel_capture()
 		return

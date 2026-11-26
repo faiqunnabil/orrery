@@ -83,6 +83,16 @@ const ACTION_LABELS := {
 	"delete_body": "Remove body",
 }
 
+# Godot's Wayland backend reports the physical [ and ] keys as { and } (its XKB
+# scancode table maps them to BRACELEFT and BRACERIGHT), while X11 and Windows
+# report BRACKETLEFT and BRACKETRIGHT. No keyboard has separate physical brace
+# keys, so each bracket is also bound under its brace code, and captured keys are
+# stored under the bracket code so saved bindings work on every display server.
+const PHYSICAL_ALIASES := {
+	KEY_BRACKETLEFT: KEY_BRACELEFT,
+	KEY_BRACKETRIGHT: KEY_BRACERIGHT,
+}
+
 const FOCUS_KEYS: Array[Key] = [KEY_1, KEY_2, KEY_3, KEY_4, KEY_5, KEY_6, KEY_7, KEY_8, KEY_9, KEY_0]
 const CANCEL_LABEL := "Cancel and menu"
 const FOCUS_LABEL := "Focus a body"
@@ -127,7 +137,15 @@ func conflict_for(action: String, key: int) -> String:
 	return ""
 
 
+static func canonical_key(physical: int) -> int:
+	for key: int in PHYSICAL_ALIASES:
+		if PHYSICAL_ALIASES[key] == physical:
+			return key
+	return physical
+
+
 func rebind(action: String, key: Key) -> bool:
+	key = canonical_key(key) as Key
 	if not ACTION_LABELS.has(action) or conflict_for(action, key) != "":
 		return false
 	_overrides[action] = [key]
@@ -151,9 +169,13 @@ func _bind(action: StringName, keys: Array) -> void:
 	else:
 		InputMap.add_action(action)
 	for key in keys:
-		var event := InputEventKey.new()
-		event.physical_keycode = key
-		InputMap.action_add_event(action, event)
+		var codes: Array = [key]
+		if PHYSICAL_ALIASES.has(key):
+			codes.append(PHYSICAL_ALIASES[key])
+		for code in codes:
+			var event := InputEventKey.new()
+			event.physical_keycode = code
+			InputMap.action_add_event(action, event)
 
 
 func key_name(physical: int) -> String:
@@ -174,7 +196,7 @@ func _load() -> void:
 	for action in config.get_section_keys(CONFIG_SECTION):
 		var stored: Variant = config.get_value(CONFIG_SECTION, action)
 		if ACTION_LABELS.has(action) and stored is Array and not stored.is_empty():
-			_overrides[action] = stored
+			_overrides[action] = stored.map(func(key: int) -> int: return canonical_key(key))
 
 
 func _drop_conflicting_overrides() -> void:
