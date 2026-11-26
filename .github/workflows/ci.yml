@@ -20,7 +20,7 @@ jobs:
     runs-on: ubuntu-24.04
     timeout-minutes: 60
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
 
       - name: Check the translation catalogs
         run: |
@@ -40,7 +40,7 @@ jobs:
             xvfb libgl1-mesa-dri libglx-mesa0 libegl1 libxcursor1 libxinerama1 libxrandr2 libxi6 libxkbcommon0 libfontconfig1
 
       - name: Restore imported assets
-        uses: actions/cache@v4
+        uses: actions/cache@v6
         with:
           path: godot/.godot
           key: godot-import-${{ hashFiles('godot/project.godot', 'godot/**/*.import') }}
@@ -64,7 +64,7 @@ jobs:
 
       - name: Keep screenshots of failed checks
         if: failure()
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7
         with:
           name: test-failures-${{ github.run_id }}
           path: test-failures/
@@ -76,7 +76,7 @@ jobs:
     runs-on: ubuntu-24.04
     timeout-minutes: 60
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
 
       - uses: ./.github/actions/setup-godot
 
@@ -87,7 +87,7 @@ jobs:
             weston libgl1-mesa-dri libegl1 libegl-mesa0 libwayland-client0 libwayland-cursor0 libwayland-egl1 libdecor-0-0 libxkbcommon0 libfontconfig1
 
       - name: Restore imported assets
-        uses: actions/cache@v4
+        uses: actions/cache@v6
         with:
           path: godot/.godot
           key: godot-import-${{ hashFiles('godot/project.godot', 'godot/**/*.import') }}
@@ -122,7 +122,7 @@ jobs:
 
       - name: Keep screenshots of failed checks
         if: failure()
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7
         with:
           name: test-failures-wayland-${{ github.run_id }}
           path: test-failures/

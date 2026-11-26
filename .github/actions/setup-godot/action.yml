@@ -14,7 +14,7 @@ runs:
   steps:
     - name: Restore the Godot editor
       id: editor
-      uses: actions/cache@v4
+      uses: actions/cache@v6
       with:
         path: ~/godot
         key: godot-editor-${{ inputs.version }}-linux-x86_64
@@ -38,7 +38,7 @@ runs:
     - name: Restore the export templates
       if: inputs.templates == 'true'
       id: templates
-      uses: actions/cache@v4
+      uses: actions/cache@v6
       with:
         path: ~/.local/share/godot/export_templates/${{ inputs.version }}.stable
         key: godot-templates-${{ inputs.version }}-linux-windows
